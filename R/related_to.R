@@ -1,4 +1,5 @@
 related_to_ <- function(savedlist, relation_type, env = parent.frame()) {
+    stopifnot(listbuilder:::get_id_type(savedlist) == "cads_id")
     param <- relation_type
     #param <- resolve_codes(param, "relation_type_code")
     flist_(savedlist, table = "d_bio_relationship_mv",
