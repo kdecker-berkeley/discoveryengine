@@ -12,3 +12,5 @@ on_committee <- function(..., status = c("A", "D"), env = parent.frame()) {
   param <- prep_string_param(param, env = env)
   on_committee_(param, status = status, env = env)
 }
+
+## add role as another level
