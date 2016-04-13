@@ -4,7 +4,9 @@ attended_event_ <- function(events, participation = c("P"), env = parent.frame()
   p2 <- participation
   param1 <- substitute(activity_code %in% param)
   param2 <- substitute(activity_participation_code %in% p2)
-  bio_("activity", list(param1))
+  if (length(param) > 0) params <- list(param1, param2)
+  else params <- list(param2)
+  bio_("activity", params)
 }
 
 attended_event <- function(..., participation = c("P"), env = parent.frame()) {

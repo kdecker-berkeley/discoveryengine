@@ -4,7 +4,10 @@ predictive_model_ <- function(likelihood, type, env = parent.frame()) {
     p2 <- type
     param1 <- substitute(dp_interest_code %in% param)
     param2 <- substitute(dp_rating_type_code %in% p2)
-    bio_("demographic_profile", list(param1, param2))
+    if (length(param) > 0)
+        params <- list(param1, param2)
+    else params <- list(param2)
+    bio_("demographic_profile", params)
 }
 
 predictive_model <- function(..., type, env = parent.frame()) {

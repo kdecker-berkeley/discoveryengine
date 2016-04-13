@@ -2,7 +2,9 @@ has_degree_ <- function(schools, levels = c("A", "U", "G", "L"), env = parent.fr
     param <- schools
     param <- resolve_codes(param, "school_code")
     p2 <- levels
-    param1 <- substitute(school_code %in% param)
+    if (length(param) > 0)
+        param1 <- substitute(school_code %in% param)
+    else param1 <- NULL
     param2 <- substitute(degree_level_code %in% p2)
     bio_("degrees", list(param1, param2))
 }

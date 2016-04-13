@@ -2,7 +2,10 @@ has_interest_ <- function(interests, env = parent.frame()) {
   param <- interests
   param <- resolve_codes(param, "interest_code")
   param1 <- substitute(interest_code %in% param)
-  bio_("interest", list(param1))
+  if (length(param) > 0)
+      params <- list(param1)
+  else params <- NULL
+  bio_("interest", params)
 }
 
 has_interest <- function(..., env = parent.frame()) {

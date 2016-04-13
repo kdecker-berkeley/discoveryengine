@@ -4,7 +4,10 @@ has_affiliation_ <- function(affils, status = c("C", "F"), env = parent.frame())
   p2 <- status
   param1 <- substitute(affil_code %in% param)
   param2 <- substitute(affil_status_code %in% p2)
-  bio_("affiliation", list(param1))
+  if (length(param) > 0)
+      params <- list(param1, param2)
+  else params <- list(param2)
+  bio_("affiliation", params)
 }
 
 has_affiliation <- function(..., status = c("C", "F"), env = parent.frame()) {

@@ -4,7 +4,10 @@ on_committee_ <- function(committees, status = c("A", "D"), env = parent.frame()
   p2 <- status
   param1 <- substitute(committee_code %in% param)
   param2 <- substitute(status_code %in% p2)
-  bio_("committee", list(param1))
+  if (length(param) > 0)
+      params <- list(param1, param2)
+  else params <- list(param2)
+  bio_("committee", params)
 }
 
 on_committee <- function(..., status = c("A", "D"), env = parent.frame()) {

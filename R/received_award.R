@@ -2,7 +2,9 @@ received_award_ <- function(awards, env = parent.frame()) {
   param <- awards
   param <- resolve_codes(param, "awd_honor_code")
   param1 <- substitute(awd_honor_code %in% param)
-  bio_("awards_and_honors", list(param1))
+  if (length(param) > 0) params <- list(param1)
+  else params <- NULL
+  bio_("awards_and_honors", params)
 }
 
 received_award <- function(..., env = parent.frame()) {
