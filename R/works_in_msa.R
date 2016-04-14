@@ -10,7 +10,7 @@ works_in_msa_ <- function(msa, type = c("B"), env = parent.frame()) {
 works_in_msa <- function(..., type = c("B"), env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)
-  lives_in_msa_(param, status = status, env = env)
+  works_in_msa_(param, status = status, env = env)
 }
 
 
