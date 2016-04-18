@@ -10,6 +10,7 @@ predictive_model_ <- function(likelihood, type, env = parent.frame()) {
     bio_("demographic_profile", params)
 }
 
+#' @export
 predictive_model <- function(..., type, env = parent.frame()) {
     param <- pryr::dots(...)
     param <- prep_string_param(param, env = env)

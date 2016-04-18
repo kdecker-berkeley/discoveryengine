@@ -10,6 +10,7 @@ on_committee_ <- function(committees, status = c("A", "D"), env = parent.frame()
   bio_("committee", params)
 }
 
+#' @export
 on_committee <- function(..., status = c("A", "D"), env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)

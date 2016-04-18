@@ -1,7 +1,7 @@
-gave_to_aog_ <- function(aogs, atleast = 0, from = NULL,
+gave_to_area_ <- function(aogs, atleast = 0, from = NULL,
                          to = NULL, env = parent.frame()) {
     param <- aogs
-    param <- resolve_codes(param, "")
+    param <- resolve_codes(param, "alloc_school_code")
     atleast <- atleast
     param1 <- substitute(alloc_school_code %in% param)
 
@@ -34,15 +34,16 @@ gave_to_aog_ <- function(aogs, atleast = 0, from = NULL,
                  where = params,
                  having = list(atleast),
                  id_field = "donor_entity_id_nbr",
-                 id_type = "cads_id",
+                 id_type = "entity_id",
                  schema = "CDW", env = env)
 }
 
-gave_to_aog <- function(..., atleast = 0,
+#' @export
+gave_to_area <- function(..., atleast = 0,
                         from = NULL, to = NULL,
                         env = parent.frame()) {
     param <- pryr::dots(...)
     param <- prep_string_param(param, env = env)
-    gave_to_aog_(param, atleast = atleast,
+    gave_to_area_(param, atleast = atleast,
                  from = from, to = to, env = env)
 }

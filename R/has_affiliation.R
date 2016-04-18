@@ -10,6 +10,7 @@ has_affiliation_ <- function(affils, status = c("C", "F"), env = parent.frame())
   bio_("affiliation", params)
 }
 
+#' @export
 has_affiliation <- function(..., status = c("C", "F"), env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)

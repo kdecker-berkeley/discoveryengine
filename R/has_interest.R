@@ -8,6 +8,7 @@ has_interest_ <- function(interests, env = parent.frame()) {
   bio_("interest", params)
 }
 
+#' @export
 has_interest <- function(..., env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)

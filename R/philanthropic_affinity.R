@@ -9,12 +9,13 @@ has_philanthropic_affinity_ <- function(types, atleast = 0, env = parent.frame()
                  where = params,
                  having = list(atleast),
                  id_field = "entity_id",
-                 id_type = "cads_id",
+                 id_type = "entity_id",
                  schema = "CDW", env = env)
 }
 
+#' @export
 has_philanthropic_affinity <- function(..., atleast = 0, env = parent.frame()) {
     param <- pryr::dots(...)
     param <- prep_string_param(param, env = env)
-    philanthropic_affinity_(param, atleast = atleast, env = env)
+    has_philanthropic_affinity_(param, atleast = atleast, env = env)
 }

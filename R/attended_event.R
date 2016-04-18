@@ -1,4 +1,5 @@
-attended_event_ <- function(events, participation = c("P"), env = parent.frame()) {
+attended_event_ <- function(events, participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E"),
+                            env = parent.frame()) {
   param <- events
   param <- resolve_codes(param, "activity_code")
   p2 <- participation
@@ -9,7 +10,9 @@ attended_event_ <- function(events, participation = c("P"), env = parent.frame()
   bio_("activity", params)
 }
 
-attended_event <- function(..., participation = c("P"), env = parent.frame()) {
+#' @export
+attended_event <- function(..., participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E"),
+                           env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)
   attended_event_(param, participation = participation, env = env)

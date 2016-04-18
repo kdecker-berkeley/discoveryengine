@@ -7,6 +7,7 @@ played_sport_ <- function(sports, env = parent.frame()) {
   bio_("sport", params)
 }
 
+#' @export
 played_sport <- function(..., env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)

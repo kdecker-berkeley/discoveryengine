@@ -7,6 +7,7 @@ received_award_ <- function(awards, env = parent.frame()) {
   bio_("awards_and_honors", params)
 }
 
+#' @export
 received_award <- function(..., env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)

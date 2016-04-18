@@ -10,8 +10,9 @@ participated_in_ <- function(activities, participation = c("P", "L"), env = pare
   bio_("student_activity", params)
 }
 
+#' @export
 participated_in <- function(..., participation = c("P", "L"), env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)
-  participated_in_student_activity_(param, participation = participation, env = env)
+  participated_in_(param, participation = participation, env = env)
 }

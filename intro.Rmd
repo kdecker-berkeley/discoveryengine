@@ -1,0 +1,113 @@
+---
+title: "Introducing the discoveryengine"
+author: "Tarak Shah"
+date: "April 15, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(dplyr)
+library(getcdw)
+library(listbuilder)
+library(discoveryengine)
+
+get_ids <- function(spec) distinct(get_cdw(spec))
+```
+
+## A motivating example
+Let's say Haas has just hired a new major gift fundraiser, and you'd like to begin prospecting to build her a portfolio. You could start out with the Prospect Discovery Tool. Or you could build a savedlist through Lookups. Perhaps you have other favorite tools in CADS and CADSmart. But what if you could just start typing out a description of the types of prospects you wanted, and then turn that description into a saved list? Here is an example of how we might do so, using the new `discoveryengine` tool from Prospect Analysis.
+
+```{r ex1}
+# any line that starts with a "#" is a comment, not part of the program. it is 
+# often helpful to weave descriptive comments into your code, to preserve clarity
+
+# we start by defining business constituents. 
+# a business constituent is anyone with a business degree, or giving history:
+is_business_constituent = has_degree_from(business) %or% gave_to_area(business)
+
+# we'll use the major gift score to zero in on the best prospects:
+is_mg_prospect = has_major_gift_score(more_likely, most_likely)
+
+# and a major gift prospect needs major gift capacity
+# we'll count as "wealthy" anyone who has a capacity over $250K+, or a high 
+# implied capacity score:
+is_wealthy = has_capacity(1:9) %or% has_implied_capacity(more_likely, most_likely)
+
+# but we should exclude anyone already in a portfolio
+is_business_prospect = is_business_constituent %minus% in_unit_portfolio(business)
+
+# now let's put everything together!
+my_prospects = is_business_prospect %and% is_wealthy %and% is_mg_prospect
+```
+
+Voila! Even without the comments, I'm guessing you could have figured out what the above code is supposed to do despite never having seen or used the `discoveryengine` before. From there, you can continue building, or you can take a look at the list 
+you've made:
+
+```{r ex1_show, cache = TRUE}
+get_ids(my_prospects)
+```
+
+You are free to save the list you've created, or save the program you made so that you can re-run it later (or share it with a colleague -- since it's just some text you could copy/paste the program into an email), or export the savedlist to a text file that is ready to upload to an Advance Clipboard. All of these options are fast, easy, and painless.
+
+As you begin reviewing the list, you notice that it's not householded. No problem:
+
+```{r ex_household, cache = TRUE}
+my_households = household(my_prospects)
+get_ids(my_households)
+```
+
+## What is the discoveryengine, and how does it work?
+The `discoveryengine` is a tool written in the R programming language. All of us in Prospect Development already have R installed on our computers.
+
+The key idea behind the `discoveryengine` is that we can create custom lists of prospects, even if the criteria are complex or unique, using nothing but small and simple building blocks that can be combined in various ways. We call the small building blocks *widgets*, and widgets can be combined using the following operators:
+
+- %and%
+- %or%
+- %minus%
+
+That's it! It turns out that we can create most any list we need using these operators along with a bit of creativity. Before looking at another example, let's look in more detail at exactly how a widget works.
+
+### More details about widgets
+If you're into logic or grammar, you can think of a widget as a predicate that describes a set of individuals in CADS. Each widget has a small number (usually just one) of **parameters**. So, for example, I can type `has_degree_from(NR)`. The **parameter** is `NR`, which is the school code for the College of Natural Resources. So that widget would describe anyone who "has a degree from the College of Natural Resources." 
+
+When Caleb and I began experimenting with widgets, we could tell they were useful and powerful, but found it inconvenient to have to keep looking up codes in Advance. So we've begun compiling lists of synonyms that we find easier to remember than the TMS codes. The above widget is identical to `has_degree_from(natural_resources)`, but the latter is easier to read and remember. 
+
+The result of applying `%and%`, `%or`, or `%minus` to any two widgets just results in a new (more complex, but otherwise similar) predicate. So we can keep combining widgets to generate a huge variety of prospect lists. 
+
+## Custom prospecting example
+Mallory and Abbey have been doing quite a bit of work recently around interest coding. Something they've drawn attention to is how similar codes can live in different areas of the database. For instance, if we want to look for people to invite to an event about science and technology, we have to look at both philanthropic affinities as well as interest codes. With the `discoveryengine`, that's easy-peasy:
+
+```{r sci_tech, cache = TRUE}
+# note we haven't made synonym lists for these codes yet, but will soon
+likes_sci_tech = has_philanthropic_affinity(ST) %or% has_interest(SCE, TEC)
+get_ids(likes_sci_tech)
+```
+
+In fact, it's so easy that we can continue on and define more complicated constituencies on top of what we already have. Say we only want to focus on those techy fans who gave at least $1,000 to the College of Engineering during the last campaign. That's just a little bit more code:
+
+```{r tech_eng, cache = TRUE}
+techy_engineers = gave_to_area(engineering, atleast = 1000, 
+                               from = 20070701, to = 20121231) %and%
+    likes_sci_tech
+get_ids(techy_engineers)
+```
+
+## Converter widgets
+Nick recently had a client who wanted to contact the parents of recently graduated marching band members. It's not hard to pull together young marching band members:
+
+```{r marching band}
+young_band_member = participated_in(MSMB) %and% class_campaign_year(2010:2015)
+```
+
+But how do we find their parents? We need a slightly more sophisticated widget -- instead of taking a code or two as a parameter, it should take another widget as a parameter! In fact, we saw an example of that above, when we householded our Business School prospects. Here, we utilize the `parent_of` widget:
+
+```{r band_parents, cache = TRUE}
+band_parent = parent_of(young_band_member)
+get_ids(band_parent)
+```
+
+That's it for now! I hope you find this interesting -- there is still a lot of work to do but we feel like the `discoveryengine` has a ton of potential. If you made it this far in the intro, you'll probably be interested in participating in a training session, so that you can get started using the tool yourself. Stay tuned!

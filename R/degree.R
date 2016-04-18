@@ -1,4 +1,4 @@
-has_degree_ <- function(schools, levels = c("A", "U", "G", "L"), env = parent.frame()) {
+has_degree_from_ <- function(schools, levels = c("A", "U", "G", "L"), env = parent.frame()) {
     param <- schools
     param <- resolve_codes(param, "school_code")
     p2 <- levels
@@ -9,8 +9,9 @@ has_degree_ <- function(schools, levels = c("A", "U", "G", "L"), env = parent.fr
     bio_("degrees", list(param1, param2))
 }
 
-has_degree <- function(..., levels = c("A", "U", "G", "L"), env = parent.frame()) {
+#' @export
+has_degree_from <- function(..., levels = c("A", "U", "G", "L"), env = parent.frame()) {
     param <- pryr::dots(...)
     param <- prep_string_param(param, env = env)
-    has_degree_(param, levels = levels, env = env)
+    has_degree_from_(param, levels = levels, env = env)
 }

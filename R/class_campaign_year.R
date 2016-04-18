@@ -1,3 +1,4 @@
+#' @export
 class_campaign_year <- function(...) {
     param <- prep_integer_param(...)
     if (length(param) > 0)
