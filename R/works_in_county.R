@@ -11,4 +11,4 @@ works_in_county <- function(..., type = c("B"), env = parent.frame()) {
   param <- pryr::dots(...)
   param <- prep_string_param(param, env = env)
   lives_in_county_(param, status = status, env = env)
-}
+} 
