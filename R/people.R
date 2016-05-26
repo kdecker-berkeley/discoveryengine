@@ -1,9 +1,9 @@
 #' @rdname people
 #' @export
 people_ <- function(.dots, env = parent.frame()) {
-    simple_q_(table = "d_entity_mv",
-              where = .dots, id_field = "entity_id",
-              id_type = "entity_id", schema = "CDW")
+    listbuilder::simple_q_(table = "d_entity_mv",
+                           where = .dots, id_field = "entity_id",
+                           id_type = "entity_id", schema = "CDW")
 }
 
 #' Basic entity query

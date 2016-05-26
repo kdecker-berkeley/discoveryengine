@@ -30,12 +30,12 @@ gave_to_area_ <- function(aogs, atleast = 0, from = NULL,
     params <- c(params, list(substitute(pledged_basis_flg == "Y")))
 
     atleast <- substitute(sum(benefit_aog_credited_amt) >= atleast)
-    aggregate_q_(table = "f_transaction_detail_mv",
-                 where = params,
-                 having = list(atleast),
-                 id_field = "donor_entity_id_nbr",
-                 id_type = "entity_id",
-                 schema = "CDW", env = env)
+    listbuilder::aggregate_q_(table = "f_transaction_detail_mv",
+                              where = params,
+                              having = list(atleast),
+                              id_field = "donor_entity_id_nbr",
+                              id_type = "entity_id",
+                              schema = "CDW", env = env)
 }
 
 #' @export

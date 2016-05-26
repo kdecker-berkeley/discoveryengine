@@ -2,9 +2,12 @@ Package: discoveryengine
 Type: Package
 Title: A CADS Prospecting Tool
 Version: 0.1.0
-Author: Tarak Shah and Caleb Wolfson-Seely
-Maintainer: tarak_shah@berkeley.edu
+Authors@R: person("Tarak", "Shah", email = "tarak_shah@berkeley.edu",
+  role = c("aut", "cre"))
 Description: None yet
 License: Do whatever you like
 LazyData: TRUE
 RoxygenNote: 5.0.1
+Suggests: testthat
+Imports: listbuilder,
+    lazyeval
