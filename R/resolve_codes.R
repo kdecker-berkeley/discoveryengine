@@ -1,11 +1,11 @@
 resolve_codes <- function(codes, type) {
     stopifnot(length(type) == 1L)
 
-    ready_to_go <- upper_case(codes)
+    ready_to_go <- is_upper_case(codes)
     needs_translation <- setdiff(codes, ready_to_go)
 
     translated <- recover_codes(needs_translation, type)
-    c(ready_to_go, translated)
+    unique(c(ready_to_go, translated))
 }
 
 resolve_date <- function(dt) {
@@ -13,7 +13,7 @@ resolve_date <- function(dt) {
     else dt
 }
 
-upper_case <- function(codes) {
+is_upper_case <- function(codes) {
     all_capitalized <- toupper(codes)
     codes[codes == all_capitalized]
 }

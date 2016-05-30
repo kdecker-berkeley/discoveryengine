@@ -1,19 +1,24 @@
-attended_event_ <- function(events, participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E"),
-                            env = parent.frame()) {
-  param <- events
-  param <- resolve_codes(param, "activity_code")
-  p2 <- participation
-  param1 <- substitute(activity_code %in% param)
-  param2 <- substitute(activity_participation_code %in% p2)
-  if (length(param) > 0) params <- list(param1, param2)
-  else params <- list(param2)
-  bio_("activity", params)
-}
-
+#' Event attendance widget
+#'
+#' @param ... event codes
+#' @param participation event participation codes
+#' @importFrom pryr dots
 #' @export
 attended_event <- function(..., participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E"),
                            env = parent.frame()) {
-  param <- pryr::dots(...)
-  param <- prep_string_param(param, env = env)
-  attended_event_(param, participation = participation, env = env)
+    events = pryr::dots(...)
+    attended_event_(events, participation, env)
+}
+
+#' @export
+#' @rdname attended_event
+attended_event_ <- function(events, participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E"),
+                            env = parent.frame()) {
+    d_bio_widget("activity",
+                 parameter = string_param("activity_code", events,
+                                          default = NULL, env = env),
+                 switches = list(
+                     string_switch("activity_participation_code", participation)
+                 ),
+                 env = env)
 }

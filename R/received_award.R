@@ -1,15 +1,12 @@
-received_award_ <- function(awards, env = parent.frame()) {
-  param <- awards
-  param <- resolve_codes(param, "awd_honor_code")
-  param1 <- substitute(awd_honor_code %in% param)
-  if (length(param) > 0) params <- list(param1)
-  else params <- NULL
-  bio_("awards_and_honors", params)
-}
-
 #' @export
 received_award <- function(..., env = parent.frame()) {
-  param <- pryr::dots(...)
-  param <- prep_string_param(param, env = env)
-  received_award_(param, env = env)
+    awards <- pryr::dots(...)
+    received_award_(awards, env = env)
 }
+
+received_award_ <- function(awards, env = parent.frame()) {
+    d_bio_widget("award",
+                 parameter = string_param("awd_honor_code", awards, env = env),
+                 env = env)
+}
+

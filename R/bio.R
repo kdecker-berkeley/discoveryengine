@@ -1,6 +1,0 @@
-bio_ <- function(table, .dots, env = parent.frame()) {
-    table = paste("d_bio", table, "mv", sep = "_")
-    listbuilder::simple_q_(table = table, where = .dots,
-                           id_field = "entity_id", id_type = "entity_id",
-                           schema = "CDW")
-}

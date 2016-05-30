@@ -1,20 +1,25 @@
-has_degree_from_ <- function(schools, levels = c("A", "U", "G", "L"), env = parent.frame()) {
-    param <- schools
-    param <- resolve_codes(param, "school_code")
-    p2 <- levels
-
-    param1 <- substitute(school_code %in% param)
-    param2 <- substitute(degree_level_code %in% p2)
-
-    if (length(param) > 0)
-        params <- list(param1, param2)
-    else params <- list(param2)
-    bio_("degrees", params)
+#' Degree widget
+#'
+#' @param ... degree-granting schools
+#' @param levels degree level codes (undergrad/grad, attendee/degreeholder)
+#' @importFrom pryr dots
+#' @export
+has_degree_from <- function(..., levels = c("A", "U", "G", "L"),
+                            env = parent.frame()) {
+    schools <- pryr::dots(...)
+    has_degree_from_(schools, levels, env)
 }
 
+#' @rdname has_degree_from
 #' @export
-has_degree_from <- function(..., levels = c("A", "U", "G", "L"), env = parent.frame()) {
-    param <- pryr::dots(...)
-    param <- prep_string_param(param, env = env)
-    has_degree_from_(param, levels = levels, env = env)
+has_degree_from_ <- function(schools, levels = c("A", "U", "G", "L"),
+                             env = parent.frame()) {
+    d_bio_widget("degrees",
+                 parameter = string_param("school_code", schools,
+                                          default = NULL),
+                 switches = list(
+                     string_switch("degree_level_code", levels),
+                     quote(local_ind == "Y")
+                 ),
+                 env = env)
 }

@@ -1,12 +1,9 @@
+#' Reunion year widget
+#' @param ... reunion year(s) (eg: 1980, 1990:2000)
 #' @export
 class_campaign_year <- function(...) {
-    param <- prep_integer_param(...)
-    if (length(param) > 0)
-        param <- list(substitute(class_campaign_year %in% param))
-    else param <- list(substitute(class_campaign_year %is not% null))
-    people_(param)
-}
-
-class_campaign_year_ <- function(...) {
-    class_campaign_year(...)
+    d_entity_widget(
+        parameter = integer_param("class_campaign_year", ...,
+                                  default = quote(class_campaign_year %is not% null))
+    )
 }

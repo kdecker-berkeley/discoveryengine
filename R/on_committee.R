@@ -1,20 +1,14 @@
-on_committee_ <- function(committees, status = c("A", "D"), env = parent.frame()) {
-  param <- committees
-  param <- resolve_codes(param, "committee_code")
-  p2 <- status
-  param1 <- substitute(committee_code %in% param)
-  param2 <- substitute(status_code %in% p2)
-  if (length(param) > 0)
-      params <- list(param1, param2)
-  else params <- list(param2)
-  bio_("committee", params)
-}
-
 #' @export
 on_committee <- function(..., status = c("A", "D"), env = parent.frame()) {
-  param <- pryr::dots(...)
-  param <- prep_string_param(param, env = env)
-  on_committee_(param, status = status, env = env)
+    committees <- pryr::dots(...)
+    on_committee_(committees, status = status, env = env)
+}
+
+on_committee_ <- function(committees, status = c("A", "D"), env = parent.frame()) {
+    d_bio_widget("committee",
+                 parameter = string_param("committee_code", committees, env = env),
+                 switches = string_switch("status_code", status),
+                 env = env)
 }
 
 ## add role as another level
