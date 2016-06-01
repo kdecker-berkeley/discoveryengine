@@ -1,11 +1,14 @@
-integer_param <- function(field_name, ..., default) {
-    codelist <- prep_integer_param(...)
+string_param <- function(field_name, arguments, default = NULL) {
+    validated_arguments <- prep_string_param(arguments)
+    codelist <- resolve_codes(validated_arguments, type = field_name)
+
     if (length(codelist) <= 0) {
         if (is.language(default)) return(default)
         else codelist <- default
     }
 
-    # params will be of the form x %in% y
+
+    # string params will be of the form x %in% y
     if (length(codelist) > 0) {
         .call <- list(
             quote(`%in%`),

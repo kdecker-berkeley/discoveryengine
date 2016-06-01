@@ -22,7 +22,7 @@ test_that("has_capacity gets the right people", {
 })
 
 test_that("has_degree_from gets the right people", {
-    lsdegs <- has_degree_from(ls) %>% get_cdw
+    lsdegs <- has_degree_from(letters_and_science) %>% get_cdw
     lsdegs %>% should_contain(640993)
     lsdegs %>% should_not_contain(22653)
 })

@@ -10,14 +10,14 @@ test_that("has_capacity meets specifications on standard input", {
     test %>% id_of_type("entity_id")
 
     # has_capacity should filter on the field capacity_rating_code
-    test %>% filters_on(capacity_rating_code)
+    test %>% filters_on("capacity_rating_code")
 })
 
 test_that("has_capacity meets specifications on no input", {
     test <- has_capacity()
 
     # should still filter on capacity_rating_code
-    test %>% filters_on(capacity_rating_code)
+    test %>% filters_on("capacity_rating_code")
 
     # in this case has_capacity should look for all valid (1:14) capacity codes
     condition <- test$where[[1]]

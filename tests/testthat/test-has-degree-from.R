@@ -8,22 +8,20 @@ test_that("has_degree_from meets specifications on standard input", {
     expect_equal(test$id_field, "entity_id")
     expect_equal(test$id_type, "entity_id")
 
-    # should have two where clauses, one for the degree school,
-    # one for the degree_level
-    expect_equal(length(test$where), 2L)
+    # should have three where clauses, one for the degree school,
+    # one for the degree_level, one for local_ind
+    expect_equal(length(test$where), 3L)
 
     actual <- lapply(test$where, "[[", 2)
-    desired <- list(quote(school_code), quote(degree_level_code))
+    desired <- list(quote(school_code), quote(degree_level_code), quote(local_ind))
 
-    expect_equal(setdiff(actual, desired), list())
-    expect_equal(setdiff(desired, actual), list())
+    expect_true(setequal(actual, desired))
 })
 
 test_that("has_degree_from meets specifications on no input", {
     test <- has_degree_from()
 
     # in this case has_degree should only filter on degree_level_code
-    expect_equal(length(test$where), 1L)
-    filter_field <- test$where[[1]][[2]]
-    expect_identical(filter_field, quote(degree_level_code))
+    # along with default local_ind == "Y"
+    expect_equal(length(test$where), 2L)
 })

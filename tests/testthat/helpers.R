@@ -6,8 +6,8 @@ id_of_type <- function(lb, id_type) {
     expect_equal(listbuilder::get_id_type(lb), id_type)
 }
 
-filters_on <- function(lb, ...) {
-    desired_fields <- pryr::dots(...)
+filters_on <- function(lb, desired_fields) {
+    desired_fields <- as.list(desired_fields)
     expect_equal(length(lb$where), length(desired_fields))
     actual_fields <- lapply(lb$where, "[[", 2)
 

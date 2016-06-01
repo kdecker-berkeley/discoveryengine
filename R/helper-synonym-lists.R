@@ -60,7 +60,6 @@ office_code_synonyms <- function() {
         "lawrence_hall_of_science" = "LH",
         "leadership_gifts" = "LG",
         "letters_and_science" = "LS",
-        "ls" = "LS",
         "library" = "LI",
         "magnes" = "MN",
         "natural_resources" = "NR",
@@ -118,7 +117,6 @@ school_code_synonyms <- function() {
         "haas" = "BU",
         "chemistry" = "CH",
         "letters_and_science" = "LS",
-        "ls" = "LS",
         "natural_resources" = "NR",
         "education" = "EC",
         "engineering" = "EN",
@@ -186,7 +184,7 @@ geo_metro_area_code_synonyms <- function() {
     "lewiston_me" = 30340,
     "auburn_me" = 30340,
     "panama_city" = 37460,
-    "lynn_haven_fl" = 37460, 
+    "lynn_haven_fl" = 37460,
     "yuma" = 49740,
     "yuma_az" = 49740,
     "pocatello_id" = 38540,
@@ -313,7 +311,7 @@ geo_metro_area_code_synonyms <- function() {
     "fall_river_ma" = 39300,
     "las_vegas" = 29820,
     "las_vegas_nv" = 29820,
-    "paradise_nv" = 29820, 
+    "paradise_nv" = 29820,
     "raleigh" = 39580,
     "raleigh_nc" = 39580,
     "cary_nc" = 39580,
@@ -421,17 +419,7 @@ geo_metro_area_code_synonyms <- function() {
     "la" = 31100,
     "long_beach" = 31100,
     "santa_ana" = 31100,
-    "savannah_ga" = 42340,
-    
-    
-    
-    
-    
-    
-    
-    
-
+    "savannah_ga" = 42340
   )
-  
 }
 

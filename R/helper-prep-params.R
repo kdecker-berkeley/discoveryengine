@@ -6,8 +6,7 @@ prep_integer_param <- function(...) {
     param
 }
 
-#' @importFrom lazyeval interp
-prep_string_param <- function(param, env = parent.frame()) {
+prep_string_param <- function(param) {
     param <- Filter(function(x) !is.null(x), param)
     if (length(param) <= 0) return(character(0))
 
@@ -20,7 +19,7 @@ prep_string_param <- function(param, env = parent.frame()) {
 
     leading_zero_indices <- grepl("^0", param)
 
-    interpreted_param <- lapply(param, lazyeval::interp, .values = env)
+    interpreted_param <- partial_sub(param)
 
     # just replace with the original "0xx"
     if (any(leading_zero_indices))
