@@ -5,3 +5,5 @@
 intro_cache/
 intro.html
 *.zip
+*.sublime-project
+*.sublime-workspace
