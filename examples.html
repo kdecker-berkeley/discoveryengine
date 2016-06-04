@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title></title>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="examples_files/highlight/default.css"
+      type="text/css" />
+<script src="examples_files/highlight/highlight.js"></script>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<link rel="stylesheet" href="stylesheets/github-light.css" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+</div>
+
+
+<div class="wrapper">
+<header>
+<a href="index.html">
+<h1>
+Discoveryengine
+</h1>
+</a>
+<p>
+</p>
+<p class="view">
+<a href="https://github.com/tarakc02/discoveryengine">View the Project on GitHub <small>tarakc02/discoveryengine</small></a>
+</p>
+<ul>
+<li>
+<a href="intro.html">Brief <strong>Intro</strong></a>
+</li>
+<li>
+<a href="examples.html">Collection of <strong>Examples</strong></a>
+</li>
+<li>
+<a href="index.html">Back to <strong>Main</strong></a>
+</li>
+</ul>
+</header>
+<section>
+<h2>Examples</h2>
+<h3>A motivating example</h3>
+<p>Let’s say Haas has just hired a new major gift fundraiser, and you’d like to begin prospecting to build her a portfolio. You could start out with the Prospect Discovery Tool. Or you could build a savedlist through Lookups. Perhaps you have other favorite tools in CADS and CADSmart. But what if you could just start typing out a description of the types of prospects you wanted, and then turn that description into a saved list? Here is an example of how we might do so, using the new <code>discoveryengine</code> tool from Prospect Analysis.</p>
+<pre class="r"><code># any line that starts with a &quot;#&quot; is a comment, not part of the 
+# program. it is often helpful to weave descriptive comments into your
+# code, to preserve clarity
+
+# we start by defining business constituents. 
+# a business constituent is anyone with a business degree, or giving
+# history:
+is_business_constituent = 
+    has_degree_from(business) %or% gave_to_area(business)
+
+# we&#39;ll use the major gift score to zero in on the best prospects:
+is_mg_prospect = 
+    has_major_gift_score(more_likely, most_likely)
+
+# and a major gift prospect needs major gift capacity
+# we&#39;ll count as &quot;wealthy&quot; anyone who has a capacity over $250K+, or a
+# high implied capacity score:
+is_wealthy = 
+    has_capacity(1:9) %or% 
+    has_implied_capacity(more_likely, most_likely)
+
+# but we should exclude anyone already in a portfolio
+is_business_prospect = 
+    is_business_constituent %minus%
+    in_unit_portfolio(business)
+
+# now let&#39;s put everything together!
+my_prospects = 
+    is_business_prospect %and% 
+    is_wealthy %and% 
+    is_mg_prospect
+cat(to_sql(my_prospects))</code></pre>
+<pre><code>## ((((
+## select d_bio_degrees_mv.entity_id as entity_id
+## from CDW.d_bio_degrees_mv
+## where school_code IN (&#39;FALSE&#39;, &#39;BU&#39;) and degree_level_code IN (&#39;A&#39;, &#39;U&#39;, &#39;G&#39;, &#39;L&#39;) and local_ind = &#39;Y&#39;
+## )
+## union
+## (
+## select f_transaction_detail_mv.donor_entity_id_nbr as entity_id
+## from CDW.f_transaction_detail_mv
+## where alloc_school_code IN (&#39;FALSE&#39;, &#39;HSB&#39;) and pledged_basis_flg IN &#39;Y&#39;
+## 
+## group by f_transaction_detail_mv.donor_entity_id_nbr
+## having sum(benefit_aog_credited_amt) &gt;= 0.01
+## ))
+## minus
+## (
+## select f_proposal_mv.entity_id as entity_id
+## from CDW.f_proposal_mv
+## where
+## proposal_id in (
+## select f_assignment_mv.proposal_id as proposal_id
+## from CDW.f_assignment_mv
+## where office_code IN (&#39;FALSE&#39;, &#39;BU&#39;) and active_ind IN &#39;Y&#39;
+## )
+## ))
+## intersect
+## ((
+## select d_entity_mv.entity_id as entity_id
+## from CDW.d_entity_mv
+## where capacity_rating_code IN (1, 2, 3, 4, 5, 6, 7, 8, 9)
+## )
+## union
+## (
+## select d_bio_demographic_profile_mv.entity_id as entity_id
+## from CDW.d_bio_demographic_profile_mv
+## where dp_interest_code IN (&#39;FALSE&#39;, &#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;CAP&#39;
+## )))
+## intersect
+## (
+## select d_bio_demographic_profile_mv.entity_id as entity_id
+## from CDW.d_bio_demographic_profile_mv
+## where dp_interest_code IN (&#39;FALSE&#39;, &#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;MGS&#39;
+## )</code></pre>
+</section>
+<footer>
+<p>
+This project is maintained by <a href="https://github.com/tarakc02">tarakc02</a>
+</p>
+<p>
+<small>Hosted on GitHub Pages — Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
+</p>
+</footer>
+</div>
+<script src="javascripts/scale.fix.js"></script>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
