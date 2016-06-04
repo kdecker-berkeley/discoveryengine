@@ -1,5 +1,5 @@
 prep_dots <- function(...) {
-    lazyeval::lazy_dots(..., .follow_symbols = TRUE, .ignore_empty = FALSE)
+    lazyeval::lazy_dots(..., .follow_symbols = TRUE)
 }
 
 partial_sub <- function(.dots) {
