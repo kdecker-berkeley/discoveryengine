@@ -64,7 +64,7 @@ Discoveryengine
 <a href="examples.html">Collection of <strong>Examples</strong></a>
 </li>
 <li>
-<a href="index.html">Back to <strong>Main</strong></a>
+<a href="https://github.com/tarakc02/discoveryengine">View On <strong>GitHub</strong></a>
 </li>
 </ul>
 </header>
@@ -107,13 +107,13 @@ cat(to_sql(my_prospects))</code></pre>
 <pre><code>## ((((
 ## select d_bio_degrees_mv.entity_id as entity_id
 ## from CDW.d_bio_degrees_mv
-## where school_code IN (&#39;FALSE&#39;, &#39;BU&#39;) and degree_level_code IN (&#39;A&#39;, &#39;U&#39;, &#39;G&#39;, &#39;L&#39;) and local_ind = &#39;Y&#39;
+## where school_code IN &#39;BU&#39; and degree_level_code IN (&#39;A&#39;, &#39;U&#39;, &#39;G&#39;, &#39;L&#39;) and local_ind = &#39;Y&#39;
 ## )
 ## union
 ## (
 ## select f_transaction_detail_mv.donor_entity_id_nbr as entity_id
 ## from CDW.f_transaction_detail_mv
-## where alloc_school_code IN (&#39;FALSE&#39;, &#39;HSB&#39;) and pledged_basis_flg IN &#39;Y&#39;
+## where alloc_school_code IN &#39;HSB&#39; and pledged_basis_flg IN &#39;Y&#39;
 ## 
 ## group by f_transaction_detail_mv.donor_entity_id_nbr
 ## having sum(benefit_aog_credited_amt) &gt;= 0.01
@@ -126,7 +126,7 @@ cat(to_sql(my_prospects))</code></pre>
 ## proposal_id in (
 ## select f_assignment_mv.proposal_id as proposal_id
 ## from CDW.f_assignment_mv
-## where office_code IN (&#39;FALSE&#39;, &#39;BU&#39;) and active_ind IN &#39;Y&#39;
+## where office_code IN &#39;BU&#39; and active_ind IN &#39;Y&#39;
 ## )
 ## ))
 ## intersect
@@ -139,13 +139,13 @@ cat(to_sql(my_prospects))</code></pre>
 ## (
 ## select d_bio_demographic_profile_mv.entity_id as entity_id
 ## from CDW.d_bio_demographic_profile_mv
-## where dp_interest_code IN (&#39;FALSE&#39;, &#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;CAP&#39;
+## where dp_interest_code IN (&#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;CAP&#39;
 ## )))
 ## intersect
 ## (
 ## select d_bio_demographic_profile_mv.entity_id as entity_id
 ## from CDW.d_bio_demographic_profile_mv
-## where dp_interest_code IN (&#39;FALSE&#39;, &#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;MGS&#39;
+## where dp_interest_code IN (&#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;MGS&#39;
 ## )</code></pre>
 </section>
 <footer>
