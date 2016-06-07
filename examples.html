@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -29,7 +30,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<link rel="stylesheet" href="stylesheets/github-light.css" type="text/css" />
+
+<link rel="stylesheet" href="stylesheets\github-light.css" type="text/css" />
 
 </head>
 
@@ -37,11 +39,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<div class="fluid-row" id="header">
 
 
-
-</div>
 
 
 <div class="wrapper">
@@ -58,10 +57,10 @@ Discoveryengine
 </p>
 <ul>
 <li>
-<a href="intro.html">Brief <strong>Intro</strong></a>
+<a href="examples.html">Introductory <strong>Examples</strong></a>
 </li>
 <li>
-<a href="examples.html">Collection of <strong>Examples</strong></a>
+<a href="developer-notes.html">Notes for <strong>Developers</strong></a>
 </li>
 <li>
 <a href="https://github.com/tarakc02/discoveryengine">View On <strong>GitHub</strong></a>
@@ -69,92 +68,46 @@ Discoveryengine
 </ul>
 </header>
 <section>
-<h2>Examples</h2>
-<h3>A motivating example</h3>
-<p>Let’s say Haas has just hired a new major gift fundraiser, and you’d like to begin prospecting to build her a portfolio. You could start out with the Prospect Discovery Tool. Or you could build a savedlist through Lookups. Perhaps you have other favorite tools in CADS and CADSmart. But what if you could just start typing out a description of the types of prospects you wanted, and then turn that description into a saved list? Here is an example of how we might do so, using the new <code>discoveryengine</code> tool from Prospect Analysis.</p>
-<pre class="r"><code># any line that starts with a &quot;#&quot; is a comment, not part of the 
-# program. it is often helpful to weave descriptive comments into your
-# code, to preserve clarity
-
-# we start by defining business constituents. 
-# a business constituent is anyone with a business degree, or giving
-# history:
-is_business_constituent = 
-    has_degree_from(business) %or% gave_to_area(business)
-
-# we&#39;ll use the major gift score to zero in on the best prospects:
-is_mg_prospect = 
-    has_major_gift_score(more_likely, most_likely)
-
-# and a major gift prospect needs major gift capacity
-# we&#39;ll count as &quot;wealthy&quot; anyone who has a capacity over $250K+, or a
-# high implied capacity score:
-is_wealthy = 
-    has_capacity(1:9) %or% 
-    has_implied_capacity(more_likely, most_likely)
-
-# but we should exclude anyone already in a portfolio
-is_business_prospect = 
+<h2 id="some-examples-of-the-discoveryengine-in-use">Some examples of the discoveryengine in use</h2>
+<h3 id="general-prospecting-for-a-degree-granting-unit">General prospecting for a degree-granting unit</h3>
+<p>The goal is to identify some prospects for a new Haas portfolio. We’ll do this in steps, starting with defining Haas constituents as anyone who either has a degree from Haas or has given to Haas: [Note that the newline and indenting are not necessary for things to work, I just did that to make things look nicer]</p>
+<pre class="r"><code>is_business_constituent = 
+    has_degree_from(business) %or% gave_to_area(business)</code></pre>
+<p>But since we’re building a new portfolio, we want to make sure we’re not pulling in anyone who is already in a Haas portfolio:</p>
+<pre class="r"><code>is_business_prospect = 
     is_business_constituent %minus%
-    in_unit_portfolio(business)
-
-# now let&#39;s put everything together!
-my_prospects = 
+    in_unit_portfolio(business)</code></pre>
+<p>We’ll define major gift prospects in terms of major gift score:</p>
+<pre class="r"><code>is_mg_prospect = 
+    has_major_gift_score(more_likely, most_likely)</code></pre>
+<p>The major gift score helps us identify inclination, but for a major gift portfolio, we want to have high capacity. For this example, we’ll define high capacity as having a researched capacity rating of $250K+, or having a sufficiently high implied capacity score:</p>
+<pre class="r"><code>is_wealthy = has_capacity(1:9) %or% 
+    has_implied_capacity(more_likely, most_likely)</code></pre>
+<p>Putting it all together, we’ve defined a prospect pool from which to build our new portfolio:</p>
+<pre class="r"><code>my_prospects = 
     is_business_prospect %and% 
     is_wealthy %and% 
-    is_mg_prospect
-cat(to_sql(my_prospects))</code></pre>
-<pre><code>## ((((
-## select d_bio_degrees_mv.entity_id as entity_id
-## from CDW.d_bio_degrees_mv
-## where school_code IN &#39;BU&#39; and degree_level_code IN (&#39;A&#39;, &#39;U&#39;, &#39;G&#39;, &#39;L&#39;) and local_ind = &#39;Y&#39;
-## )
-## union
-## (
-## select f_transaction_detail_mv.donor_entity_id_nbr as entity_id
-## from CDW.f_transaction_detail_mv
-## where alloc_school_code IN &#39;HSB&#39; and pledged_basis_flg IN &#39;Y&#39;
+    is_mg_prospect</code></pre>
+<p>Let’s see what we’ve got:</p>
+<pre class="r"><code>get_ids(my_prospects)</code></pre>
+<pre><code>## Source: local data frame [614 x 1]
 ## 
-## group by f_transaction_detail_mv.donor_entity_id_nbr
-## having sum(benefit_aog_credited_amt) &gt;= 0.01
-## ))
-## minus
-## (
-## select f_proposal_mv.entity_id as entity_id
-## from CDW.f_proposal_mv
-## where
-## proposal_id in (
-## select f_assignment_mv.proposal_id as proposal_id
-## from CDW.f_assignment_mv
-## where office_code IN &#39;BU&#39; and active_ind IN &#39;Y&#39;
-## )
-## ))
-## intersect
-## ((
-## select d_entity_mv.entity_id as entity_id
-## from CDW.d_entity_mv
-## where capacity_rating_code IN (1, 2, 3, 4, 5, 6, 7, 8, 9)
-## )
-## union
-## (
-## select d_bio_demographic_profile_mv.entity_id as entity_id
-## from CDW.d_bio_demographic_profile_mv
-## where dp_interest_code IN (&#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;CAP&#39;
-## )))
-## intersect
-## (
-## select d_bio_demographic_profile_mv.entity_id as entity_id
-## from CDW.d_bio_demographic_profile_mv
-## where dp_interest_code IN (&#39;MORE&#39;, &#39;MOST&#39;) and dp_rating_type_code IN &#39;MGS&#39;
-## )</code></pre>
+##    entity_id
+##        &lt;int&gt;
+## 1        517
+## 2        562
+## 3        566
+## 4       1003
+## 5       1030
+## 6       1148
+## 7       1346
+## 8       1347
+## 9       1429
+## 10      1476
+## ..       ...</code></pre>
 </section>
 <footer>
-<p>
-This project is maintained by <a href="https://github.com/tarakc02">tarakc02</a>
-</p>
-<p>
-<small>Hosted on GitHub Pages — Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
-</p>
+<small>theme by <span class="citation">@orderedlist</span></small>
 </footer>
 </div>
 <script src="javascripts/scale.fix.js"></script>

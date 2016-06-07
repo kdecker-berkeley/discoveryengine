@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Lora:700%7CNoto+Sans%7CAnonymous+Pro);
+@import url(https://fonts.googleapis.com/css?family=Lora:400italic,700%7CNoto+Sans%7CInconsolata:400,700);
 
 body {
   background-color: #fff;
@@ -11,6 +11,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color:#222;
   margin:0 0 20px;
+  font-family: 'Lora', serif;
 }
 
 p, ul, ol, table, pre, dl {
@@ -19,7 +20,16 @@ p, ul, ol, table, pre, dl {
 
 h1, h2, h3 {
   line-height:1.1;
-  font-family: 'Lora', serif;
+  /*font-family: 'Lora', serif;*/
+}
+
+h1, h2 {
+    font-weight:700;
+}
+
+h3, h4, h5, h6 {
+    font-weight:400;
+    font-style:italic;
 }
 
 h1 {
@@ -67,13 +77,13 @@ blockquote {
 }
 
 code, pre {
-  font-family:'Anonymous Pro', Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
+  font-family:Inconsolata,'Anonymous Pro', Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
   color:#333;
   background-color: #f8f8f8;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   padding: 2px;
-  font-size:13px;
+  font-size:14px;
 }
 
 pre {

@@ -11,69 +11,69 @@ output:
 <p></p>
 <p class="view"><a href="https://github.com/tarakc02/discoveryengine">View the Project on GitHub <small>tarakc02/discoveryengine</small></a></p>
 <ul>
-<li><a href="intro.html">Brief <strong>Intro</strong></a></li>
-<li><a href="examples.html">Collection of <strong>Examples</strong></a></li>
+<li><a href="examples.html">Introductory <strong>Examples</strong></a></li>
+<li><a href="developer-notes.html">Notes for <strong>Developers</strong></a></li>
 <li><a href="https://github.com/tarakc02/discoveryengine">View On <strong>GitHub</strong></a></li>
 </ul>
 </header>
 <section>
-## Examples
+## Some examples of the discoveryengine in use
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-options(width = 68)
+options(width = 63)
 ```
-
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(dplyr)
 library(getcdw)
 library(listbuilder)
 library(discoveryengine)
 
-#get_ids <- function(spec) distinct(get_cdw(spec))
+get_ids <- function(spec) distinct(getcdw::get_cdw(spec))
 ```
 
-### A motivating example
-Let's say Haas has just hired a new major gift fundraiser, and you'd like to begin prospecting to build her a portfolio. You could start out with the Prospect Discovery Tool. Or you could build a savedlist through Lookups. Perhaps you have other favorite tools in CADS and CADSmart. But what if you could just start typing out a description of the types of prospects you wanted, and then turn that description into a saved list? Here is an example of how we might do so, using the new `discoveryengine` tool from Prospect Analysis.
+### General prospecting for a degree-granting unit
+The goal is to identify some prospects for a new Haas portfolio. We'll do this in steps, starting with defining Haas constituents as anyone who either has a degree from Haas or has given to Haas: [Note that the newline and indenting are not necessary for things to work, I just did that to make things look nicer]
 
-```{r ex1}
-# any line that starts with a "#" is a comment, not part of the 
-# program. it is often helpful to weave descriptive comments into your
-# code, to preserve clarity
-
-# we start by defining business constituents. 
-# a business constituent is anyone with a business degree, or giving
-# history:
+```{r ex1.1}
 is_business_constituent = 
     has_degree_from(business) %or% gave_to_area(business)
+```
 
-# we'll use the major gift score to zero in on the best prospects:
-is_mg_prospect = 
-    has_major_gift_score(more_likely, most_likely)
+But since we're building a new portfolio, we want to make sure we're not pulling in anyone who is already in a Haas portfolio:
 
-# and a major gift prospect needs major gift capacity
-# we'll count as "wealthy" anyone who has a capacity over $250K+, or a
-# high implied capacity score:
-is_wealthy = 
-    has_capacity(1:9) %or% 
-    has_implied_capacity(more_likely, most_likely)
-
-# but we should exclude anyone already in a portfolio
+```{r ex1.1.5}
 is_business_prospect = 
     is_business_constituent %minus%
     in_unit_portfolio(business)
+```
 
-# now let's put everything together!
+We'll define major gift prospects in terms of major gift score:
+```{r ex1.2}
+is_mg_prospect = 
+    has_major_gift_score(more_likely, most_likely)
+```
+
+The major gift score helps us identify inclination, but for a major gift portfolio, we want to have high capacity. For this example, we'll define high capacity as having a researched capacity rating of $250K+, or having a sufficiently high implied capacity score:
+
+```{r ex1.3}
+is_wealthy = has_capacity(1:9) %or% 
+    has_implied_capacity(more_likely, most_likely)
+```
+
+Putting it all together, we've defined a prospect pool from which to build our new portfolio:
+```{r ex1.4}
 my_prospects = 
     is_business_prospect %and% 
     is_wealthy %and% 
     is_mg_prospect
-cat(to_sql(my_prospects))
+```
+
+Let's see what we've got:
+```{r ex1.getids, cache = TRUE}
+get_ids(my_prospects)
 ```
 </section>
-<footer>
-<p>This project is maintained by <a href="https://github.com/tarakc02">tarakc02</a></p>
-<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-</footer>
+<footer><small>theme by @orderedlist</small></footer>
 </div>
 <script src="javascripts/scale.fix.js"></script>

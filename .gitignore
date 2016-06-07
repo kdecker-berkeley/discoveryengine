@@ -7,3 +7,4 @@ intro.html
 *.zip
 *.sublime-project
 *.sublime-workspace
+*_cache/**
