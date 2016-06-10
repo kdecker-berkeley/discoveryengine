@@ -5,7 +5,7 @@ played_sport <- function(...) {
 }
 
 played_sport_ <- function(sports) {
-    d_bio_widget("sport",
-                 parameter = string_param("sport_code", sports))
+    entity_widget("d_bio_sport_mv",
+                  parameter = string_param("sport_code", sports))
 }
 

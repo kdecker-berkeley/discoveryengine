@@ -1,33 +1,16 @@
-d_bio_widget <- function(table, parameter = NULL, switches = NULL) {
-    tablename = paste("d_bio_", table, "_mv", sep = "")
-    widget_builder(
-        table = tablename,
-        id_field = "entity_id",
-        id_type = "entity_id",
-        parameter = parameter,
-        switches = switches
-    )
+entity_widget <- function(table, id_field = "entity_id",
+                          parameter = NULL, switches = NULL) {
+    widget_builder(table = table,
+                   id_field = id_field,
+                   id_type = "entity_id",
+                   parameter = parameter,
+                   switches = switches)
 }
 
-d_entity_widget <- function(parameter = NULL, switches = NULL) {
-    widget_builder(
-        table = "d_entity_mv",
-        id_field = "entity_id",
-        id_type = "entity_id",
-        parameter = parameter,
-        switches = switches
-    )
-}
-
-predictive_model_widget <- function(..., type) {
-    likelihood <- prep_dots(...)
-    predictive_model_widget_(likelihood, type)
-}
-
-predictive_model_widget_ <- function(likelihood, type) {
-    d_bio_widget("demographic_profile",
-                 parameter = string_param("dp_interest_code", likelihood),
-                 switches = string_switch("dp_rating_type_code", type))
+predictive_model_widget <- function(likelihood, type) {
+    entity_widget("d_bio_demographic_profile_mv",
+                  parameter = string_param("dp_interest_code", likelihood),
+                  switches = string_switch("dp_rating_type_code", type))
 }
 
 proposal_widget <- function(offices = NULL, development_officers = NULL,
@@ -52,9 +35,8 @@ proposal_widget <- function(offices = NULL, development_officers = NULL,
     )
 }
 
-
 address_widget <- function(filter_field, filter_val, type) {
-    d_bio_widget("address",
-                 parameter = string_param(filter_field, filter_val),
-                 switches = string_switch("addr_type_code", type))
+    entity_widget("d_bio_address_mv",
+                  parameter = string_param(filter_field, filter_val),
+                  switches = string_switch("addr_type_code", type))
 }

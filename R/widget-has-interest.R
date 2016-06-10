@@ -9,6 +9,6 @@ has_interest <- function(...) {
 #' @rdname has_interest
 #' @export
 has_interest_ <- function(interests) {
-    d_bio_widget("interest",
-                 parameter = string_param("interest_code", interests))
+    entity_widget("d_bio_interest_mv",
+                  parameter = string_param("interest_code", interests))
 }
