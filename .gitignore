@@ -5,3 +5,4 @@
 intro_cache/
 intro.html
 *.zip
+*_cache/**
