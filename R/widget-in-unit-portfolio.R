@@ -17,10 +17,8 @@ in_unit_portfolio_ <- function(offices, include_inactive = FALSE) {
     proposals <- proposal_widget(offices = offices,
                                  include_inactive = include_inactive)
 
-    listbuilder::flist_(proposals,
-                        table = "f_proposal_mv",
-                        from = "proposal_id",
-                        to = "entity_id",
-                        id_type = "entity_id",
-                        schema = "CDW")
+    converter_builder(proposals,
+                      table = "f_proposal_mv",
+                      from = "proposal_id", from_type = "proposal_id",
+                      to = "entity_id", to_type = "entity_id")
 }
