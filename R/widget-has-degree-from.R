@@ -11,7 +11,7 @@ has_degree_from <- function(..., levels = c("A", "U", "G", "L")) {
 #' @rdname has_degree_from
 #' @export
 has_degree_from_ <- function(schools, levels = c("A", "U", "G", "L")) {
-    d_bio_widget("degrees",
+    entity_widget("d_bio_degrees_mv",
                  parameter = string_param("school_code", schools),
                  switches = list(
                      string_switch("degree_level_code", levels),

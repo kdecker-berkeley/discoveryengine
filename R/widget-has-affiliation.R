@@ -10,7 +10,7 @@ has_affiliation <- function(..., status = c("C", "F")) {
 #' @rdname has_affiliation
 #' @export
 has_affiliation_ <- function(affiliations, status = c("C", "F")) {
-    d_bio_widget("affiliation",
-                 parameter = string_param("affil_code", affiliations),
-                 switches = string_switch("affil_status_code", status))
+    entity_widget("d_bio_affiliation_mv",
+                  parameter = string_param("affil_code", affiliations),
+                  switches = string_switch("affil_status_code", status))
 }
