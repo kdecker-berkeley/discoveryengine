@@ -1,0 +1,45 @@
+---
+output: 
+    html_document:
+      css: stylesheets/github-light.css
+      self_contained: no
+      theme: null
+---
+<div class="wrapper">
+<header>
+<a href="index.html"><h1>Discoveryengine</h1></a>
+<p></p>
+<p class="view"><a href="https://github.com/tarakc02/discoveryengine">View the Project on GitHub <small>tarakc02/discoveryengine</small></a></p>
+<ul>
+<li><a href="examples.html">Introductory <strong>Examples</strong></a></li>
+<li><a href="developer-notes.html">Notes for <strong>Developers</strong></a></li>
+<li><a href="https://github.com/tarakc02/discoveryengine">View On <strong>GitHub</strong></a></li>
+</ul>
+</header>
+<section>
+## Discoveryengine
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 63)
+```
+Welcome to the site for the discoveryengine! The discoveryengine is a prospecting tool developed by UC Berkeley's UDAR-Prospect Development team.
+
+The goal of the discoveryengine is not to "simplify" prospecting, but rather to allow you to utilize the business knowledge and experience you already have directly for prospecting. Instead of canned reports defining what a good prospect is, you use small widgets that can be combined to define precisely your population of interest. For instance, finding people who live in the San Francisco MSA with a $100M+ researched capacity rating is as easy as: `lives_in_msa(san_francisco) %and% has_capacity(1)`. 
+```{r echo = FALSE}
+library(getcdw)
+library(listbuilder)
+get_ids <- function(x) get_cdw(x)
+```
+
+```{r ex1}
+library(discoveryengine)
+lives_in_msa(san_francisco) %and% has_capacity(1)
+```
+
+For more examples, head over to the [examples](examples.html) page.
+
+
+</section>
+<footer><small>theme by @orderedlist</small></footer>
+</div>
+<script src="javascripts/scale.fix.js"></script>
