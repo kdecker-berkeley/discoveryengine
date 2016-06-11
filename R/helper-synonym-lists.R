@@ -4,6 +4,7 @@ synonyms_for <- function(type) {
            school_code = school_code_synonyms(),
            office_code = office_code_synonyms(),
            dp_interest_code = dp_interest_code_synonyms(),
+           geo_metro_area_code = geo_metro_area_code_synonyms(),
            NULL)
 }
 
