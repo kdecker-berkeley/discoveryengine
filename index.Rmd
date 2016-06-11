@@ -36,11 +36,22 @@ get_ids <- function(x) get_cdw(x)
 
 ```{r ex1, cache = TRUE}
 library(discoveryengine)
-sf_prospects <- lives_in_msa(san_francisco)
-sf_prospects
-get_ids(sf_prospects)
+in_sf = lives_in_msa(san_francisco)
+in_sf
+get_ids(in_sf)
 ```
 
+The real power, though, comes from the way we can combine widgets. So if we just want to find the wealthiest of SF residents:
+
+```{r ex2, cache = TRUE}
+wealthy_in_sf = in_sf %and% has_capacity(1)
+get_ids(wealthy_in_sf)
+```
+
+And householding is a breeze:
+```{r ex3, cache = TRUE}
+get_ids(household(wealthy_in_sf))
+```
 For more examples, head over to the [examples](examples.html) page.
 
 

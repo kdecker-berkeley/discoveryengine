@@ -32,8 +32,18 @@ library(discoveryengine)
 get_ids <- function(spec) distinct(getcdw::get_cdw(spec))
 ```
 
+### Custom affinity-based prospecting
+Certain biographical information about a prospect can prove useful in determining the prospect's potential philanthropic interest in a given area. As a simple example, if we're looking for prospects interested in science and technology, that information may be coded as a philanthropic affinity (if the prospect has given to sci/tech causes in the past) or as an interest code. 
+
+```{r ex-int, cache = TRUE}
+likes_sci_tech = has_philanthropic_affinity(ST) %or% 
+    has_interest(SCE, TEC)
+get_ids(likes_sci_tech)
+```
+
+
 ### General prospecting for a degree-granting unit
-The goal is to identify some prospects for a new Haas portfolio. We'll do this in steps, starting with defining Haas constituents as anyone who either has a degree from Haas or has given to Haas: [Note that the newline and indenting are not necessary for things to work, I just did that to make things look nicer]
+The goal is to identify some prospects for a new Haas portfolio. We'll do this in steps, starting with defining Haas constituents as anyone who either has a degree from Haas or has given to Haas:
 
 ```{r ex1.1}
 is_business_constituent = 
@@ -73,6 +83,8 @@ Let's see what we've got:
 ```{r ex1.getids, cache = TRUE}
 get_ids(my_prospects)
 ```
+
+
 </section>
 <footer><small>theme by @orderedlist</small></footer>
 </div>

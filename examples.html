@@ -69,8 +69,28 @@ Discoveryengine
 </header>
 <section>
 <h2 id="some-examples-of-the-discoveryengine-in-use">Some examples of the discoveryengine in use</h2>
+<h3 id="custom-affinity-based-prospecting">Custom affinity-based prospecting</h3>
+<p>Certain biographical information about a prospect can prove useful in determining the prospect’s potential philanthropic interest in a given area. As a simple example, if we’re looking for prospects interested in science and technology, that information may be coded as a philanthropic affinity (if the prospect has given to sci/tech causes in the past) or as an interest code.</p>
+<pre class="r"><code>likes_sci_tech = has_philanthropic_affinity(ST) %or% 
+    has_interest(SCE, TEC)
+get_ids(likes_sci_tech)</code></pre>
+<pre><code>## Source: local data frame [1,156 x 1]
+## 
+##    entity_id
+##        &lt;int&gt;
+## 1        472
+## 2        529
+## 3        562
+## 4        616
+## 5       1459
+## 6       1969
+## 7       2232
+## 8       2249
+## 9       2607
+## 10      2873
+## ..       ...</code></pre>
 <h3 id="general-prospecting-for-a-degree-granting-unit">General prospecting for a degree-granting unit</h3>
-<p>The goal is to identify some prospects for a new Haas portfolio. We’ll do this in steps, starting with defining Haas constituents as anyone who either has a degree from Haas or has given to Haas: [Note that the newline and indenting are not necessary for things to work, I just did that to make things look nicer]</p>
+<p>The goal is to identify some prospects for a new Haas portfolio. We’ll do this in steps, starting with defining Haas constituents as anyone who either has a degree from Haas or has given to Haas:</p>
 <pre class="r"><code>is_business_constituent = 
     has_degree_from(business) %or% gave_to_area(business)</code></pre>
 <p>But since we’re building a new portfolio, we want to make sure we’re not pulling in anyone who is already in a Haas portfolio:</p>

@@ -73,17 +73,64 @@ Discoveryengine
 <p>The goal of the discoveryengine is not to “simplify” prospecting, but rather to allow you to utilize the business knowledge and experience you already have directly for prospecting. Instead of canned reports defining what a good prospect is, you use small widgets that can be combined to define precisely your population of interest.</p>
 <p>For example, let’s say we just want a list of entities who live in the San Francisco MSA:</p>
 <pre class="r"><code>library(discoveryengine)
-sf_prospects &lt;- lives_in_msa(san_francisco)
-sf_prospects</code></pre>
+in_sf = lives_in_msa(san_francisco)
+in_sf</code></pre>
 <pre><code>## Listbuilder object (type: entity_id)
 ## ================================================= 
 ## :d_bio_address_mv.entity_id
-##     geo_metro_area_code: &quot;san_francisco&quot;
+##     geo_metro_area_code: &quot;41860&quot;
 ##     addr_type_code: &quot;H&quot;</code></pre>
-<pre class="r"><code>get_ids(sf_prospects)</code></pre>
-<pre><code>## Source: local data frame [0 x 1]
+<pre class="r"><code>get_ids(in_sf)</code></pre>
+<pre><code>## Source: local data frame [303,872 x 1]
 ## 
-## Variables not shown: entity_id &lt;chr&gt;.</code></pre>
+##    entity_id
+## *      &lt;int&gt;
+## 1        658
+## 2        784
+## 3        861
+## 4        889
+## 5       1184
+## 6       1219
+## 7       1627
+## 8       1769
+## 9       1842
+## 10      1876
+## ..       ...</code></pre>
+<p>The real power, though, comes from the way we can combine widgets. So if we just want to find the wealthiest of SF residents:</p>
+<pre class="r"><code>wealthy_in_sf = in_sf %and% has_capacity(1)
+get_ids(wealthy_in_sf)</code></pre>
+<pre><code>## Source: local data frame [45 x 1]
+## 
+##    entity_id
+## *      &lt;int&gt;
+## 1       1969
+## 2       3422
+## 3       7648
+## 4      17464
+## 5      18139
+## 6      20125
+## 7      20227
+## 8      23703
+## 9      25612
+## 10     26114
+## ..       ...</code></pre>
+<p>And householding is a breeze:</p>
+<pre class="r"><code>get_ids(household(wealthy_in_sf))</code></pre>
+<pre><code>## Source: local data frame [27 x 1]
+## 
+##    entity_id
+## *      &lt;int&gt;
+## 1       7648
+## 2     753358
+## 3       1969
+## 4       3422
+## 5     711180
+## 6      30364
+## 7     500349
+## 8      25612
+## 9      29379
+## 10     32194
+## ..       ...</code></pre>
 <p>For more examples, head over to the <a href="examples.html">examples</a> page.</p>
 </section>
 <footer>
