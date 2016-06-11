@@ -24,16 +24,21 @@ options(width = 63)
 ```
 Welcome to the site for the discoveryengine! The discoveryengine is a prospecting tool developed by UC Berkeley's UDAR-Prospect Development team.
 
-The goal of the discoveryengine is not to "simplify" prospecting, but rather to allow you to utilize the business knowledge and experience you already have directly for prospecting. Instead of canned reports defining what a good prospect is, you use small widgets that can be combined to define precisely your population of interest. For instance, finding people who live in the San Francisco MSA with a $100M+ researched capacity rating is as easy as: `lives_in_msa(san_francisco) %and% has_capacity(1)`. 
+The goal of the discoveryengine is not to "simplify" prospecting, but rather to allow you to utilize the business knowledge and experience you already have directly for prospecting. Instead of canned reports defining what a good prospect is, you use small widgets that can be combined to define precisely your population of interest. 
+
+For example, let's say we just want a list of entities who live in the San Francisco MSA:
+
 ```{r echo = FALSE}
 library(getcdw)
 library(listbuilder)
 get_ids <- function(x) get_cdw(x)
 ```
 
-```{r ex1}
+```{r ex1, cache = TRUE}
 library(discoveryengine)
-lives_in_msa(san_francisco) %and% has_capacity(1)
+sf_prospects <- lives_in_msa(san_francisco)
+sf_prospects
+get_ids(sf_prospects)
 ```
 
 For more examples, head over to the [examples](examples.html) page.
