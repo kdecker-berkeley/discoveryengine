@@ -1,3 +1,4 @@
+#' @export
 lives_in_msa <- function(..., type = "H") {
     msa <- prep_dots(...)
     lives_in_msa_(msa, type)
