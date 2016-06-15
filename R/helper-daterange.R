@@ -1,4 +1,3 @@
-#' @importFrom dplyr between
 daterange <- function(field_name, from, to) {
     from <- resolve_date(from)
     to <- resolve_date(to)

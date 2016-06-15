@@ -11,4 +11,4 @@ RoxygenNote: 5.0.1
 Suggests: testthat
 Imports: listbuilder,
     lazyeval,
-    dplyr (>= 0.4.3.9001)
+    dplyr
