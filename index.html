@@ -75,26 +75,26 @@ Discoveryengine
 <pre class="r"><code>library(discoveryengine)
 in_sf = lives_in_msa(san_francisco)
 in_sf</code></pre>
-<pre><code>## Listbuilder object (type: entity_id)
-## ================================================= 
-## :d_bio_address_mv.entity_id
-##     geo_metro_area_code: &quot;41860&quot;
-##     addr_type_code: &quot;H&quot;</code></pre>
+<pre><code>## LISTBUILDER DEFINITION (type: entity_id)
+## |   source: d_bio_address_mv.entity_id (entity_id)
+## |   logic: 
+## |   |   geo_metro_area_code IN &#39;41860&#39;
+## |   |   addr_type_code IN &#39;H&#39;</code></pre>
 <pre class="r"><code>get_ids(in_sf)</code></pre>
-<pre><code>## Source: local data frame [303,872 x 1]
+<pre><code>## Source: local data frame [313,392 x 1]
 ## 
 ##    entity_id
 ## *      &lt;int&gt;
-## 1        658
-## 2        784
-## 3        861
-## 4        889
-## 5       1184
-## 6       1219
-## 7       1627
-## 8       1769
-## 9       1842
-## 10      1876
+## 1        123
+## 2        337
+## 3        979
+## 4       1110
+## 5       1118
+## 6       1277
+## 7       1300
+## 8       1340
+## 9       1356
+## 10      1433
 ## ..       ...</code></pre>
 <p>The real power, though, comes from the way we can combine widgets. So if we just want to find the wealthiest of SF residents:</p>
 <pre class="r"><code>wealthy_in_sf = in_sf %and% has_capacity(1)
