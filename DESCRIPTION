@@ -1,7 +1,7 @@
 Package: discoveryengine
 Type: Package
 Title: A CADS Prospecting Tool
-Version: 0.1.2
+Version: 0.1.2.9001
 Authors@R: person("Tarak", "Shah", email = "tarak_shah@berkeley.edu",
   role = c("aut", "cre"))
 Description: None yet
@@ -11,4 +11,4 @@ RoxygenNote: 5.0.1
 Suggests: testthat
 Imports: listbuilder,
     lazyeval,
-    dplyr (>= 0.4.3.9001)
+    dplyr
