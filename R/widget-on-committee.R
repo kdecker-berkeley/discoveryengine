@@ -1,7 +1,7 @@
 #' @export
 on_committee <- function(..., status = c("A", "D")) {
     committees <- prep_dots(...)
-    on_committee_(committees, status = status)
+    reroute(on_committee_(committees, status = status))
 }
 
 on_committee_ <- function(committees, status = c("A", "D")) {

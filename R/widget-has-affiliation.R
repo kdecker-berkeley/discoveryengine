@@ -4,7 +4,7 @@
 #' @export
 has_affiliation <- function(..., status = c("C", "F")) {
     affiliations <- prep_dots(...)
-    has_affiliation_(affiliations, status)
+    reroute(has_affiliation_(affiliations, status))
 }
 
 #' @rdname has_affiliation

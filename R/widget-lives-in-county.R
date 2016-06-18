@@ -1,7 +1,7 @@
 #' @export
 lives_in_county <- function(..., type = "H") {
     counties <- prep_dots(...)
-    lives_in_county_(counties, type = type)
+    reroute(lives_in_county_(counties, type = type))
 }
 
 

@@ -7,7 +7,8 @@
 gave_to_area <- function(..., atleast = 0.01, from = NULL,
                          to = NULL) {
     aogs <- prep_dots(...)
-    gave_to_area_(aogs, atleast = atleast, from = from, to = to)
+    reroute(gave_to_area_(aogs, atleast = atleast,
+                          from = from, to = to))
 }
 
 #' @rdname gave_to_area

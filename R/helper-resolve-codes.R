@@ -3,8 +3,10 @@ resolve_codes <- function(codes, type) {
 
     ready_to_go <- is_upper_case(codes)
     needs_translation <- setdiff(codes, ready_to_go)
+    if (length(needs_translation) > 0)
+        translated <- recover_codes(needs_translation, type)
+    else translated <- NULL
 
-    translated <- recover_codes(needs_translation, type)
     unique(c(ready_to_go, translated))
 }
 
@@ -19,8 +21,12 @@ is_upper_case <- function(codes) {
 }
 
 recover_codes <- function(terms, type) {
-    synonym_list <- synonyms_for(type)
-    if (is.null(synonym_list)) return(terms)
+    synonym_list <- tryCatch(
+        synonyms_for(type),
+        error = function(e) stop(e$message, "\nunable to parse: ", paste(terms, collapse = ", "),
+                     call. = FALSE)
+    )
+
     codes <- synonym_list[terms]
     unknown <- is.na(codes)
 

@@ -1,7 +1,7 @@
 #' @export
 participated_in <- function(..., participation = c("P", "L")) {
     activities <- prep_dots(...)
-    participated_in_(activities, participation)
+    reroute(participated_in_(activities, participation))
 }
 
 

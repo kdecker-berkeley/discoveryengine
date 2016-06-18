@@ -5,7 +5,7 @@
 #' @export
 has_degree_from <- function(..., levels = c("A", "U", "G", "L")) {
     schools <- prep_dots(...)
-    has_degree_from_(schools, levels)
+    reroute(has_degree_from_(schools, levels))
 }
 
 #' @rdname has_degree_from

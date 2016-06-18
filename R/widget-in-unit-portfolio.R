@@ -6,7 +6,7 @@
 #' @export
 in_unit_portfolio <- function(..., include_inactive = FALSE) {
     offices <- prep_dots(...)
-    in_unit_portfolio_(offices, include_inactive)
+    reroute(in_unit_portfolio_(offices, include_inactive))
 }
 
 

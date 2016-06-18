@@ -1,7 +1,7 @@
 #' @export
 has_philanthropic_affinity <- function(..., atleast = 0) {
     types <- prep_dots(...)
-    has_philanthropic_affinity_(types, atleast)
+    reroute(has_philanthropic_affinity_(types, atleast))
 }
 
 has_philanthropic_affinity_ <- function(types, atleast = 0) {
