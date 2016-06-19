@@ -3,7 +3,6 @@ prep_dots <- function(...) {
 }
 
 partial_sub <- function(.dots) {
-    conds <- lapply(.dots, lazyeval::as.lazy)
-    lapply(conds,
+    lapply(.dots,
            function(x) dplyr::partial_eval(x$expr, env = x$env))
 }

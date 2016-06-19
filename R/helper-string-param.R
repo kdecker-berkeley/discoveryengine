@@ -1,10 +1,5 @@
 string_param <- function(field_name, arguments, default = NULL) {
-    validated_arguments <- prep_string_param(arguments)
-
-    # can hijack the interpreter to have custom commands within
-    # widgets with string params. eg widget_name(?search) to look
-    # for synonyms
-    check_for_instructions(field_name, validated_arguments)
+    validated_arguments <- prep_string_param(arguments, field_name = field_name)
 
     codelist <- resolve_codes(validated_arguments, type = field_name)
 
@@ -47,7 +42,8 @@ synonym_list <- function(field_name, search_terms = NULL) {
     assertthat::assert_that(inherits(matching_synonyms, "data.frame"))
 
     if (nrow(matching_synonyms) == 0L) {
-        warning("No synonyms contained '", search_terms, "'",
+        warning("No synonyms contained ",
+            paste("'", search_terms, "'", sep = "", collapse = ", "),
                 call. = FALSE)
     }
 

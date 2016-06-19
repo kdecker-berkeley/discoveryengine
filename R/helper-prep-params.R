@@ -6,7 +6,7 @@ prep_integer_param <- function(...) {
     param
 }
 
-prep_string_param <- function(param) {
+prep_string_param <- function(param, field_name) {
     param <- Filter(function(x) !is.null(x), param)
     if (length(param) <= 0) return(character(0))
 
@@ -18,6 +18,12 @@ prep_string_param <- function(param) {
     # as an integer and the leading zeroes will drop.
 
     leading_zero_indices <- grepl("^0", param)
+    param <- lapply(param, lazyeval::as.lazy)
+
+    # can hijack the interpreter to have custom commands within
+    # widgets with string params. eg widget_name(?search) to look
+    # for synonyms
+    check_for_instructions(field_name, param)
 
     interpreted_param <- partial_sub(param)
 
