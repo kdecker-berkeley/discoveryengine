@@ -6,16 +6,16 @@
 \title{Area of giving widget
 Find entities who have given to specific areas}
 \usage{
-gave_to_area(..., atleast = 0.01, from = NULL, to = NULL)
+gave_to_area(..., at_least = 0.01, from = NULL, to = NULL)
 
-gave_to_area_(aogs, atleast = 0.01, from = NULL, to = NULL)
+gave_to_area_(aogs, at_least = 0.01, from = NULL, to = NULL)
 }
 \arguments{
 \item{...}{Area(s) of giving}
 
-\item{atleast}{minimum total giving}
-
 \item{from, }{to begin and end dates (gave between those dates)}
+
+\item{atleast}{minimum total giving}
 }
 \description{
 Area of giving widget
