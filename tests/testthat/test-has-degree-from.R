@@ -1,27 +1,41 @@
 context("has_degree_from specifications")
+source("helpers.R")
+library(magrittr)
 
 test_that("has_degree_from meets specifications on standard input", {
-    test <- has_degree_from(BU, NR)
+    test <- has_degree_from(BU, NR, undergraduates = TRUE, graduates = TRUE,
+                            attendees = FALSE)
+    test %>% uses_table("d_bio_degrees_mv")
+    test %>% id_of_type("entity_id")
+    test %>% id_field_is("entity_id")
 
-    # should pull entity_ids from d_bio_degrees_mv
-    expect_equal(test$table, "d_bio_degrees_mv")
-    expect_equal(test$id_field, "entity_id")
-    expect_equal(test$id_type, "entity_id")
+    test %>%
+        has_filters(school_code = c("NR", "BU"),
+                    degree_level_code = c("U", "G"),
+                    local_ind = "Y")
 
-    # should have three where clauses, one for the degree school,
-    # one for the degree_level, one for local_ind
-    expect_equal(length(test$where), 3L)
+    has_degree_from(chemistry, undergraduates = TRUE,
+                    graduates = FALSE, attendees = TRUE) %>%
+        has_filters(school_code = "CH",
+                    local_ind = "Y",
+                    degree_level_code = c("U", "A"))
 
-    actual <- lapply(test$where, "[[", 2)
-    desired <- list(quote(school_code), quote(degree_level_code), quote(local_ind))
-
-    expect_true(setequal(actual, desired))
 })
 
 test_that("has_degree_from meets specifications on no input", {
-    test <- has_degree_from()
+    has_degree_from() %>%
+        has_filters(local_ind = "Y",
+                    degree_level_code = c("U", "G"))
 
-    # in this case has_degree should only filter on degree_level_code
-    # along with default local_ind == "Y"
-    expect_equal(length(test$where), 2L)
+    has_degree_from(graduates = FALSE) %>%
+        has_filters(local_ind = "Y",
+                    degree_level_code = "U")
+
+    has_degree_from(attendees = TRUE) %>%
+        has_filters(local_ind = "Y",
+                    degree_level_code = c("U", "A", "G", "L"))
+
+    has_degree_from(undergraduates = FALSE, graduates = FALSE,
+                    attendees = FALSE) %>%
+        has_filters(local_ind = "Y")
 })
