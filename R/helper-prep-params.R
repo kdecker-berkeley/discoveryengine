@@ -35,3 +35,11 @@ prep_string_param <- function(param, field_name) {
     interpreted_param <- unique(interpreted_param)
     interpreted_param
 }
+
+prep_zip_param <- function(param, field_name) {
+    param <- Filter(function(x) !is.null(x), param)
+    if (length(param) <= 0) return(character(0))
+
+    param <- lapply(param, lazyeval::as.lazy)
+    partial_sub(param)
+}

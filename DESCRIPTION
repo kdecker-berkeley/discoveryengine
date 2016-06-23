@@ -1,14 +1,15 @@
 Package: discoveryengine
 Type: Package
 Title: A CADS Prospecting Tool
-Version: 0.1.2.9002
+Version: 0.1.2.9003
 Authors@R: person("Tarak", "Shah", email = "tarak_shah@berkeley.edu",
   role = c("aut", "cre"))
 Description: None yet
 License: Do whatever you like
 LazyData: TRUE
 RoxygenNote: 5.0.1
-Suggests: testthat
+Suggests: testthat,
+    preprocessr
 Imports: listbuilder,
     lazyeval,
     dplyr
