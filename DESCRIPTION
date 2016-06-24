@@ -1,7 +1,7 @@
 Package: discoveryengine
 Type: Package
 Title: A CADS Prospecting Tool
-Version: 0.1.2.9003
+Version: 0.1.2.9004
 Authors@R: person("Tarak", "Shah", email = "tarak_shah@berkeley.edu",
   role = c("aut", "cre"))
 Description: A fluent interface for custom prospecting in CADS.
@@ -9,7 +9,8 @@ License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Suggests: testthat,
-    preprocessr
+    preprocessr,
+    DT
 Imports: listbuilder,
     lazyeval,
     dplyr
