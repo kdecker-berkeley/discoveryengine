@@ -74,6 +74,7 @@ where data_description like '%validated%tms_%'
     getcdw::get_cdw(query)
 }
 
+#' @export
 print.widget_suggestions <- function(bigmap, ...) {
     printwidget <- function(df) {
         cat(df[["widget"]][[1]], "\n")
