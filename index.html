@@ -76,29 +76,29 @@ Discoveryengine
 in_sf = lives_in_msa(san_francisco)
 in_sf</code></pre>
 <pre><code>## LISTBUILDER DEFINITION (type: entity_id)
-## |   source: d_bio_address_mv.entity_id (entity_id)
-## |   logic: 
-## |   |   geo_metro_area_code IN &#39;41860&#39;
-## |   |   addr_type_code IN &#39;H&#39;</code></pre>
-<pre class="r"><code>get_ids(in_sf)</code></pre>
-<pre><code>## Source: local data frame [313,392 x 1]
+## .   source: d_bio_address_mv.entity_id (entity_id)
+## .   logic: 
+## .   .   geo_metro_area_code IN &#39;41860&#39;
+## .   .   addr_type_code IN &#39;H&#39;</code></pre>
+<pre class="r"><code>get_cdw(in_sf)</code></pre>
+<pre><code>## Source: local data frame [332,107 x 1]
 ## 
 ##    entity_id
 ## *      &lt;int&gt;
-## 1        123
-## 2        337
-## 3        979
-## 4       1110
-## 5       1118
-## 6       1277
-## 7       1300
-## 8       1340
-## 9       1356
-## 10      1433
+## 1        537
+## 2       1003
+## 3       1305
+## 4       1586
+## 5       1812
+## 6       1866
+## 7       1868
+## 8       2720
+## 9       2813
+## 10      3055
 ## ..       ...</code></pre>
 <p>The real power, though, comes from the way we can combine widgets. So if we just want to find the wealthiest of SF residents:</p>
 <pre class="r"><code>wealthy_in_sf = in_sf %and% has_capacity(1)
-get_ids(wealthy_in_sf)</code></pre>
+get_cdw(wealthy_in_sf)</code></pre>
 <pre><code>## Source: local data frame [45 x 1]
 ## 
 ##    entity_id
@@ -115,7 +115,7 @@ get_ids(wealthy_in_sf)</code></pre>
 ## 10     26114
 ## ..       ...</code></pre>
 <p>And householding is a breeze:</p>
-<pre class="r"><code>get_ids(household(wealthy_in_sf))</code></pre>
+<pre class="r"><code>get_cdw(household(wealthy_in_sf))</code></pre>
 <pre><code>## Source: local data frame [27 x 1]
 ## 
 ##    entity_id
@@ -124,12 +124,12 @@ get_ids(wealthy_in_sf)</code></pre>
 ## 2     753358
 ## 3       1969
 ## 4       3422
-## 5     711180
-## 6      30364
-## 7     500349
-## 8      25612
-## 9      29379
-## 10     32194
+## 5      30364
+## 6     500349
+## 7     711180
+## 8      32194
+## 9    3057802
+## 10   3219819
 ## ..       ...</code></pre>
 <p>For more examples, head over to the <a href="examples.html">examples</a> page.</p>
 </section>
