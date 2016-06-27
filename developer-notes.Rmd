@@ -17,63 +17,48 @@ output:
 </ul>
 </header>
 <section>
-## Understanding how the discoveryengine works
+## Building a new discoveryengine widget
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 options(width = 63)
 ```
-The `discoveryengine` is based on a simple, but flexible, idea: prospecting is carried out by creating and combining lists of IDs in various ways, and lists of IDs are defined by a predicate, such as "has a degree from the college of chemistry" or "has an interest in architecture." The `discoveryengine` defines a set of widgets and converters. Widgets are functions that create predicates. For example, the `has_degree_from` widget creates predicates such as `has_degree_from(business)` or `has_degree_from(natural_resources)`. Converters add additional power -- they are like second-order widgets in that they define predicates in terms of other predicates -- for example `child_of(has_capacity(1:9))` This document looks at how widgets and converters are built. 
+Today I'll be adding the `majored_in` widget to the discoveryengine. The steps that we'll go through are the same steps you'd take any time you were adding a new widget.
 
-### Widgets
-Widgets are built, appropriately, with the `widget_builder` function. `widget_builder` takes the following arguments, and outputs a widget:
-
-- `table`
-- `id_field`
-- `id_type`
-- `parameter` (optional)
-- `aggregate_parameter` (optional)
-- `switches` (optional)
-- `aggregate_switches` (optional)
-
-#### table, id_field, and id_type
-These three fields describe the kind of ID that the widget will return. `table` is the name of the CDW table the ID comes from, `id_field` is the name of the id column in that table, and `id_type` describes what kind of ID it is (entity_id, allocation_id, etc). As an example, the giving widgets have `table = f_transaction_detail_mv`, `id_field = donor_entity_id_nbr`, and `id_type = entity_id`. The `id_type` constrains how a widget may be combined with other widgets. For instance, if `predicate_a` has an `id_type` of `entity_id` while `predicate_b` has an `id_type` of `allocation_id`, then `predicate_a %or% predicate_b` would result in an error.
-
-#### parameter, aggregate_parameter
-A widget can have up to one parameter, and the parameter serves as the primary way a user can control a widget. In the usage `has_degree_from(business)` the parameter is `business`. 
-
-There are helper functions to create parameters. Currently, the only two such functions are `string_param` and `integer_param`, and the only two types of parameters that have been defined are string and integer. In the future, we may add additional parameter types, such as `zipcode_param` (currently we use `string_param` to handle zip codes, at the expense of sometimes screwing up zipcodes that begin with a '0'). `string_param` and `integer_param` both take as arguments the name of a field in the CDW, a list of unevaluated arguments, and (optionally) a default. This will make more sense with an example, so let's take a look at the `gave_to_area` widget:
+### Getting started
+I've already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you're using RStudio, you can do this with Ctrl/Cmd + shift + L).
 
 ```{r}
-library(discoveryengine)
-print(gave_to_area)
+devtools::load_all(".")
 ```
 
-All of the widgets in the `discoveryengine` support non-standard evaluation, and, following the recommendation from Hadley Wickham in his [Advanced R book](http://adv-r.had.co.nz/Computing-on-the-language.html#calling-from-another-function), have a standard evaluation "escape hatch" found by adding an underscore to the widet name. 
+It's helpful as a first step to write a failing test. Tests serve as documentation for your widget, by specifying clearly the tables and fields that will be used by the widget. So I create a new file `tests/testthat/test-majored-in.R`:
 
-```{r}
-print(gave_to_area_)
-```
-
-I'll look at the switches in the following section, but note here the argument `parameter = string_param("alloc_school_code", aogs)`. `f_transaction_detail_mv.alloc_school_code` is the name of the field that will be used when filtering for transactions to a given area. `aogs` is the list of unevaluated expressions the user has entered, that may contain expressions such as `business` or `SHSB`. `string_param` will resolve syonyms such as `business` into area of giving codes, and will produce an expression whose meaning is: `alloc_school_code %in% aogs`. 
-
-An `aggregate_parameter` is a parameter that can only be applied after aggregation. No widgets currently use an `aggregate_parameter`, but in the next section we'll look at an exmaple of an aggregate switch.
-
-#### switches, aggregate_switches
-While the `parameter` is the primary way for the user to control a widget, there are often some secondary options, or switches, that can also be used. These are generally not directly related to codes from the TMS code table, but rather secondary options. For instance, `in_unit_portfolio` takes as a parameter the office code, such as `BU` (or equivalent synonym, such as `business`), as well as a switch `include_inactive`, which is either `TRUE` or `FALSE` depending on whether inactive proposals should be considered. Let's look again at the `gave_to_area` example:
-
-```{r}
-print(gave_to_area_)
-```
-
-Here we see the use of the helper function `daterange`, which takes a begin and end date and produces a daterange constraint. Significantly, `daterange` will accept `NULL` values for either or both of the date arguments, and will still behave as expected. Dates are entered as regular integers of the form YYYYMMDD (so June 6, 2016 would be 20160606). 
-
-We also see the `string_switch` function, which operates just like the `string_param` function above, except that it will not go through a synonym table or other validation. Finally, we see an aggregate switch, using the helper `sum_switch`. `sum_switch("benefit_aog_credited_amt", atleast)` says that the sum of `benefit_aog_credited_amt` should be greater than or equal to the value `atleast`. In all, then: 
 ```{r, eval = FALSE}
-gave_to_area(art_museum, cal_performances, 
-             atleast = 5000, 
-             from = 20140701, to = 20150630)
+context("majored_in specifications")
+source("helpers.R")
+library(magrittr)
+
+test_that("majored_in meets specifications on standard input", {
+    test <- majored_in(540, 651)
+    test %>% uses_table("d_bio_interest_mv")
+    test %>% id_of_type("entity_id")
+    test %>% id_field_is("entity_id")
+
+    test %>%
+        has_filters(interest_code = c("DAN", "ABC"))
+
+    test %>% has_clause_count(1)
+
+})
+
+test_that("has_interest meets specifications on no input", {
+    has_interest() %>%
+        has_clause_count(0)
+    has_interest() %>% uses_table("d_bio_interest_mv")
+})
+
 ```
-will find anyone who gave a total of $5,000 or more combined to the Berkeley Art Museum and/or Cal Performances between July 1, 2014 and June 30, 2015.
+
 </section>
 <footer><small>theme by @orderedlist</small></footer>
 </div>
