@@ -1,8 +1,8 @@
 context("widget finders")
 
 test_that("widget_for finds widgets", {
-    expect_output(widget_for("zip"), "works_in_zip")
-    expect_output(widget_for("zip"), "lives_in_zip")
+    expect_output(print(widget_for("zip")), "works_in_zip")
+    expect_output(print(widget_for("zip")), "lives_in_zip")
     expect_is(widget_for("zip"), "data.frame")
 })
 
