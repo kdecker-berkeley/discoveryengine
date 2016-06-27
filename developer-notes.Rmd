@@ -25,7 +25,7 @@ options(width = 63)
 Today I'll be adding the `majored_in` widget to the discoveryengine. The steps that we'll go through are the same steps you'd take any time you were adding a new widget.
 
 ### Getting started
-I've already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you're using RStudio, you can do this with Ctrl/Cmd + shift + L).
+I've already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you're using RStudio, you can do this with Ctrl/Cmd + shift + l).
 
 ```{r}
 devtools::load_all(".")
@@ -39,25 +39,77 @@ source("helpers.R")
 library(magrittr)
 
 test_that("majored_in meets specifications on standard input", {
-    test <- majored_in(540, 651)
-    test %>% uses_table("d_bio_interest_mv")
+    test <- majored_in(540, 651, 084)
+    test %>% uses_table("d_bio_degrees_mv")
     test %>% id_of_type("entity_id")
     test %>% id_field_is("entity_id")
 
     test %>%
-        has_filters(interest_code = c("DAN", "ABC"))
+        has_filters(local_ind = "Y",
+                    major_code1 = c("540", "651", "084"))
 
-    test %>% has_clause_count(1)
+    test %>% has_clause_count(2)
 
 })
 
-test_that("has_interest meets specifications on no input", {
-    has_interest() %>%
-        has_clause_count(0)
-    has_interest() %>% uses_table("d_bio_interest_mv")
+test_that("majored_in meets specifications on no input", {
+    majored_in() %>%
+        has_clause_count(1)
+    majored_in() %>% uses_table("d_bio_degrees_mv")
+    majored_in() %>% has_filters(local_ind = "Y")
 })
-
 ```
+
+Notice the tests make clear that, for the purposes of this widget, majors are determined by looking at the `major_code1` field in the `d_bio_degrees_mv` table. Also note that the test cases include input that I know (from experience) might cause problems, for instance a major code starting with a "0".
+
+In RStudio, you can run tests using Ctrl/Cmd + shift + t. After adding the new tests for the `majored_in` widget, I see some failures in the test output. 
+
+### Constructing the widget
+Now it's time to build a widget that will pass those tests. Since the discoveryengine uses [non-standard evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html), we follow the guidelines set out in Hadley Wickham's [Advanced R book](http://adv-r.had.co.nz/), creating a standard-evaluation escape hatch:
+
+```{r}
+# prep dots will turn dots into an object
+majored_in <- function(...) majored_in_(prep_dots(...))
+
+# escape hatch has the same name, but with an underscore
+majored_in_ <- function(majors) {
+    # here's where the code will go
+}
+```
+
+To fill in the body of the `majored_in_` function, I'll use the helper function `widget_builder`. `widget_builder` takes some basic specifications for a widget, and builds out all of the functionality that we've come to know and love. At a minimum, `widget_builder` requires you to specify the table, id field, and id type for your widget:
+
+```{r}
+majored_in_ <- function(majors) {
+    widget_builder(
+        table = "d_bio_degrees_mv",
+        id_field = "entity_id",
+        id_type = "entity_id"
+    )
+}
+```
+
+The `table` is the name of the data warehouse table you need to query for this widget. The `id_field` is the name of the field in that table that you'll return. The `id_type` is a standardized name for the IDs you're pulling. 
+
+### Widget ID Types
+The `id_type` determines which widgets your new widget will be able to combine with, since only widgets with the same `id_type` can be combined. If you had a widget with an ID type of `proposal_id` called `is_gp_proposal` and another widget of with an ID type of `entity_id` called `is_gp_prospect`, trying to combine them would look something like this:
+
+```{r, eval = FALSE}
+is_gp_proposal %and% is_gp_prospect
+```
+
+What would that even mean? In a day-to-day conversation, someone asking you for a list of things that are at the same time gift planning proposals and gift planning prospects, you would be rightfully confused since one of those predicates refers to an abstract solicitation plan and the other refers to a human being. Accordingly, the formulation above would result in an error. 
+
+### Adding a parameter
+At this point, we have a functioning widget called `majored_in`. Run a test with Ctrl/Cmd + Shift + t. We're still failing, but the failure message is different! Let's see what we have:
+
+```{r}
+test <- majored_in(540, 651, 084)
+test
+cat(to_sql(test))
+```
+
+So we're looking at the correct CDW table, and pulling the correct field, but we haven't implemented any of the logic to 
 
 </section>
 <footer><small>theme by @orderedlist</small></footer>
