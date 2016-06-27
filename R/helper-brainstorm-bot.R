@@ -18,27 +18,25 @@ widget2cdw <- function() {
 
 #' Suggest widgets and codes based on a search term
 #'
-#' The \code{suggestion_bot} takes a search term and searches through all code
+#' The \code{brainstorm_bot} takes a search term and searches through all code
 #' tables in CADS. If any of the codes it finds happen to be covered by a
 #' discoveryengine widget, it brings them back and suggests them.
 #'
 #' @param search_term a single search term
 #'
-#' @examples suggestion_bot("neuroscience")
+#' @examples brainstorm_bot("neuroscience")
 #' @export
-suggestion_bot <- function(search_term) {
-    warning("The suggestion bot is an experimental feature. Use at your own risk!",
-            call. = FALSE)
+brainstorm_bot <- function(search_term) {
     assertthat::assert_that(assertthat::is.string(search_term))
     codes <- getcdw::find_codes(search_term)
 
     if (nrow(codes) == 0L)
-        stop("Bleep bloop. Sorry, suggestion bot couldn't find '",
+        stop("Bleep bloop. Sorry, brainstorm bot couldn't find '",
              search_term, "'", call. = FALSE)
 
     tmsmap <- tms2cdw(unique(codes$view_name))
     if (nrow(tmsmap) == 0L)
-        stop("Bleep bloop. Sorry, suggestion bot couldn't find '",
+        stop("Bleep bloop. Sorry, brainstorm bot couldn't find '",
              search_term, "'", call. = FALSE)
     tmsmap <- dplyr::mutate_each(tmsmap, dplyr::funs(tolower))
     widgetmap <- widget2cdw()
@@ -46,7 +44,7 @@ suggestion_bot <- function(search_term) {
     bigmap <- dplyr::inner_join(widgetmap, tmsmap,
                                 by = c("cdw_column" = "cdw_column_name"))
     if (nrow(bigmap) == 0L)
-        stop("Bleep bloop. Sorry, suggestion bot couldn't find '",
+        stop("Bleep bloop. Sorry, brainstorm bot couldn't find '",
              search_term, "'", call. = FALSE)
 
     bigmap <- dplyr::inner_join(bigmap, codes, by = c("tms" = "view_name"))
@@ -85,4 +83,5 @@ print.widget_suggestions <- function(bigmap, ...) {
     }
 
     lapply(bigmap, printwidget)
+    invisible(bigmap)
 }

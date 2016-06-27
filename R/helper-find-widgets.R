@@ -26,13 +26,18 @@ widget_for <- function(search_term = ".*") {
     if (length(indices) == 0L)
         warning("No widgets found for '", search_term, "'",
                 call. = FALSE)
+    res <- directory[indices, , drop = FALSE]
+    structure(res,
+              class = c("widget_for", class(res)))
+}
 
-    for (index in indices) {
-        widget <- directory[index, "widget_name", drop = TRUE]
-        description <- directory[index, "description", drop = TRUE]
+print.widget_for <- function(res, ...) {
+    for (index in seq_len(nrow(res))) {
+        widget <- res[index, "widget_name", drop = TRUE]
+        description <- res[index, "description", drop = TRUE]
         cat(widget, ":\n    ", description, "\n", sep = "")
     }
-    invisible(directory[indices, , drop = FALSE])
+    invisible(res)
 }
 
 #' Browse the widget registry
