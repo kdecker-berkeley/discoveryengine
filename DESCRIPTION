@@ -13,4 +13,5 @@ Suggests: testthat,
     DT
 Imports: listbuilder,
     lazyeval,
-    dplyr
+    dplyr,
+    stringr

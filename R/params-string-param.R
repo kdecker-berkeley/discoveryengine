@@ -1,7 +1,15 @@
-string_param <- function(field_name, arguments, default = NULL) {
+string_param <- function(field_name, arguments, default = NULL, width = NULL,
+                         side = "left", pad = "0") {
     validated_arguments <- prep_string_param(arguments, field_name = field_name)
 
     codelist <- resolve_codes(validated_arguments, type = field_name)
+
+    if (!is.null(width)) {
+        assertthat::assert_that(assertthat::is.count(width))
+        codelist <- stringr::str_pad(codelist, width = width,
+                                     side = side, pad = pad)
+    }
+
 
     if (length(codelist) <= 0) {
         if (is.language(default)) return(default)
