@@ -4,15 +4,18 @@
 #' @param atleast minimum total giving
 #' @param from, to begin and end dates (gave between those dates)
 #' @export
-gave_to_area <- function(..., atleast = 0.01, from = NULL,
+gave_to_area <- function(..., at_least = 0.01, from = NULL,
                          to = NULL) {
     aogs <- prep_dots(...)
-    gave_to_area_(aogs, atleast = atleast, from = from, to = to)
+    reroute(gave_to_area_(aogs, at_least = at_least,
+                          from = from, to = to))
 }
 
 #' @rdname gave_to_area
 #' @export
-gave_to_area_ <- function(aogs, atleast = 0.01, from = NULL, to = NULL) {
+gave_to_area_ <- function(aogs, at_least = 0.01, from = NULL, to = NULL) {
+    if (!is.numeric(at_least)) stop("at_least must be a number")
+    if (length(at_least) != 1L) stop("need a single amount for at_least")
 
     widget_builder(
         table = "f_transaction_detail_mv",
@@ -24,6 +27,6 @@ gave_to_area_ <- function(aogs, atleast = 0.01, from = NULL, to = NULL) {
             string_switch("pledged_basis_flg", "Y")
         ),
         aggregate_switches = sum_switch("benefit_aog_credited_amt",
-                                        atleast)
+                                        at_least)
     )
 }

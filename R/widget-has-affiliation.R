@@ -2,14 +2,16 @@
 #' @param ... affiliation code(s)
 #' @param status affilition status codes ("C" for current, "F" for former)
 #' @export
-has_affiliation <- function(..., status = c("C", "F")) {
+has_affiliation <- function(..., include_former = TRUE) {
     affiliations <- prep_dots(...)
-    has_affiliation_(affiliations, status)
+    reroute(has_affiliation_(affiliations, include_former))
 }
 
 #' @rdname has_affiliation
 #' @export
-has_affiliation_ <- function(affiliations, status = c("C", "F")) {
+has_affiliation_ <- function(affiliations, include_former = TRUE) {
+    if (include_former) status <- c("C", "F")
+    else status <- "C"
     entity_widget("d_bio_affiliation_mv",
                   parameter = string_param("affil_code", affiliations),
                   switches = string_switch("affil_status_code", status))

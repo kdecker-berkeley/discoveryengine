@@ -5,9 +5,11 @@
 \alias{has_degree_from_}
 \title{Degree widget}
 \usage{
-has_degree_from(..., levels = c("A", "U", "G", "L"))
+has_degree_from(..., undergraduates = TRUE, graduates = TRUE,
+  attendees = FALSE)
 
-has_degree_from_(schools, levels = c("A", "U", "G", "L"))
+has_degree_from_(schools, undergraduates = TRUE, graduates = TRUE,
+  attendees = FALSE)
 }
 \arguments{
 \item{...}{degree-granting schools}

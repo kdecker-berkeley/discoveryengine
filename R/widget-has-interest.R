@@ -3,7 +3,7 @@
 #' @export
 has_interest <- function(...) {
     interests <- prep_dots(...)
-    has_interest_(interests)
+    reroute(has_interest_(interests))
 }
 
 #' @rdname has_interest

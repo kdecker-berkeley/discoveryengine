@@ -1,7 +1,7 @@
 #' @export
 played_sport <- function(...) {
     sports <- prep_dots(...)
-    played_sport_(sports)
+    reroute(played_sport_(sports))
 }
 
 played_sport_ <- function(sports) {

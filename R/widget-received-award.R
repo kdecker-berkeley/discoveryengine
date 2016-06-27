@@ -1,7 +1,7 @@
 #' @export
 received_award <- function(...) {
     awards <- prep_dots(...)
-    received_award_(awards)
+    reroute(received_award_(awards))
 }
 
 received_award_ <- function(awards) {

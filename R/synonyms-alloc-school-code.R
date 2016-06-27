@@ -1,0 +1,30 @@
+alloc_school_code_synonyms <- function() {
+    c(
+        "academic_senate" = "ACS",
+        "bam" = "BAM",
+        "berkeley_art_museum" = "BAM",
+        "art_museum" = "BAM",
+        "law" = "BLBH",
+        "boalt" = "BLBH",
+        "haas" = "HSB",
+        "business" = "HSB",
+        "cal_alumni_association" = "CAA",
+        "alumni_association" = "CAA",
+        "caa" = "CAA",
+        "cal_performances" = "CALP",
+        "chemistry" = "COC",
+        "education" = "GSE",
+        "engineering" = "COE",
+        "environmental_design" = "CED",
+        "equity_inclusion" = "EQIN",
+        "graduate_division" = "GRAD",
+        "athletics" = "IA",
+        "journalism" = "JOUR",
+        "library" = "LIB",
+        "natural_resources" = "CNR",
+        "public_health" = "SPH",
+        "gspp" = "GSPP",
+        "public_policy" = "GSPP",
+        "social_welfare" = "SWS"
+    )
+}

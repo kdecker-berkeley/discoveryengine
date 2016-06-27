@@ -5,9 +5,9 @@
 \alias{has_affiliation_}
 \title{Affiliation widget}
 \usage{
-has_affiliation(..., status = c("C", "F"))
+has_affiliation(..., include_former = TRUE)
 
-has_affiliation_(affiliations, status = c("C", "F"))
+has_affiliation_(affiliations, include_former = TRUE)
 }
 \arguments{
 \item{...}{affiliation code(s)}

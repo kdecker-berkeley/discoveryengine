@@ -2,7 +2,7 @@
 #' @param ... major gift score descriptors (more, most, etc)
 #' @export
 has_major_gift_score <- function(...) {
-    has_major_gift_score_(prep_dots(...))
+    reroute(has_major_gift_score_(prep_dots(...)))
 }
 
 #' @rdname has_major_gift_score

@@ -5,7 +5,7 @@
 #' @export
 attended_event <- function(..., participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E")) {
     events = prep_dots(...)
-    attended_event_(events, participation)
+    reroute(attended_event_(events, participation))
 }
 
 #' @export
