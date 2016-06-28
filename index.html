@@ -131,6 +131,41 @@ get_cdw(wealthy_in_sf)</code></pre>
 ## 9    3057802
 ## 10   3219819
 ## ..       ...</code></pre>
+<p>Not sure where to start? Ask the brainstorm bot for help:</p>
+<pre class="r"><code>brainstorm_bot(&quot;neuroscience&quot;)</code></pre>
+<pre><code>## attended_event 
+##     4617: L&amp;S Olson Berkeley Science, Neuroscience
+##     5781: LS Berk Science Neuroscience 11-28-12
+## gave_to_area 
+##     GNSO: *Neurosciences Institute
+## has_interest 
+##     NEU: Neuroscience
+## in_unit_portfolio 
+##     NS: Neuroscience Institute
+## majored_in 
+##     594: Neuroscience</code></pre>
+<pre class="r"><code>is_neuro_prospect = 
+    attended_event(4617, 5781) %or%
+    gave_to_area(GNSO) %or%
+    has_interest(NEU) %or%
+    in_unit_portfolio(NS) %or%
+    majored_in(594)
+get_cdw(is_neuro_prospect)</code></pre>
+<pre><code>## Source: local data frame [190 x 1]
+## 
+##    entity_id
+## *      &lt;int&gt;
+## 1       1485
+## 2       1764
+## 3       5694
+## 4       5788
+## 5       6654
+## 6       9264
+## 7      10833
+## 8      13351
+## 9      15916
+## 10     16393
+## ..       ...</code></pre>
 <p>For more examples, head over to the <a href="examples.html">examples</a> page.</p>
 </section>
 <footer>

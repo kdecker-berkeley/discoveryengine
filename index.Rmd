@@ -46,6 +46,19 @@ And householding is a breeze:
 ```{r ex3, cache = TRUE}
 get_cdw(household(wealthy_in_sf))
 ```
+
+Not sure where to start? Ask the brainstorm bot for help:
+```{r exbb, cache = TRUE}
+brainstorm_bot("neuroscience")
+is_neuro_prospect = 
+    attended_event(4617, 5781) %or%
+    gave_to_area(GNSO) %or%
+    has_interest(NEU) %or%
+    in_unit_portfolio(NS) %or%
+    majored_in(594)
+get_cdw(is_neuro_prospect)
+```
+
 For more examples, head over to the [examples](examples.html) page.
 
 
