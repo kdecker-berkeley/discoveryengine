@@ -69,9 +69,9 @@ Discoveryengine
 </header>
 <section>
 <h2 id="building-a-new-discoveryengine-widget">Building a new discoveryengine widget</h2>
-<p>Today I’ll be adding the <code>majored_in</code> widget to the discoveryengine. The steps that we’ll go through are the same steps you’d take any time you were adding a new widget.</p>
+<p>Today I’ll be adding the <code>majored_in</code> widget to the discoveryengine. The steps that we’ll go through are the same steps you’ll take any time you create a new widget.</p>
 <h3 id="getting-started">Getting started</h3>
-<p>I’ve already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you’re using RStudio, you can do this with Ctrl/Cmd + shift + l).</p>
+<p>I’ve already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you’re using RStudio, you can do this with Ctrl/Cmd + shift + L).</p>
 <pre class="r"><code>devtools::load_all(&quot;.&quot;)</code></pre>
 <pre><code>## Loading discoveryengine</code></pre>
 <p>It’s helpful as a first step to write a failing test. Tests serve as documentation for your widget, by specifying clearly the tables and fields that will be used by the widget. So I create a new file <code>tests/testthat/test-majored-in.R</code>:</p>
@@ -100,7 +100,7 @@ test_that(&quot;majored_in meets specifications on no input&quot;, {
     majored_in() %&gt;% has_filters(local_ind = &quot;Y&quot;)
 })</code></pre>
 <p>Notice the tests make clear that, for the purposes of this widget, majors are determined by looking at the <code>major_code1</code> field in the <code>d_bio_degrees_mv</code> table. Also note that the test cases include input that I know (from experience) might cause problems, for instance a major code starting with a “0”.</p>
-<p>In RStudio, you can run tests using Ctrl/Cmd + shift + t. After adding the new tests for the <code>majored_in</code> widget, I see some failures in the test output.</p>
+<p>In RStudio, you can run tests using Ctrl/Cmd + shift + T. After adding the new tests for the <code>majored_in</code> widget, I see some failures in the test output.</p>
 <h3 id="constructing-the-widget">Constructing the widget</h3>
 <p>Now it’s time to build a widget that will pass those tests. Since the discoveryengine uses <a href="http://adv-r.had.co.nz/Computing-on-the-language.html">non-standard evaluation</a>, we follow the guidelines set out in Hadley Wickham’s <a href="http://adv-r.had.co.nz/">Advanced R book</a>, creating a standard-evaluation escape hatch:</p>
 <pre class="r"><code># prep dots will turn dots into an object
@@ -120,11 +120,11 @@ majored_in_ &lt;- function(majors) {
 }</code></pre>
 <p>The <code>table</code> is the name of the data warehouse table you need to query for this widget. The <code>id_field</code> is the name of the field in that table that you’ll return. The <code>id_type</code> is a standardized name for the IDs you’re pulling.</p>
 <h3 id="widget-id-types">Widget ID Types</h3>
-<p>The <code>id_type</code> determines which widgets your new widget will be able to combine with, since only widgets with the same <code>id_type</code> can be combined. If you had a widget with an ID type of <code>proposal_id</code> called <code>is_gp_proposal</code> and another widget of with an ID type of <code>entity_id</code> called <code>is_gp_prospect</code>, trying to combine them would look something like this:</p>
+<p>The <code>id_type</code> determines which other widgets your new widget will be able to combine with, since only widgets with the same <code>id_type</code> can be combined. If you had a widget with an ID type of <code>proposal_id</code> called <code>is_gp_proposal</code> and another widget of with an ID type of <code>entity_id</code> called <code>is_gp_prospect</code>, trying to combine them would look something like this:</p>
 <pre class="r"><code>is_gp_proposal %and% is_gp_prospect</code></pre>
 <p>What would that even mean? In a day-to-day conversation, someone asking you for a list of things that are at the same time gift planning proposals and gift planning prospects, you would be rightfully confused since one of those predicates refers to an abstract solicitation plan and the other refers to a human being. Accordingly, the formulation above would result in an error.</p>
 <h3 id="adding-a-parameter">Adding a parameter</h3>
-<p>At this point, we have a functioning widget called <code>majored_in</code>. Run a test with Ctrl/Cmd + Shift + t. We’re still failing, but the failure message is different! Let’s see what we have:</p>
+<p>At this point, we have a functioning widget called <code>majored_in</code>. Run a test with Ctrl/Cmd + Shift + T. We’re still failing, but the failure message is different! Let’s see what we have:</p>
 <pre class="r"><code>test &lt;- majored_in(540, 651, 084)
 test</code></pre>
 <pre><code>## LISTBUILDER DEFINITION (type: entity_id)
@@ -141,7 +141,7 @@ string_param(&quot;major_code1&quot;, majors)</code></pre>
 <pre><code>## [[1]]
 ## major_code1 %in% c(&quot;540&quot;, &quot;651&quot;, &quot;84&quot;)</code></pre>
 <p>Hmmn, well that looks like a good start, but notice how the code with a leading zero got mangled. Codes that should be strings are interpreted as integers by R as soon as they are entered. For example:</p>
-<pre class="r"><code>001</code></pre>
+<pre class="r"><code>print(001)</code></pre>
 <pre><code>## [1] 1</code></pre>
 <p>This kind of situation doesn’t come up too often, as most codes in CADS use letters and not numbers. But in this case, we need to do a little extra work to make sure our major codes all have the same width (3 characters), with leading zeroes if necessary. Fortunately, <code>string_param</code> has a <code>width</code> argument for just such an occasion:</p>
 <pre class="r"><code>string_param(&quot;major_code1&quot;, majors, width = 3)</code></pre>
@@ -149,7 +149,107 @@ string_param(&quot;major_code1&quot;, majors)</code></pre>
 ## major_code1 %in% c(&quot;540&quot;, &quot;651&quot;, &quot;084&quot;)</code></pre>
 <p>Alright, that looks good. Looking back at the unit test we started with, the only remaining logic that needs to be implemented is the part that looks at the <code>local_ind</code> field, which specifies that the degree in question is a UC Berkeley degree.</p>
 <h3 id="switches">Switches</h3>
-<p>While parameters are the major way to interact with a widget, we can also have switches to add some additional logic. Switches can be controlled by the user, but don’t have to be. If they are</p>
+<p>While parameters are the major way to interact with a widget, we can also use switches to add some additional logic. Switches can be controlled by the user, but don’t have to be (in this case, the switch will always have the same value, so no need to get input from the user). If a switch is user-entered, strive to present the switch in the language of prospecting, and not the langauge of the database. For example, imagine a proposal widget that can filter for just active proposals:</p>
+<pre class="r"><code># this would be a BAD way to do it!
+proposal &lt;- function(active_ind) {
+    string_switch(&quot;active_ind&quot;, active_ind)
+}
+
+# now to get active proposals I would have to type:
+proposal(active_ind = &quot;Y&quot;)</code></pre>
+<pre><code>## active_ind %in% &quot;Y&quot;</code></pre>
+<pre class="r"><code># or even more annoyingly, if I wanted all proposals:
+proposal(active_ind = c(&quot;Y&quot;, &quot;N&quot;))</code></pre>
+<pre><code>## active_ind %in% c(&quot;Y&quot;, &quot;N&quot;)</code></pre>
+<p>The problem in those examples is that I’m no longer able to reason in the language of prospecting. No one has ever called me asking for “proposals with an active indicator of ‘Y’.” It’s only a tiny bit more work to create something much more natural:</p>
+<pre class="r"><code># a much better way to do it:
+proposal &lt;- function(include_inactive) {
+    if (include_inactive) active_ind = c(&quot;Y&quot;, &quot;N&quot;)
+    else active_ind = &quot;Y&quot;
+    string_switch(&quot;active_ind&quot;, active_ind)
+}
+
+# now this reflects how I would talk about the problem:
+proposal(include_inactive = TRUE)</code></pre>
+<pre><code>## active_ind %in% c(&quot;Y&quot;, &quot;N&quot;)</code></pre>
+<p>Ok, in the case of <code>majored_in</code>, this whole discussion is moot since there is no user input needed. Let’s finalize <code>majored_in_</code>:</p>
+<pre class="r"><code>majored_in_ &lt;- function(majors) {
+    widget_builder(
+        table = &quot;d_bio_degrees_mv&quot;,
+        id_field = &quot;entity_id&quot;,
+        id_type = &quot;entity_id&quot;,
+        parameter = string_param(&quot;major_code1&quot;, majors, width = 3),
+        switches = string_switch(&quot;local_ind&quot;, &quot;Y&quot;)
+    )    
+}
+
+# test it out:
+majored_in(540,651, 084)</code></pre>
+<pre><code>## LISTBUILDER DEFINITION (type: entity_id)
+## .   source: d_bio_degrees_mv.entity_id (entity_id)
+## .   logic: 
+## .   .   major_code1 IN (&#39;540&#39;, &#39;651&#39;, &#39;084&#39;)
+## .   .   local_ind IN &#39;Y&#39;</code></pre>
+<p>Success! We have a functional widget that allows a user to search for majors. The widget can be combined with others and converted to SQL. We still have a few more items to take care of, but we’ve accomplished a lot!</p>
+<h3 id="synonyms">Synonyms</h3>
+<p>Many of the discoveryengine widgets use synonym tables. Especially useful is the fact that a user can quickly search through synonym tables using the <code>?</code> notation, for instance <code>has_degree_from(?chem)</code>. However, our new widget doesn’t have that functionality yet.</p>
+<pre class="r"><code>majored_in(mathematics)</code></pre>
+<pre><code>## Error in eval(expr, envir, enclos): unrecognized major_code1(s): mathematics</code></pre>
+<pre class="r"><code>majored_in(?math)</code></pre>
+<pre><code>## Error: unrecognized major_code1(s): `?`(math)</code></pre>
+<p>There are two steps we need to take to get the <code>majored_in</code> widget to accept synonyms. First we need to create a synonym table. The synonym table is just a function that returns a vector whose names are synonyms and whose values are codes. The name of the function has to have the field name in it, followed by the suffix “_synonyms“:</p>
+<pre class="r"><code>major_code1_synonyms &lt;- function() {
+    c(
+        &quot;mathematics&quot; = &quot;540&quot;,
+        &quot;philosophy&quot; = &quot;651&quot;
+        # and so on ...
+    )
+}</code></pre>
+<p>This is enough to get the basic synonym functionality working:</p>
+<pre class="r"><code>majored_in(mathematics)</code></pre>
+<pre><code>## LISTBUILDER DEFINITION (type: entity_id)
+## .   source: d_bio_degrees_mv.entity_id (entity_id)
+## .   logic: 
+## .   .   major_code1 IN &#39;540&#39;
+## .   .   local_ind IN &#39;Y&#39;</code></pre>
+<p>However, we still don’t have search capability:</p>
+<pre class="r"><code>majored_in(?math)</code></pre>
+<pre><code>## Error: unrecognized major_code1(s): `?`(math)</code></pre>
+<p>Why not? Well, internally the way that <code>?</code>commands are handled is that they fire off a signal alerting the system that the user has asked for a synonym search. So our widgets need to know that when such a signal has fired, they should modify their behavior. Instead of going about the task of creating a listbuilder definition, the widget needs to change courses and go into dictionary mode, searching through its synonym table. It’s not complicated to do this. Just use the <code>reroute</code> function, which makes the widget into something that can listen for various signals and respond accordingly.</p>
+<pre class="r"><code>majored_in &lt;- function(...) reroute(majored_in_(prep_dots(...)))
+
+# now this should work:
+majored_in(?math)</code></pre>
+<pre><code>##                                synonym  code
+##                            mathematics   540
+##  rsch_in_cognition_math_education_cert  2005
+##                 science_math_education   843
+##                 science_math_education 24902
+##               mathematics_for_teachers   543
+##                   engr_math_statistics   312
+##                    applied_mathematics   072</code></pre>
+<h3 id="registering-the-new-widget">Registering the new widget</h3>
+<p>We now have a fully functional widget for finding individuals with specific degrees, complete with a working synonym table. But we still would like to increase the widget’s visibility. We should be able to find it with, for example <code>widget_for(&quot;major&quot;)</code> or even <code>widget_for(&quot;degree&quot;)</code>. We’d also like to make sure the brainstorm bot knows about the new widget. That kind of visibility comes from <em>registering</em> the widget. You do that by editing <a href="https://github.com/tarakc02/discoveryengine/blob/master/inst/extdata/widget_finder.csv">the widget registry file <code>inst/extdata/widget_finder.csv</code></a> – just add a line for the new widget along with a description and keywords. And you’re done.</p>
+<pre class="r"><code># registering the widget made it visible to the widget searchers
+widget_for(&quot;degree&quot;)</code></pre>
+<pre><code>## has_degree_from:
+##     Lists entities with degrees from specific school(s)
+## majored_in:
+##     Lists entities who graduated with specific major(s)</code></pre>
+<pre class="r"><code># and also to the brainstorm bot
+# i know there is a major in neuroscience, so it should appear
+brainstorm_bot(&quot;neuroscience&quot;)</code></pre>
+<pre><code>## attended_event 
+##     4617: L&amp;S Olson Berkeley Science, Neuroscience
+##     5781: LS Berk Science Neuroscience 11-28-12
+## gave_to_area 
+##     GNSO: *Neurosciences Institute
+## has_interest 
+##     NEU: Neuroscience
+## in_unit_portfolio 
+##     NS: Neuroscience Institute
+## majored_in 
+##     594: Neuroscience</code></pre>
 </section>
 <footer>
 <small>theme by <span class="citation">@orderedlist</span></small>

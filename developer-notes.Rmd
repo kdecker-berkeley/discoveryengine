@@ -22,7 +22,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 options(width = 63)
 ```
-Today I'll be adding the `majored_in` widget to the discoveryengine. The steps that we'll go through are the same steps you'd take any time you were adding a new widget.
+Today I'll be adding the `majored_in` widget to the discoveryengine. The steps that we'll go through are the same steps you'll take any time you create a new widget.
 
 ### Getting started
 I've already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you're using RStudio, you can do this with Ctrl/Cmd + shift + L).
@@ -131,7 +131,7 @@ string_param("major_code1", majors, width = 3)
 Alright, that looks good. Looking back at the unit test we started with, the only remaining logic that needs to be implemented is the part that looks at the `local_ind` field, which specifies that the degree in question is a UC Berkeley degree. 
 
 ### Switches
-While parameters are the major way to interact with a widget, we can also have switches to add some additional logic. Switches can be controlled by the user, but don't have to be (in this case, the switch will always have the same value, so no need to get input from the user). If a switch is user-entered, strive to present the switch in the language of prospecting, and not the langauge of the database. For example, imagine a proposal widget that can filter for just active proposals:
+While parameters are the major way to interact with a widget, we can also use switches to add some additional logic. Switches can be controlled by the user, but don't have to be (in this case, the switch will always have the same value, so no need to get input from the user). If a switch is user-entered, strive to present the switch in the language of prospecting, and not the langauge of the database. For example, imagine a proposal widget that can filter for just active proposals:
 
 ```{r}
 # this would be a BAD way to do it!
@@ -150,7 +150,7 @@ The problem in those examples is that I'm no longer able to reason in the langua
 
 ```{r}
 # a much better way to do it:
-proposal <- function(include_inactive = FALSE) {
+proposal <- function(include_inactive) {
     if (include_inactive) active_ind = c("Y", "N")
     else active_ind = "Y"
     string_switch("active_ind", active_ind)
@@ -186,11 +186,11 @@ Many of the discoveryengine widgets use synonym tables. Especially useful is the
 ```{r eval = FALSE}
 majored_in(mathematics)
 ```
-```{r echo = FALSE}
+```{r echo = FALSE, error = TRUE}
 stop("unrecognized major_code1(s): mathematics")
 ```
 
-```{r}
+```{r, error = TRUE}
 majored_in(?math)
 ```
 
@@ -212,7 +212,7 @@ majored_in(mathematics)
 ```
 
 However, we still don't have search capability:
-```{r}
+```{r, error = TRUE}
 majored_in(?math)
 ```
 
@@ -223,6 +223,19 @@ majored_in <- function(...) reroute(majored_in_(prep_dots(...)))
 
 # now this should work:
 majored_in(?math)
+```
+
+### Registering the new widget
+
+We now have a fully functional widget for finding individuals with specific degrees, complete with a working synonym table. But we still would like to increase the widget's visibility. We should be able to find it with, for example `widget_for("major")` or even `widget_for("degree")`. We'd also like to make sure the brainstorm bot knows about the new widget. That kind of visibility comes from *registering* the widget. You do that by editing [the widget registry file `inst/extdata/widget_finder.csv`](https://github.com/tarakc02/discoveryengine/blob/master/inst/extdata/widget_finder.csv) -- just add a line for the new widget along with a description and keywords. And you're done.
+
+```{r, cache = TRUE}
+# registering the widget made it visible to the widget searchers
+widget_for("degree")
+
+# and also to the brainstorm bot
+# i know there is a major in neuroscience, so it should appear
+brainstorm_bot("neuroscience")
 ```
 
 </section>
