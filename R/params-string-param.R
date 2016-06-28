@@ -36,9 +36,10 @@ synonym_list <- function(field_name, search_terms = NULL) {
     if (is.null(vec))
         stop("no synonyms defined for ", field_name, call. = FALSE)
 
-    syn_df <- data.frame(synonym = names(vec),
-                         code = unname(vec),
-                         stringsAsFactors = FALSE)
+    syn_df <- structure(data.frame(synonym = names(vec),
+                                   code = unname(vec),
+                                   stringsAsFactors = FALSE),
+                        class = c("synonym_list", "data.frame"))
 
     if (is.null(search_terms)) return(syn_df)
 
@@ -55,5 +56,11 @@ synonym_list <- function(field_name, search_terms = NULL) {
                 call. = FALSE)
     }
 
+    assertthat::assert_that(inherits(matching_synonyms, "data.frame"))
     matching_synonyms
+}
+
+#' @export
+print.synonym_list <- function(s, ...) {
+    print.data.frame(s, row.names = FALSE)
 }
