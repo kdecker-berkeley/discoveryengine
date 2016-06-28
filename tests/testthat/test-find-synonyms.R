@@ -9,10 +9,10 @@ test_that("find_synonyms lists all synonyms when no search string given", {
                             stringsAsFactors = FALSE)
 
 
-    expect_identical(find_synonyms(gave_to_area),
-                     alloc_school_df)
-    expect_identical(find_synonyms(in_unit_portfolio),
-                     office_df)
+    expect_equivalent(find_synonyms(gave_to_area),
+                      alloc_school_df)
+    expect_equivalent(find_synonyms(in_unit_portfolio),
+                      office_df)
 })
 
 test_that("find_synonyms filters synonym lists using search term", {
@@ -24,8 +24,8 @@ test_that("find_synonyms filters synonym lists using search term", {
     find_synonyms_result <- find_synonyms(lives_in_msa, "chicago")
     find_synonyms_expected <- df[index, ]
 
-    expect_identical(find_synonyms_result,
-                     find_synonyms_expected)
+    expect_equivalent(find_synonyms_result,
+                      find_synonyms_expected)
 
 })
 
@@ -38,7 +38,7 @@ test_that("find_synonyms returns empty data frame on degenerate inputs", {
     find_synonyms_result <- find_synonyms(lives_in_msa, "xyzxyz")
     find_synonyms_expected <- df[index, ]
 
-    expect_identical(find_synonyms_result,
-                     find_synonyms_expected)
+    expect_equivalent(find_synonyms_result,
+                      find_synonyms_expected)
 
 })
