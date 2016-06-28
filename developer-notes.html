@@ -68,65 +68,88 @@ Discoveryengine
 </ul>
 </header>
 <section>
-<h2 id="understanding-how-the-discoveryengine-works">Understanding how the discoveryengine works</h2>
-<p>The <code>discoveryengine</code> is based on a simple, but flexible, idea: prospecting is carried out by creating and combining lists of IDs in various ways, and lists of IDs are defined by a predicate, such as “has a degree from the college of chemistry” or “has an interest in architecture.” The <code>discoveryengine</code> defines a set of widgets and converters. Widgets are functions that create predicates. For example, the <code>has_degree_from</code> widget creates predicates such as <code>has_degree_from(business)</code> or <code>has_degree_from(natural_resources)</code>. Converters add additional power – they are like second-order widgets in that they define predicates in terms of other predicates – for example <code>child_of(has_capacity(1:9))</code> This document looks at how widgets and converters are built.</p>
-<h3 id="widgets">Widgets</h3>
-<p>Widgets are built, appropriately, with the <code>widget_builder</code> function. <code>widget_builder</code> takes the following arguments, and outputs a widget:</p>
-<ul>
-<li><code>table</code></li>
-<li><code>id_field</code></li>
-<li><code>id_type</code></li>
-<li><code>parameter</code> (optional)</li>
-<li><code>aggregate_parameter</code> (optional)</li>
-<li><code>switches</code> (optional)</li>
-<li><code>aggregate_switches</code> (optional)</li>
-</ul>
-<h4 id="table-id_field-and-id_type">table, id_field, and id_type</h4>
-<p>These three fields describe the kind of ID that the widget will return. <code>table</code> is the name of the CDW table the ID comes from, <code>id_field</code> is the name of the id column in that table, and <code>id_type</code> describes what kind of ID it is (entity_id, allocation_id, etc). As an example, the giving widgets have <code>table = f_transaction_detail_mv</code>, <code>id_field = donor_entity_id_nbr</code>, and <code>id_type = entity_id</code>. The <code>id_type</code> constrains how a widget may be combined with other widgets. For instance, if <code>predicate_a</code> has an <code>id_type</code> of <code>entity_id</code> while <code>predicate_b</code> has an <code>id_type</code> of <code>allocation_id</code>, then <code>predicate_a %or% predicate_b</code> would result in an error.</p>
-<h4 id="parameter-aggregate_parameter">parameter, aggregate_parameter</h4>
-<p>A widget can have up to one parameter, and the parameter serves as the primary way a user can control a widget. In the usage <code>has_degree_from(business)</code> the parameter is <code>business</code>.</p>
-<p>There are helper functions to create parameters. Currently, the only two such functions are <code>string_param</code> and <code>integer_param</code>, and the only two types of parameters that have been defined are string and integer. In the future, we may add additional parameter types, such as <code>zipcode_param</code> (currently we use <code>string_param</code> to handle zip codes, at the expense of sometimes screwing up zipcodes that begin with a ‘0’). <code>string_param</code> and <code>integer_param</code> both take as arguments the name of a field in the CDW, a list of unevaluated arguments, and (optionally) a default. This will make more sense with an example, so let’s take a look at the <code>gave_to_area</code> widget:</p>
-<pre class="r"><code>library(discoveryengine)
-print(gave_to_area)</code></pre>
-<pre><code>## function (..., atleast = 0.01, from = NULL, to = NULL) 
-## {
-##     aogs &lt;- prep_dots(...)
-##     gave_to_area_(aogs, atleast = atleast, from = from, to = to)
-## }
-## &lt;environment: namespace:discoveryengine&gt;</code></pre>
-<p>All of the widgets in the <code>discoveryengine</code> support non-standard evaluation, and, following the recommendation from Hadley Wickham in his <a href="http://adv-r.had.co.nz/Computing-on-the-language.html#calling-from-another-function">Advanced R book</a>, have a standard evaluation “escape hatch” found by adding an underscore to the widet name.</p>
-<pre class="r"><code>print(gave_to_area_)</code></pre>
-<pre><code>## function (aogs, atleast = 0.01, from = NULL, to = NULL) 
-## {
-##     widget_builder(table = &quot;f_transaction_detail_mv&quot;, id_field = &quot;donor_entity_id_nbr&quot;, 
-##         id_type = &quot;entity_id&quot;, parameter = string_param(&quot;alloc_school_code&quot;, 
-##             aogs), switches = list(daterange(&quot;giving_record_dt&quot;, 
-##             from, to), string_switch(&quot;pledged_basis_flg&quot;, &quot;Y&quot;)), 
-##         aggregate_switches = sum_switch(&quot;benefit_aog_credited_amt&quot;, 
-##             atleast))
-## }
-## &lt;environment: namespace:discoveryengine&gt;</code></pre>
-<p>I’ll look at the switches in the following section, but note here the argument <code>parameter = string_param(&quot;alloc_school_code&quot;, aogs)</code>. <code>f_transaction_detail_mv.alloc_school_code</code> is the name of the field that will be used when filtering for transactions to a given area. <code>aogs</code> is the list of unevaluated expressions the user has entered, that may contain expressions such as <code>business</code> or <code>SHSB</code>. <code>string_param</code> will resolve syonyms such as <code>business</code> into area of giving codes, and will produce an expression whose meaning is: <code>alloc_school_code %in% aogs</code>.</p>
-<p>An <code>aggregate_parameter</code> is a parameter that can only be applied after aggregation. No widgets currently use an <code>aggregate_parameter</code>, but in the next section we’ll look at an exmaple of an aggregate switch.</p>
-<h4 id="switches-aggregate_switches">switches, aggregate_switches</h4>
-<p>While the <code>parameter</code> is the primary way for the user to control a widget, there are often some secondary options, or switches, that can also be used. These are generally not directly related to codes from the TMS code table, but rather secondary options. For instance, <code>in_unit_portfolio</code> takes as a parameter the office code, such as <code>BU</code> (or equivalent synonym, such as <code>business</code>), as well as a switch <code>include_inactive</code>, which is either <code>TRUE</code> or <code>FALSE</code> depending on whether inactive proposals should be considered. Let’s look again at the <code>gave_to_area</code> example:</p>
-<pre class="r"><code>print(gave_to_area_)</code></pre>
-<pre><code>## function (aogs, atleast = 0.01, from = NULL, to = NULL) 
-## {
-##     widget_builder(table = &quot;f_transaction_detail_mv&quot;, id_field = &quot;donor_entity_id_nbr&quot;, 
-##         id_type = &quot;entity_id&quot;, parameter = string_param(&quot;alloc_school_code&quot;, 
-##             aogs), switches = list(daterange(&quot;giving_record_dt&quot;, 
-##             from, to), string_switch(&quot;pledged_basis_flg&quot;, &quot;Y&quot;)), 
-##         aggregate_switches = sum_switch(&quot;benefit_aog_credited_amt&quot;, 
-##             atleast))
-## }
-## &lt;environment: namespace:discoveryengine&gt;</code></pre>
-<p>Here we see the use of the helper function <code>daterange</code>, which takes a begin and end date and produces a daterange constraint. Significantly, <code>daterange</code> will accept <code>NULL</code> values for either or both of the date arguments, and will still behave as expected. Dates are entered as regular integers of the form YYYYMMDD (so June 6, 2016 would be 20160606).</p>
-<p>We also see the <code>string_switch</code> function, which operates just like the <code>string_param</code> function above, except that it will not go through a synonym table or other validation. Finally, we see an aggregate switch, using the helper <code>sum_switch</code>. <code>sum_switch(&quot;benefit_aog_credited_amt&quot;, atleast)</code> says that the sum of <code>benefit_aog_credited_amt</code> should be greater than or equal to the value <code>atleast</code>. In all, then:</p>
-<pre class="r"><code>gave_to_area(art_museum, cal_performances, 
-             atleast = 5000, 
-             from = 20140701, to = 20150630)</code></pre>
-will find anyone who gave a total of $5,000 or more combined to the Berkeley Art Museum and/or Cal Performances between July 1, 2014 and June 30, 2015.
+<h2 id="building-a-new-discoveryengine-widget">Building a new discoveryengine widget</h2>
+<p>Today I’ll be adding the <code>majored_in</code> widget to the discoveryengine. The steps that we’ll go through are the same steps you’d take any time you were adding a new widget.</p>
+<h3 id="getting-started">Getting started</h3>
+<p>I’ve already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you’re using RStudio, you can do this with Ctrl/Cmd + shift + l).</p>
+<pre class="r"><code>devtools::load_all(&quot;.&quot;)</code></pre>
+<pre><code>## Loading discoveryengine</code></pre>
+<p>It’s helpful as a first step to write a failing test. Tests serve as documentation for your widget, by specifying clearly the tables and fields that will be used by the widget. So I create a new file <code>tests/testthat/test-majored-in.R</code>:</p>
+<pre class="r"><code>context(&quot;majored_in specifications&quot;)
+source(&quot;helpers.R&quot;)
+library(magrittr)
+
+test_that(&quot;majored_in meets specifications on standard input&quot;, {
+    test &lt;- majored_in(540, 651, 084)
+    test %&gt;% uses_table(&quot;d_bio_degrees_mv&quot;)
+    test %&gt;% id_of_type(&quot;entity_id&quot;)
+    test %&gt;% id_field_is(&quot;entity_id&quot;)
+
+    test %&gt;%
+        has_filters(local_ind = &quot;Y&quot;,
+                    major_code1 = c(&quot;540&quot;, &quot;651&quot;, &quot;084&quot;))
+
+    test %&gt;% has_clause_count(2)
+
+})
+
+test_that(&quot;majored_in meets specifications on no input&quot;, {
+    majored_in() %&gt;%
+        has_clause_count(1)
+    majored_in() %&gt;% uses_table(&quot;d_bio_degrees_mv&quot;)
+    majored_in() %&gt;% has_filters(local_ind = &quot;Y&quot;)
+})</code></pre>
+<p>Notice the tests make clear that, for the purposes of this widget, majors are determined by looking at the <code>major_code1</code> field in the <code>d_bio_degrees_mv</code> table. Also note that the test cases include input that I know (from experience) might cause problems, for instance a major code starting with a “0”.</p>
+<p>In RStudio, you can run tests using Ctrl/Cmd + shift + t. After adding the new tests for the <code>majored_in</code> widget, I see some failures in the test output.</p>
+<h3 id="constructing-the-widget">Constructing the widget</h3>
+<p>Now it’s time to build a widget that will pass those tests. Since the discoveryengine uses <a href="http://adv-r.had.co.nz/Computing-on-the-language.html">non-standard evaluation</a>, we follow the guidelines set out in Hadley Wickham’s <a href="http://adv-r.had.co.nz/">Advanced R book</a>, creating a standard-evaluation escape hatch:</p>
+<pre class="r"><code># prep dots will turn dots into an object
+majored_in &lt;- function(...) majored_in_(prep_dots(...))
+
+# escape hatch has the same name, but with an underscore
+majored_in_ &lt;- function(majors) {
+    # here&#39;s where the code will go
+}</code></pre>
+<p>To fill in the body of the <code>majored_in_</code> function, I’ll use the helper function <code>widget_builder</code>. <code>widget_builder</code> takes some basic specifications for a widget, and builds out all of the functionality that we’ve come to know and love. At a minimum, <code>widget_builder</code> requires you to specify the table, id field, and id type for your widget:</p>
+<pre class="r"><code>majored_in_ &lt;- function(majors) {
+    widget_builder(
+        table = &quot;d_bio_degrees_mv&quot;,
+        id_field = &quot;entity_id&quot;,
+        id_type = &quot;entity_id&quot;
+    )
+}</code></pre>
+<p>The <code>table</code> is the name of the data warehouse table you need to query for this widget. The <code>id_field</code> is the name of the field in that table that you’ll return. The <code>id_type</code> is a standardized name for the IDs you’re pulling.</p>
+<h3 id="widget-id-types">Widget ID Types</h3>
+<p>The <code>id_type</code> determines which widgets your new widget will be able to combine with, since only widgets with the same <code>id_type</code> can be combined. If you had a widget with an ID type of <code>proposal_id</code> called <code>is_gp_proposal</code> and another widget of with an ID type of <code>entity_id</code> called <code>is_gp_prospect</code>, trying to combine them would look something like this:</p>
+<pre class="r"><code>is_gp_proposal %and% is_gp_prospect</code></pre>
+<p>What would that even mean? In a day-to-day conversation, someone asking you for a list of things that are at the same time gift planning proposals and gift planning prospects, you would be rightfully confused since one of those predicates refers to an abstract solicitation plan and the other refers to a human being. Accordingly, the formulation above would result in an error.</p>
+<h3 id="adding-a-parameter">Adding a parameter</h3>
+<p>At this point, we have a functioning widget called <code>majored_in</code>. Run a test with Ctrl/Cmd + Shift + t. We’re still failing, but the failure message is different! Let’s see what we have:</p>
+<pre class="r"><code>test &lt;- majored_in(540, 651, 084)
+test</code></pre>
+<pre><code>## LISTBUILDER DEFINITION (type: entity_id)
+## .   source: d_bio_degrees_mv.entity_id (entity_id)
+## .   logic:</code></pre>
+<pre class="r"><code>cat(to_sql(test))</code></pre>
+<pre><code>## select distinct entity_id from (
+## select d_bio_degrees_mv.entity_id as entity_id
+## from CDW.d_bio_degrees_mv
+## )</code></pre>
+<p>So we’re looking at the correct CDW table, and pulling the correct field, but we haven’t implemented any of the logic to look for the requested majors. We’ll start by adding a <em>parameter</em>, which is the primary way to interact with a widget. In this case, our parameter needs to look at the <code>major_code1</code> field, as specified in our unit tests. Since the parameter is a string, we’ll use the <code>string_param</code> function. In order to see how the <code>string_param</code> function works, we’ll see what it does to some sample input. Here I use <code>prep_dots</code> to present the parameter in the same way that it will be presented to the <code>majored_in_</code> function.</p>
+<pre class="r"><code>majors &lt;- prep_dots(540, 651, 084)
+string_param(&quot;major_code1&quot;, majors)</code></pre>
+<pre><code>## [[1]]
+## major_code1 %in% c(&quot;540&quot;, &quot;651&quot;, &quot;84&quot;)</code></pre>
+<p>Hmmn, well that looks like a good start, but notice how the code with a leading zero got mangled. Codes that should be strings are interpreted as integers by R as soon as they are entered. For example:</p>
+<pre class="r"><code>001</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>This kind of situation doesn’t come up too often, as most codes in CADS use letters and not numbers. But in this case, we need to do a little extra work to make sure our major codes all have the same width (3 characters), with leading zeroes if necessary. Fortunately, <code>string_param</code> has a <code>width</code> argument for just such an occasion:</p>
+<pre class="r"><code>string_param(&quot;major_code1&quot;, majors, width = 3)</code></pre>
+<pre><code>## [[1]]
+## major_code1 %in% c(&quot;540&quot;, &quot;651&quot;, &quot;084&quot;)</code></pre>
+<p>Alright, that looks good. Looking back at the unit test we started with, the only remaining logic that needs to be implemented is the part that looks at the <code>local_ind</code> field, which specifies that the degree in question is a UC Berkeley degree.</p>
+<h3 id="switches">Switches</h3>
+<p>While parameters are the major way to interact with a widget, we can also have switches to add some additional logic. Switches can be controlled by the user, but don’t have to be. If they are</p>
 </section>
 <footer>
 <small>theme by <span class="citation">@orderedlist</span></small>

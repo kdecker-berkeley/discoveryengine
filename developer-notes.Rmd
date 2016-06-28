@@ -25,7 +25,7 @@ options(width = 63)
 Today I'll be adding the `majored_in` widget to the discoveryengine. The steps that we'll go through are the same steps you'd take any time you were adding a new widget.
 
 ### Getting started
-I've already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you're using RStudio, you can do this with Ctrl/Cmd + shift + l).
+I've already cloned the discoveryengine repository and am working in a local directory. I start by loading existing code (if you're using RStudio, you can do this with Ctrl/Cmd + shift + L).
 
 ```{r}
 devtools::load_all(".")
@@ -62,7 +62,7 @@ test_that("majored_in meets specifications on no input", {
 
 Notice the tests make clear that, for the purposes of this widget, majors are determined by looking at the `major_code1` field in the `d_bio_degrees_mv` table. Also note that the test cases include input that I know (from experience) might cause problems, for instance a major code starting with a "0".
 
-In RStudio, you can run tests using Ctrl/Cmd + shift + t. After adding the new tests for the `majored_in` widget, I see some failures in the test output. 
+In RStudio, you can run tests using Ctrl/Cmd + shift + T. After adding the new tests for the `majored_in` widget, I see some failures in the test output. 
 
 ### Constructing the widget
 Now it's time to build a widget that will pass those tests. Since the discoveryengine uses [non-standard evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html), we follow the guidelines set out in Hadley Wickham's [Advanced R book](http://adv-r.had.co.nz/), creating a standard-evaluation escape hatch:
@@ -92,7 +92,7 @@ majored_in_ <- function(majors) {
 The `table` is the name of the data warehouse table you need to query for this widget. The `id_field` is the name of the field in that table that you'll return. The `id_type` is a standardized name for the IDs you're pulling. 
 
 ### Widget ID Types
-The `id_type` determines which widgets your new widget will be able to combine with, since only widgets with the same `id_type` can be combined. If you had a widget with an ID type of `proposal_id` called `is_gp_proposal` and another widget of with an ID type of `entity_id` called `is_gp_prospect`, trying to combine them would look something like this:
+The `id_type` determines which other widgets your new widget will be able to combine with, since only widgets with the same `id_type` can be combined. If you had a widget with an ID type of `proposal_id` called `is_gp_proposal` and another widget of with an ID type of `entity_id` called `is_gp_prospect`, trying to combine them would look something like this:
 
 ```{r, eval = FALSE}
 is_gp_proposal %and% is_gp_prospect
@@ -101,7 +101,7 @@ is_gp_proposal %and% is_gp_prospect
 What would that even mean? In a day-to-day conversation, someone asking you for a list of things that are at the same time gift planning proposals and gift planning prospects, you would be rightfully confused since one of those predicates refers to an abstract solicitation plan and the other refers to a human being. Accordingly, the formulation above would result in an error. 
 
 ### Adding a parameter
-At this point, we have a functioning widget called `majored_in`. Run a test with Ctrl/Cmd + Shift + t. We're still failing, but the failure message is different! Let's see what we have:
+At this point, we have a functioning widget called `majored_in`. Run a test with Ctrl/Cmd + Shift + T. We're still failing, but the failure message is different! Let's see what we have:
 
 ```{r}
 test <- majored_in(540, 651, 084)
@@ -109,7 +109,121 @@ test
 cat(to_sql(test))
 ```
 
-So we're looking at the correct CDW table, and pulling the correct field, but we haven't implemented any of the logic to 
+So we're looking at the correct CDW table, and pulling the correct field, but we haven't implemented any of the logic to look for the requested majors. We'll start by adding a _parameter_, which is the primary way to interact with a widget. In this case, our parameter needs to look at the `major_code1` field, as specified in our unit tests. Since the parameter is a string, we'll use the `string_param` function. In order to see how the `string_param` function works, we'll see what it does to some sample input. Here I use `prep_dots` to present the parameter in the same way that it will be presented to the `majored_in_` function. 
+
+```{r}
+majors <- prep_dots(540, 651, 084)
+string_param("major_code1", majors)
+```
+
+Hmmn, well that looks like a good start, but notice how the code with a leading zero got mangled. Codes that should be strings are interpreted as integers by R as soon as they are entered. For example:
+
+```{r}
+print(001)
+```
+
+This kind of situation doesn't come up too often, as most codes in CADS use letters and not numbers. But in this case, we need to do a little extra work to make sure our major codes all have the same width (3 characters), with leading zeroes if necessary. Fortunately, `string_param` has a `width` argument for just such an occasion:
+
+```{r}
+string_param("major_code1", majors, width = 3)
+```
+
+Alright, that looks good. Looking back at the unit test we started with, the only remaining logic that needs to be implemented is the part that looks at the `local_ind` field, which specifies that the degree in question is a UC Berkeley degree. 
+
+### Switches
+While parameters are the major way to interact with a widget, we can also have switches to add some additional logic. Switches can be controlled by the user, but don't have to be (in this case, the switch will always have the same value, so no need to get input from the user). If a switch is user-entered, strive to present the switch in the language of prospecting, and not the langauge of the database. For example, imagine a proposal widget that can filter for just active proposals:
+
+```{r}
+# this would be a BAD way to do it!
+proposal <- function(active_ind) {
+    string_switch("active_ind", active_ind)
+}
+
+# now to get active proposals I would have to type:
+proposal(active_ind = "Y")
+
+# or even more annoyingly, if I wanted all proposals:
+proposal(active_ind = c("Y", "N"))
+```
+
+The problem in those examples is that I'm no longer able to reason in the language of prospecting. No one has ever called me asking for "proposals with an active indicator of 'Y'." It's only a tiny bit more work to create something much more natural:
+
+```{r}
+# a much better way to do it:
+proposal <- function(include_inactive = FALSE) {
+    if (include_inactive) active_ind = c("Y", "N")
+    else active_ind = "Y"
+    string_switch("active_ind", active_ind)
+}
+
+# now this reflects how I would talk about the problem:
+proposal(include_inactive = TRUE)
+```
+
+Ok, in the case of `majored_in`, this whole discussion is moot since there is no user input needed. Let's finalize `majored_in_`:
+
+```{r}
+majored_in_ <- function(majors) {
+    widget_builder(
+        table = "d_bio_degrees_mv",
+        id_field = "entity_id",
+        id_type = "entity_id",
+        parameter = string_param("major_code1", majors, width = 3),
+        switches = string_switch("local_ind", "Y")
+    )    
+}
+
+# test it out:
+majored_in(540,651, 084)
+```
+
+Success! We have a functional widget that allows a user to search for majors. The widget can be combined with others and converted to SQL. We still have a few more items to take care of, but we've accomplished a lot!
+
+### Synonyms
+
+Many of the discoveryengine widgets use synonym tables. Especially useful is the fact that a user can quickly search through synonym tables using the `?` notation, for instance `has_degree_from(?chem)`. However, our new widget doesn't have that functionality yet. 
+
+```{r eval = FALSE}
+majored_in(mathematics)
+```
+```{r echo = FALSE}
+stop("unrecognized major_code1(s): mathematics")
+```
+
+```{r}
+majored_in(?math)
+```
+
+There are two steps we need to take to get the `majored_in` widget to accept synonyms. First we need to create a synonym table. The synonym table is just a function that returns a vector whose names are synonyms and whose values are codes. The name of the function has to have the field name in it, followed by the suffix "_synonyms":
+
+```{r}
+major_code1_synonyms <- function() {
+    c(
+        "mathematics" = "540",
+        "philosophy" = "651"
+        # and so on ...
+    )
+}
+```
+
+This is enough to get the basic synonym functionality working:
+```{r}
+majored_in(mathematics)
+```
+
+However, we still don't have search capability:
+```{r}
+majored_in(?math)
+```
+
+Why not? Well, internally the way that `?`commands are handled is that they fire off a signal alerting the system that the user has asked for a synonym search. So our widgets need to know that when such a signal has fired, they should modify their behavior. Instead of going about the task of creating a listbuilder definition, the widget needs to change courses and go into dictionary mode, searching through its synonym table. It's not complicated to do this. Just use the `reroute` function, which makes the widget into something that can listen for various signals and respond accordingly. 
+
+```{r}
+majored_in <- function(...) reroute(majored_in_(prep_dots(...)))
+
+# now this should work:
+majored_in(?math)
+```
 
 </section>
 <footer><small>theme by @orderedlist</small></footer>
