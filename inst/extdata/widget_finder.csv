@@ -20,4 +20,4 @@ received_award,Lists entities who received (an) award(s),award(s),"award, honor,
 works_in_county,Lists entities who work in (a) certain county(ies),county(ies),"address, county, work, business"
 works_in_msa,Lists entities who work in (a) certain MSA(s),MSA(s),"address, MSA, geo code, work, business"
 works_in_zip,Lists entities who work in (a) certain zip code(s),zip code(s),"address, zip, zip code,work, business"
-majored_in,Lists entities who graduated with specific major(s),"major, college, school degree, attended, academic"
+majored_in,Lists entities who graduated with specific major(s),major code(s),"major, college, school degree, attended, academic"
