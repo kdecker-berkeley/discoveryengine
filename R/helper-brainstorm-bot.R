@@ -62,7 +62,7 @@ select * from (
 select distinct cdw_table_name, cdw_column_name,
 trim(regexp_replace(data_description, '(.*)(tms_[a-z_]+)(.*$)', '\\2 ')) as tms
 from cdw.d_data_dictionary_mv
-where data_description like '%validated%tms_%'
+where data_description like '%tms_%'
 ) where tms in "
 
     tmslist <- paste("'", tms_views, "'", sep = "", collapse = ", ")
