@@ -50,7 +50,18 @@ brainstorm_bot <- function(search_term) {
     bigmap <- dplyr::inner_join(bigmap, codes, by = c("tms" = "view_name"))
     bigmap <- dplyr::select(bigmap, widget, code, description)
     bigmap <- split(bigmap, bigmap$widget)
-    structure(bigmap, class = c("widget_suggestions", class(bigmap)))
+
+    stopifnot(length(bigmap) > 0L)
+
+    lblist <- Map(function(fun, df)
+        do.call(fun, list(df[["code"]])),
+        names(bigmap), bigmap)
+
+    lb <- lblist[[1]]
+    lb <- Reduce(`%or%`, lblist[-1], init = lb)
+    structure(lb,
+              brainstorm_results = bigmap,
+              class = c("brainstorm", "listbuilder", class(bigmap)))
 }
 
 tms2cdw <- function(tms_views) {
@@ -73,8 +84,8 @@ where data_description like '%tms_%'
 }
 
 #' @export
-print.widget_suggestions <- function(bigmap, ...) {
-    printwidget <- function(df) {
+print.brainstorm <- function(bigmap, ...) {
+    printres <- function(df) {
         cat(df[["widget"]][[1]], "\n")
         codes <- df$code
         descr <- df$description
@@ -82,6 +93,6 @@ print.widget_suggestions <- function(bigmap, ...) {
             cat("    ", codes[[index]], ": ", descr[[index]], "\n", sep = "")
     }
 
-    lapply(bigmap, printwidget)
+    lapply(attr(bigmap, "brainstorm_results"), printres)
     invisible(bigmap)
 }
