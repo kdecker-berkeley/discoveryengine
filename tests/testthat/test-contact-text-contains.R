@@ -1,9 +1,9 @@
-context("has_affiliation specifications")
+context("contact_text_contains specifications")
 source("helpers.R")
 library(magrittr)
 
-test_that("contact_text meets specifications on standard input", {
-    test <- contact_text("neuro*", "brain")
+test_that("contact_text_contains meets specifications on standard input", {
+    test <- contact_text_contains("neuro*", "brain")
     expect_is(test, "listbuilder")
     expect_is(test$lhs, "listbuilder")
     expect_is(test$rhs, "listbuilder")
@@ -28,9 +28,9 @@ test_that("contact_text meets specifications on standard input", {
     expect_identical(unique(lapply(logic, "[[", 1)), list(quote(regexp_like)))
 })
 
-test_that("contact_text handles bad input", {
-    expect_error(contact_text(), "was unable to process")
-    expect_error(contact_text(""), "unable")
-    expect_warning(contact_text("ab*de", "hello"), "ignored")
-    expect_error(contact_text(" "), "was unable to process")
+test_that("contact_text_contains handles bad input", {
+    expect_error(contact_text_contains(), "was unable to process")
+    expect_error(contact_text_contains(""), "unable")
+    expect_warning(contact_text_contains("ab*de", "hello"), "ignored")
+    expect_error(contact_text_contains(" "), "was unable to process")
 })
