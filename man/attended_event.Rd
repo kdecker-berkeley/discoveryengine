@@ -2,13 +2,9 @@
 % Please edit documentation in R/widget-attended-event.R
 \name{attended_event}
 \alias{attended_event}
-\alias{attended_event_}
 \title{Event attendance widget}
 \usage{
 attended_event(..., participation = c("P", "ST", "SP", "V", "H", "S", "C",
-  "KN", "MD", "E"))
-
-attended_event_(events, participation = c("P", "ST", "SP", "V", "H", "S", "C",
   "KN", "MD", "E"))
 }
 \arguments{

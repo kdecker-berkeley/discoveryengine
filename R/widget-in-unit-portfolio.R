@@ -9,9 +9,6 @@ in_unit_portfolio <- function(..., include_inactive = FALSE) {
     reroute(in_unit_portfolio_(offices, include_inactive))
 }
 
-
-#' @rdname in_unit_portfolio
-#' @export
 in_unit_portfolio_ <- function(offices, include_inactive = FALSE) {
 
     proposals <- proposal_widget(offices = offices,

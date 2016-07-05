@@ -2,12 +2,9 @@
 % Please edit documentation in R/widget-in-unit-portfolio.R
 \name{in_unit_portfolio}
 \alias{in_unit_portfolio}
-\alias{in_unit_portfolio_}
 \title{Entities in a unit portfolio}
 \usage{
 in_unit_portfolio(..., include_inactive = FALSE)
-
-in_unit_portfolio_(offices, include_inactive = FALSE)
 }
 \arguments{
 \item{...}{Office code(s)}

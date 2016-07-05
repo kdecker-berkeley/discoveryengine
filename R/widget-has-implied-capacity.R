@@ -5,8 +5,6 @@ has_implied_capacity <- function(...) {
     reroute(has_implied_capacity_(prep_dots(...)))
 }
 
-#' @rdname has_implied_capacity
-#' @export
 has_implied_capacity_ <- function(likelihood) {
     predictive_model_widget(likelihood, type = "CAP")
 }

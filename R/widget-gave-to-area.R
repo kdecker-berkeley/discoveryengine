@@ -11,8 +11,6 @@ gave_to_area <- function(..., at_least = 0.01, from = NULL,
                           from = from, to = to))
 }
 
-#' @rdname gave_to_area
-#' @export
 gave_to_area_ <- function(aogs, at_least = 0.01, from = NULL, to = NULL) {
     if (!is.numeric(at_least)) stop("at_least must be a number")
     if (length(at_least) != 1L) stop("need a single amount for at_least")

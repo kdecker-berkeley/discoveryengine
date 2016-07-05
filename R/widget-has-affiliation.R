@@ -7,8 +7,6 @@ has_affiliation <- function(..., include_former = TRUE) {
     reroute(has_affiliation_(affiliations, include_former))
 }
 
-#' @rdname has_affiliation
-#' @export
 has_affiliation_ <- function(affiliations, include_former = TRUE) {
     if (include_former) status <- c("C", "F")
     else status <- "C"

@@ -2,12 +2,9 @@
 % Please edit documentation in R/widget-has-interest.R
 \name{has_interest}
 \alias{has_interest}
-\alias{has_interest_}
 \title{Interest code widget}
 \usage{
 has_interest(...)
-
-has_interest_(interests)
 }
 \arguments{
 \item{...}{Interest code(s)}

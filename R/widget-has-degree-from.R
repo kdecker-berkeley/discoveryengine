@@ -10,8 +10,6 @@ has_degree_from <- function(..., undergraduates = TRUE,
                              graduates = graduates, attendees = attendees))
 }
 
-#' @rdname has_degree_from
-#' @export
 has_degree_from_ <- function(schools, undergraduates = TRUE,
                              graduates = TRUE, attendees = FALSE) {
     levels = NULL

@@ -2,13 +2,9 @@
 % Please edit documentation in R/widget-has-degree-from.R
 \name{has_degree_from}
 \alias{has_degree_from}
-\alias{has_degree_from_}
 \title{Degree widget}
 \usage{
 has_degree_from(..., undergraduates = TRUE, graduates = TRUE,
-  attendees = FALSE)
-
-has_degree_from_(schools, undergraduates = TRUE, graduates = TRUE,
   attendees = FALSE)
 }
 \arguments{

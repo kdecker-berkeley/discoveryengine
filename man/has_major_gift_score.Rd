@@ -2,12 +2,9 @@
 % Please edit documentation in R/widget-has-major-gift-score.R
 \name{has_major_gift_score}
 \alias{has_major_gift_score}
-\alias{has_major_gift_score_}
 \title{Major gift score widget}
 \usage{
 has_major_gift_score(...)
-
-has_major_gift_score_(likelihood)
 }
 \arguments{
 \item{...}{major gift score descriptors (more, most, etc)}

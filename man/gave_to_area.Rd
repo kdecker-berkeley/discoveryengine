@@ -2,13 +2,10 @@
 % Please edit documentation in R/widget-gave-to-area.R
 \name{gave_to_area}
 \alias{gave_to_area}
-\alias{gave_to_area_}
 \title{Area of giving widget
 Find entities who have given to specific areas}
 \usage{
 gave_to_area(..., at_least = 0.01, from = NULL, to = NULL)
-
-gave_to_area_(aogs, at_least = 0.01, from = NULL, to = NULL)
 }
 \arguments{
 \item{...}{Area(s) of giving}
