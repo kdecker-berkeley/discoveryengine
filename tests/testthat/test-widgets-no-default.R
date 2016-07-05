@@ -1,7 +1,7 @@
 context("non-defaults")
 test_that("widgets create listbuilder objects (non-default)", {
     expect_is(attended_event(1970, 3052), "listbuilder")
-    expect_is(class_campaign_year(1990:2000), "listbuilder")
+    expect_is(has_reunion_year(1990:2000), "listbuilder")
     expect_is(gave_to_area(business, chemistry, CALP), "listbuilder")
     expect_is(has_affiliation(MB1), "listbuilder")
     expect_is(has_capacity(1:4, 7), "listbuilder")

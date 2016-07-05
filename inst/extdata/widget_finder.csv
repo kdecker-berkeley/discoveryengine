@@ -1,6 +1,6 @@
 widget_name,description,arguments,key_words
 attended_event,Lists entities who have participated in (an) event(s),activity code(s),"event, activity, attended, participated"
-class_campaign_year,Lists entities with class campaign year(s),class campaign year(s),"class campaign year, reunion, graduation year, class, alumni"
+has_reunion_year,Lists entities with given reunion year(s),reunion year(s),"class campaign year, reunion, graduation year, class, alumni"
 gave_to_area,Lists entities who gave to specific areas with minimum giving and specific date range,"area(s) of giving, minimum total giving, begin date, end date","area of giving, area, unit, giving, donor"
 has_affiliation,Lists entities with (an) affiliation(s),affiliation code(s),affiliation
 has_capacity,Lists entities with capacity ratings,capacity rating code(s),"capacity, rating, rated"

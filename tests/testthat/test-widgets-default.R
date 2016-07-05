@@ -1,7 +1,7 @@
 context("defaults")
 test_that("widgets have defined default behavior", {
     expect_is(attended_event(), "listbuilder")
-    expect_is(class_campaign_year(), "listbuilder")
+    expect_is(has_reunion_year(), "listbuilder")
     expect_is(gave_to_area(), "listbuilder")
     expect_is(has_affiliation(), "listbuilder")
     expect_is(has_capacity(), "listbuilder")
