@@ -1,7 +1,7 @@
 widget_name,description,arguments,key_words
 attended_event,Lists entities who have participated in (an) event(s),activity code(s),"event, activity, attended, participated"
 class_campaign_year,Lists entities with class campaign year(s),class campaign year(s),"class campaign year, reunion, graduation year, class, alumni"
-gave_to_area,Lists entities who gave to specific areas with minimum giving and specific date range,"area(s) of giving, minimum total giving, begin date, end date","area of giving, unit, giving, donor"
+gave_to_area,Lists entities who gave to specific areas with minimum giving and specific date range,"area(s) of giving, minimum total giving, begin date, end date","area of giving, area, unit, giving, donor"
 has_affiliation,Lists entities with (an) affiliation(s),affiliation code(s),affiliation
 has_capacity,Lists entities with capacity ratings,capacity rating code(s),"capacity, rating, rated"
 has_degree_from,Lists entities with degrees from specific school(s),school code(s),"degree, college, school, attended"
@@ -22,3 +22,4 @@ works_in_msa,Lists entities who work in (a) certain MSA(s),MSA(s),"address, MSA,
 works_in_zip,Lists entities who work in (a) certain zip code(s),zip code(s),"address, zip, zip code,work, business"
 majored_in,Lists entities who graduated with specific major(s),major code(s),"major, college, school degree, attended, academic"
 contact_text,Contact reports that contain the specified search string(s),search string(s),"contact report, text, finder, contact, visit, call"
+gave_to_department,Lists entities who gave to specific departments with minimum giving and specific date range,"department(s) of giving, minimum total giving, begin date, end date","department of giving, department, giving, donor"
