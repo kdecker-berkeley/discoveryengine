@@ -3,6 +3,7 @@
 S3method(print,brainstorm)
 S3method(print,synonym_list)
 export("%and%")
+export("%but_not%")
 export("%minus%")
 export("%or%")
 export(attended_event)

@@ -16,4 +16,12 @@ to_sql <- listbuilder::to_sql
 
 #' @importFrom listbuilder %minus%
 #' @export
-`%minus%` <- listbuilder::`%minus%`
+`%minus%` <- function(...) {
+    warning("%minus% is deprecated, use %but_not% instead")
+    listbuilder::`%minus%`(...)
+}
+
+#' @importFrom listbuilder %minus%
+#' @export
+`%but_not%` <- listbuilder::`%minus%`
+
