@@ -5,10 +5,11 @@ converter_builder <- function(lb, table,
                               aggregate_parameter = NULL,
                               switches = NULL,
                               aggregate_switches = NULL) {
-    stopifnot(listbuilder::get_id_type(lb) == from_type)
 
     if (is.null(from_type)) from_type <- from
     if (is.null(to_type)) to_type <- to
+
+    stopifnot(listbuilder::get_id_type(lb) == from_type)
 
     # build the where and having clauses
     logic <- build_logic(parameter, aggregate_parameter,
