@@ -48,7 +48,7 @@ brainstorm_bot <- function(search_term) {
              search_term, "'", call. = FALSE)
 
     bigmap <- dplyr::inner_join(bigmap, codes, by = c("tms" = "view_name"))
-    bigmap <- dplyr::select(bigmap, widget, code, description)
+    bigmap <- dplyr::distinct(dplyr::select(bigmap, widget, code, description))
     bigmap <- split(bigmap, bigmap$widget)
 
     stopifnot(length(bigmap) > 0L)
