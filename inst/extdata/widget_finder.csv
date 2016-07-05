@@ -23,3 +23,4 @@ works_in_zip,Lists entities who work in (a) certain zip code(s),zip code(s),"add
 majored_in,Lists entities who graduated with specific major(s),major code(s),"major, college, school degree, attended, academic"
 contact_text_contains,Contact reports that contain the specified search string(s),search string(s),"contact report, text, finder, contact, visit, call"
 gave_to_department,Lists entities who gave to specific departments with minimum giving and specific date range,"department(s) of giving, minimum total giving, begin date, end date","department of giving, department, giving, donor"
+fund_text_contains,Funds with notes/biographies that contain the specified search string(s),search string(s),"fund, allocation, terms, biography, fund terms, fund biography, finder"
