@@ -10,15 +10,17 @@ test_that("majored_in meets specifications on standard input", {
 
     test %>%
         has_filters(local_ind = "Y",
-                    major_code1 = c("540", "651", "084"))
+                    major_code1 = c("540", "651", "084"),
+                    degree_level_code = c("U", "G"))
 
-    test %>% has_clause_count(2)
+    test %>% has_clause_count(3)
 
 })
 
 test_that("majored_in meets specifications on no input", {
     majored_in() %>%
-        has_clause_count(1)
+        has_clause_count(2)
     majored_in() %>% uses_table("d_bio_degrees_mv")
-    majored_in() %>% has_filters(local_ind = "Y")
+    majored_in() %>% has_filters(local_ind = "Y",
+                                 degree_level_code = c("U", "G"))
 })

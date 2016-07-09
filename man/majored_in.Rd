@@ -4,7 +4,17 @@
 \alias{majored_in}
 \title{Academic major widget}
 \usage{
-majored_in(...)
+majored_in(..., undergraduates = TRUE, graduates = TRUE,
+  attendees = FALSE)
+}
+\arguments{
+\item{...}{major codes or major code synonyms}
+
+\item{undergraduates}{TRUE/FALSE: should include undergraduates? Default is TRUE}
+
+\item{graduates}{TRUE/FALSE: should include graduates? Default is TRUE}
+
+\item{attendees}{TRUE/FALSE: should include attendees (TRUE) or just degreeholders (FALSE). Default is FALSE}
 }
 \description{
 Find entities who graduated with a particular major(s).
