@@ -1,3 +1,23 @@
+#' Giving to fund(s)
+#'
+#' Find entities who have given to a custom list of funds
+#'
+#' @param savedlist A list/definition of allocation codes
+#' @param at_least minimum total giving
+#' @param from begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
+#' @param to begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
+#'
+#' @examples
+#' ## find funds supporting diversity
+#' diversity_funds = fund_text_contains("diversity")
+#'
+#' ## donors to those funds
+#' gave_to_fund(diversity_funds)
+#'
+#' ## just donors over $10K to those funds
+#' gave_to_fund(diversity_funds, at_least = 10000)
+#'
+#' @seealso \code{\link{gave_to_area}}, \code{\link{gave_to_department}}
 #' @export
 gave_to_fund <- function(savedlist, at_least = .01, from = NULL, to = NULL) {
     converter_builder(savedlist,

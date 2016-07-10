@@ -1,7 +1,18 @@
-#' Degree widget
+#' Academic widgets
 #'
-#' @param ... degree-granting schools
-#' @param levels degree level codes (undergrad/grad, attendee/degreeholder)
+#' Find entities who graduated with a particular major(s) or from a particular
+#' school(s). By default, attendees are not included, use \code{attendees = TRUE}
+#' to include attendees.
+#'
+#' @param ... Schools/majors
+#' @param undergraduates TRUE/FALSE: should include undergraduates? Default is TRUE
+#' @param graduates TRUE/FALSE: should include graduates? Default is TRUE
+#' @param attendees TRUE/FALSE: should include attendees (TRUE) or just degreeholders (FALSE). Default is FALSE
+#' @name academic
+#' @seealso \code{\link{has_reunion_year}}
+NULL
+
+#' @rdname academic
 #' @export
 has_degree_from <- function(..., undergraduates = TRUE,
                             graduates = TRUE, attendees= FALSE) {

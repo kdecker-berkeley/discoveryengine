@@ -1,8 +1,24 @@
-#' Area of giving widget
-#' Find entities who have given to specific areas
-#' @param ... Area(s) of giving
-#' @param atleast minimum total giving
-#' @param from, to begin and end dates (gave between those dates)
+#' Giving widgets
+#'
+#' Find entities who have given to specific types of funds
+#'
+#' @param ... Area(s)/Department(s) of giving
+#' @param at_least minimum total giving
+#' @param from begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
+#' @param to begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
+#'
+#' @examples
+#' ## gave at least $5,000 to cal performances during FY 2016
+#' gave_to_area(cal_performances, at_least = 5000, from = 20150701, to = 20161231)
+#'
+#' ## has given at least $100,000 lifetime to engineering
+#' gave_to_area(engineering, at_least = 100000)
+#'
+#' @seealso \code{\link{gave_to_fund}}
+#' @name giving
+NULL
+
+#' @rdname giving
 #' @export
 gave_to_area <- function(..., at_least = 0.01, from = NULL,
                          to = NULL) {

@@ -1,8 +1,4 @@
-#' Department of giving widget
-#' Find entities who have given to specific departments
-#' @param ... Department(s) of giving
-#' @param at_least minimum total giving
-#' @param from, to begin and end dates (gave between those dates)
+#' @rdname giving
 #' @export
 gave_to_department <- function(..., at_least = 0.01, from = NULL,
                          to = NULL) {

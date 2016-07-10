@@ -1,11 +1,4 @@
-#' Academic major widget
-#'
-#' Find entities who graduated with a particular major(s).
-#'
-#' @param ... major codes or major code synonyms
-#' @param undergraduates TRUE/FALSE: should include undergraduates? Default is TRUE
-#' @param graduates TRUE/FALSE: should include graduates? Default is TRUE
-#' @param attendees TRUE/FALSE: should include attendees (TRUE) or just degreeholders (FALSE). Default is FALSE
+#' @rdname academic
 #' @export
 majored_in <- function(..., undergraduates = TRUE,
                        graduates = TRUE, attendees= FALSE)
