@@ -1,3 +1,4 @@
+#' @rdname address
 #' @export
 works_in_msa <- function(..., type = "B") {
     msas <- prep_dots(...)

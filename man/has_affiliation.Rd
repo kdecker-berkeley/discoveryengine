@@ -9,7 +9,7 @@ has_affiliation(..., include_former = TRUE)
 \arguments{
 \item{...}{affiliation code(s)}
 
-\item{status}{affilition status codes ("C" for current, "F" for former)}
+\item{include_former}{TRUE/FALSE should include former affiliations? Defaults to TRUE}
 }
 \description{
 Affiliation widget

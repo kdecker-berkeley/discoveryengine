@@ -1,5 +1,4 @@
-#' Implied capacity widget
-#' @param ... Predictive model score descriptions (most, more, etc)
+#' @rdname predictive_model
 #' @export
 has_implied_capacity <- function(...) {
     reroute(has_implied_capacity_(prep_dots(...)))

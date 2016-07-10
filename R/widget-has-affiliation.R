@@ -1,6 +1,7 @@
 #' Affiliation widget
 #' @param ... affiliation code(s)
-#' @param status affilition status codes ("C" for current, "F" for former)
+#' @param include_former TRUE/FALSE should include former affiliations? Defaults to TRUE
+#'
 #' @export
 has_affiliation <- function(..., include_former = TRUE) {
     affiliations <- prep_dots(...)

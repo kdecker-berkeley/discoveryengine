@@ -1,3 +1,4 @@
+#' @rdname address
 #' @export
 lives_in_zip <- function(..., type = "H") {
     zips <- prep_dots(...)
