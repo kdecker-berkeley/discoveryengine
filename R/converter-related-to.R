@@ -9,6 +9,13 @@ related_to_ <- function(savedlist, relation_type) {
 
 }
 
+#' A relation of a person
+#'
+#' @param savedlist A discoveryengine definition
+#' @param ... Relationship type codes (\code{relation_type_code})
+#'
+#' @seealso \code{\link{parent_of}}, \code{\link{child_of}}
+#'
 #' @export
 related_to <- function(savedlist, ...) {
     relation_type <- prep_dots(...)

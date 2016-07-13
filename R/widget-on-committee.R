@@ -1,3 +1,9 @@
+#' Committee participation widget
+#'
+#' Find entities on a particular committee(s)
+#'
+#' @param ... Committee code(s)
+#' @param include_former Should former committee memberships be included (TRUE), or just current ones (FALSE)? Defaults to TRUE
 #' @export
 on_committee <- function(..., include_former = TRUE) {
     committees <- prep_dots(...)
