@@ -19,12 +19,9 @@ include_orgs_ <- function(person = TRUE,
 
     widget_builder(
         table = "d_entity_mv",
+        id_field = "entity_id",
+        id_type = "entity_id",
         switches = list(string_switch("person_or_org", type))
     )
 }
 
-include_orgs(perosn = TRUE, orgs = FALSE)
-
-devtools::install_github("tarakc02/getcdw")
-devtools::install_github("tarakc02/listbuilder")
-devtools::install_github("tarakc02/discoveryengine")
