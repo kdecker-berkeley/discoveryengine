@@ -8,4 +8,5 @@ intro.html
 *.sublime-project
 *.sublime-workspace
 *_cache/**
+build-helpers/**
 
