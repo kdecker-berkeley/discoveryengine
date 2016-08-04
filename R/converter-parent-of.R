@@ -17,15 +17,8 @@
 #' @seealso \code{\link{related_to}}
 NULL
 
-
 #' @rdname parent_child
 #' @export
 parent_of <- function(savedlist) {
     related_to_(savedlist, c("SF", "SM", "DF", "DM"))
-}
-
-#' @rdname parent_child
-#' @export
-child_of <- function(savedlist) {
-    related_to_(savedlist, c("MS", "FD", "MD", "FS"))
 }

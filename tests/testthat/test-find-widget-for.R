@@ -25,6 +25,11 @@ test_that("all widgets are represented in widget registry", {
     existing_widgets <- gsub("^widget-", "", existing_widgets)
     existing_widgets <- gsub("\\.R$", "", existing_widgets)
     existing_widgets <- gsub("-", "_", existing_widgets)
+    existing_converters <- grep("^converter", all_r_files, value = TRUE)
+    existing_converters <- gsub("^converter-", "", existing_converters)
+    existing_converters <- gsub("\\.R$", "", existing_converters)
+    existing_converters <- gsub("-", "_", existing_converters)
+    existing_widgets <- c(existing_widgets, existing_converters)
     registered_widgets <- widget_for(".*")$widget_name
 
     not_registered <- setdiff(existing_widgets, registered_widgets)
