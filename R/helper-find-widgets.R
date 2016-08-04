@@ -27,7 +27,7 @@ widget_for <- function(search_term = ".*") {
         warning("No widgets found for '", search_term, "'",
                 call. = FALSE)
     res <- directory[indices, , drop = FALSE]
-    structure(res,
+    structure(dplyr::arrange(res, widget_name),
               class = c("widget_for", class(res)))
 }
 
@@ -55,5 +55,8 @@ show_widgets <- function() {
     }
 
     widget_list <- widget_df()
-    DT::datatable(widget_list, rownames = FALSE)
+    DT::datatable(widget_list, rownames = FALSE,
+                  options = list(
+                      order = list(list(1, "asc"))
+                  ))
 }
