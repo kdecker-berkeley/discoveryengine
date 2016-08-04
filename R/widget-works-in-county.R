@@ -1,3 +1,4 @@
+#' @rdname address
 #' @export
 works_in_county <- function(..., type = "B") {
     counties <- prep_dots(...)

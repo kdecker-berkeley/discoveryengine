@@ -48,33 +48,40 @@ brainstorm_bot <- function(search_term) {
              search_term, "'", call. = FALSE)
 
     bigmap <- dplyr::inner_join(bigmap, codes, by = c("tms" = "view_name"))
-    bigmap <- dplyr::select(bigmap, widget, code, description)
+    bigmap <- dplyr::distinct(dplyr::select(bigmap, widget, code, description))
     bigmap <- split(bigmap, bigmap$widget)
-    structure(bigmap, class = c("widget_suggestions", class(bigmap)))
+
+    stopifnot(length(bigmap) > 0L)
+
+    lblist <- Map(function(fun, df)
+        do.call(fun, list(df[["code"]])),
+        names(bigmap), bigmap)
+
+    lb <- lblist[[1]]
+    lb <- Reduce(`%or%`, lblist[-1], init = lb)
+    structure(lb,
+              brainstorm_results = bigmap,
+              class = c("brainstorm", "listbuilder", class(bigmap)))
 }
 
 tms2cdw <- function(tms_views) {
     stopifnot(inherits(tms_views, "character"))
     stopifnot(length(tms_views) > 0L)
 
-    query <- "
-select * from (
-select distinct cdw_table_name, cdw_column_name,
-trim(regexp_replace(data_description, '(.*)(tms_[a-z_]+)(.*$)', '\\2 ')) as tms
-from cdw.d_data_dictionary_mv
-where data_description like '%tms_%'
-) where tms in "
+    dictionary <- cdw_tms_dictionary()
+    dplyr::filter(dictionary, tms %in% tms_views)
+}
 
-    tmslist <- paste("'", tms_views, "'", sep = "", collapse = ", ")
-    tmslist <- paste("(", tmslist, ")", sep = "")
 
-    query <- paste(query, tmslist)
-    getcdw::get_cdw(query)
+cdw_tms_dictionary <- function() {
+    filename <- system.file("extdata", "cdw_tms_dictionary.csv",
+                            package = "discoveryengine")
+    read.csv(filename, stringsAsFactors = FALSE)
 }
 
 #' @export
-print.widget_suggestions <- function(bigmap, ...) {
-    printwidget <- function(df) {
+print.brainstorm <- function(bigmap, ...) {
+    printres <- function(df) {
         cat(df[["widget"]][[1]], "\n")
         codes <- df$code
         descr <- df$description
@@ -82,6 +89,6 @@ print.widget_suggestions <- function(bigmap, ...) {
             cat("    ", codes[[index]], ": ", descr[[index]], "\n", sep = "")
     }
 
-    lapply(bigmap, printwidget)
+    lapply(attr(bigmap, "brainstorm_results"), printres)
     invisible(bigmap)
 }

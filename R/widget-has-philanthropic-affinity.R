@@ -1,3 +1,7 @@
+#' Philanthropic affinity widget
+#'
+#' @param ... Philanthropic affinity type code(s)
+#' @param at_least Minimum total giving to the selected philanthropic affinity type(s)
 #' @export
 has_philanthropic_affinity <- function(..., at_least = 0) {
     types <- prep_dots(...)

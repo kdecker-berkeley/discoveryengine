@@ -1,17 +1,19 @@
-#' Entities in a unit portfolio
+#' Portfolio widgets
+#'
+#' Find entities in a given portfolio
 #'
 #' @param ... Office code(s)
-#' @param include_inactive Include inactive proposals/assignments?
-#'
+#' @param include_inactive Should include inactive proposals/assignments? Defaults to FALSE
+#' @name portfolio
+NULL
+
+#' @rdname portfolio
 #' @export
 in_unit_portfolio <- function(..., include_inactive = FALSE) {
     offices <- prep_dots(...)
     reroute(in_unit_portfolio_(offices, include_inactive))
 }
 
-
-#' @rdname in_unit_portfolio
-#' @export
 in_unit_portfolio_ <- function(offices, include_inactive = FALSE) {
 
     proposals <- proposal_widget(offices = offices,

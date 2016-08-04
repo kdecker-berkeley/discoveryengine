@@ -1,14 +1,13 @@
 #' Affiliation widget
 #' @param ... affiliation code(s)
-#' @param status affilition status codes ("C" for current, "F" for former)
+#' @param include_former TRUE/FALSE should include former affiliations? Defaults to TRUE
+#'
 #' @export
 has_affiliation <- function(..., include_former = TRUE) {
     affiliations <- prep_dots(...)
     reroute(has_affiliation_(affiliations, include_former))
 }
 
-#' @rdname has_affiliation
-#' @export
 has_affiliation_ <- function(affiliations, include_former = TRUE) {
     if (include_former) status <- c("C", "F")
     else status <- "C"

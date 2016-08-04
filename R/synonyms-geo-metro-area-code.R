@@ -284,7 +284,8 @@ geo_metro_area_code_synonyms <- function() {
         "la" = 31100,
         "long_beach" = 31100,
         "santa_ana" = 31100,
-        "savannah_ga" = 42340
+        "savannah_ga" = 42340,
+        "santa_barbara" = 42060
     )
 }
 
