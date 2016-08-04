@@ -15,7 +15,6 @@ to_sql <- listbuilder::to_sql
 `%or%` <- listbuilder::`%or%`
 
 #' @importFrom listbuilder %minus%
-#' @export
 `%minus%` <- function(...) {
     warning("%minus% is deprecated, use %but_not% instead")
     listbuilder::`%minus%`(...)

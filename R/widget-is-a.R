@@ -1,3 +1,17 @@
+#' Specify entity type and status
+#'
+#' The \link{\code{display}} function has built-in options to include/exclude
+#' organizations and deceased or out of business corporations, so you will
+#' usually not need to use this function.
+#'
+#' @param ... entity type (person, organization)
+#' @param include_deceased Should deceased individuals and out of business
+#' corporations be included? (See details)
+#'
+#' @details
+#' By default, deceased individuals and out of business corporations are
+#' excluded.
+#' @export
 is_a <- function(..., include_deceased = FALSE)
     reroute(is_a_(prep_dots(...), include_deceased = include_deceased))
 
