@@ -68,19 +68,15 @@ tms2cdw <- function(tms_views) {
     stopifnot(inherits(tms_views, "character"))
     stopifnot(length(tms_views) > 0L)
 
-    query <- "
-select * from (
-select distinct cdw_table_name, cdw_column_name,
-trim(regexp_replace(data_description, '(.*)(tms_[a-z_]+)(.*$)', '\\2 ')) as tms
-from cdw.d_data_dictionary_mv
-where data_description like '%tms_%'
-) where tms in "
+    dictionary <- cdw_tms_dictionary()
+    dplyr::filter(dictionary, tms %in% tms_views)
+}
 
-    tmslist <- paste("'", tms_views, "'", sep = "", collapse = ", ")
-    tmslist <- paste("(", tmslist, ")", sep = "")
 
-    query <- paste(query, tmslist)
-    getcdw::get_cdw(query)
+cdw_tms_dictionary <- function() {
+    filename <- system.file("extdata", "cdw_tms_dictionary.csv",
+                            package = "discoveryengine")
+    read.csv(filename, stringsAsFactors = FALSE)
 }
 
 #' @export
