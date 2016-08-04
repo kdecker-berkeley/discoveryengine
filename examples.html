@@ -95,7 +95,7 @@ get_ids(likes_sci_tech)</code></pre>
     has_degree_from(business) %or% gave_to_area(business)</code></pre>
 <p>But since we’re building a new portfolio, we want to make sure we’re not pulling in anyone who is already in a Haas portfolio:</p>
 <pre class="r"><code>is_business_prospect = 
-    is_business_constituent %minus%
+    is_business_constituent %but_not%
     in_unit_portfolio(business)</code></pre>
 <p>We’ll define major gift prospects in terms of major gift score:</p>
 <pre class="r"><code>is_mg_prospect = 

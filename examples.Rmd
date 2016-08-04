@@ -54,7 +54,7 @@ But since we're building a new portfolio, we want to make sure we're not pulling
 
 ```{r ex1.1.5}
 is_business_prospect = 
-    is_business_constituent %minus%
+    is_business_constituent %but_not%
     in_unit_portfolio(business)
 ```
 
