@@ -1,0 +1,31 @@
+other_affinity_type_synonyms <- function() {
+    c(
+        "community" = "CM",
+        "disabilities" = "DS",
+        "health_medicine" = "HM",
+        "religious" = "RL",
+        "children" = "CH",
+        "political" = "PO",
+        "secondary_education" = "SE",
+        "animals" = "AN",
+        "safety_disaster_relief" = "SD",
+        "civil_liberties" = "CL",
+        "sports" = "SP",
+        "environment" = "EV",
+        "food_hunger" = "FH",
+        "glbt" = "GL",
+        "lgbt" = "GL",
+        "minority_empowerment" = "MN",
+        "natural_sciences" = "NS",
+        "science_technology" = "ST",
+        "human_rights" = "HR",
+        "social_welfare" = "SW",
+        "film" = "FM",
+        "aging" = "AG",
+        "fine_arts" = "FA",
+        "higher_education" = "HE",
+        "performing_arts" = "PA",
+        "thinktank" = "TT",
+        "think_tank" = "TT"
+    )
+}
