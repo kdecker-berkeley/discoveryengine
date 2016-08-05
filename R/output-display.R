@@ -35,7 +35,7 @@ display.listbuilder <- function(savedlist, ...,
         filename <- paste0(file, ".csv")
     else filename <- file
 
-    write.csv(res, filename)
+    write.csv(res, filename, row.names = FALSE)
 }
 
 modify <- function(savedlist, include_organizations,
