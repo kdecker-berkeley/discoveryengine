@@ -31,6 +31,7 @@ widget_for <- function(search_term = ".*") {
               class = c("widget_for", class(res)))
 }
 
+#' @export
 print.widget_for <- function(res, ...) {
     for (index in seq_len(nrow(res))) {
         widget <- res[index, "widget_name", drop = TRUE]
