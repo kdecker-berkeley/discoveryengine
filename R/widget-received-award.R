@@ -5,7 +5,7 @@ received_award <- function(...) {
 }
 
 received_award_ <- function(awards) {
-    entity_widget("d_bio_award_mv",
+    entity_widget("d_bio_awards_and_honors_mv",
                   parameter = string_param("awd_honor_code", awards))
 }
 

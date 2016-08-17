@@ -4,7 +4,7 @@ library(magrittr)
 
 test_that("received_award meets specifications on standard input", {
     test <- received_award(NOBEL, PRIZE)
-    test %>% uses_table("d_bio_award_mv")
+    test %>% uses_table("d_bio_awards_and_honors_mv")
     test %>% id_of_type("entity_id")
     test %>% id_field_is("entity_id")
 
@@ -17,6 +17,6 @@ test_that("received_award meets specifications on standard input", {
 test_that("received_award meets specifications on no input", {
     received_award() %>%
         has_clause_count(0)
-    received_award() %>% uses_table("d_bio_award_mv")
+    received_award() %>% uses_table("d_bio_awards_and_honors_mv")
 })
 
