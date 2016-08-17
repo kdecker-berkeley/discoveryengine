@@ -10,6 +10,10 @@ household(savedlist)
 \item{savedlist}{an existing discoveryengine definition}
 }
 \description{
+The \code{\link{display}} function has a built-in option to household, so
+you will usually not need to use this function.
+}
+\details{
 Will return just the primary ID for a household, instead of both spouses. Note
 that it will not household additional parts of the definition that are added
 after the `household` command (see examples).

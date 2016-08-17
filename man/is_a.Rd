@@ -13,7 +13,7 @@ is_a(..., include_deceased = FALSE)
 corporations be included? (See details)}
 }
 \description{
-The \link{\code{display}} function has built-in options to include/exclude
+The \code{\link{display}} function has built-in options to include/exclude
 organizations and deceased or out of business corporations, so you will
 usually not need to use this function.
 }
