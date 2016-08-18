@@ -16,36 +16,52 @@ widget2cdw <- function() {
 }
 
 
-#' Suggest widgets and codes based on a search term
+#' Suggest widgets and codes based on search terms
 #'
-#' The \code{brainstorm_bot} takes a search term and searches through all code
-#' tables in CADS. If any of the codes it finds happen to be covered by a
-#' discoveryengine widget, it brings them back and suggests them.
+#' The \code{brainstorm_bot} takes one or more search terms and searches
+#' through all code tables in CADS. If any of the codes it finds happen to be
+#' covered by a discoveryengine widget, it brings them back and suggests them.
 #'
-#' @param search_term a single search term
+#' @param ... terms to search for
 #'
-#' @examples brainstorm_bot("neuroscience")
+#' @examples
+#' ## search for a single term like this
+#' brainstorm_bot("neuroscience")
+#'
+#' ## can also use wildcards at start and end of words:
+#' brainstorm_bot("neruo*")
+#'
+#' ## or use multiple search terms
+#' brainstorm_bot("neuro*", "robotics")
+#'
 #' @export
-brainstorm_bot <- function(search_term) {
-    assertthat::assert_that(assertthat::is.string(search_term))
-    codes <- getcdw::find_codes(search_term)
+brainstorm_bot <- function(...) {
+    brainstorm_bot_(prep_dots(...))
+}
 
-    if (nrow(codes) == 0L)
-        stop("Bleep bloop. Sorry, brainstorm bot couldn't find '",
-             search_term, "'", call. = FALSE)
+brainstorm_bot_ <- function(search_terms) {
+    search_terms <- partial_sub(search_terms)
+    search_terms <- trimws(search_terms)
+
+    processed_search_string <- make_regex(search_terms)
+    codes <- getcdw::find_codes(processed_search_string)
+
+    errormsg <- paste("Bleep bloop. Sorry, brainstorm bot couldn't find ",
+                      paste("'", search_terms, "'", sep = "", collapse = ", "),
+                      sep = "")
+
+    if (nrow(codes) == 0L) stop(errormsg, call. = FALSE)
 
     tmsmap <- tms2cdw(unique(codes$view_name))
-    if (nrow(tmsmap) == 0L)
-        stop("Bleep bloop. Sorry, brainstorm bot couldn't find '",
-             search_term, "'", call. = FALSE)
+    if (nrow(tmsmap) == 0L) stop(errormsg, call. = FALSE)
+
     tmsmap <- dplyr::mutate_each(tmsmap, dplyr::funs(tolower))
     widgetmap <- widget2cdw()
 
     bigmap <- dplyr::inner_join(widgetmap, tmsmap,
                                 by = c("cdw_column" = "cdw_column_name"))
-    if (nrow(bigmap) == 0L)
-        stop("Bleep bloop. Sorry, brainstorm bot couldn't find '",
-             search_term, "'", call. = FALSE)
+
+    if (nrow(bigmap) == 0L) stop(errormsg, call. = FALSE)
 
     bigmap <- dplyr::inner_join(bigmap, codes, by = c("tms" = "view_name"))
     bigmap <- dplyr::distinct(dplyr::select(bigmap, widget, code, description))

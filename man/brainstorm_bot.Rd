@@ -2,19 +2,27 @@
 % Please edit documentation in R/bots-brainstorm-bot.R
 \name{brainstorm_bot}
 \alias{brainstorm_bot}
-\title{Suggest widgets and codes based on a search term}
+\title{Suggest widgets and codes based on search terms}
 \usage{
-brainstorm_bot(search_term)
+brainstorm_bot(...)
 }
 \arguments{
-\item{search_term}{a single search term}
+\item{...}{terms to search for}
 }
 \description{
-The \code{brainstorm_bot} takes a search term and searches through all code
-tables in CADS. If any of the codes it finds happen to be covered by a
-discoveryengine widget, it brings them back and suggests them.
+The \code{brainstorm_bot} takes one or more search terms and searches
+through all code tables in CADS. If any of the codes it finds happen to be
+covered by a discoveryengine widget, it brings them back and suggests them.
 }
 \examples{
+## search for a single term like this
 brainstorm_bot("neuroscience")
+
+## can also use wildcards at start and end of words:
+brainstorm_bot("neruo*")
+
+## or use multiple search terms
+brainstorm_bot("neuro*", "robotics")
+
 }
 
