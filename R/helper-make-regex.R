@@ -35,6 +35,5 @@ make_regex <- function(search_strings) {
     if (length(search_strings) <= 0)
         stop("was unable to process search request")
 
-    single_search_string <- search_concat(search_strings)
-
+    search_concat(search_strings)
 }

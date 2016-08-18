@@ -1,6 +1,6 @@
 regex_param <- function(field_name, search_strings, default = NULL) {
     search_strings <- partial_sub(search_strings)
-    search_strings <- trimws(search_strings)
+    #search_strings <- trimws(search_strings)
 
     if (length(search_strings) <= 0) {
         if (is.language(default)) return(default)

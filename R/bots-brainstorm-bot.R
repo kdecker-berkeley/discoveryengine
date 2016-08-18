@@ -41,7 +41,6 @@ brainstorm_bot <- function(...) {
 
 brainstorm_bot_ <- function(search_terms) {
     search_terms <- partial_sub(search_terms)
-    search_terms <- trimws(search_terms)
 
     processed_search_string <- make_regex(search_terms)
     codes <- getcdw::find_codes(processed_search_string)
