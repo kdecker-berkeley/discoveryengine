@@ -13,6 +13,7 @@ make_regex <- function(search_strings) {
 
     as_ora_regex.ora_regex <- function(search_strings) search_strings
     as_ora_regex.default <- function(search_strings) {
+        search_strings <- trimws(search_strings)
         is_valid <- grepl("^\\*?[^\\*]+\\*?$", search_strings)
 
         if (any(!is_valid))
@@ -31,6 +32,7 @@ make_regex <- function(search_strings) {
 
     search_strings <- vapply(search_strings, function(s) as_ora_regex(s),
                              FUN.VALUE = character(1))
+
     search_strings <- Filter(function(x) !is.na(x) && nchar(x) > 0, search_strings)
     if (length(search_strings) <= 0)
         stop("was unable to process search request")
