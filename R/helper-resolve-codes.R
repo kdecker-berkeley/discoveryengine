@@ -11,8 +11,29 @@ resolve_codes <- function(codes, type) {
 }
 
 resolve_date <- function(dt) {
-    if (!is.null(dt)) as.integer(dt)
-    else dt
+    if (length(dt) > 1L)
+        stop("I can only handle a single date a time. You entered:\n",
+             paste(dt, collapse = "; "))
+
+    if (is.null(dt)) return(dt)
+    parsed_dt <- as.integer(dt)
+
+    if (is.na(parsed_dt))
+        stop(dt, " is not a valid date", call. = FALSE)
+
+    validate_date(parsed_dt)
+    parsed_dt
+
+}
+
+validate_date <- function(parsed_dt) {
+    if (parsed_dt < 19000101)
+        stop(parsed_dt, " is not a valid date", call. = FALSE)
+    if (parsed_dt > 29991231)
+        stop(parsed_dt, " is not a valid date", call. = FALSE)
+    test <- as.Date(as.character(parsed_dt), format = "%Y%m%d")
+    if (is.na(test))
+        stop(parsed_dt, " is not a valid date", call. = FALSE)
 }
 
 is_upper_case <- function(codes) {
