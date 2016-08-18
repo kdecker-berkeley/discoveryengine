@@ -830,7 +830,6 @@ student_activity_code_synonyms <- function() {
         "education_abroad_program_russia" = "EARUS",
         "gse_interim_student_council" = "ECSC",
         "cisn_ca_independent_scholars_network" = "EIC",
-        "casa_joaquin_murrieta" = "EIJ",
         "msd_multicultural_community_ctr" = "EIM6",
         "pdp_calculus_intensive" = "EIP1",
         "trsp_veterans_services_courses" = "EIR1",
