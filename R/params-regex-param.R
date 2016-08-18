@@ -39,7 +39,7 @@ regex_param <- function(field_name, search_strings, default = NULL) {
 
     single_search_string <- search_concat(search_strings)
 
-    match_parameter <- "im"
+    match_parameter <- "i"
     .call <- list(quote(regexp_like),
                   as.name(field_name),
                   single_search_string,
