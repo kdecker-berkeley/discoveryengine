@@ -4,15 +4,25 @@
 \alias{attended_event}
 \title{Event attendance widget}
 \usage{
-attended_event(..., participation = c("P", "ST", "SP", "V", "H", "S", "C",
-  "KN", "MD", "E"))
+attended_event(..., include_non_attendees = FALSE)
 }
 \arguments{
 \item{...}{event codes}
 
-\item{participation}{event participation codes}
+\item{include_non_attendees}{do you want to include people who were invited,
+but did not attend (regrets, no-show, invited but did not attend) defaults to FALSE}
 }
 \description{
-Event attendance widget
+Find entities who attended (an) event(s).
+}
+\details{
+Enter one or more event codes, and decide whether you want to include people
+who were on the invite list but did not attend (by default, they are excluded).
+If you don't enter any event codes, then you will get people who attended any
+event.
+}
+\examples{
+attended_event(3965, 1263)
+
 }
 
