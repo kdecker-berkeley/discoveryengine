@@ -8,14 +8,14 @@
 display(savedlist, ...)
 
 \method{display}{listbuilder}(savedlist, ..., include_organizations = FALSE,
-  include_deceased = FALSE, household = TRUE, file = NULL)
+  include_deceased = FALSE, household = FALSE, file = NULL)
 }
 \arguments{
 \item{include_organizations}{Should the list include organizations? (Defaults to FALSE)}
 
 \item{include_deceased}{Should the list include the deceased? (Defaults to FALSE)}
 
-\item{household}{Should the list be householded? (Defaults to TRUE)}
+\item{household}{Should the list be householded? (Defaults to FALSE)}
 
 \item{file}{If you want to export the IDs to a text file, enter the name of the
 file you wish to create. If NULL (the default), then the IDs will not be written

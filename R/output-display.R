@@ -2,7 +2,7 @@
 #'
 #' @param include_organizations Should the list include organizations? (Defaults to FALSE)
 #' @param include_deceased Should the list include the deceased? (Defaults to FALSE)
-#' @param household Should the list be householded? (Defaults to TRUE)
+#' @param household Should the list be householded? (Defaults to FALSE)
 #' @param file If you want to export the IDs to a text file, enter the name of the
 #' file you wish to create. If NULL (the default), then the IDs will not be written
 #' to a file.
@@ -15,7 +15,7 @@ display <- function(savedlist, ...) UseMethod("display")
 display.listbuilder <- function(savedlist, ...,
                     include_organizations = FALSE,
                     include_deceased = FALSE,
-                    household = TRUE,
+                    household = FALSE,
                     file = NULL) {
 
     # ignore "include" options if list not entity IDs
