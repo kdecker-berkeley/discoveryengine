@@ -400,6 +400,8 @@ affil_code_synonyms <- function() {
         "i_house_friends_of_the_cal_alumni_commu" = "URAH",
         "cal_alumni_nwk_social_media_ambassadors" = "URSMA",
         "los_angeles_luncheon_club" = "X4",
-        "san_francisco_grid_club" = "X6"
+        "san_francisco_grid_club" = "X6",
+        "law_reunion_volunteer" = "LWRV",
+        "engineering_vip" = "ENVIP"
     )
 }

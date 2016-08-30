@@ -2129,7 +2129,7 @@ county_code_synonyms <- function() {
         "blanco_tx" = "TX031",
         "borden_tx" = "TX033",
         "petersburg_ak" = "AK195",
-        "wade_hampton_ak" = "AK270",
+        "kusilvak_ak" = "AK158",
         "yakutat_ak" = "AK282",
         "cherokee_al" = "AL019",
         "geneva_al" = "AL061",
@@ -2528,7 +2528,7 @@ county_code_synonyms <- function() {
         "dewey_sd" = "SD041",
         "marshall_sd" = "SD091",
         "meade_sd" = "SD093",
-        "shannon_sd" = "SD113",
+        "oglala_lakota_sd" = "SD102",
         "bledsoe_tn" = "TN007",
         "blount_tn" = "TN009",
         "cannon_tn" = "TN015",
@@ -3227,6 +3227,7 @@ county_code_synonyms <- function() {
         "blaine_mt" = "MT005",
         "carter_mt" = "MT011",
         "lincoln_mt" = "MT053",
-        "petroleum_mt" = "MT069"
+        "petroleum_mt" = "MT069",
+        "emporia_city_va" = "VA595"
     )
 }
