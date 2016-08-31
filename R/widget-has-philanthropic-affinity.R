@@ -1,7 +1,24 @@
 #' Philanthropic affinity widget
 #'
+#' @details
+#' This widget allows you to search by the Org Type, and not by specific
+#' philanthropic organizations. Use \code{at_least} to find just those who have
+#' given over a certain amount to such organizations. \code{at_least} uses total
+#' giving to the selected org types. If no codes are entered,
+#' widget will find anyone with any philanthropic affinity.
+#'
+#' @return A definition of type \code{entity_id}
+#'
 #' @param ... Philanthropic affinity type code(s)
 #' @param at_least Minimum total giving to the selected philanthropic affinity type(s)
+#'
+#' @examples
+#' has_philanthropic_affinity(health_medicine)
+#'
+#' ## people who have given at least $10K TOTAL to
+#' ## human rights and social welfare organizations
+#' has_philanthropic_affinity(human_rights, social_welfare, at_least = 10000)
+#'
 #' @export
 has_philanthropic_affinity <- function(..., at_least = 0) {
     types <- prep_dots(...)

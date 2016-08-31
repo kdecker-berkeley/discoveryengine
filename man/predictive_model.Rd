@@ -13,7 +13,19 @@ has_major_gift_score(...)
 \arguments{
 \item{...}{score descriptors(more, most, etc)}
 }
+\value{
+A definition of type \code{entity_id}
+}
 \description{
 Find entities who have selected scores on predictive models
+}
+\details{
+Use score descriptions (more_likely, most_likely, etc). If no score descriptions
+are entered, widget will look for anyone with a score on the predictive model.
+}
+\examples{
+has_implied_capacity(more_likely, most_likely, somewhat_likely)
+has_major_gift_score(most_likely, more_likely)
+
 }
 

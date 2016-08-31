@@ -12,7 +12,18 @@ in_unit_portfolio(..., include_inactive = FALSE)
 
 \item{include_inactive}{Should include inactive proposals/assignments? Defaults to FALSE}
 }
+\value{
+A definition of type \code{entity_id}
+}
 \description{
 Find entities in a given portfolio
+}
+\details{
+Uses the office associated with the proposal assignment to define portfolios.
+If no offices are entered, then anyone in any portfolio will be included.
+}
+\examples{
+in_unit_portfolio(governmental_studies, greater_good_science_center)
+
 }
 

@@ -2,12 +2,27 @@
 #'
 #' Find entities who graduated with a particular major(s) or from a particular
 #' school(s). By default, attendees are not included, use \code{attendees = TRUE}
-#' to include attendees.
+#' to include attendees. If no majors/schools are entered, the widget will look
+#' for anyone with a Cal degree (or if \code{attendees = TRUE}, anyone who has
+#' attended Cal). Will not retrieve anyone with non-Berkeley degrees.
+#'
+#' @return A definition of type \code{entity_id}
 #'
 #' @param ... Schools/majors
 #' @param undergraduates TRUE/FALSE: should include undergraduates? Default is TRUE
 #' @param graduates TRUE/FALSE: should include graduates? Default is TRUE
 #' @param attendees TRUE/FALSE: should include attendees (TRUE) or just degreeholders (FALSE). Default is FALSE
+#'
+#' @examples
+#' ## majored in philosophy and/or math
+#' majored_in(mathematics, philosophy)
+#'
+#' ## just math grad degree holders
+#' majored_in(mathematics, undergraduates = FALSE)
+#'
+#' ## with haas, we often want to include attendees because of the evening/wknd program:
+#' has_degree_from(haas, attendees = TRUE)
+#'
 #' @name academic
 #' @seealso \code{\link{has_reunion_year}}
 NULL

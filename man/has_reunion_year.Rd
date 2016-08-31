@@ -9,7 +9,21 @@ has_reunion_year(...)
 \arguments{
 \item{...}{reunion year(s) (eg: 1980, 1990:2000)}
 }
+\value{
+A definition of type \code{entity_id}
+}
 \description{
-Reunion year widget
+This widget looks specifically at the \code{class_campaign_year} field, which
+is used by the Reunion Campaigns to place alumni in reunion years. Note that
+only undergraduate degree holders have a \code{class_campaign_year}. If no
+years are entered, widget will find anyone who has a \code{class_campaign_year}.
+}
+\examples{
+## prospecting for a class campaigns officer who has classes of '80, '85, and '90
+has_reunion_year(1980, 1985, 1990)
+
+## use the colon for a continuous range
+has_reunion_year(1998:2008)
+
 }
 

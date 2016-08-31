@@ -12,6 +12,9 @@ attended_event(..., include_non_attendees = FALSE)
 \item{include_non_attendees}{do you want to include people who were invited,
 but did not attend (regrets, no-show, invited but did not attend) defaults to FALSE}
 }
+\value{
+A discoveryengine list definition of type \code{entity_id}
+}
 \description{
 Find entities who attended (an) event(s).
 }

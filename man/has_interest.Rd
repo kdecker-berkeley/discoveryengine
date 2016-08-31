@@ -9,7 +9,21 @@ has_interest(...)
 \arguments{
 \item{...}{Interest code(s)}
 }
+\value{
+A definition of type \code{entity_id}
+}
 \description{
-Interest code widget
+Find entities with a given interest(s)
+}
+\details{
+If no interests are entered, widget will search for entities with any interest
+code.
+}
+\examples{
+has_interest(data_science)
+
+## same as
+has_interest(DAT)
+
 }
 

@@ -11,7 +11,22 @@ on_committee(..., include_former = TRUE)
 
 \item{include_former}{Should former committee memberships be included (TRUE), or just current ones (FALSE)? Defaults to TRUE}
 }
+\value{
+A definition of type \code{entity_id}
+}
 \description{
 Find entities on a particular committee(s)
+}
+\details{
+By default former committee memberships are included. To only look
+for current committee memberships, use \code{include_former = FALSE}. If no
+committees are entered, then the widget will look for people on any committee.
+}
+\examples{
+## anyone who has ever been on the BAM/Cal Performance board of trustees
+on_committee(bam_board_of_trustees, cal_perf_board_of_trustees)
+
+## current UCBF members
+on_committee(uc_berkeley_foundation, include_former = FALSE)
 }
 

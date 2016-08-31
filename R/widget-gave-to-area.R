@@ -3,7 +3,10 @@
 #' Find entities who have given to specific types of funds
 #'
 #' @details giving is calculated on a pledged basis, and includes soft credits.
-#' For dates, the giving record date is used.
+#' For dates, the giving record date is used. If no area/department is entered,
+#' widget will find donors to anything.
+#'
+#' @return A definition of type \code{entity_id}
 #'
 #' @param ... Area(s)/Department(s) of giving
 #' @param at_least minimum total giving

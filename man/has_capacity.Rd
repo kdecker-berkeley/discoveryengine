@@ -7,9 +7,27 @@
 has_capacity(...)
 }
 \arguments{
-\item{...}{capacity rating codes (eg: 1, 10, 99)}
+\item{...}{capacity rating codes (eg: 1, 10, 99, 1:9)}
+}
+\value{
+A definition of type \code{entity_id}
 }
 \description{
-Capacity widget
+Find entities with specific researched capacity ratings.
+}
+\details{
+This widget will only look for current (active) capacity ratings. Enter one
+or more ratings using just the integer code (eg: 1, 5), not the description.
+Use the colon to indicate a range (eg: 1:10 for $100K+). If no ratings are
+entered, then by default the widget will find people who have any rating between
+1 and 14 (note that 99s are not included by default).
+}
+\examples{
+## $250K+ prospects
+has_capacity(1:9)
+
+## this would do the same thing
+has_capacity(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
 }
 

@@ -11,7 +11,19 @@ has_affiliation(..., include_former = TRUE)
 
 \item{include_former}{TRUE/FALSE should include former affiliations? Defaults to TRUE}
 }
+\value{
+A definition of type \code{entity_id}
+}
 \description{
-Affiliation widget
+Find entities with a given affiliation(s). If no affiliation codes are entered,
+widget will find entities who have any affiliation code.
+}
+\examples{
+## let's find some SF elites
+has_affiliation(san_francisco_grid_club, bohemian_club)
+
+## look for just current homecoming volunteers
+has_affiliation(caa_homecoming_volunteer, include_former = FALSE)
+
 }
 

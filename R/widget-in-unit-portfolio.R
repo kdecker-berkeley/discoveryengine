@@ -2,8 +2,17 @@
 #'
 #' Find entities in a given portfolio
 #'
+#' Uses the office associated with the proposal assignment to define portfolios.
+#' If no offices are entered, then anyone in any portfolio will be included.
+#'
+#' @return A definition of type \code{entity_id}
+#'
 #' @param ... Office code(s)
 #' @param include_inactive Should include inactive proposals/assignments? Defaults to FALSE
+#'
+#' @examples
+#' in_unit_portfolio(governmental_studies, greater_good_science_center)
+#'
 #' @name portfolio
 NULL
 

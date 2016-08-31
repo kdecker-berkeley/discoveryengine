@@ -1,3 +1,18 @@
+#' Retrieve the contacted entities from a list of contact reports
+#'
+#' This widget allows you to take an existing definition of type
+#' \code{contact_report_id} and convert it to a definition of type \code{entity_id},
+#' by finding the contacted entities of the contact reports.
+#'
+#' @param savedlist A discoveryengine definition of type \code{contact_report_id}
+#'
+#' @examples
+#' ## find contact reports that mention neuroscience
+#' neuro_contact = contact_text_contains("neuroscience")
+#'
+#' ## and the respective contacted entities
+#' contacted_entity_of(neuro_contact)
+#'
 #' @export
 contacted_entity_of <- function(savedlist) {
     is_contact_entity <-

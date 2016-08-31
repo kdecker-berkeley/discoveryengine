@@ -3,9 +3,20 @@
 #' Find entities who have given to a custom list of funds
 #'
 #' @param savedlist A list/definition of allocation codes
-#' @param at_least minimum total giving
+#' @param at_least minimum total giving (defaults to .01)
 #' @param from begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
 #' @param to begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
+#'
+#' @details
+#' \code{from} and \code{to} are optional, not entering them will leave that end
+#' of the date range open. So for example a year-to-date cutoff can be achieved
+#' by using \code{from} but not \code{to}. Leaving both blank will look for
+#' donors at any time. Giving is aggregated to all funds in \code{savedlist} --
+#' so you're not looking for someone who gave \code{at_least} to one of the funds
+#' on the list, but rather someone who gave in total \code{at_least} to all/any
+#' of the funds.
+#'
+#' @return A discoveryengine list definition of type \code{entity_id}
 #'
 #' @examples
 #' ## find funds supporting diversity
@@ -17,7 +28,13 @@
 #' ## just donors over $10K to those funds
 #' gave_to_fund(diversity_funds, at_least = 10000)
 #'
-#' @seealso \code{\link{gave_to_area}}, \code{\link{gave_to_department}}
+#' ## just donors over $10K during calendar year 2015
+#' gave_to_fund(diversity_funds, at_least = 10000, from = 20150101, to = 20151231)
+#'
+#' ## donors who had given at least $100K to diversity funds before 2012
+#' gave_to_fund(diversity_funds, at_least = 100000, to = 20111231)
+#'
+#' @seealso \code{\link{gave_to_area}}, \code{\link{gave_to_department}}, \code{\link{fund_text_contains}}
 #' @export
 gave_to_fund <- function(savedlist, at_least = .01, from = NULL, to = NULL) {
     converter_builder(savedlist,

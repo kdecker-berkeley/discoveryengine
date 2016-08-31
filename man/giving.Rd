@@ -19,12 +19,16 @@ gave_to_department(..., at_least = 0.01, from = NULL, to = NULL)
 
 \item{to}{begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD}
 }
+\value{
+A definition of type \code{entity_id}
+}
 \description{
 Find entities who have given to specific types of funds
 }
 \details{
 giving is calculated on a pledged basis, and includes soft credits.
-For dates, the giving record date is used.
+For dates, the giving record date is used. If no area/department is entered,
+widget will find donors to anything.
 }
 \examples{
 ## gave at least $5,000 to cal performances during FY 2016

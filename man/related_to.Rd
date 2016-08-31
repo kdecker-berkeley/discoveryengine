@@ -9,10 +9,31 @@ related_to(savedlist, ...)
 \arguments{
 \item{savedlist}{A discoveryengine definition}
 
-\item{...}{Relationship type codes (\code{relation_type_code})}
+\item{...}{Relationship type codes (\code{relation_type_code}). Leave empty
+to search for all relationships.}
 }
 \description{
-A relation of a person
+For an existing disco engine list definition, get relations of those entities.
+Not entering any relationship type codes results in finding all relations
+(brothers, sisters, colleagues, spouses, etc.).
+}
+\details{
+Many relationship types in CADS have multiple codes, to represent each side
+of the relationship type. For instance, "Mother" is encoded by both "SM"
+(presumably for "Son-Mother") and "DM" ("Daughter-Mother"). This can lead to
+confusion and frustration. We are looking for better ways to work with
+relationships, but are constrained by how data exists in \code{CADS}. Make
+sure to check TMS code tables to get all of the correct codes.
+}
+\examples{
+## say we want to identify siblings of founders
+## start by identifying founders, via the founders pledge
+founder = has_affiliation(founders_pledge)
+
+## brother and sister each have two different codes (see details above)
+founder_sibling = related_to(founder, SB, BS, SS, BB)
+display(founder_sibling)
+
 }
 \seealso{
 \code{\link{parent_of}}, \code{\link{child_of}}

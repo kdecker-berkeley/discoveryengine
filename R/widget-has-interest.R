@@ -1,5 +1,20 @@
 #' Interest code widget
+#'
+#' Find entities with a given interest(s)
+#'
+#' If no interests are entered, widget will search for entities with any interest
+#' code.
+#'
+#' @return A definition of type \code{entity_id}
+#'
 #' @param ... Interest code(s)
+#'
+#' @examples
+#' has_interest(data_science)
+#'
+#' ## same as
+#' has_interest(DAT)
+#'
 #' @export
 has_interest <- function(...) {
     interests <- prep_dots(...)

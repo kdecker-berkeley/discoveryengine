@@ -7,6 +7,9 @@
 #' If you don't enter any event codes, then you will get people who attended any
 #' event.
 #'
+#' @return A discoveryengine list definition of type \code{entity_id}
+#'
+#'
 #' @param ... event codes
 #' @param include_non_attendees do you want to include people who were invited,
 #' but did not attend (regrets, no-show, invited but did not attend) defaults to FALSE
