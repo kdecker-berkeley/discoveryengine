@@ -13,16 +13,13 @@ test_that("attended_event meets specifications on standard input", {
         has_filters(activity_code = c("47", "4827"),
                     activity_participation_code = particip)
 
-    attended_event(123, 457, participation = "ID") %>%
+    attended_event(123, 457, include_non_attendees = TRUE) %>%
         has_filters(activity_code = c("123", "457"),
-                    activity_participation_code = "ID")
+                    activity_participation_code = c(particip, "ID", "RG", "NS"))
 
 })
 
 test_that("attended_event meets specifications on no input", {
     attended_event() %>%
         has_filters(activity_participation_code = particip)
-
-    attended_event(participation = NULL) %>%
-        has_filters()
 })
