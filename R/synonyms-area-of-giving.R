@@ -1,0 +1,1 @@
+area_of_giving_code_synonyms <- alloc_school_code_synonyms

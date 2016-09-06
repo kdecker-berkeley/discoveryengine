@@ -23,7 +23,7 @@ works_in_zip,Lists entities who work in (a) certain zip code(s),entity_id,first-
 majored_in,Lists entities who graduated with specific major(s),entity_id,first-order,"major, college, school degree, attended, academic"
 contact_text_contains,Contact reports that contain the specified search string(s),contact_report_id,first-order,"contact report, text, finder, contact, visit, call"
 gave_to_department,Lists entities who gave to specific departments with minimum giving and specific date range,entity_id,first-order,"department of giving, department, giving, donor"
-fund_text_contains,Funds with notes/biographies that contain the specified search string(s),allocation_id,first-order,"fund, allocation, terms, biography, fund terms, fund biography, finder, giving"
+fund_text_contains,Funds with notes/biographies that contain the specified search string(s),allocation_code,first-order,"fund, allocation, terms, biography, fund terms, fund biography, finder, giving"
 is_a,Specify entity type (person or org) and status (active/deceased),entity_id,first-order,"active, deceased, person, people, organization, organizations, corporate, corporation"
 contacted_entity_of,Entities who were contacted in specified contact reports,entity_id,second-order,"contact report, contact, visit, call"
 gave_to_fund,Entities who have given to specified funds,entity_id,second-order,giving
@@ -31,3 +31,4 @@ household,Get only the primary household entities from a defined list of entitie
 parent_of,Get list of parents of specified entities,entity_id,second-order,"parents, family, relations, relationships, children, child"
 child_of,Get children of specified entities,entity_id,second-order,"parents, family, relations, relationships, children, child"
 related_to,Get relations of specified entities,entity_id,second-order,"parents, family, relations, relationships, children, child"
+fund_area,Find funds with a particular area of giving code,allocation_code,first-order,"fund, allocation, giving, area"
