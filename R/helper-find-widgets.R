@@ -36,7 +36,8 @@ print.widget_for <- function(res, ...) {
     for (index in seq_len(nrow(res))) {
         widget <- res[index, "widget_name", drop = TRUE]
         description <- res[index, "description", drop = TRUE]
-        cat(widget, ":\n    ", description, "\n", sep = "")
+        id_type <- res[index, "ID.type", drop = TRUE]
+        cat(widget, ":\n    ", description, " (type: ", id_type, ")\n", sep = "")
     }
     invisible(res)
 }
