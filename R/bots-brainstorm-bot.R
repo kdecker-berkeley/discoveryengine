@@ -7,12 +7,21 @@ widget2cdw <- function() {
         else return("")
     }
 
-    widgets <- widget_df()$widget_name
+    widget_df <- widget_df()
+    widgets <- widget_df$widget_name
     widget_map <- vapply(widgets, widget_field, FUN.VALUE = character(1))
     widget_map <- widget_map[widget_map != ""]
-    data.frame(widget = names(widget_map),
-               cdw_column = unname(widget_map),
-               stringsAsFactors = FALSE)
+    widget_map <- data.frame(widget = names(widget_map),
+                             cdw_column = unname(widget_map),
+                             stringsAsFactors = FALSE)
+    widget_map <-
+        dplyr::inner_join(widget_df, widget_map,
+                          by = c("widget_name" = "widget"))
+    dplyr::select(widget_map,
+                 widget = widget_name,
+                 cdw_column,
+                 id_type = ID.type,
+                 order = Order)
 }
 
 
@@ -59,6 +68,7 @@ brainstorm_bot_ <- function(search_terms) {
 
     bigmap <- dplyr::inner_join(widgetmap, tmsmap,
                                 by = c("cdw_column" = "cdw_column_name"))
+    bigmap <- dplyr::filter(bigmap, id_type == "entity_id")
 
     if (nrow(bigmap) == 0L) stop(errormsg, call. = FALSE)
 
