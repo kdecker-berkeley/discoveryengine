@@ -35,3 +35,4 @@ fund_area,Find funds with a particular area of giving code,allocation_code,first
 fund_miner,Entities who gave to funds that match a keyword search,entity_id,first-order,"fund, allocation, terms, biography, fund terms, fund biography, finder, giving"
 research_miner,Entities with specific words/phrases in their research notes,entity_id,first-order,"research, finder, biography, wealth, rating"
 fund_department,Find funds with a particular department code,allocation_code,first-order,"fund, allocation, giving, department"
+contact_unit,Find contact reports for a given unit code(s),contact_report_id,,"contact report, contact, visit, call, unit"
