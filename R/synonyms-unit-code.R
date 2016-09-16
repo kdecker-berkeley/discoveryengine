@@ -147,6 +147,7 @@ unit_code_synonyms <- function() {
         "physics_department" = "PY",
         "student_musical_activities" = "SM",
         "institute_for_south_asia_studies" = "SO",
-        "undergraduate_education" = "UE"
+        "undergraduate_education" = "UE",
+        "greater_good_science_center" = "GG"
     )
 }
