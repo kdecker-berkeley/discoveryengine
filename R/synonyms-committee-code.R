@@ -281,6 +281,7 @@ committee_code_synonyms <- function() {
         "ucbf_bemco" = "UO4",
         "calsilicon_valley_host_committee" = "UV2",
         "the_cal_parents_board" = "UVPB",
-        "womens_softball_diamond_committee" = "VWC1"
+        "womens_softball_diamond_committee" = "VWC1",
+        "igs_matsui_center_advisory_committee" = "MO13"
     )
 }
