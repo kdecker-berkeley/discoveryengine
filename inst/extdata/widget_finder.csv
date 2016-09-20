@@ -38,3 +38,4 @@ fund_department,Find funds with a particular department code,allocation_code,fir
 contact_unit,Find contact reports for a given unit code(s),contact_report_id,first-order,"contact report, contact, visit, call, unit"
 has_gift_planning_score,Lists entities with gift planning scores,entity_id,first-order,"gift planning, bequest, annuity, predictive model"
 in_development_officer_portfolio,Lists entities with proposals assigned to certain development officer(s),entity_id,first-order,"proposals, assignments, portfolio, development officer, fundraiser"
+works_in_industry,Lists entities who work in a specific industry (NAICS),entity_id,first-order,"employment, work, SIC codes, NAICS codes,  occupation, employer"

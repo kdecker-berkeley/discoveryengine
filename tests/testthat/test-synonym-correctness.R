@@ -81,6 +81,18 @@ test_that("Synonym tables include all current tms codes", {
             synonym = c("undeclared", "asian_studies_iii_southeast_asia",
                         "science_math_education"),
             code = c("000", "098", "24902")
+        ),
+        data_frame(
+            widget = "works_in_industry",
+            synonym = c("promoters_of_performing_arts_sports_an",
+                        "promoters_of_performing_arts_sports_an",
+                        "general_freight_trucking_long_distance",
+                        "general_freight_trucking_long_distance",
+                        "specialized_freight_except_used_goods",
+                        "specialized_freight_except_used_goods"),
+            code = c("711310", "711320",
+                     "484122", "484121",
+                     "484220", "484230")
         )
     )
 
@@ -92,6 +104,11 @@ test_that("Synonym tables include all current tms codes", {
         mutate(ni_cnt = vapply(not_implemented, nrow, integer(1))) %>%
         filter(ni_cnt > 0) %>% unnest %>% select(widget, synonym, code)
 
-    missing_synonyms <- setdiff(actual_missing, expected_missing)
-    expect_equal(nrow(missing_synonyms), 0L)
+    missing_synonyms <- dplyr::setdiff(actual_missing, expected_missing)
+
+    missing_syn_msg <- paste("these synonyms are missing: ",
+                             paste(missing_synonyms$synonym,
+                                   " (", missing_synonyms$widget, ")",
+                                   collapse = ", "), sep = "")
+    expect(nrow(missing_synonyms) == 0L, missing_syn_msg)
 })
