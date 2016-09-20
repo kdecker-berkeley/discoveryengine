@@ -464,7 +464,7 @@ student_activity_code_synonyms <- function() {
         "haas_financial_engineering_student_assn" = "BUFE",
         "freshman_sophomore_business_club" = "BUFS",
         "haas_business_school_association" = "BUHB",
-        "haas_case_competition_participants_" = "BUHCP",
+        "haas_case_competition_participants" = "BUHCP",
         "haas_culinary_club" = "BUHCY",
         "haas_technology_group" = "BUHT",
         "haas_week" = "BUHW",
