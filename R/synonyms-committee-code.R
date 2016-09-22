@@ -282,6 +282,10 @@ committee_code_synonyms <- function() {
         "calsilicon_valley_host_committee" = "UV2",
         "the_cal_parents_board" = "UVPB",
         "womens_softball_diamond_committee" = "VWC1",
-        "igs_matsui_center_advisory_committee" = "MO13"
+        "igs_matsui_center_advisory_committee" = "MO13",
+        "blue_gold_bash_honorary_committee" = "BHON",
+        "jidi_board" = "ENIDI",
+        "met_founding_board" = "ENMET",
+        "social_welfare_community_partnership_brd" = "MJ1"
     )
 }

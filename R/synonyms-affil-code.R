@@ -402,6 +402,7 @@ affil_code_synonyms <- function() {
         "los_angeles_luncheon_club" = "X4",
         "san_francisco_grid_club" = "X6",
         "law_reunion_volunteer" = "LWRV",
-        "engineering_vip" = "ENVIP"
+        "engineering_vip" = "ENVIP",
+        "berkeley_alumni_board_of_new_york" = "LGBNY"
     )
 }
