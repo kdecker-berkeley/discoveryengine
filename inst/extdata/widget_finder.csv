@@ -40,3 +40,4 @@ has_gift_planning_score,Lists entities with gift planning scores,entity_id,first
 in_development_officer_portfolio,Lists entities with proposals assigned to certain development officer(s),entity_id,first-order,"proposals, assignments, portfolio, development officer, fundraiser"
 works_in_industry,Lists entities who work in a specific industry (NAICS),entity_id,first-order,"employment, work, SIC codes, NAICS codes,  occupation, employer"
 has_occupation,Lists entities who have specific occupation code(s),entity_id,first-order,"employment, work, occupation, job"
+has_record_type,List entities with specified record type(s),entity_id,first-order,"record type, trustee, foundation, organization, alum, alumnus, alumni, parent, spouse, student"
