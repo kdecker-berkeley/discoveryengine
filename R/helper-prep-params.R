@@ -1,5 +1,13 @@
 prep_integer_param <- function(...) {
     param <- list(...)
+    param_names <- names(param)
+    named_params <- param_names != ""
+
+    if (any(named_params))
+        stop("Unrecognized argument(s): ",
+             paste(param_names[named_params], collapse = " "),
+             call. = FALSE)
+
     param <- as.integer(unlist(param))
     param <- param[!is.na(param)]
     param <- unique(param)
