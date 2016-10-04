@@ -97,7 +97,7 @@ test_that("Synonym tables include all current tms codes", {
     )
 
     actual_missing <- widget_map %>%
-        filter(widget != "attended_event") %>%
+        filter(!widget %in% c("attended_event", "lives_in_msa", "works_in_msa")) %>%
         mutate(auto_synonyms = lapply(tms, tms_synonyms)) %>%
         mutate(actual_synonyms = lapply(widget, do.call, list(quote(?synonyms)))) %>%
         transmute(widget, not_implemented = Map(dplyr::setdiff, auto_synonyms, actual_synonyms)) %>%
