@@ -15,4 +15,6 @@
 * `has_occupation`
 * `has_record_type` (tarakc02/getcdw#8, @datalover916)
 
+## brainstorm_bot
+`brainstorm_bot` now searches MSAs. This may slow down its performance.
 
