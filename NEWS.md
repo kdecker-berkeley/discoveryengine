@@ -1,6 +1,6 @@
 # discoveryengine 0.1.6.9000
 
-* Added widget `in_suspect_pool` and associated viewer `show_suspect_pools`
+* Added widget `in_suspect_pool` and associated viewer `show_suspect_pools` (#20, @datalover916)
 
 # discoveryengine 0.1.5.9001
 
@@ -15,8 +15,8 @@
 * `contact_unit`
 * `has_gift_planning_score` (#17, @datalover916)
 * `in_development_officer_portfolio` (#19, L.C.)
-* `works_in_industry`
-* `has_occupation`
+* `works_in_industry` (I.Z.)
+* `has_occupation` (I.Z.)
 * `has_record_type` (tarakc02/getcdw#8, @datalover916)
 
 ## brainstorm_bot
