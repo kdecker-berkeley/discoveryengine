@@ -1,3 +1,7 @@
+# discoveryengine 0.1.6.9000
+
+* Added widget `in_suspect_pool` and associated viewer `show_suspect_pools`
+
 # discoveryengine 0.1.5.9001
 
 * Added a `NEWS.md` file to track changes to the package.
