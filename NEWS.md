@@ -1,8 +1,9 @@
-# discoveryengine 0.1.6.9000
+# discoveryengine 0.1.6
 
 * Added widget `in_suspect_pool` and associated viewer `show_suspect_pools` (#20, @datalover916)
+* Implemented caching in `brainstorm_bot` to improve speed
 
-# discoveryengine 0.1.5.9001
+# discoveryengine 0.1.5
 
 * Added a `NEWS.md` file to track changes to the package.
 

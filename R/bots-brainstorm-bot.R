@@ -52,7 +52,11 @@ brainstorm_bot_ <- function(search_terms) {
     search_terms <- partial_sub(search_terms)
 
     processed_search_string <- make_regex(search_terms)
-    codes <- getcdw::find_codes(processed_search_string)
+    all_codes <- getcdw::find_codes()
+    codes <- dplyr::filter(all_codes,
+                           stringr::str_detect(description,
+                                               stringr::regex(processed_search_string,
+                                                     ignore_case = TRUE)))
 
     errormsg <- paste("Bleep bloop. Sorry, brainstorm bot couldn't find ",
                       paste("'", search_terms, "'", sep = "", collapse = ", "),
