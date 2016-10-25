@@ -287,6 +287,7 @@ committee_code_synonyms <- function() {
         "jidi_board" = "ENIDI",
         "met_founding_board" = "ENMET",
         "social_welfare_community_partnership_brd" = "MJ1",
-        "social_welfare_deans_advisory_board" = "MJ3"
+        "social_welfare_deans_advisory_board" = "MJ3",
+        "library_board" = "MO2"
     )
 }

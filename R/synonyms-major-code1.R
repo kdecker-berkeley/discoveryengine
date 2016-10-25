@@ -448,6 +448,7 @@ major_code1_synonyms <- function() {
         "meng_elec_engr_computer_sci_ss_pt" = "2D5",
         "meng_indus_engr_ops_rsch_ss_pt" = "2D6",
         "certificate_of_business_excellence" = "79BCBE",
-        "exec_dev_prgm_fall" = "79BEPF"
+        "exec_dev_prgm_fall" = "79BEPF",
+        "education_certificate_program" = "249C"
     )
 }
