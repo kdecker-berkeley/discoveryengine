@@ -94,6 +94,8 @@ office_code_synonyms <- function() {
         "greater_good_science_center" = "GG",
         "hearst_anthropology_museum" = "HM",
         "international_relations_udar" = "ID",
-        "strategic_acad_fac_planning" = "PF"
+        "strategic_acad_fac_planning" = "PF",
+        "intl_area_studies" = "IA",
+        "strategic_initiatives_udar" = "SX"
     )
 }

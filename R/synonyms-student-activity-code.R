@@ -2704,6 +2704,18 @@ student_activity_code_synonyms <- function() {
         "wing_tsun_student_organization" = "UWSO",
         "university_ywca_youth_mentor_prgrm" = "UYMP",
         "zionist_organization_of_america" = "UZOA",
-        "zoroastrian_students_of_berkeley" = "UZSB"
+        "zoroastrian_students_of_berkeley" = "UZSB",
+        "tau_beta_pi_engineers_honors_society" = "GTBP",
+        "stdt_assn_for_intl_development_studies" = "IADS",
+        "omicron_delta_epsilon_econ_honors_scty" = "GODE",
+        "callaghan_hall_i_house_resident_1943_45" = "RHIC",
+        "affirmative_action_student_life_advising" = "SLAS",
+        "peace_journalism_publication_group" = "IAPJ",
+        "alphi_pi_mu_indus_eng_honor_society" = "GAPM",
+        "pi_sigma_alpha_political_sci_fraternity" = "GPSA",
+        "daily_cal_journalism_training_proj" = "UDC",
+        "natl_assn_of_hispanic_journalists" = "JRHI",
+        "european_studies_undergraduate_assn" = "IAES",
+        "student_committee_for_the_arts_sca" = "CPSC"
     )
 }

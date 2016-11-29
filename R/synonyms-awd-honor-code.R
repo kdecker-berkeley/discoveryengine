@@ -172,6 +172,7 @@ awd_honor_code_synonyms <- function() {
         "george_a_miller_scholar" = "UEG",
         "elise_walter_a_haas_intl_award" = "UHI",
         "university_medal_recipient" = "UMR",
-        "ua_wollenberg_scholarship" = "WLB"
+        "ua_wollenberg_scholarship" = "WLB",
+        "presidential_appointee" = "PRA"
     )
 }
