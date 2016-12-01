@@ -148,6 +148,18 @@ unit_code_synonyms <- function() {
         "student_musical_activities" = "SM",
         "institute_for_south_asia_studies" = "SO",
         "undergraduate_education" = "UE",
-        "greater_good_science_center" = "GG"
+        "greater_good_science_center" = "GG",
+        "cosmological_physics_center" = "BC",
+        "berkeley_center_for_new_media" = "NE",
+        "physics" = "PY",
+        "astronomy" = "AD",
+        "intl_area_studies" = "IA",
+        "udar_affiliates" = "UX",
+        "strategic_initiatives_udar" = "SX",
+        "admin_finance" = "AO",
+        "south_asia_studies_institute" = "SO",
+        "innovative_genomics_initiative_udar" = "GI",
+        "social_science_matrix" = "IB",
+        "jewish_studies_center" = "JW"
     )
 }

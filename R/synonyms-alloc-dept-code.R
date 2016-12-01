@@ -388,6 +388,7 @@ alloc_dept_code_synonyms <- function() {
         "mindfulness_in_the_law_institute" = "BIML",
         "california_constitution_center" = "CLCAC",
         "reproductive_rights_justice_center" = "CRRJ",
-        "samuelson_law_tech_public_policy" = "SLTPL"
+        "samuelson_law_tech_public_policy" = "SLTPL",
+        "angelo_coast_range_reserve" = "ACRR"
     )
 }
