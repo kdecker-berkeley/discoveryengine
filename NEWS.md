@@ -1,3 +1,7 @@
+# discoveryengine 0.1.7
+
+* Added `lives_near` and `works_near` widgets (#22, @datalover916)
+
 # discoveryengine 0.1.6
 
 * Added widget `in_suspect_pool` and associated viewer `show_suspect_pools` (#20, @datalover916)
