@@ -42,3 +42,5 @@ works_in_industry,Lists entities who work in a specific industry (NAICS),entity_
 has_occupation,Lists entities who have specific occupation code(s),entity_id,first-order,"employment, work, occupation, job"
 has_record_type,List entities with specified record type(s),entity_id,first-order,"record type, trustee, foundation, organization, alum, alumnus, alumni, parent, spouse, student"
 in_suspect_pool,Lists entities in a given suspect pool,entity_id,first-order,suspect pool
+lives_near,Lists entities who live within a specified distance of a location,entity_id,first-order,"address, geo, geographic, radius, geographic search, distance, home"
+works_near,Lists entities who work within a specified distance of a location,entity_id,first-order,"address, geo, geographic, radius, geographic search, distance, work, business"
