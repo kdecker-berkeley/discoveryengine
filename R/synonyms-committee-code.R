@@ -288,6 +288,7 @@ committee_code_synonyms <- function() {
         "met_founding_board" = "ENMET",
         "social_welfare_community_partnership_brd" = "MJ1",
         "social_welfare_deans_advisory_board" = "MJ3",
-        "library_board" = "MO2"
+        "library_board" = "MO2",
+        "cal_alum_foresters_executive_committee" = "MN1"
     )
 }

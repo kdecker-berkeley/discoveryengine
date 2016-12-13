@@ -389,6 +389,7 @@ alloc_dept_code_synonyms <- function() {
         "california_constitution_center" = "CLCAC",
         "reproductive_rights_justice_center" = "CRRJ",
         "samuelson_law_tech_public_policy" = "SLTPL",
-        "angelo_coast_range_reserve" = "ACRR"
+        "angelo_coast_range_reserve" = "ACRR",
+        "s_se_asian_studies" = "SSEAS"
     )
 }
