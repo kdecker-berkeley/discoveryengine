@@ -437,6 +437,8 @@ affil_code_synonyms <- function() {
         "udar_friends_of_cal_alum_community" = "URAU",
         "junior_league_of_oakland_east_bay" = "V2",
         "saratoga_foothill_club" = "V8",
-        "chemistry_chemillenium_era" = "CHECM"
+        "chemistry_chemillenium_era" = "CHECM",
+        "legal_clerkship" = "LWLC",
+        "haas_center_for_real_estate_urban_econ" = "BUA3"
     )
 }

@@ -449,6 +449,8 @@ major_code1_synonyms <- function() {
         "meng_indus_engr_ops_rsch_ss_pt" = "2D6",
         "certificate_of_business_excellence" = "79BCBE",
         "exec_dev_prgm_fall" = "79BEPF",
-        "education_certificate_program" = "249C"
+        "education_certificate_program" = "249C",
+        "asian_studies_india" = "250Z9",
+        "global_studies" = "25492"
     )
 }
