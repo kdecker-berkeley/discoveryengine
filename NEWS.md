@@ -1,4 +1,9 @@
-# discoveryengine 0.1.7
+# discoveryengine 0.1.7.9002
+
+* Added `has_position` widget (B.C.)
+* Fixed bug in `works_in_industry` and `has_occupation` where defaults caused ` invalid relational operator` errors
+
+# discoveryengine 0.1.7.9001
 
 * Added `lives_near` and `works_near` widgets (#22, @datalover916)
 
