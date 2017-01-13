@@ -27,7 +27,7 @@ has_occupation_ <- function(occupations, include_former = FALSE) {
             parameter = string_param(
                 field_name = fld,
                 arguments = occupations,
-                default = quote(fld_of_spec_code1 %is_not% null),
+                default = quote(fld_of_spec_code1 %is not% null),
                 width = 4
             ),
             switches = my_switch

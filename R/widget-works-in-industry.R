@@ -30,7 +30,7 @@ works_in_industry_ <- function(industries, include_former = FALSE) {
         parameter = string_param(
             field_name = "sic_code",
             arguments = industries,
-            default = quote(sic_code %is_not% null),
+            default = quote(sic_code %is not% null),
             width = 6
         ),
         switches = industry_switch
