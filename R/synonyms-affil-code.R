@@ -439,6 +439,8 @@ affil_code_synonyms <- function() {
         "saratoga_foothill_club" = "V8",
         "chemistry_chemillenium_era" = "CHECM",
         "legal_clerkship" = "LWLC",
-        "haas_center_for_real_estate_urban_econ" = "BUA3"
+        "haas_center_for_real_estate_urban_econ" = "BUA3",
+        "cal_registrant" = "URCR",
+        "caa_pinecrest_chalet" = "CAPC"
     )
 }

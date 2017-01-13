@@ -96,6 +96,7 @@ office_code_synonyms <- function() {
         "international_relations_udar" = "ID",
         "strategic_acad_fac_planning" = "PF",
         "intl_area_studies" = "IA",
-        "strategic_initiatives_udar" = "SX"
+        "strategic_initiatives_udar" = "SX",
+        "simons_inst_theory_of_computing" = "TC"
     )
 }

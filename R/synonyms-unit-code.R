@@ -41,7 +41,7 @@ unit_code_synonyms <- function() {
         "art_practice" = "AP",
         "chancellor" = "CL",
         "career_center" = "CR",
-        "slavic_e_euro_eurasian_studies" = "CS",
+        "slavic_e_euro_eurasian_inst" = "CS",
         "demography" = "DM",
         "external_relations_strat_prtnrs_udar" = "EP",
         "faculty_clubs" = "FC",
@@ -62,7 +62,7 @@ unit_code_synonyms <- function() {
         "education" = "EC",
         "environmental_science" = "ES",
         "university_extension" = "EX",
-        "financial_aid_scholarships" = "FA",
+        "financial_aid_scholarships_office" = "FA",
         "geography" = "GO",
         "race_gender_center" = "GR",
         "higher_education_studies_center" = "HS",
@@ -78,7 +78,7 @@ unit_code_synonyms <- function() {
         "canadian_studies" = "CN",
         "donor_programs_udar" = "DP",
         "disabled_students_program" = "DS",
-        "electr_engr_computer_sci" = "EE",
+        "electrical_engr_computer_sci" = "EE",
         "english" = "EG",
         "earth_planetary_science" = "GE",
         "planning_analysis_udar" = "PL",
@@ -87,6 +87,7 @@ unit_code_synonyms <- function() {
         "social_sciences" = "SL",
         "urban_regional_devlp_inst" = "UD",
         "university_press" = "UP",
+        "uc_press" = "UP",
         "young_musicians_program" = "YM",
         "east_asian_library" = "9E",
         "special_one_off_efforts_udar" = "A9",
@@ -160,6 +161,10 @@ unit_code_synonyms <- function() {
         "south_asia_studies_institute" = "SO",
         "innovative_genomics_initiative_udar" = "GI",
         "social_science_matrix" = "IB",
-        "jewish_studies_center" = "JW"
+        "jewish_studies_center" = "JW",
+        "simons_inst_theory_of_computing" = "TC",
+        "innovative_genomics_initiative" = "GI",
+        "executive_vc_provost" = "EV",
+        "housing_dining_services" = "HD"
     )
 }
