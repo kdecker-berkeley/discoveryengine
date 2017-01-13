@@ -44,3 +44,4 @@ has_record_type,List entities with specified record type(s),entity_id,first-orde
 in_suspect_pool,Lists entities in a given suspect pool,entity_id,first-order,suspect pool
 lives_near,Lists entities who live within a specified distance of a location,entity_id,first-order,"address, geo, geographic, radius, geographic search, distance, home"
 works_near,Lists entities who work within a specified distance of a location,entity_id,first-order,"address, geo, geographic, radius, geographic search, distance, work, business"
+has_position,Lists entities with the specified position level code(s),entity_id,first-order,"employment, work, position, president, director, c-level, CEO"
