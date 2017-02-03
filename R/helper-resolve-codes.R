@@ -48,8 +48,10 @@ recover_codes <- function(terms, type) {
                      call. = FALSE)
     )
 
-    codes <- synonym_list[terms]
-    unknown <- is.na(codes)
+    matching <- which(names(synonym_list) %in% terms)
+
+    codes <- synonym_list[matching[!is.na(matching)]]
+    unknown <- !terms %in% names(codes)
 
     if (any(unknown))
         stop("unrecognized ", type, "(s): ",
