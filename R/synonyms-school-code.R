@@ -15,29 +15,7 @@ school_code_synonyms <- function() {
         "law" = "LW",
         "optometry" = "OP",
         "public_health" = "PH",
-        "social_welfare" = "SW",
-        "school_of_public_health" = "PH",
-        "school_of_social_welfare" = "SW",
-        "haas_school_of_business" = "BU",
-        "college_of_chemistry" = "CH",
-        "law_school_of" = "LW",
-        "non_ucb_degree" = "NU",
-        "undetermined" = "UND",
-        "criminology_school_of" = "CR",
-        "school_of_information" = "LI",
-        "college_of_letters_science" = "LS",
-        "no_current_college" = "NC",
-        "college_of_engineering" = "EN",
-        "college_of_environmental_design" = "ED",
-        "graduate_division" = "GR",
-        "school_of_optometry" = "OP",
-        "goldman_school_of_public_policy" = "PP",
-        "school_of_journalism" = "JR",
-        "unknown" = "UNK",
-        "school_of_education" = "EC",
-        "college_of_natural_resources" = "NR",
-        "unaffiliated" = "UN",
-        "berkeley_law" = "LW"
+        "social_welfare" = "SW"
     )
 
 }
