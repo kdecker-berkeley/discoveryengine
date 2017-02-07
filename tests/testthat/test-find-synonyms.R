@@ -1,18 +1,20 @@
 context("find_synonyms")
 
 test_that("find_synonyms lists all synonyms when no search string given", {
-    alloc_school_df <- data.frame(synonym = names(alloc_school_code_synonyms()),
-                                  code = unname(alloc_school_code_synonyms()),
-                                  stringsAsFactors = FALSE)
-    office_df <- data.frame(synonym = names(office_code_synonyms()),
-                            code = unname(office_code_synonyms()),
-                            stringsAsFactors = FALSE)
 
+    no_search_string <- find_synonyms(gave_to_area)
+    search_string <- find_synonyms(gave_to_area, "sci")
 
-    expect_equivalent(find_synonyms(gave_to_area),
-                      alloc_school_df)
-    expect_equivalent(find_synonyms(in_unit_portfolio),
-                      office_df)
+    expect_is(no_search_string, "data.frame")
+    expect_is(search_string, "data.frame")
+    expect_true(nrow(no_search_string) >= nrow(search_string))
+
+    no_search_string <- find_synonyms(in_unit_portfolio)
+    search_string <- find_synonyms(in_unit_portfolio, "sci")
+
+    expect_is(no_search_string, "data.frame")
+    expect_is(search_string, "data.frame")
+    expect_true(nrow(no_search_string) >= nrow(search_string))
 })
 
 test_that("find_synonyms filters synonym lists using search term", {
@@ -22,23 +24,18 @@ test_that("find_synonyms filters synonym lists using search term", {
 
     index <- grep("chicago", df$synonym)
     find_synonyms_result <- find_synonyms(lives_in_msa, "chicago")
-    find_synonyms_expected <- df[index, ]
-
-    expect_equivalent(find_synonyms_result,
-                      find_synonyms_expected)
-
+    result_msa <- find_synonyms_result$code
+    expect_true("16980" %in% result_msa)
 })
 
 test_that("find_synonyms returns empty data frame on degenerate inputs", {
-    df <- data.frame(synonym = names(geo_metro_area_code_synonyms()),
-                     code = unname(geo_metro_area_code_synonyms()),
-                     stringsAsFactors = FALSE)
-
-    index <- grep("xyzxyz", df$synonym)
     find_synonyms_result <- find_synonyms(lives_in_msa, "xyzxyz")
-    find_synonyms_expected <- df[index, ]
+
+    find_synonyms_expected <- data.frame(
+        synonym = character(), code = character(),
+        stringsAsFactors = FALSE
+    )
 
     expect_equivalent(find_synonyms_result,
                       find_synonyms_expected)
-
 })

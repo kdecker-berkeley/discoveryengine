@@ -1,3 +1,7 @@
+# discoveryengine 0.1.7.9003
+
+* Synonym tables are now created on-the-fly. This means that they will always reflect the current status of the TMS tables, but also that specific synonyms may change unexpectedly (when AIM changes TMS descriptions). There are still hard-coded synonyms for common uses (eg: "business" or "natural_resources")
+
 # discoveryengine 0.1.7.9002
 
 * Added `has_position` widget (B.C.)
