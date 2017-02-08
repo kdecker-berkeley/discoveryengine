@@ -9,6 +9,7 @@ new_archive <- function() {
 singles_db <- function() readRDS("R:/Prospect Development/Prospect Analysis/disco-singles/db.discoveryengine")
 save_singles_db <- function(db) saveRDS(db, file = "R:/Prospect Development/Prospect Analysis/disco-singles/db.discoveryengine")
 
+#' @export
 disco_single <- function(
     predicate,
     author = NULL,
@@ -62,8 +63,10 @@ disco_single <- function(
 # }
 
 
+#' @export
 publish <- function(single, ...) UseMethod("publish")
 
+#' @export
 publish.disco_single <- function(single, ...) {
     # note: if two people try to do this at the same time, only one write
     # will happen -- need to lock the file
@@ -80,23 +83,47 @@ publish.disco_single <- function(single, ...) {
     invisible(NULL)
 }
 
+#' @export
 publish.listbuilder <- function(single, ...) {
     single <- disco_single(single, ...)
     publish(single)
 }
 
+
+#' @export
 list_singles <- function() {
     archive <- singles_db()
     ids <- ls(archive)
     singles <- mget(ids, archive)
     summarize_single <- function(single)
-        paste0(single$name, ": ", single$description, sep = "")
-    res <- vapply(singles, summarize_single,
-                  FUN.VALUE = character(1),
-                  USE.NAMES = FALSE)
-    res
+        data.frame(
+            name = single$name,
+            description = single$description,
+            author = single$author,
+            keywords = paste(single$keywords, collapse = ","),
+            stringsAsFactors = FALSE
+        )
+    rb <- function(...) rbind(..., make.row.names = FALSE,
+                              stringsAsFactors = FALSE)
+    do.call("rb", lapply(singles, summarize_single))
 }
 
+#' @export
+show_singles <- function() {
+    if (!requireNamespace("DT", quietly = TRUE)) {
+        stop('DT package needed for show_singles to work.\n',
+             'To install: install.packages("DT")',
+             call. = FALSE)
+    }
+
+    singles_list <- list_singles()
+    DT::datatable(singles_list, rownames = FALSE,
+                  options = list(
+                      order = list(list(1, "asc"))
+                  ))
+}
+
+#' @export
 find_singles <- function(search_term) {
     archive <- singles_db()
     ids <- ls(archive)
@@ -118,7 +145,16 @@ find_singles <- function(search_term) {
     res
 }
 
+#' @export
+check_out <- function(...) {
+    check_out_(prep_dots(...))
+}
 
-check_out <- function(single) {
-    eval(substitute(single), envir = singles_db())
+check_out_ <- function(single) {
+    s <- partial_sub(single)
+    if (length(s) != 1L) stop("Must specify exactly one single to check out")
+    s <- s[[1]]
+    s <- deparse(s)
+    s <- get(s, envir = singles_db())
+    s$predicate
 }
