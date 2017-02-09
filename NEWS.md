@@ -1,3 +1,8 @@
+# discoveryengine 0.1.7.9004
+
+* Publishing is now possible. See `publish`, `list_singles`, `show_singles`, and `find_singles`. This is a convenient way to share your disco-code with colleagues, especially useful if there are standard definitions we should all be using. Thanks to TK and ML.
+* Fixed a bug in `in_suspect_pool` where using it without arguments (just typing `in_suspect_pool()` with nothing in the parentheses) resulted in a malformed disco definition. Consistent with almost every other widget, there is now a default for when no arguments are entered -- any entity in any suspect pool will be returned.
+
 # discoveryengine 0.1.7.9003
 
 * Synonym tables are now created on-the-fly. This means that they will always reflect the current status of the TMS tables, but also that specific synonyms may change unexpectedly (when AIM changes TMS descriptions). There are still hard-coded synonyms for common uses (eg: "business" or "natural_resources")
