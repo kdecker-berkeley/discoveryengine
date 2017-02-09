@@ -19,7 +19,7 @@ test_that("widgets have defined default behavior", {
     expect_is(has_record_type(), "listbuilder")
     expect_is(has_reunion_year(), "listbuilder")
     expect_is(in_development_officer_portfolio(), "listbuilder")
-    #expect_is(in_suspect_pool(), "listbuilder")
+    expect_is(in_suspect_pool(), "listbuilder")
     expect_is(in_unit_portfolio(), "listbuilder")
     expect_is(is_a(), "listbuilder")
     expect_is(lives_in_county(), "listbuilder")

@@ -12,13 +12,18 @@
 #' @export
 in_suspect_pool <- function(...) {
     ids <- prep_integer_param(...)
+    if (length(ids) <= 0L) {
+        parameter <- list()
+    } else {
+        parameter <- list(substitute(
+            ora_hash(unit_code %||% xcomment,100000L, 19800401L) %in% ids
+        ))
+    }
+
     widget_builder(
         table = "d_prospect_interest_mv",
         id_field = "entity_id",
         id_type = "entity_id",
-        parameter = list(substitute(
-            ora_hash(unit_code %||% xcomment,
-                     100000L, 19800401L) %in% ids
-        ))
+        parameter =
     )
 }
