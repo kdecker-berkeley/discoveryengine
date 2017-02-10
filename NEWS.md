@@ -1,3 +1,6 @@
+# discoveryengine 0.1.7.9005
+* added `rated_by` widget to search by researcher(s) or research date
+
 # discoveryengine 0.1.7.9004
 
 * Publishing is now possible. See `publish`, `list_singles`, `show_singles`, and `find_singles`. This is a convenient way to share your disco-code with colleagues, especially useful if there are standard definitions we should all be using. Thanks to TK and ML.

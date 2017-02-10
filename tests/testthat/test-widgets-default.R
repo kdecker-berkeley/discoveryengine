@@ -30,6 +30,7 @@ test_that("widgets have defined default behavior", {
     expect_is(participated_in(), "listbuilder")
     expect_is(played_sport(), "listbuilder")
     expect_is(received_award(), "listbuilder")
+    expect_is(rated_by(), "listbuilder")
     expect_is(works_in_county(), "listbuilder")
     expect_is(works_in_industry(), "listbuilder")
     expect_is(works_in_msa(), "listbuilder")
