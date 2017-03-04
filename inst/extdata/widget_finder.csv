@@ -48,3 +48,4 @@ has_position,Lists entities with the specified position level code(s),entity_id,
 rated_by,Lists entities rated by the given researcher(s) for the given time period (date range is optional),entity_id,first-order,"research, rating, researcher, researched, rated, capacity, capacity rating, rating date"
 entities,Manually specify a list of entity IDs,entity_id,first-order,"Entity ID, people, manual,  custom"
 funds,Manually specify a list of allocation codes,allocation_code,first-order,"allocation code, funds, individual fund"
+job_title_like,Entities with specific words/phrases in their job titles,entity_id,first-order,"employment, work, occupation, employer, miner, text, finder"
