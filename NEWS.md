@@ -1,3 +1,6 @@
+# discoveryengine 0.1.7.9006
+* added `entities` and `funds`, two widgets for working with hand-curated lists
+
 # discoveryengine 0.1.7.9005
 * added `rated_by` widget to search by researcher(s) or research date
 
