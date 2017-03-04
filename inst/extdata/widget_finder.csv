@@ -46,3 +46,5 @@ lives_near,Lists entities who live within a specified distance of a location,ent
 works_near,Lists entities who work within a specified distance of a location,entity_id,first-order,"address, geo, geographic, radius, geographic search, distance, work, business"
 has_position,Lists entities with the specified position level code(s),entity_id,first-order,"employment, work, position, president, director, c-level, CEO"
 rated_by,Lists entities rated by the given researcher(s) for the given time period (date range is optional),entity_id,first-order,"research, rating, researcher, researched, rated, capacity, capacity rating, rating date"
+entities,Manually specify a list of entity IDs,entity_id,first-order,"Entity ID, people, manual,  custom"
+funds,Manually specify a list of allocation codes,allocation_code,first-order,"allocation code, funds, individual fund"
