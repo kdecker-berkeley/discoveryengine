@@ -1,3 +1,6 @@
+# discoveryengine 0.1.7.9007
+* fixed bug in `in_suspect_pool` -- was not creating the correct definition
+
 # discoveryengine 0.1.7.9006
 * added `entities` and `funds`, two widgets for working with hand-curated lists (see #15, also requested by ML and VF)
 * added `job_title_like` widget for doing text search on job titles (BC)
