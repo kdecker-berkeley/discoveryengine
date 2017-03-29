@@ -7,10 +7,10 @@
 \title{Academic widgets}
 \usage{
 has_degree_from(..., undergraduates = TRUE, graduates = TRUE,
-  attendees = FALSE)
+  attendees = FALSE, from = NULL, to = NULL)
 
 majored_in(..., undergraduates = TRUE, graduates = TRUE,
-  attendees = FALSE)
+  attendees = FALSE, from = NULL, to = NULL)
 }
 \arguments{
 \item{...}{Schools/majors}
@@ -20,6 +20,12 @@ majored_in(..., undergraduates = TRUE, graduates = TRUE,
 \item{graduates}{TRUE/FALSE: should include graduates? Default is TRUE}
 
 \item{attendees}{TRUE/FALSE: should include attendees (TRUE) or just degreeholders (FALSE). Default is FALSE}
+
+\item{from}{(optional) date range: look only for those who graduated between
+these dates. Enter as an integer of the form YYYYMMDD}
+
+\item{to}{(optional) date range: look only for those who graduated between
+these dates. Enter as an integer of the form YYYYMMDD}
 }
 \value{
 A definition of type \code{entity_id}
