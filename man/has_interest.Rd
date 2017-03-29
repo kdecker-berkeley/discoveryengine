@@ -4,10 +4,13 @@
 \alias{has_interest}
 \title{Interest code widget}
 \usage{
-has_interest(...)
+has_interest(..., include_former = TRUE)
 }
 \arguments{
 \item{...}{Interest code(s)}
+
+\item{include_former}{If TRUE (default), will include all interest codes,
+even if they have a stop date. If FALSE, will exclude codes with a stop date.}
 }
 \value{
 A definition of type \code{entity_id}
