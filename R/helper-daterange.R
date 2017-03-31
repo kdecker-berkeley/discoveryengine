@@ -1,23 +1,24 @@
+date_operator <- function(from, to) {
+    if (is.null(from) && is.null(to)) NULL
+    else if (is.null(from)) quote(`<=`)
+    else if (is.null(to)) quote(`>=`)
+    else dateop <- quote(between)
+}
+
 daterange <- function(field_name, from, to) {
     from <- resolve_date(from)
     to <- resolve_date(to)
 
-    if (is.null(from) && is.null(to)) {
-        return(NULL)
-    } else if (is.null(from)) {
-        dateop <- quote(`<=`)
-        date1 <- to
-    } else if (is.null(to)) {
-        dateop <- quote(`>=`)
-        date1 <- from
-    } else {
-        dateop <- quote(between)
-        date1 <- from
-    }
+    dateop <- date_operator(from, to)
+    if (is.null(dateop)) return(NULL)
+
+    ## allow arbitrary SQL in addition to plain character field names:
+    if (inherits(field_name, "sql")) fld <- field_name
+    else fld <- as.name(field_name)
 
     .call <- list(
         dateop,
-        as.name(field_name)
+        fld
     )
 
     if (!is.null(from)) {

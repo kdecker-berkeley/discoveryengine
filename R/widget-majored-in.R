@@ -23,13 +23,18 @@ majored_in_ <- function(majors, undergraduates = TRUE,
         if (attendees) levels <- c(levels, "L")
     }
 
+    date_switch <- daterange(
+        dplyr::sql("case when degree_level_code in ('U', 'G') then grad_dt else stop_dt end"),
+        from = from, to = to
+    )
+
     widget_builder(
         table = "d_bio_degrees_mv",
         id_field = "entity_id",
         id_type = "entity_id",
         param = string_param("major_code1", majors, width = 3),
         switches = list(string_switch("degree_level_code", levels),
-                        daterange("grad_dt", from, to),
+                        date_switch,
                         string_switch("local_ind", "Y"))
     )
 }

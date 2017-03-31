@@ -22,10 +22,10 @@ majored_in(..., undergraduates = TRUE, graduates = TRUE,
 \item{attendees}{TRUE/FALSE: should include attendees (TRUE) or just degreeholders (FALSE). Default is FALSE}
 
 \item{from}{(optional) date range: look only for those who graduated between
-these dates. Enter as an integer of the form YYYYMMDD}
+these dates. Enter as an integer of the form YYYYMMDD (see details)}
 
 \item{to}{(optional) date range: look only for those who graduated between
-these dates. Enter as an integer of the form YYYYMMDD}
+these dates. Enter as an integer of the form YYYYMMDD (see details)}
 }
 \value{
 A definition of type \code{entity_id}
@@ -37,15 +37,36 @@ to include attendees. If no majors/schools are entered, the widget will look
 for anyone with a Cal degree (or if \code{attendees = TRUE}, anyone who has
 attended Cal). Will not retrieve anyone with non-Berkeley degrees.
 }
+\details{
+When using the daterange (\code{from} and/or \code{to}), the dates will be
+based on the GRAD DATE for degreeholders and the STOP DATE for attendees
+(who have no GRAD DATE). Both dates are visible in the Degrees screen in
+Advance. An alum's "class year" is based on the GRAD DATE. For degreeholders,
+the two dates are often the same, though they can differ. See examples below.
+}
 \examples{
-## majored in philosophy and/or math
-majored_in(mathematics, philosophy)
+## majored in philosophy and/or math between 2001 and 2004
+## since attendees are not included by default, this only pulls
+## (undergrad and grad) degreeholders. Those with a GRAD DATE in the
+## daterange will be included
+majored_in(mathematics, philosophy, from = 20010101, to = 20041231)
 
 ## just math grad degree holders
 majored_in(mathematics, undergraduates = FALSE)
 
-## with haas, we often want to include attendees because of the evening/wknd program:
-has_degree_from(haas, attendees = TRUE)
+## evening/wknd program (haas) people are coded as attendees. note that since
+## we're only looking at attendees here, we'll be using the STOP DATE
+has_degree_from(haas, attendees = TRUE,
+                graduates = FALSE, undergraduates = FALSE,
+                from = 20010101, to = 20041231)
+
+## if pulling both attendees and degreeholders together, then the date used
+## will be GRAD DATE for degreeholders and STOP DATE for attendees. this query
+## pulls haas degreeholders who graduated on or before Dec. 21, 1999, along
+## with non-degreeholders (attendees) who ended their attendance before
+## 12/31/1999
+has_degree_from(haas, graduates = TRUE, undergraduates = TRUE,
+                attendees = TRUE, to = 19991231)
 
 }
 \seealso{
