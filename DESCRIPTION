@@ -1,7 +1,7 @@
 Package: discoveryengine
 Type: Package
 Title: A CADS Prospecting Tool
-Version: 0.1.7.9007
+Version: 0.1.7.9008
 Authors@R: person("Tarak", "Shah", email = "tarak_shah@berkeley.edu",
   role = c("aut", "cre"))
 Description: A fluent interface for custom prospecting in CADS.

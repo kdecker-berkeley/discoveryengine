@@ -1,3 +1,7 @@
+# discoveryengine 0.1.7.9008
+* added `include_inactive` option to `has_interest` widget (thanks to VF and AM)
+* added daterange options to `majored_in` and `has_degree_from` (thanks to AM and LC)
+
 # discoveryengine 0.1.7.9007
 * fixed bug in `in_suspect_pool` -- was not creating the correct definition
 
