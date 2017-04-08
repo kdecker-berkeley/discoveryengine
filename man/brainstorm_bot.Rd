@@ -14,6 +14,12 @@ The \code{brainstorm_bot} takes one or more search terms and searches
 through all code tables in CADS. If any of the codes it finds happen to be
 covered by a discoveryengine widget, it brings them back and suggests them.
 }
+\details{
+Enter any number of search terms. Each search term must appear in
+quotation marks. A search term can begin or end with an asterisk, which denotes
+a wildcard character. For instance, "basket" will match the code for "basket weaving"
+but not "basketball." A search for "basket*" on the other hand will find both.
+}
 \examples{
 ## search for a single term like this
 brainstorm_bot("neuroscience")
