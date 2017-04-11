@@ -12,7 +12,8 @@ Suggests: testthat,
     preprocessr,
     DT,
     rmapzen
-Imports: listbuilder,
+Imports: listbuilder (>= 0.1.7.9001),
     lazyeval,
     dplyr,
-    stringr
+    stringr,
+    getcdw (>= 0.1.0.9001)
