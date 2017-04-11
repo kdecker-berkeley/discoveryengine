@@ -62,10 +62,38 @@ disco_single <- function(
 #     invisible(x)
 # }
 
-
+#' Publish a Disco Engine single
+#'
+#' Publishing a definition created in the Discovery Engine makes it easier to
+#' share it with other users and helps build standards around constituency
+#' definitions. Publish your own definitions (or "singles") using the
+#' \code{publish} function, and view all singles that have already been
+#' published using \code{show_singles()}.
+#'
+#' @details Publishing requires you to supply some metadata that will make it
+#' easier for others to find your single when they need it (things like author's
+#' name, description, and keywords). When you use \code{publish}, you'll be
+#' prompted to enter each item of metadata, so read and follow the prompts.
+#'
+#' @param single The definition to be published
+#' @param ... Can be used to specify metadata. You can leave this blank and follow
+#' the interactive prompts.
+#'
+#' @examples
+#' \dontrun{
+#' ## Start by creating a definition
+#' band_member = participated_in(MSMB)
+#'
+#' ## then just use the publish function and answer the prompts
+#' publish(band_member)
+#' }
+#'
+#' @seealso \code{\link{show_singles}} to view existing singles,
+#' \code{\link{check_out}} to check out a published single.
 #' @export
 publish <- function(single, ...) UseMethod("publish")
 
+#' @rdname publish
 #' @export
 publish.disco_single <- function(single, ...) {
     # note: if two people try to do this at the same time, only one write
@@ -83,13 +111,14 @@ publish.disco_single <- function(single, ...) {
     invisible(NULL)
 }
 
+#' @rdname publish
 #' @export
 publish.listbuilder <- function(single, ...) {
     single <- disco_single(single, ...)
     publish(single)
 }
 
-
+#' @rdname show_singles
 #' @export
 list_singles <- function() {
     archive <- singles_db()
@@ -108,6 +137,14 @@ list_singles <- function() {
     do.call("rb", lapply(singles, summarize_single))
 }
 
+#' Browse available singles
+#'
+#' Any time a user \code{\link{publish}}es a new single, it gets listed and stored
+#' along with keywords and a description that should make it easier to find.
+#' \code{show_singles} allows you to view singles that have been published and
+#' search through them.
+#'
+#' @seealso \code{\link{publish}}, \code{\link{check_out}}, \code{\link{find_singles}}
 #' @export
 show_singles <- function() {
     if (!requireNamespace("DT", quietly = TRUE)) {
@@ -123,6 +160,12 @@ show_singles <- function() {
                   ))
 }
 
+#' Search for a particular single using keywords
+#'
+#' @param search_term A string to search for in the singles database
+#'
+#' @seealso \code{\link{show_singles}} for an interactive browser,
+#' \code{\link{check_out}} to check out a single
 #' @export
 find_singles <- function(search_term) {
     archive <- singles_db()
@@ -145,6 +188,40 @@ find_singles <- function(search_term) {
     res
 }
 
+#' @rdname find_singles
+#' @export
+single_for <- find_singles
+
+#' Check out a single
+#'
+#' Check out a previously published single. Use \code{\link{show_singles}} to
+#' find the single you're interested in, and check it out by name. In order to
+#' use a single you've checked out, you'll probably want to assign it a name
+#' (see examples).
+#'
+#' @details Note that \code{check_out} will return a single, but will not save it
+#' in your current working environment. So in order to actually use the single,
+#' you should assign it a name (see examples)
+#'
+#' @param ... The name of the single to check out
+#'
+#' @examples
+#' \dontrun{
+#' ## note how i assign the single a name (it can be the same as the published
+#' ## name, but doesn't have to be).
+#' ## i'll check out the in_bay_area single (found by browsing using show_singles)
+#' in_bay_area = check_out(in_bay_area)
+#'
+#' ## the name i assign does not have to be the same as the published name:
+#' bay = check_out(in_bay_area)
+#'
+#' ## use the checked out single like you'd use any other definition you created
+#' ## example: display
+#' display(bay)
+#'
+#' ## example: combine with other widgets
+#' bay_math = bay %and% majored_in(mathematics)
+#' }
 #' @export
 check_out <- function(...) {
     check_out_(prep_dots(...))
@@ -155,6 +232,8 @@ check_out_ <- function(single) {
     if (length(s) != 1L) stop("Must specify exactly one single to check out")
     s <- s[[1]]
     s <- deparse(s)
+    if (!exists(s, envir = singles_db()))
+        stop("Single ", s, " not found! Are you sure you spelled it correctly? Use show_singles() to view available singles to check out", call. = FALSE)
     s <- get(s, envir = singles_db())
     s$predicate
 }
