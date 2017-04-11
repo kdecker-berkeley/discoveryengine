@@ -43,6 +43,11 @@ based on the GRAD DATE for degreeholders and the STOP DATE for attendees
 (who have no GRAD DATE). Both dates are visible in the Degrees screen in
 Advance. An alum's "class year" is based on the GRAD DATE. For degreeholders,
 the two dates are often the same, though they can differ. See examples below.
+
+Attendees can be either graduate or undergraduate attendees. Whether one or
+both of those types of attendees are selected when \code{attendees = TRUE} is
+based on the values of \code{graduates} and \code{undergraduates} -- see
+examples.
 }
 \examples{
 ## majored in philosophy and/or math between 2001 and 2004
@@ -54,8 +59,16 @@ majored_in(mathematics, philosophy, from = 20010101, to = 20041231)
 ## just math grad degree holders
 majored_in(mathematics, undergraduates = FALSE)
 
+## here we pull graduate degreeholders and graduate attendees
+## neither ungrad degreeholders nor undergrad attendees will be included
+majored_in(mathematics,
+           undergraduates = FALSE,
+           graduates = TRUE,
+           attendees = TRUE)
+
 ## evening/wknd program (haas) people are coded as attendees. note that since
 ## we're only looking at attendees here, we'll be using the STOP DATE
+## this will pull BOTH undergrad and grad attendees, but no degreeholders
 has_degree_from(haas, attendees = TRUE,
                 graduates = FALSE, undergraduates = FALSE,
                 from = 20010101, to = 20041231)

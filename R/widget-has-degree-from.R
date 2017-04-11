@@ -24,6 +24,11 @@
 #' Advance. An alum's "class year" is based on the GRAD DATE. For degreeholders,
 #' the two dates are often the same, though they can differ. See examples below.
 #'
+#' Attendees can be either graduate or undergraduate attendees. Whether one or
+#' both of those types of attendees are selected when \code{attendees = TRUE} is
+#' based on the values of \code{graduates} and \code{undergraduates} -- see
+#' examples.
+#'
 #' @examples
 #' ## majored in philosophy and/or math between 2001 and 2004
 #' ## since attendees are not included by default, this only pulls
@@ -34,8 +39,16 @@
 #' ## just math grad degree holders
 #' majored_in(mathematics, undergraduates = FALSE)
 #'
+#' ## here we pull graduate degreeholders and graduate attendees
+#' ## neither ungrad degreeholders nor undergrad attendees will be included
+#' majored_in(mathematics,
+#'            undergraduates = FALSE,
+#'            graduates = TRUE,
+#'            attendees = TRUE)
+#'
 #' ## evening/wknd program (haas) people are coded as attendees. note that since
 #' ## we're only looking at attendees here, we'll be using the STOP DATE
+#' ## this will pull BOTH undergrad and grad attendees, but no degreeholders
 #' has_degree_from(haas, attendees = TRUE,
 #'                 graduates = FALSE, undergraduates = FALSE,
 #'                 from = 20010101, to = 20041231)
@@ -85,6 +98,11 @@ has_degree_from_ <- function(schools, undergraduates = TRUE,
     if (graduates) {
         levels <- c(levels, "G")
         if (attendees) levels <- c(levels, "L")
+    }
+
+    if (!graduates && !undergraduates && attendees) {
+        warning("has_degree_from: you selected attendees but not undergraduates or graduates. Both undergrad and grad attendees (but not degreeholders) will be selected", call. = FALSE)
+        levels <- c("L", "A")
     }
 
     entity_widget("d_bio_degrees_mv",

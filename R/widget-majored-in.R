@@ -28,6 +28,11 @@ majored_in_ <- function(majors, undergraduates = TRUE,
         from = from, to = to
     )
 
+    if (!graduates && !undergraduates && attendees) {
+        warning("majored_in: you selected attendees but not undergraduates or graduates. Both undergrad and grad attendees (but not degreeholders) will be selected", call. = FALSE)
+        levels <- c("L", "A")
+    }
+
     widget_builder(
         table = "d_bio_degrees_mv",
         id_field = "entity_id",
