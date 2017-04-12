@@ -126,6 +126,9 @@ matrix_bot_query <- function(sl)
 matrix_bot <- function(savedlist) {
     MIN_EFFECT <- 5
     PROB_CUTOFF <- 1E-10
+
+    stopifnot(listbuilder::get_id_type(savedlist) == "entity_id")
+
     overlap_df <- getcdw::get_cdw(matrix_bot_query(savedlist))
     overlap_df <- dplyr::mutate(
         overlap_df,
