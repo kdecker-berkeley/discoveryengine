@@ -42,5 +42,5 @@ related_to_ <- function(savedlist, relation_type) {
 #' @export
 related_to <- function(savedlist, ...) {
     relation_type <- prep_dots(...)
-    related_to_(savedlist, relation_type)
+    reroute(related_to_(savedlist, relation_type))
 }
