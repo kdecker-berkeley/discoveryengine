@@ -1,34 +1,24 @@
-# discoveryengine 0.1.7.9008
+# discoveryengine 0.1.8
+Showing all changes since version 0.1.6:
+
+### new widgets
+* add predictive model widgets for CNR and HSB scores (`has_cnr_score` and `has_haas_score`)
+* added `entities` and `funds`, two widgets for working with hand-curated lists (see #15, also requested by ML and VF)
+* added `job_title_like` widget for doing text search on job titles (BC)
+* added `rated_by` widget to search by researcher(s) or research date
+* Added `has_position` widget (B.C.)
+* Added `lives_near` and `works_near` widgets (#22, @datalover916)
+
+### features
+* Publishing is now possible. See `publish`, `list_singles`, `show_singles`, and `find_singles`. This is a convenient way to share your disco-code with colleagues, especially useful if there are standard definitions we should all be using. Thanks to TK and ML.
+* make it possible to do synonym search in `related_to 
 * added `include_inactive` option to `has_interest` widget (thanks to VF and AM)
 * added daterange options to `majored_in` and `has_degree_from` (thanks to AM and LC)
 
-# discoveryengine 0.1.7.9007
-* fixed bug in `in_suspect_pool` -- was not creating the correct definition
-
-# discoveryengine 0.1.7.9006
-* added `entities` and `funds`, two widgets for working with hand-curated lists (see #15, also requested by ML and VF)
-* added `job_title_like` widget for doing text search on job titles (BC)
-
-# discoveryengine 0.1.7.9005
-* added `rated_by` widget to search by researcher(s) or research date
-
-# discoveryengine 0.1.7.9004
-
-* Publishing is now possible. See `publish`, `list_singles`, `show_singles`, and `find_singles`. This is a convenient way to share your disco-code with colleagues, especially useful if there are standard definitions we should all be using. Thanks to TK and ML.
-* Fixed a bug in `in_suspect_pool` where using it without arguments (just typing `in_suspect_pool()` with nothing in the parentheses) resulted in a malformed disco definition. Consistent with almost every other widget, there is now a default for when no arguments are entered -- any entity in any suspect pool will be returned.
-
-# discoveryengine 0.1.7.9003
-
+### bug-fixes and/or changes in implementation
+* fixed two bugs in `in_suspect_pool`: was not creating the correct definition in general, also failed when used without arguments (now default is to pull anyone in any suspect pool)
+* Fixed bug in `works_in_industry` and `has_occupation` where defaults (ie using without arguments) caused ` invalid relational operator` errors
 * Synonym tables are now created on-the-fly. This means that they will always reflect the current status of the TMS tables, but also that specific synonyms may change unexpectedly (when AIM changes TMS descriptions). There are still hard-coded synonyms for common uses (eg: "business" or "natural_resources")
-
-# discoveryengine 0.1.7.9002
-
-* Added `has_position` widget (B.C.)
-* Fixed bug in `works_in_industry` and `has_occupation` where defaults caused ` invalid relational operator` errors
-
-# discoveryengine 0.1.7.9001
-
-* Added `lives_near` and `works_near` widgets (#22, @datalover916)
 
 # discoveryengine 0.1.6
 
