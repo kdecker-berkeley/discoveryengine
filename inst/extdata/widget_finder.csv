@@ -49,3 +49,5 @@ rated_by,Lists entities rated by the given researcher(s) for the given time peri
 entities,Manually specify a list of entity IDs,entity_id,first-order,"Entity ID, people, manual,  custom"
 funds,Manually specify a list of allocation codes,allocation_code,first-order,"allocation code, funds, individual fund"
 job_title_like,Entities with specific words/phrases in their job titles,entity_id,first-order,"employment, work, occupation, employer, miner, text, finder"
+has_haas_score,Lists entities with Haas School of Business predictive model scores,entity_id,first-order,"predictive model, haas, business"
+has_cnr_score,Lists entities with CNR predictive model scores,entity_id,first-order,"predictive model, CNR, college of natural resources, environment, environmental"
