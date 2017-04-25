@@ -9,9 +9,12 @@ Showing all changes since version 0.1.6:
 * Added `has_position` widget (B.C.)
 * Added `lives_near` and `works_near` widgets (#22, @datalover916)
 
+### new bots
+* the `matrix_bot` allows you to do broader, more open-ended prospecting (see https://tarakc02.github.io/discodocs/matrix-bot.html). If `brainstorm_bot` is like looking up a book in the card catalog, `matrix_bot` is like walking into the stacks and looking at all the books nearby the one you're picking up.
+
 ### features
 * Publishing is now possible. See `publish`, `list_singles`, `show_singles`, and `find_singles`. This is a convenient way to share your disco-code with colleagues, especially useful if there are standard definitions we should all be using. Thanks to TK and ML.
-* make it possible to do synonym search in `related_to 
+* make it possible to do synonym search in `related_to`
 * added `include_inactive` option to `has_interest` widget (thanks to VF and AM)
 * added daterange options to `majored_in` and `has_degree_from` (thanks to AM and LC)
 
