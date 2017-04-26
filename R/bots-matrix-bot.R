@@ -147,7 +147,9 @@ matrix_bot <- function(savedlist) {
 
     bigmap <- split(bigmap, bigmap$widget)
 
-    stopifnot(length(bigmap) > 0L)
+    if (length(bigmap) > 0L)
+        stop("Bleep bloop. Sorry, matrix bot didn't find anything",
+             call. = FALSE)
 
     lblist <- Map(function(fun, df)
         do.call(fun, list(df[["code"]])),
