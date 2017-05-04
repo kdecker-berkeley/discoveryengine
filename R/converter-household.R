@@ -27,5 +27,5 @@ household <- function(savedlist) {
     converter_builder(savedlist,
                       table = "d_entity_mv",
                       from = "entity_id",
-                      to = "hh_corp_entity_id", to_type = "entity_id")
+                      to = "household_entity_id", to_type = "entity_id")
 }
