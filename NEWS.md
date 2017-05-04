@@ -1,3 +1,7 @@
+### bugfixes
+* `household` now uses the `household_entity_id` rather than `hh_corp_entity_id` #34 (thanks to AM for noticing the problem)
+* `matrix_bot` was not returning any results, thanks to DT for catching the error
+
 # discoveryengine 0.1.8
 Showing all changes since version 0.1.6:
 
