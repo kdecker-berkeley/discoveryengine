@@ -35,8 +35,17 @@ proposal_widget <- function(offices = NULL, development_officers = NULL,
     )
 }
 
-address_widget <- function(filter_field, filter_val, type) {
-    entity_widget("d_bio_address_mv",
-                  parameter = string_param(filter_field, filter_val),
-                  switches = string_switch("addr_type_code", type))
+address_widget <- function(filter_field, filter_val, type, param_fn = string_param) {
+    default <- as.call(
+        list(
+            quote(`%is not%`),
+            filter_field,
+            quote(null)
+        )
+    )
+
+    entity_widget(
+        "d_bio_address_mv",
+        parameter = param_fn(filter_field, filter_val, default = default),
+        switches = string_switch("addr_type_code", type))
 }

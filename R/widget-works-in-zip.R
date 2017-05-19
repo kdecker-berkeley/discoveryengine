@@ -6,9 +6,7 @@ works_in_zip <- function(..., type = "B") {
 }
 
 works_in_zip_ <- function(zips, type = "B") {
-    entity_widget("d_bio_address_mv",
-                  parameter = zipcode_param("zipcode5", zips),
-                  switches = string_switch("addr_type_code", type))
+    address_widget("zipcode5", zips, type = type, param_fn = zipcode_param)
 }
 
 

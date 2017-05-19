@@ -24,7 +24,7 @@ test_that("lives_in_zip handles zipcodes with various formats", {
 
 test_that("lives_in_zip meets specifications on no input", {
     lives_in_zip() %>%
-        has_clause_count(1)
+        has_clause_count(2)
 
     lives_in_zip() %>%
         has_filters(addr_type_code = "H")

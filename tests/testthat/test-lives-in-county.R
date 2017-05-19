@@ -18,7 +18,7 @@ test_that("lives_in_county meets specifications on standard input", {
 
 test_that("lives_in_county meets specifications on no input", {
     lives_in_county() %>%
-        has_clause_count(1)
+        has_clause_count(2)
 
     lives_in_county() %>%
         has_filters(addr_type_code = "H")

@@ -18,7 +18,7 @@ test_that("works_in_msa meets specifications on standard input", {
 
 test_that("works_in_msa meets specifications on no input", {
     works_in_msa() %>%
-        has_clause_count(1)
+        has_clause_count(2)
 
     works_in_msa() %>%
         has_filters(addr_type_code = "B")
