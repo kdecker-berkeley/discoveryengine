@@ -1,6 +1,10 @@
-### bugfixes
+## new widgets
+* `lives_in_country` and `works_in_country` for international prospecting (# 35, thanks to BC) 
+
+### bugfixes and or implementation changes
 * `household` now uses the `household_entity_id` rather than `hh_corp_entity_id` #34 (thanks to AM for noticing the problem)
 * `matrix_bot` was not returning any results, thanks to DT for catching the error
+* address-based widgets (like `lives_in_*` and `works_in_*`) changed their default behavior. For example, it used to be that `lives_in_msa` when used without any arguments would pull anyone with a home address, but now it will only pull anyone with a home address that has an MSA. 
 
 # discoveryengine 0.1.8
 Showing all changes since version 0.1.6:
