@@ -10,17 +10,13 @@ test_that("lives_in_msa meets specifications on standard input", {
 
     test %>%
         has_filters(geo_metro_area_code = "41860",
-                    addr_type_code = "H")
-
-    test %>% has_clause_count(2)
+                    addr_type_code = "H",
+                    contact_type_desc = 'ADDRESS')
 
 })
 
 test_that("lives_in_msa meets specifications on no input", {
     lives_in_msa() %>%
-        has_clause_count(2)
-
-    lives_in_msa() %>%
-        has_filters(addr_type_code = "H")
+        has_clause_count(3)
 })
 

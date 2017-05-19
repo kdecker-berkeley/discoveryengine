@@ -39,7 +39,10 @@ address_widget <- function(filter_field, filter_val, type, param_fn = string_par
     default <- as.call(
         list(
             quote(`%is not%`),
-            filter_field,
+            as.call(list(
+                quote(trim),
+                as.name(filter_field)
+            )),
             quote(null)
         )
     )
@@ -47,5 +50,8 @@ address_widget <- function(filter_field, filter_val, type, param_fn = string_par
     entity_widget(
         "d_bio_address_mv",
         parameter = param_fn(filter_field, filter_val, default = default),
-        switches = string_switch("addr_type_code", type))
+        switches = list(
+            string_switch("addr_type_code", type),
+            string_switch("contact_type_desc", "ADDRESS"))
+    )
 }

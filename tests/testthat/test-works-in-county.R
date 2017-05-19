@@ -10,17 +10,12 @@ test_that("works_in_county meets specifications on standard input", {
 
     test %>%
         has_filters(county_code = "CA007",
-                    addr_type_code = "B")
-
-    test %>% has_clause_count(2)
-
+                    addr_type_code = "B",
+                    contact_type_desc = 'ADDRESS')
 })
 
 test_that("works_in_county meets specifications on no input", {
     works_in_county() %>%
-        has_clause_count(2)
-
-    works_in_county() %>%
-        has_filters(addr_type_code = "B")
+        has_clause_count(3)
 })
 

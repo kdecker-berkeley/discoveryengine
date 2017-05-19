@@ -10,23 +10,19 @@ test_that("lives_in_zip meets specifications on standard input", {
 
     test %>%
         has_filters(zipcode5 = c("94720", "00123"),
-                    addr_type_code = "H")
-
-    test %>% has_clause_count(2)
-
+                    addr_type_code = "H",
+                    contact_type_desc = 'ADDRESS')
 })
 
 test_that("lives_in_zip handles zipcodes with various formats", {
     lives_in_zip(947041234, 00123-0001, "94744-1234", NA) %>%
         has_filters(zipcode5 = c("94704", "00123", "94744"),
-                    addr_type_code = "H")
+                    addr_type_code = "H",
+                    contact_type_desc = 'ADDRESS')
 })
 
 test_that("lives_in_zip meets specifications on no input", {
     lives_in_zip() %>%
-        has_clause_count(2)
-
-    lives_in_zip() %>%
-        has_filters(addr_type_code = "H")
+        has_clause_count(3)
 })
 
