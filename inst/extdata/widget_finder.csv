@@ -51,3 +51,5 @@ funds,Manually specify a list of allocation codes,allocation_code,first-order,"a
 job_title_like,Entities with specific words/phrases in their job titles,entity_id,first-order,"employment, work, occupation, employer, miner, text, finder"
 has_haas_score,Lists entities with Haas School of Business predictive model scores,entity_id,first-order,"predictive model, haas, business"
 has_cnr_score,Lists entities with CNR predictive model scores,entity_id,first-order,"predictive model, CNR, college of natural resources, environment, environmental"
+lives_in_foreign_country,Lists entities who live in specific foreign country(ies),entity_id,first-order,"address, country, home, lives, international, abroad, geo"
+works_in_foreign_country,Lists entities who work in specific foreign country(ies),entity_id,first-order,"address, country, work, business, international, abroad, geo"
