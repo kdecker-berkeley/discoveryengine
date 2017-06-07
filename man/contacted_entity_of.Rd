@@ -22,4 +22,3 @@ neuro_contact = contact_text_contains("neuroscience")
 contacted_entity_of(neuro_contact)
 
 }
-

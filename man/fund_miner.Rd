@@ -22,4 +22,3 @@ This widget is equivalent to running \code{\link{fund_text_contains}} and
 \seealso{
 \code{\link{gave_to_fund}}, \code{\link{fund_text_contains}}
 }
-

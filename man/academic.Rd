@@ -85,4 +85,3 @@ has_degree_from(haas, graduates = TRUE, undergraduates = TRUE,
 \seealso{
 \code{\link{has_reunion_year}}
 }
-

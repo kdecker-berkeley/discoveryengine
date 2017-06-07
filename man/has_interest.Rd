@@ -29,4 +29,3 @@ has_interest(data_science)
 has_interest(DAT)
 
 }
-

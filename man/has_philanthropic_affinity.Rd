@@ -32,4 +32,3 @@ has_philanthropic_affinity(health_medicine)
 has_philanthropic_affinity(human_rights, social_welfare, at_least = 10000)
 
 }
-

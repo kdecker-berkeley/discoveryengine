@@ -24,4 +24,3 @@ intramurals).
 played_sport(basketball_men, basketball_women)
 
 }
-

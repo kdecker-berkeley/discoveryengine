@@ -40,4 +40,3 @@ gave_to_fund(diversity_funds, at_least = 100000, to = 20111231)
 \seealso{
 \code{\link{gave_to_fund}}
 }
-

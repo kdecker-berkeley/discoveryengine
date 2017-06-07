@@ -21,4 +21,3 @@ This widget is based on the "position level" code in CADS, which is entered
 by Prospect Research and identifies Director-level and above employment
 positions
 }
-

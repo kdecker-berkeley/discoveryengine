@@ -33,4 +33,3 @@ recent_band_parents = parent_of(recent_band_members)
 display(recent_band_parents)
 
 }
-

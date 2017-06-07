@@ -29,4 +29,3 @@ is_wealthy_hh \%or\% lives_in_msa(san_francisco)
 household(is_wealthy \%or\% lives_in_msa(san_francisco))
 
 }
-

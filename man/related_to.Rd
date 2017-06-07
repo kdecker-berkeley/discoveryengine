@@ -38,4 +38,3 @@ display(founder_sibling)
 \seealso{
 \code{\link{parent_of}}, \code{\link{child_of}}
 }
-

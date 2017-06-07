@@ -13,4 +13,3 @@ listing of all suspect pools.
 \seealso{
 \code{\link{in_suspect_pool}}
 }
-

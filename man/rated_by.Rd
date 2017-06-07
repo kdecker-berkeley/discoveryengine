@@ -43,4 +43,3 @@ rated_by(3221525, from = 20160101, to = 20161231)
 rated_by(3221525, 923406, to = 20160630, include_inactive = TRUE)
 
 }
-

@@ -24,4 +24,3 @@ This widget is based on the 6-digit NAICS code found on the employer's
 works_in_industry(523110)
 
 }
-

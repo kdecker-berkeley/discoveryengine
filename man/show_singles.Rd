@@ -18,4 +18,3 @@ search through them.
 \seealso{
 \code{\link{publish}}, \code{\link{check_out}}, \code{\link{find_singles}}
 }
-

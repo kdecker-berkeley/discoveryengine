@@ -40,4 +40,3 @@ job_title_like("data*")
 job_title_like("data*", "analy*")
 
 }
-

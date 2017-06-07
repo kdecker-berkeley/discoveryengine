@@ -13,4 +13,3 @@ listing of all available widgets, with descriptions of each
 \seealso{
 \code{\link{widget_for}}
 }
-

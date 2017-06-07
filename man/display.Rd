@@ -3,11 +3,15 @@
 \name{display}
 \alias{display}
 \alias{display.listbuilder}
+\alias{display.report}
 \title{Retrieve a list of IDs from a listbuilder definition}
 \usage{
 display(savedlist, ...)
 
 \method{display}{listbuilder}(savedlist, ..., include_organizations = FALSE,
+  include_deceased = FALSE, household = FALSE, file = NULL)
+
+\method{display}{report}(report, ..., include_organizations = FALSE,
   include_deceased = FALSE, household = FALSE, file = NULL)
 }
 \arguments{
@@ -24,4 +28,3 @@ to a file.}
 \description{
 Retrieve a list of IDs from a listbuilder definition
 }
-

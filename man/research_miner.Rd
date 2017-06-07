@@ -31,4 +31,3 @@ research_miner("education") \%or\%
     has_philanthropic_affinity(higher_education, secondary_education)
 
 }
-

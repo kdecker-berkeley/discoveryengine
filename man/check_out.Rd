@@ -38,4 +38,3 @@ display(bay)
 bay_math = bay \%and\% majored_in(mathematics)
 }
 }
-

@@ -29,4 +29,3 @@ parent_of(is_wealthy)
 \seealso{
 \code{\link{related_to}}
 }
-

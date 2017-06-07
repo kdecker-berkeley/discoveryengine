@@ -50,4 +50,3 @@ gave_to_fund(diversity_funds, at_least = 100000, to = 20111231)
 \seealso{
 \code{\link{gave_to_area}}, \code{\link{gave_to_department}}, \code{\link{fund_text_contains}}
 }
-

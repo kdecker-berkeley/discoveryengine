@@ -19,4 +19,3 @@ widget_for("sports")
 \seealso{
 \code{\link{show_widgets}} for an interactive widget browser
 }
-

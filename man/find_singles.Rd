@@ -19,4 +19,3 @@ Search for a particular single using keywords
 \code{\link{show_singles}} for an interactive browser,
 \code{\link{check_out}} to check out a single
 }
-

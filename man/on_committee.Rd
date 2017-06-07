@@ -29,4 +29,3 @@ on_committee(bam_board_of_trustees, cal_perf_board_of_trustees)
 ## current UCBF members
 on_committee(uc_berkeley_foundation, include_former = FALSE)
 }
-

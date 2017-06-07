@@ -21,4 +21,3 @@ usually not need to use this function.
 By default, deceased individuals and out of business corporations are
 excluded.
 }
-

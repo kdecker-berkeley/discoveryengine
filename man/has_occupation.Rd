@@ -19,4 +19,3 @@ A definition of type \code{entity_id}
 This widget is based on the "Occupational Spec" fields on an entity's
 Employment screen.
 }
-

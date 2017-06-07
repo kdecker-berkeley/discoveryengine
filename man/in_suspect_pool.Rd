@@ -20,4 +20,3 @@ order to make them queryable. To find the ID of your suspect pool, use
 \seealso{
 \code{\link{show_suspect_pools}}
 }
-

@@ -26,4 +26,3 @@ has_affiliation(san_francisco_grid_club, bohemian_club)
 has_affiliation(caa_homecoming_volunteer, include_former = FALSE)
 
 }
-

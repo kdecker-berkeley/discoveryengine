@@ -24,4 +24,3 @@ chicano_interest = majored_in(chicano_studies) \%or\% gave_to_department(CHICANO
 matrix_bot(chicano_interest)
 
 }
-

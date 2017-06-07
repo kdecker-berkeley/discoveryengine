@@ -28,4 +28,3 @@ event.
 attended_event(3965, 1263)
 
 }
-

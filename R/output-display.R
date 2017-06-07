@@ -38,6 +38,32 @@ display.listbuilder <- function(savedlist, ...,
     write.csv(res, filename, row.names = FALSE)
 }
 
+#' @export
+#' @rdname display
+display.report <- function(report, ...,
+                           include_organizations = FALSE,
+                           include_deceased = FALSE,
+                           household = FALSE,
+                           file = NULL) {
+
+    if (listbuilder::get_id_type(report) != "entity_id")
+        spec <- report
+    else
+        spec <- modify(report, include_organizations,
+                       include_deceased, household)
+
+    res <- get_cdw(spec, ...)
+    if (is.null(file)) return(res)
+
+    assertthat::assert_that(assertthat::is.string(file))
+
+    # if filename does not have a ".csv" extension, add one
+    if (!grepl("\\.csv$", file))
+        filename <- paste0(file, ".csv")
+    else filename <- file
+    write.csv(res, filename, row.names = FALSE)
+}
+
 modify <- function(savedlist, include_organizations,
                       include_deceased, household) {
     if (include_organizations)

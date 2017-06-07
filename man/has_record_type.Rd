@@ -27,4 +27,3 @@ has_record_type(ucbf_trustee)
 has_record_type(ucbf_trustee, former_ucbf_trustee)
 
 }
-

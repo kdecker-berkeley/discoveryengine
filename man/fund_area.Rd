@@ -29,4 +29,3 @@ gave_to_fund(ced_diversity_fund, at_least = 1000)
 \seealso{
 \code{\link{fund_department}}, \code{\link{gave_to_area}}, \code{\link{gave_to_fund}}
 }
-

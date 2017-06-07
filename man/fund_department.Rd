@@ -29,4 +29,3 @@ gave_to_fund(pacs_gandhi_fund, at_least = 1000)
 \seealso{
 \code{\link{fund_area}}, \code{\link{gave_to_area}}, \code{\link{gave_to_fund}}
 }
-

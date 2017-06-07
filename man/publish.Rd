@@ -45,4 +45,3 @@ publish(band_member)
 \code{\link{show_singles}} to view existing singles,
 \code{\link{check_out}} to check out a published single.
 }
-
