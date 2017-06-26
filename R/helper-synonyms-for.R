@@ -1,6 +1,6 @@
 synonyms_for <- function(type) {
     dict <- cdw_tms_dictionary()
-    dict <- dplyr::mutate_each(dict, dplyr::funs(tolower))
+    dict <- as.data.frame(lapply(dict, tolower), stringsAsFactors = FALSE)
     dict_row <- dplyr::filter(dict, cdw_column_name == type)
 
     if (nrow(dict_row) >= 1L) {

@@ -19,5 +19,5 @@ partial_sub <- function(.dots) {
         newenv
     }
     lapply(.dots,
-           function(x) dplyr::partial_eval(x$expr, env = reenv(x$env)))
+           function(x) dbplyr::partial_eval(x$expr, env = reenv(x$env)))
 }

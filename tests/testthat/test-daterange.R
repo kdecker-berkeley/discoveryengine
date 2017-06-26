@@ -52,11 +52,11 @@ test_that("daterange errors on bad dates", {
 
 test_that("daterange allows weirdo sql instead of a field name", {
     expect_identical(
-        daterange(dplyr::sql("case when x > 0 then 1 else 0 end"),
+        daterange(dbplyr::sql("case when x > 0 then 1 else 0 end"),
                   from = 20110101, to = 20121231),
         as.call(list(
             quote(between),
-            dplyr::sql("case when x > 0 then 1 else 0 end"),
+            dbplyr::sql("case when x > 0 then 1 else 0 end"),
             quote(to_date(20110101L, "yyyymmdd")),
             quote(to_date(20121231L, "yyyymmdd"))
         ))

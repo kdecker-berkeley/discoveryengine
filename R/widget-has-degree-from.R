@@ -86,7 +86,7 @@ has_degree_from_ <- function(schools, undergraduates = TRUE,
     ## use stop_dt for attendees
 
     date_switch <- daterange(
-        dplyr::sql("case when degree_level_code in ('U', 'G') then grad_dt else stop_dt end"),
+        dbplyr::sql("case when degree_level_code in ('U', 'G') then grad_dt else stop_dt end"),
         from = from, to = to
     )
 

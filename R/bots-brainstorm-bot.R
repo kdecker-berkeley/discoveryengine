@@ -72,7 +72,7 @@ brainstorm_bot_ <- function(search_terms) {
     tmsmap <- tms2cdw(unique(codes$view_name))
     if (nrow(tmsmap) == 0L) stop(errormsg, call. = FALSE)
 
-    tmsmap <- dplyr::mutate_each(tmsmap, dplyr::funs(tolower))
+    tmsmap <- as.data.frame(lapply(tmsmap, tolower), stringsAsFactors = FALSE)
     widgetmap <- widget2cdw()
 
     bigmap <- dplyr::inner_join(widgetmap, tmsmap,
