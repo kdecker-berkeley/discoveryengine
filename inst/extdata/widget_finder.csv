@@ -54,3 +54,5 @@ has_cnr_score,Lists entities with CNR predictive model scores,entity_id,first-or
 lives_in_foreign_country,Lists entities who live in specific foreign country(ies),entity_id,first-order,"address, country, home, lives, international, abroad, geo"
 works_in_foreign_country,Lists entities who work in specific foreign country(ies),entity_id,first-order,"address, country, work, business, international, abroad, geo"
 has_engineering_score,Lists entities with CNR predictive model scores,entity_id,first-order,"predictive model, engineering, engineer, science, stem"
+fund_type,Find funds with a particular fund type code,allocation_code,first-order,"fund, allocation, giving, fund type, capital, endowment"
+gave_to_fund_type,Entities who have given to specific types of funds,entity_id,first-order,"donor, giving, fund type, capital, endowment"
