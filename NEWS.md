@@ -1,10 +1,15 @@
-## new widgets
-* `lives_in_country` and `works_in_country` for international prospecting (# 35, thanks to BC) 
+### new widgets
+* `lives_in_foreign_country` and `works_in_foreign_country` for international prospecting (# 35, thanks to BC) 
+* `has_engineering_score` for the new engineering model (thanks to LC). 
+
+### features
+* `display` method for `listbuilder::report`s. This allows PD to easily extend the disco engine with custom reporting, for example see `discoappend` (https://github.com/cwolfsonseeley/discoappend/).
 
 ### bugfixes and or implementation changes
 * `household` now uses the `household_entity_id` rather than `hh_corp_entity_id` #34 (thanks to AM for noticing the problem)
 * `matrix_bot` was not returning any results, thanks to DT for catching the error
 * address-based widgets (like `lives_in_*` and `works_in_*`) changed their default behavior. For example, it used to be that `lives_in_msa` when used without any arguments would pull anyone with a home address, but now it will only pull anyone with a home address that has an MSA. 
+* updated to keep pace with the new `dplyr` setup, specifically updated functions to rely on exports from `dbplyr` instead of `dplyr`. 
 
 # discoveryengine 0.1.8
 Showing all changes since version 0.1.6:
@@ -13,7 +18,7 @@ Showing all changes since version 0.1.6:
 * add predictive model widgets for CNR and HSB scores (`has_cnr_score` and `has_haas_score`)
 * added `entities` and `funds`, two widgets for working with hand-curated lists (see #15, also requested by ML and VF)
 * added `job_title_like` widget for doing text search on job titles (BC)
-* added `rated_by` widget to search by researcher(s) or research date
+* added `rated_by` widget to search by researcher(s) or research date (LC)
 * Added `has_position` widget (B.C.)
 * Added `lives_near` and `works_near` widgets (#22, @datalover916)
 

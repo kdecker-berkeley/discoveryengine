@@ -53,3 +53,4 @@ has_haas_score,Lists entities with Haas School of Business predictive model scor
 has_cnr_score,Lists entities with CNR predictive model scores,entity_id,first-order,"predictive model, CNR, college of natural resources, environment, environmental"
 lives_in_foreign_country,Lists entities who live in specific foreign country(ies),entity_id,first-order,"address, country, home, lives, international, abroad, geo"
 works_in_foreign_country,Lists entities who work in specific foreign country(ies),entity_id,first-order,"address, country, work, business, international, abroad, geo"
+has_engineering_score,Lists entities with CNR predictive model scores,entity_id,first-order,"predictive model, engineering, engineer, science, stem"
