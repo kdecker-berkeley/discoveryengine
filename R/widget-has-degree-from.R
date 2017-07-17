@@ -18,6 +18,12 @@
 #' these dates. Enter as an integer of the form YYYYMMDD (see details)
 #'
 #' @details
+#' Note that some major and minor codes start with numbers and include letters
+#' (for example: a minor in mathematics is coded as \code{25I071U}). This causes
+#' errors when parsing. To get around the issue, either use quotation marks
+#' explicitly (as in: \code{minored_in("25I071U")}) or use the synonym
+#' (\code{minored_in(mathematics)})
+#'
 #' When using the daterange (\code{from} and/or \code{to}), the dates will be
 #' based on the GRAD DATE for degreeholders and the STOP DATE for attendees
 #' (who have no GRAD DATE). Both dates are visible in the Degrees screen in
@@ -28,6 +34,8 @@
 #' both of those types of attendees are selected when \code{attendees = TRUE} is
 #' based on the values of \code{graduates} and \code{undergraduates} -- see
 #' examples.
+#'
+#'
 #'
 #' @examples
 #' ## majored in philosophy and/or math between 2001 and 2004
