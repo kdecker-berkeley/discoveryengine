@@ -25,7 +25,7 @@ but not "basketball." A search for "basket*" on the other hand will find both.
 brainstorm_bot("neuroscience")
 
 ## can also use wildcards at start and end of words:
-brainstorm_bot("neruo*")
+brainstorm_bot("neuro*")
 
 ## or use multiple search terms
 brainstorm_bot("neuro*", "robotics")
