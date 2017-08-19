@@ -17,4 +17,5 @@ Imports: listbuilder (>= 0.1.7.9001),
     dplyr,
     stringr,
     getcdw (>= 0.1.0.9001),
-    dbplyr
+    dbplyr,
+    assertthat
