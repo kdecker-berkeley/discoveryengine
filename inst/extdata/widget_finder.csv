@@ -58,3 +58,6 @@ fund_type,Find funds with a particular fund type code,allocation_code,first-orde
 gave_to_fund_type,Entities who have given to specific types of funds,entity_id,first-order,"donor, giving, fund type, capital, endowment"
 minored_in,Lists entities with specific minor(s),entity_id,first-order,"minor, college, school degree, attended, academic, degree"
 age_between,Find entities based on age,entity_id,first-order,"age, young, old, birthdate, birth, birthday"
+corp_parent,Find parent corporations for given corporate IDs,entity_id,second-order,"employment, work, job, corporate, corporation, hierarchy"
+corp_subsidiary,Find subsidiary corporations for given corporate IDs,entity_id,second-order,"employment, work, job, corporate, corporation, hierarchy"
+works_at,Find entities who work at a particular employer(s),entity_id,second-order,"employment, work, job, business, employer"
