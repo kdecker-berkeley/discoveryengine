@@ -1,3 +1,4 @@
+#' @export
 works_at <- function(..., include_former = TRUE) {
     reroute(works_at_(entity_id_param(...), include_former = include_former))
 }

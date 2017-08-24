@@ -4,6 +4,8 @@
 * `fund_type` and `gave_to_fund_type` (see #37, thanks to AM/EK/LC)
 * `minored_in` (see #38, thanks to AM)
 * `age_between` (see #39, thanks to LC)
+* `works_at` (see #40, thanks to BC)
+* `corp_parent` and `corp_subsidiary`, (also related to #40)
 
 ### features
 * `display` method for `listbuilder::report`s. This allows PD to easily extend the disco engine with custom reporting, for example see `discoappend` (https://github.com/cwolfsonseeley/discoappend/).

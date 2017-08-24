@@ -1,3 +1,4 @@
+#' @export
 corp_parent <- function(...) {
     ent_id <- entity_id_param(...)
     converter_builder(
