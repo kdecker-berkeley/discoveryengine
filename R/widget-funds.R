@@ -7,7 +7,7 @@ funds <- function(...) {
 funds_ <- function(ids) {
     ids <- partial_sub(ids)
     listbuilder::idlist(
-        ids = as.character(ids),
+        ids = as.character(unlist(ids)),
         id_type = "allocation_code",
         quoted = TRUE
     )
