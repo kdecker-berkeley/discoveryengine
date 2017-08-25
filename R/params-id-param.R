@@ -3,7 +3,7 @@ entity_id_param <- function(...) {
     # temp <- c(548769, 3004587)
     # ents <- list(1234, entities(57575, 37374), has_capacity(1), "4576", temp, 347*5)
     ents <- list(...)
-    if (length(ents) <= 0L) return(NULL)
+    if (length(ents) <= 0L) return(is_a(include_deceased = TRUE))
 
     literal <- vapply(
         ents,
@@ -28,7 +28,13 @@ entity_id_param <- function(...) {
 
 allocation_id_param <- function(allocs) {
     # test case: allocs <- prep_dots(FW2347, funds(FW5737), "FS3737", paste0("S", "037398"))
-    if (length(allocs) <= 0L) return(NULL)
+    if (length(allocs) <= 0L) return(
+        widget_builder(
+            table = "f_allocation_mv",
+            id_field = "allocation_code",
+            id_type = "allocation_code"
+        )
+    )
     allocs <- lapply(allocs, lazyeval::as.lazy)
     allocs <- partial_sub(allocs)
 
