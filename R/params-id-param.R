@@ -13,6 +13,14 @@ entity_id_param <- function(...) {
     plain <- prep_integer_param(ents[literal])
     if (all(literal)) return(entities(plain))
 
+    entity_def <- vapply(
+        ents[!literal],
+        function(x) listbuilder::get_id_type(x) == "entity_id",
+        logical(1)
+    )
+    if (any(!entity_def))
+        stop("Expected entity IDs or definitions of type entity_id, but got something else")
+
     rest <- Reduce(`%or%`, ents[!literal])
     if (length(plain) > 0L) return(entities(plain) %or% rest)
     else return(rest)
