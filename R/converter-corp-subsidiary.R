@@ -1,3 +1,4 @@
+#' @rdname corp_hierarchy
 #' @export
 corp_subsidiary <- function(...) {
     ent_id <- entity_id_param(...)
