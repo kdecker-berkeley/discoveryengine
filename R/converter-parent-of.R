@@ -4,7 +4,7 @@
 #' "Mother" and "Father" for the definition of parent. For a more custom use of
 #' relationship codes, use \code{\link{related_to}}.
 #'
-#' @param savedlist A discoveryengine definition
+#' @param ... A discoveryengine definition of type \code{entity_id}, and/or individual entity ids
 #'
 #' @examples
 #' ## finding the children of wealthy parents
@@ -19,6 +19,6 @@ NULL
 
 #' @rdname parent_child
 #' @export
-parent_of <- function(savedlist) {
-    related_to_(savedlist, c("SF", "SM", "DF", "DM"))
+parent_of <- function(...) {
+    related_to_(entity_id_param(...), c("SF", "SM", "DF", "DM"))
 }

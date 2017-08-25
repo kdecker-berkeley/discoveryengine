@@ -4,10 +4,10 @@
 \alias{household}
 \title{Household a list of entities}
 \usage{
-household(savedlist)
+household(...)
 }
 \arguments{
-\item{savedlist}{an existing discoveryengine definition}
+\item{...}{one or more existing discoveryengine definition(s), and/or individual entity id(s)}
 }
 \description{
 The \code{\link{display}} function has a built-in option to household, so

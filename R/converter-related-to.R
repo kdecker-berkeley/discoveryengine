@@ -18,9 +18,9 @@ related_to_ <- function(savedlist, relation_type) {
 #' Many relationship types in CADS have multiple codes, to represent each side
 #' of the relationship type. For instance, "Mother" is encoded by both "SM"
 #' (presumably for "Son-Mother") and "DM" ("Daughter-Mother"). This can lead to
-#' confusion and frustration. We are looking for better ways to work with
-#' relationships, but are constrained by how data exists in \code{CADS}. Make
-#' sure to check TMS code tables to get all of the correct codes.
+#' confusion and frustration, so be sure that you're including all relevant codes.
+#' You can do so by using synonym lookup or just using synonyms in your definition
+#' (see examples).
 #'
 #' @param savedlist A discoveryengine definition
 #' @param ... Relationship type codes (\code{relation_type_code}). Leave empty
@@ -36,7 +36,7 @@ related_to_ <- function(savedlist, relation_type) {
 #' founder = has_affiliation(founders_pledge)
 #'
 #' ## brother and sister each have two different codes (see details above)
-#' founder_sibling = related_to(founder, SB, BS, SS, BB)
+#' founder_sibling = related_to(founder, brother, sister)
 #' display(founder_sibling)
 #'
 #' @export

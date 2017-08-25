@@ -8,7 +8,7 @@
 #' after the `household` command (see examples).
 #'
 #'
-#' @param savedlist an existing discoveryengine definition
+#' @param ... one or more existing discoveryengine definition(s), and/or individual entity id(s)
 #'
 #' @examples
 #' is_wealthy = has_capacity(1:7)
@@ -21,9 +21,11 @@
 #' household(is_wealthy %or% lives_in_msa(san_francisco))
 #'
 #' @export
-household <- function(savedlist) {
-    stopifnot(listbuilder::get_id_type(savedlist) == "entity_id")
+household <- function(...) {
+    reroute(household_(entity_id_param(...)))
+}
 
+household_ <- function(savedlist) {
     converter_builder(savedlist,
                       table = "d_entity_mv",
                       from = "entity_id",

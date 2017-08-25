@@ -1,5 +1,5 @@
 #' @rdname parent_child
 #' @export
-child_of <- function(savedlist) {
-    related_to_(savedlist, c("MS", "FD", "MD", "FS"))
+child_of <- function(...) {
+    related_to_(entity_id_param(...), c("MS", "FD", "MD", "FS"))
 }

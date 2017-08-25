@@ -6,12 +6,12 @@
 \alias{parent_of}
 \title{The parent or child of a person}
 \usage{
-child_of(savedlist)
+child_of(...)
 
-parent_of(savedlist)
+parent_of(...)
 }
 \arguments{
-\item{savedlist}{A discoveryengine definition}
+\item{...}{A discoveryengine definition of type \code{entity_id}, and/or individual entity ids}
 }
 \description{
 This uses just "Son" and "Daughter" for the definition of child, and just
