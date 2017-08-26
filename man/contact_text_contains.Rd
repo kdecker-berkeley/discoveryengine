@@ -35,5 +35,5 @@ contact_text_contains("neuro*", "brains")
 
 }
 \seealso{
-\code{\link{contacted_entity_of}}
+\code{\link{contacted_entity_of}}, \code{\link{contact_reports}}
 }

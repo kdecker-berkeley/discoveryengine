@@ -22,3 +22,6 @@ neuro_contact = contact_text_contains("neuroscience")
 contacted_entity_of(neuro_contact)
 
 }
+\seealso{
+\code{\link{contact_reports}}, \code{\link{contact_text_contains}}
+}

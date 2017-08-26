@@ -24,7 +24,7 @@
 #' ## contact reports containing any one of the search terms
 #' contact_text_contains("neuro*", "brains")
 #'
-#' @seealso \code{\link{contacted_entity_of}}
+#' @seealso \code{\link{contacted_entity_of}}, \code{\link{contact_reports}}
 #'
 #' @export
 contact_text_contains <- function(...)

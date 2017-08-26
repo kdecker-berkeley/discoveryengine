@@ -13,6 +13,7 @@
 #' ## and the respective contacted entities
 #' contacted_entity_of(neuro_contact)
 #'
+#' @seealso \code{\link{contact_reports}}, \code{\link{contact_text_contains}}
 #' @export
 contacted_entity_of <- function(savedlist) {
     is_contact_entity <-

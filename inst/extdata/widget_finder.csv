@@ -61,3 +61,8 @@ age_between,Find entities based on age,entity_id,first-order,"age, young, old, b
 corp_parent,Find parent corporations for given corporate IDs,entity_id,second-order,"employment, work, job, corporate, corporation, hierarchy"
 corp_subsidiary,Find subsidiary corporations for given corporate IDs,entity_id,second-order,"employment, work, job, corporate, corporation, hierarchy"
 works_at,Find entities who work at a particular employer(s),entity_id,second-order,"employment, work, job, business, employer"
+contact_date,Find contact reports filed within a given date range,contact_report_id,first-order,"contact report, contact, visit, call, date, contact date"
+contact_type,"Find specific types of contact reports (visit, phone call, etc)",contact_report_id,first-order,"contact report, contact, visit, call, type, contact type"
+contact_outcome,Find contact reports with specific outcomes,contact_report_id,first-order,"contact report, contact, visit, call, outcome, contact_outcome"
+contact_type,"Find specific types of contact reports (visit, phone call, etc)",contact_report_id,first-order,"contact report, contact, visit, call, type, contact type"
+contact_purpose,Find contact reports with specific purposes,contact_report_id,first-order,"contact report, contact, visit, call, purpose, contact purpose"
