@@ -1,3 +1,6 @@
+# discoveryengine 0.1.12
+Showing all changes since version 0.1.8
+
 ### new widgets
 * `lives_in_foreign_country` and `works_in_foreign_country` for international prospecting (# 35, thanks to BC) 
 * `has_engineering_score` for the new engineering model (thanks to LC). 
@@ -6,15 +9,21 @@
 * `age_between` (see #39, thanks to LC)
 * `works_at` (see #40, thanks to BC)
 * `corp_parent` and `corp_subsidiary`, (also related to #40)
+* `contact_date` (thanks to ML)
+* `contact_purpose`, `contact_outcome`, and `contact_type`: in all, we now have a full suite of contact report widgets: those three, plus `contact_date`, `contact_unit`, and `contact_text_contains`. And `contacted_entity_of` to get back to individual entities.
 
 ### features
 * `display` method for `listbuilder::report`s. This allows PD to easily extend the disco engine with custom reporting, for example see `discoappend` (https://github.com/cwolfsonseeley/discoappend/).
+* `matrix_bot` now looks at even more areas! Awards, occupation, industry, 
+philanthropic affinities, and events were added to `matrix_bot`. This makes the bot slower, but more powerful. We'll continue to look for ways to speed it up.
 
 ### bugfixes and or implementation changes
 * `household` now uses the `household_entity_id` rather than `hh_corp_entity_id` #34 (thanks to AM for noticing the problem)
 * `matrix_bot` was not returning any results, thanks to DT for catching the error
 * address-based widgets (like `lives_in_*` and `works_in_*`) changed their default behavior. For example, it used to be that `lives_in_msa` when used without any arguments would pull anyone with a home address, but now it will only pull anyone with a home address that has an MSA. 
 * updated to keep pace with the new `dplyr` setup, specifically updated functions to rely on exports from `dbplyr` instead of `dplyr`. 
+* Most higher-order widgets can now accept plain IDs as input (for example: `gave_to_fund(FW6644000))`. They still accept definitions, so all code written 
+in earlier versions will continue to work, this just adds flexibility,
 
 # discoveryengine 0.1.8
 Showing all changes since version 0.1.6:
@@ -38,7 +47,7 @@ Showing all changes since version 0.1.6:
 
 ### bug-fixes and/or changes in implementation
 * fixed two bugs in `in_suspect_pool`: was not creating the correct definition in general, also failed when used without arguments (now default is to pull anyone in any suspect pool)
-* Fixed bug in `works_in_industry` and `has_occupation` where defaults (ie using without arguments) caused ` invalid relational operator` errors
+* Fixed bug in `works_in_industry` and `has_occupation` where defaults (ie using without arguments) caused `invalid relational operator` errors
 * Synonym tables are now created on-the-fly. This means that they will always reflect the current status of the TMS tables, but also that specific synonyms may change unexpectedly (when AIM changes TMS descriptions). There are still hard-coded synonyms for common uses (eg: "business" or "natural_resources")
 
 # discoveryengine 0.1.6
