@@ -84,6 +84,74 @@ count (distinct tags.entity_id) over (partition by sport_code) as tag_cnt,
 count(distinct tags.entity_id) over () as total
 from cdw.d_bio_sport_mv tags
 left join savedlist on tags.entity_id = savedlist.entity_id
+),
+
+phil_affin as (
+select distinct
+'has_philanthropic_affinity' as widget,
+other_affinity_type as code,
+other_affinity_type_desc as description,
+count (distinct savedlist.entity_id) over (partition by other_affinity_type) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by other_affinity_type) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from cdw.d_oth_phil_affinity_mv tags
+left join savedlist on tags.entity_id = savedlist.entity_id
+),
+
+industry as (
+select distinct
+'works_in_industry' as widget,
+sic_code as code,
+sic_code_desc as description,
+count (distinct savedlist.entity_id) over (partition by sic_code) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by sic_code) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from cdw.d_bio_employment_mv tags
+left join savedlist on tags.entity_id = savedlist.entity_id
+where sic_code is not null
+),
+
+occupation as (
+select distinct
+'has_occupation' as widget,
+fld_of_spec_code1 as code,
+fld_of_spec_1_desc as description,
+count (distinct savedlist.entity_id) over (partition by fld_of_spec_code1) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by fld_of_spec_code1) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from cdw.d_bio_employment_mv tags
+left join savedlist on tags.entity_id = savedlist.entity_id
+where trim(fld_of_spec_code1) is not null
+),
+
+event as (
+select distinct
+'attended_event' as widget,
+activity_code as code,
+activity_desc as description,
+count (distinct savedlist.entity_id) over (partition by activity_code) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by activity_code) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from cdw.d_bio_activity_mv tags
+left join savedlist on tags.entity_id = savedlist.entity_id
+where activity_participation_code IN ('P', 'ST', 'SP', 'V', 'H', 'S', 'C', 'KN', 'MD', 'E')
+),
+
+award as (
+select distinct
+'received_award' as widget,
+awd_honor_code as code,
+awd_honor_desc as description,
+count (distinct savedlist.entity_id) over (partition by awd_honor_code) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by awd_honor_code) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from cdw.d_bio_awards_and_honors_mv tags
+left join savedlist on tags.entity_id = savedlist.entity_id
 )
 
 select * from sa where overlap >= ##MIN_CUTOFF##
@@ -97,6 +165,16 @@ union
 select * from interest where overlap >= ##MIN_CUTOFF##
 union
 select * from sport where overlap >= ##MIN_CUTOFF##
+union
+select * from phil_affin where overlap >= ##MIN_CUTOFF##
+union
+select * from industry where overlap >= ##MIN_CUTOFF##
+union
+select * from occupation where overlap >= ##MIN_CUTOFF##
+union
+select * from event where overlap >= ##MIN_CUTOFF##
+union
+select * from award where overlap >= ##MIN_CUTOFF##
 ")
 
 matrix_bot_query <- function(sl)
