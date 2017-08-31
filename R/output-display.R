@@ -53,10 +53,6 @@ display.report <- function(report, ...,
                        include_deceased, household)
 
     res <- get_cdw(spec, ...)
-
-    column_formats <- attr(report, "column_formats")
-    res <- reformat_columns(res, column_formats)
-
     if (is.null(file)) return(res)
 
     assertthat::assert_that(assertthat::is.string(file))

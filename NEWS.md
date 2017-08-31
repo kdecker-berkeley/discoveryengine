@@ -1,5 +1,3 @@
-* can now add column formatting instructions to reports
-
 # discoveryengine 0.1.12
 Showing all changes since version 0.1.8
 
