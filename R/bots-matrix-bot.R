@@ -152,6 +152,20 @@ count (distinct tags.entity_id) over (partition by awd_honor_code) as tag_cnt,
 count(distinct tags.entity_id) over () as total
 from cdw.d_bio_awards_and_honors_mv tags
 left join savedlist on tags.entity_id = savedlist.entity_id
+),
+
+philaffin as (
+select distinct
+'has_philanthropic_interest' as widget,
+affinity_type as code,
+affinity_type_desc as description,
+count (distinct savedlist.entity_id) over (partition by affinity_type) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by affinity_type) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from cdw.d_philanthropic_interest_mv tags
+left join savedlist on tags.entity_id = savedlist.entity_id
+where stop_date is null
 )
 
 select * from sa where overlap >= ##MIN_CUTOFF##
@@ -175,6 +189,8 @@ union
 select * from event where overlap >= ##MIN_CUTOFF##
 union
 select * from award where overlap >= ##MIN_CUTOFF##
+union
+select * from philaffin where overlap >= ##MIN_CUTOFF##
 ")
 
 matrix_bot_query <- function(sl)

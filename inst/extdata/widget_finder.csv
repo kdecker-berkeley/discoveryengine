@@ -66,3 +66,4 @@ contact_type,"Find specific types of contact reports (visit, phone call, etc)",c
 contact_outcome,Find contact reports with specific outcomes,contact_report_id,first-order,"contact report, contact, visit, call, outcome, contact_outcome"
 contact_type,"Find specific types of contact reports (visit, phone call, etc)",contact_report_id,first-order,"contact report, contact, visit, call, type, contact type"
 contact_purpose,Find contact reports with specific purposes,contact_report_id,first-order,"contact report, contact, visit, call, purpose, contact purpose"
+has_philanthropic_interest,Lists entities with philanthropic interest(s),entity_id,first-order,"philanthropic interest, giving, affinity, philanthropy, outside, campaign"
