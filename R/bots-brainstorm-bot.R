@@ -50,11 +50,7 @@ widget2cdw <- function() {
 #'
 #' @export
 brainstorm_bot <- function(...) {
-    brainstorm_bot_(prep_dots(...))
-}
-
-brainstorm_bot_ <- function(search_terms) {
-    search_terms <- partial_sub(search_terms)
+    search_terms <- as.character(unlist(list(...)))
 
     processed_search_string <- make_regex(search_terms)
     all_codes <- getcdw::find_codes()

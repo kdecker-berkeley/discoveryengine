@@ -31,10 +31,7 @@
 #'
 #' @export
 job_title_like <- function(..., include_former = FALSE) {
-    reroute(job_title_like_(prep_dots(...), include_former = include_former))
-}
-
-job_title_like_ <- function(search_terms, include_former = FALSE) {
+    search_terms <- as.character(unlist(list(...)))
     if (include_former) my_switch <- NULL
     else my_switch <- string_switch("job_status_code", "C")
 

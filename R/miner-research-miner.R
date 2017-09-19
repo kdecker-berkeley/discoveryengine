@@ -23,10 +23,7 @@
 #'
 #' @export
 research_miner <- function(...) {
-    reroute(research_miner_(prep_dots(...)))
-}
-
-research_miner_ <- function(search_terms) {
+    search_terms <- as.character(unlist(list(...)))
     finder_builder(
         table = "f_notes_mv",
         id_field = "entity_id",

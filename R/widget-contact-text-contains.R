@@ -27,10 +27,8 @@
 #' @seealso \code{\link{contacted_entity_of}}, \code{\link{contact_reports}}
 #'
 #' @export
-contact_text_contains <- function(...)
-    contact_text_contains_(prep_dots(...))
-
-contact_text_contains_ <- function(search_terms) {
+contact_text_contains <- function(...) {
+    search_terms <- as.character(unlist(list(...)))
     finder_builder(
         table = "f_contact_reports_mv",
         id_field = "report_id",

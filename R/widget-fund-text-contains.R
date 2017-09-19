@@ -30,10 +30,8 @@
 #'
 #' @seealso \code{\link{gave_to_fund}}
 #' @export
-fund_text_contains <- function(...)
-    fund_text_contains_(prep_dots(...))
-
-fund_text_contains_ <- function(search_terms) {
+fund_text_contains <- function(...) {
+    search_terms <- as.character(unlist(list(...)))
     has_in_name <- finder_builder(
         table = "f_allocation_mv",
         id_field = "allocation_code",
