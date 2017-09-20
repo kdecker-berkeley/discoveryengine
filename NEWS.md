@@ -5,7 +5,15 @@
 
 ### features
 * the following widgets now have an optional `comment` argument enabling text 
-search within the comment field. For example, `has_interest(health, comment = "cancer")` (#42, thanks to ML)
+search within the comment field (for example, `has_interest(health, comment = "cancer")`. #42, thanks to ML):
+    - `attended_event`
+    - `has_affiliation`
+    - `has_interest`
+    - `has_philanthropic_affinity`
+    - `has_philanthropic_interest`
+    - `on_committee`
+    - `rated_by`
+    - `received_award`
 
 # discoveryengine 0.1.12
 Showing all changes since version 0.1.8
