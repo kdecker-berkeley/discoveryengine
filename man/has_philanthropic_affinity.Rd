@@ -4,12 +4,15 @@
 \alias{has_philanthropic_affinity}
 \title{Philanthropic affinity widget}
 \usage{
-has_philanthropic_affinity(..., at_least = 0)
+has_philanthropic_affinity(..., at_least = 0, comment = NULL)
 }
 \arguments{
 \item{...}{Philanthropic affinity type code(s)}
 
 \item{at_least}{Minimum total giving to the selected philanthropic affinity type(s)}
+
+\item{comment}{(Optional) Supply one or more search terms to search through
+the comment field}
 }
 \value{
 A definition of type \code{entity_id}

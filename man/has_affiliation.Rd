@@ -4,12 +4,15 @@
 \alias{has_affiliation}
 \title{Affiliation widget}
 \usage{
-has_affiliation(..., include_former = TRUE)
+has_affiliation(..., include_former = TRUE, comment = NULL)
 }
 \arguments{
 \item{...}{affiliation code(s)}
 
 \item{include_former}{TRUE/FALSE should include former affiliations? Defaults to TRUE}
+
+\item{comment}{(Optional) Supply one or more search terms to search through
+the comment field}
 }
 \value{
 A definition of type \code{entity_id}

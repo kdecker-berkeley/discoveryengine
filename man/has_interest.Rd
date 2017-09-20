@@ -4,13 +4,16 @@
 \alias{has_interest}
 \title{Interest code widget}
 \usage{
-has_interest(..., include_former = TRUE)
+has_interest(..., include_former = TRUE, comment = NULL)
 }
 \arguments{
 \item{...}{Interest code(s)}
 
 \item{include_former}{If TRUE (default), will include all interest codes,
 even if they have a stop date. If FALSE, will exclude codes with a stop date.}
+
+\item{comment}{(Optional) Supply one or more search terms to search through
+the comment fields of the interest area}
 }
 \value{
 A definition of type \code{entity_id}
@@ -25,7 +28,8 @@ code.
 \examples{
 has_interest(data_science)
 
-## same as
-has_interest(DAT)
+## prospects for cancer research can be interest coded with "cancer"
+## or with the more general "health"
+has_interest(cancer) \%or\% has_interest(health, comment = "cancer")
 
 }

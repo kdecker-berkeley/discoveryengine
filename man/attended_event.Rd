@@ -4,13 +4,16 @@
 \alias{attended_event}
 \title{Event attendance widget}
 \usage{
-attended_event(..., include_non_attendees = FALSE)
+attended_event(..., include_non_attendees = FALSE, comment = NULL)
 }
 \arguments{
 \item{...}{event codes}
 
 \item{include_non_attendees}{do you want to include people who were invited,
 but did not attend (regrets, no-show, invited but did not attend) defaults to FALSE}
+
+\item{comment}{(Optional) Supply one or more search terms to search through
+the comment field}
 }
 \value{
 A discoveryengine list definition of type \code{entity_id}

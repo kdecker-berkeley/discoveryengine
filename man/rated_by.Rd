@@ -4,7 +4,8 @@
 \alias{rated_by}
 \title{Search by capacity rating researcher(s) and/or date(s)}
 \usage{
-rated_by(..., from = NULL, to = NULL, include_inactive = FALSE)
+rated_by(..., from = NULL, to = NULL, include_inactive = FALSE,
+  comment = NULL)
 }
 \arguments{
 \item{...}{(optional) One or more entity IDs of researcher(s). If no
@@ -17,6 +18,9 @@ researchers are entered, then the widget will look for anyone who was rated
 
 \item{include_inactive}{TRUE or FALSE: Should widget look through just active ratings (FALSE),
 or all ratings (TRUE)?}
+
+\item{comment}{(Optional) Supply one or more search terms to search through
+the comment field}
 }
 \value{
 A definition of type \code{entity_id}

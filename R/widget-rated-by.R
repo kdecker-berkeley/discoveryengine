@@ -15,6 +15,8 @@
 #' @param to (optional) date, Enter as an integer of the form YYYYMMDD
 #' @param include_inactive TRUE or FALSE: Should widget look through just active ratings (FALSE),
 #' or all ratings (TRUE)?
+#' @param comment (Optional) Supply one or more search terms to search through
+#' the comment field
 #'
 #' @examples
 #' ## find anyone ever rated by Lucila
@@ -31,14 +33,16 @@
 #' rated_by(3221525, 923406, to = 20160630, include_inactive = TRUE)
 #'
 #' @export
-rated_by <- function(..., from = NULL, to = NULL, include_inactive = FALSE) {
+rated_by <- function(..., from = NULL, to = NULL, include_inactive = FALSE, comment = NULL) {
     researchers <- prep_integer_param(...)
     reroute(rated_by_(researchers,
                       from = from, to = to,
-                      include_inactive = include_inactive))
+                      include_inactive = include_inactive,
+                      comment = comment))
 }
 
-rated_by_ <- function(researchers, from = NULL, to = NULL, include_inactive = FALSE) {
+rated_by_ <- function(researchers, from = NULL, to = NULL,
+                      include_inactive = FALSE, comment = NULL) {
     if (include_inactive)
         active_flag <- c("Y", "N")
     else active_flag <- "Y"
@@ -51,7 +55,8 @@ rated_by_ <- function(researchers, from = NULL, to = NULL, include_inactive = FA
         switches = list(
             daterange("evaluation_date", from, to),
             string_switch("evaluation_type", c("CI", "CC", "CM")),
-            string_switch("active_ind", active_flag)
+            string_switch("active_ind", active_flag),
+            regex_switch("xcomment", comment)
         )
     )
 }

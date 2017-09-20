@@ -4,12 +4,15 @@
 \alias{on_committee}
 \title{Committee participation widget}
 \usage{
-on_committee(..., include_former = TRUE)
+on_committee(..., include_former = TRUE, comment = NULL)
 }
 \arguments{
 \item{...}{Committee code(s)}
 
 \item{include_former}{Should former committee memberships be included (TRUE), or just current ones (FALSE)? Defaults to TRUE}
+
+\item{comment}{(Optional) Supply one or more search terms to search through
+the comment field}
 }
 \value{
 A definition of type \code{entity_id}

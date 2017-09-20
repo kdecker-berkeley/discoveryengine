@@ -11,6 +11,8 @@
 #'
 #' @param ... Philanthropic affinity type code(s)
 #' @param at_least Minimum total giving to the selected philanthropic affinity type(s)
+#' @param comment (Optional) Supply one or more search terms to search through
+#' the comment field
 #'
 #' @examples
 #' has_philanthropic_affinity(health_medicine)
@@ -20,17 +22,18 @@
 #' has_philanthropic_affinity(human_rights, social_welfare, at_least = 10000)
 #'
 #' @export
-has_philanthropic_affinity <- function(..., at_least = 0) {
+has_philanthropic_affinity <- function(..., at_least = 0, comment = NULL) {
     types <- prep_dots(...)
-    reroute(has_philanthropic_affinity_(types, at_least))
+    reroute(has_philanthropic_affinity_(types, at_least, comment = comment))
 }
 
-has_philanthropic_affinity_ <- function(types, at_least = 0) {
+has_philanthropic_affinity_ <- function(types, at_least = 0, comment = NULL) {
     widget_builder(
         table = "d_oth_phil_affinity_mv",
         id_field = "entity_id",
         id_type = "entity_id",
         parameter = string_param("other_affinity_type", types),
+        switches = regex_switch("xcomment", comment),
         aggregate_switches = sum_switch("gift_amt", at_least)
     )
 }
