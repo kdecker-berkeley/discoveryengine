@@ -1,3 +1,12 @@
+# discoveryengine 0.1.13
+
+### new widgets
+* `has_philanthropic_interest` (#43, thanks to LC, AM, and ML)
+
+### features
+* the following widgets now have an optional `comment` argument enabling text 
+search within the comment field. For example, `has_interest(health, comment = "cancer")` (#42, thanks to ML)
+
 # discoveryengine 0.1.12
 Showing all changes since version 0.1.8
 
