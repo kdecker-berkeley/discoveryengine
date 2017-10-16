@@ -19,6 +19,9 @@
 #' ## find everyone within 10 miles of campus
 #' lives_near("UC Berkeley", miles = 10)
 #'
+#' ## can always use exact addresses
+#' lives_near("1995 University Ave., Berkeley, CA 94720", miles = 15.5)
+#'
 #' ## if you already know the lat/long, you can enter them directly:
 #' works_near(lat = 37.87238, lon = -122.2542, miles = 10)
 #'
