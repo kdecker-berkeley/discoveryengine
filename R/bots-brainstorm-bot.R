@@ -87,11 +87,11 @@ brainstorm_bot <- function(...) {
         do.call(fun, list(df[["code"]])),
         names(bigmap), bigmap)
 
-    lb <- lblist[[1]]
-    lb <- Reduce(`%or%`, lblist[-1], init = lb)
+
+    lb <- Reduce(`%or%`, lblist)
     structure(lb,
               brainstorm_results = bigmap,
-              class = c("brainstorm", "listbuilder", class(bigmap)))
+              class = c("brainstorm", class(lb)))
 }
 
 tms2cdw <- function(tms_views) {
