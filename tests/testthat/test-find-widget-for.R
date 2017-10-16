@@ -48,4 +48,9 @@ test_that("all widgets are represented in widget registry", {
     ne_msg <- paste("some widgets in the registry don't exist: ",
                     paste(not_existing, collapse = ", "), sep = "")
     expect(length(not_existing) == 0L, ne_msg)
+
+    dupes <- registered_widgets[duplicated(registered_widgets)]
+    dupe_msg <- paste("these widgets appeared twice in the registry: ",
+                      paste(dupes, collapse = ", "), sep = "")
+    expect(length(dupes) == 0L, dupe_msg)
 })
