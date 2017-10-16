@@ -1,3 +1,9 @@
+# discoveryengine 0.1.14
+
+### bugfixes and or implementation changes
+* some `brainstorm_bot` results were not able to be translated to SQL, breaking the usual ability to use the results in larger expressions. That issue has been fixed. See issue #46. 
+* some clearer documentation and help. see #44 and #45, thanks to AM and ML
+
 # discoveryengine 0.1.13
 
 ### new widgets
