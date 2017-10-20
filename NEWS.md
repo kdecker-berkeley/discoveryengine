@@ -1,3 +1,7 @@
+# discoveryengine 0.1.15
+
+* added date-range option to `attended_event`, see #47 (thanks to ML).
+
 # discoveryengine 0.1.14
 
 ### bugfixes and or implementation changes
