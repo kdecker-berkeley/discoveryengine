@@ -4,10 +4,15 @@
 \alias{attended_event}
 \title{Event attendance widget}
 \usage{
-attended_event(..., include_non_attendees = FALSE, comment = NULL)
+attended_event(..., from = NULL, to = NULL, include_non_attendees = FALSE,
+  comment = NULL)
 }
 \arguments{
 \item{...}{event codes}
+
+\item{from}{begin and end dates (attended event between those dates). Enter as an integer of the form YYYYMMDD}
+
+\item{to}{begin and end dates (attended event between those dates). Enter as an integer of the form YYYYMMDD}
 
 \item{include_non_attendees}{do you want to include people who were invited,
 but did not attend (regrets, no-show, invited but did not attend) defaults to FALSE}

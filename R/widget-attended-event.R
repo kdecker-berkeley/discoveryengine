@@ -11,6 +11,8 @@
 #'
 #'
 #' @param ... event codes
+#' @param from begin and end dates (attended event between those dates). Enter as an integer of the form YYYYMMDD
+#' @param to begin and end dates (attended event between those dates). Enter as an integer of the form YYYYMMDD
 #' @param include_non_attendees do you want to include people who were invited,
 #' but did not attend (regrets, no-show, invited but did not attend) defaults to FALSE
 #' @param comment (Optional) Supply one or more search terms to search through
@@ -20,12 +22,16 @@
 #' attended_event(3965, 1263)
 #'
 #' @export
-attended_event <- function(..., include_non_attendees = FALSE, comment = NULL) {
+attended_event <- function(..., from = NULL, to = NULL,
+                           include_non_attendees = FALSE, comment = NULL) {
     events = prep_dots(...)
-    reroute(attended_event_(events, include_non_attendees, comment = comment))
+    reroute(attended_event_(events, from = from, to = to,
+                            include_non_attendees = include_non_attendees,
+                            comment = comment))
 }
 
-attended_event_ <- function(events, include_non_attendees = FALSE, comment = NULL) {
+attended_event_ <- function(events, from = NULL, to = NULL,
+                            include_non_attendees = FALSE, comment = NULL) {
     participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E")
     if (include_non_attendees)
         participation <- c(participation, "ID", "RG", "NS")
@@ -34,6 +40,7 @@ attended_event_ <- function(events, include_non_attendees = FALSE, comment = NUL
                   parameter = string_param("activity_code", events),
                   switches = list(
                       string_switch("activity_participation_code", participation),
+                      daterange("start_dt", from = from, to = to),
                       regex_switch("xcomment", comment)
                   ))
 }
