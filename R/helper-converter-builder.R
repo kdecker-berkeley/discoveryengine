@@ -4,7 +4,8 @@ converter_builder <- function(lb, table,
                               parameter = NULL,
                               aggregate_parameter = NULL,
                               switches = NULL,
-                              aggregate_switches = NULL) {
+                              aggregate_switches = NULL,
+                              schema = "CDW") {
 
     if (is.null(from_type)) from_type <- from
     if (is.null(to_type)) to_type <- to
@@ -22,5 +23,5 @@ converter_builder <- function(lb, table,
                         id_type = to_type,
                         where = logic$where,
                         having = logic$having,
-                        schema = "CDW")
+                        schema = schema)
 }
