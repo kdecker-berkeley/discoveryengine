@@ -24,6 +24,30 @@ widget2cdw <- function() {
                  order = Order)
 }
 
+every_code <- function() {
+    cdw_tms <- getcdw::find_codes()
+    fec_cmte <- getcdw::get_cdw(
+        "select
+            cmte_id as code,
+            cmte_nm as description,
+            'FEC Committees' as table_name,
+            'fec_cmte_id' as view_name
+        from rdata.fec_committees
+        "
+    )
+    fec_cand <- getcdw::get_cdw(
+        "select
+            cand_id as code,
+            cand_name as description,
+            'FEC Candidates' as table_name,
+            'fec_cand_id' as view_name
+        from rdata.fec_candidates
+        "
+    )
+    res <- dplyr::union(cdw_tms, fec_cmte)
+    dplyr::union(res, fec_cand)
+}
+
 
 #' Suggest widgets and codes based on search terms
 #'
@@ -53,7 +77,7 @@ brainstorm_bot <- function(...) {
     search_terms <- as.character(unlist(list(...)))
 
     processed_search_string <- make_regex(search_terms)
-    all_codes <- getcdw::find_codes()
+    all_codes <- every_code()
     codes <- dplyr::filter(all_codes,
                            stringr::str_detect(description,
                                                stringr::regex(processed_search_string,

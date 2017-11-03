@@ -13,6 +13,21 @@ synonyms_for <- function(type) {
                 lower(regexp_replace(regexp_replace(trim(geo_code_description), '([^A-Za-z0-9 //_-])', ''), '((( )+)|-|(\\/))+', '_')) as syn
             from cdw.d_geo_metro_area_mv where geo_type = 1"
             syn_df <- getcdw::get_cdw(qry)
+        } else if (tms == "fec_cmte_id") {
+            qry <- "
+            select distinct
+                cmte_id as code,
+                lower(regexp_replace(regexp_replace(trim(cmte_nm), '([^A-Za-z0-9 //_-])', ''), '((( )+)|-|(\\/))+', '_')) as syn
+            from rdata.fec_committees"
+            syn_df <- getcdw::get_cdw(qry)
+        } else if (tms == "fec_cand_id") {
+            qry <- "
+            select distinct
+                cand_id as code,
+                lower(regexp_replace(regexp_replace(trim(cand_name), '([^A-Za-z0-9 //_-])', ''), '((( )+)|-|(\\/))+', '_')) as syn
+            from rdata.fec_candidates
+            "
+            syn_df <- getcdw::get_cdw(qry)
         } else {
             qry <-
                 "select distinct
