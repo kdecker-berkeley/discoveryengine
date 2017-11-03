@@ -1,3 +1,5 @@
+* added FEC widgets: `fec_gave_to_candidate` and `fec_gave_to_committee`
+
 # discoveryengine 0.1.15
 
 * added date-range option to `attended_event`, see #47 (thanks to ML).
