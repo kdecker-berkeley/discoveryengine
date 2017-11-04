@@ -1,4 +1,4 @@
-* added FEC widgets: `fec_gave_to_candidate` and `fec_gave_to_committee`
+* added FEC widgets: `fec_gave_to_candidate`, `fec_gave_to_committee`, and `fec_gave_to_category`
 
 # discoveryengine 0.1.15
 

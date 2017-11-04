@@ -68,3 +68,4 @@ contact_purpose,Find contact reports with specific purposes,contact_report_id,fi
 has_philanthropic_interest,Lists entities with philanthropic interest(s),entity_id,first-order,"philanthropic interest, giving, affinity, philanthropy, outside, campaign"
 fec_gave_to_committee,Find entities who gave to a particular political committee in a federal election,entity_id,first-order,"fec, politics, political, federal election, campaign"
 fec_gave_to_candidate,"Find entities who gave to a particular candidate (for House, Senate, or President) in a federal election",entity_id,first-order,"fec, politics, political, federal election, campaign"
+fec_gave_to_category,"Find entities who gave to a committee category, as categorized by the Center for Responsive Politics",entity_id,first-order,"fec, politics, political, federal election, campaign"

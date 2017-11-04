@@ -3,9 +3,9 @@
 #' Find entities who have disclosed political contributions in a federal election.
 #' Data is based on a match of CADS entities to FEC disclosures.
 #'
-#' @return A definitio of type \code{entity_id}
+#' @return A definition of type \code{entity_id}
 #'
-#' @param ... FEC Candidate or Committee code(s)
+#' @param ... FEC Candidate, Committee, or Category code(s)
 #' @param at_least Minimum of total contributions
 #' @param from begin and end dates (contributed between those dates). Enter as integer of the form YYYYMMDD
 #' @param to begin and end dates (contributed between those dates). Enter as integer of the form YYYYMMDD
@@ -19,9 +19,6 @@
 #' example a search for contributors to Kamala Harris's senate campaign will
 #' include in the results any contributors to the committee "Off the Sidelines Senate 2016",
 #' which, in addition to Kamala Harris, also supported Tammy Duckworth and Catherine Masto.
-#' Furthermore, some political donors will give to a PAC that then turns around and
-#' gives to a different committee, and somewhere down the line they support a political
-#' candidate. These donors may not be found when searching using \code{fec_gave_to_candidate}.
 #'
 #' @name fec
 #' @export

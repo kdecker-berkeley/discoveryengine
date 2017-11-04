@@ -28,6 +28,14 @@ synonyms_for <- function(type) {
             from rdata.fec_candidates
             "
             syn_df <- getcdw::get_cdw(qry)
+        } else if (tms == "fec_cmte_code") {
+            qry <- "
+            select distinct
+                cmte_code as code,
+                lower(regexp_replace(regexp_replace(trim(catname), '([^A-Za-z0-9 //_-])', ''), '((( )+)|-|(\\/))+', '_')) as syn
+            from rdata.fec_cmte_category
+            "
+            syn_df <- getcdw::get_cdw(qry)
         } else {
             qry <-
                 "select distinct

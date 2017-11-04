@@ -589,3 +589,4 @@ F_CONTACT_REPORTS_MV,CONTACT_OUTCOME_CD,tms_contact_outcome
 D_PHILANTHROPIC_INTEREST_MV,affinity_type,tms_affinity_type
 FEC,cmte_id,fec_cmte_id
 FEC_CCL,cand_id,fec_cand_id
+FEC_CMTE_CATEGORY,cmte_code,fec_cmte_code

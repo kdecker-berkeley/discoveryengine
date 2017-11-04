@@ -26,6 +26,7 @@ widget2cdw <- function() {
 
 every_code <- function() {
     cdw_tms <- getcdw::find_codes()
+
     fec_cmte <- getcdw::get_cdw(
         "select
             cmte_id as code,
@@ -35,6 +36,7 @@ every_code <- function() {
         from rdata.fec_committees
         "
     )
+
     fec_cand <- getcdw::get_cdw(
         "select
             cand_id as code,
@@ -44,8 +46,20 @@ every_code <- function() {
         from rdata.fec_candidates
         "
     )
+
+    fec_cmte_category <- getcdw::get_cdw(
+        "select
+            cmte_code as code,
+            catname as description,
+            'FEC Committee Categories' as table_name,
+            'fec_cmte_code' as view_name
+        from rdata.fec_cmte_category
+        "
+    )
+
     res <- dplyr::union(cdw_tms, fec_cmte)
-    dplyr::union(res, fec_cand)
+    res <- dplyr::union(res, fec_cand)
+    dplyr::union(res, fec_cmte_category)
 }
 
 
