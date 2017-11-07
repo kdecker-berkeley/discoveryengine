@@ -166,6 +166,21 @@ count(distinct tags.entity_id) over () as total
 from cdw.d_philanthropic_interest_mv tags
 left join savedlist on tags.entity_id = savedlist.entity_id
 where stop_date is null
+),
+
+fec_category as (
+select distinct
+'fec_gave_to_category' as widget,
+fec_cmte_category.cmte_code as code,
+fec_cmte_category.catname as description,
+count (distinct savedlist.entity_id) over (partition by fec_cmte_category.cmte_code) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by fec_cmte_category.cmte_code) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from rdata.fec tags
+    inner join rdata.fec_cmte_category on tags.cmte_id = fec_cmte_category.cmte_id
+    left join savedlist on tags.entity_id = savedlist.entity_id
+
 )
 
 select * from sa where overlap >= ##MIN_CUTOFF##
@@ -191,6 +206,8 @@ union
 select * from award where overlap >= ##MIN_CUTOFF##
 union
 select * from philaffin where overlap >= ##MIN_CUTOFF##
+union
+select * from fec_category where overlap >= ##MIN_CUTOFF##
 ")
 
 matrix_bot_query <- function(sl)
@@ -249,8 +266,7 @@ matrix_bot <- function(savedlist) {
         do.call(fun, list(df[["code"]])),
         names(bigmap), bigmap)
 
-    lb <- lblist[[1]]
-    lb <- Reduce(`%or%`, lblist[-1], init = lb)
+    lb <- Reduce(`%or%`, lblist)
     structure(lb,
               matrix_bot_results = bigmap,
               class = c("matrix_bot", "listbuilder", class(bigmap)))
