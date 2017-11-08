@@ -1,4 +1,7 @@
+# discoveryengine 0.1.16
+
 * added FEC widgets: `fec_gave_to_candidate`, `fec_gave_to_committee`, and `fec_gave_to_category`
+* The matrix bot now also includes fec candidates and categories in its results
 
 # discoveryengine 0.1.15
 
