@@ -98,4 +98,13 @@ test_that("allocation_id_param can accept inputs in multiple formats", {
         showme(allocation_id_param(prep_dots(temp))),
         df(allocation_code = "S546")
     )
+    allocs <- fund_text_contains("neuro*")
+    allocs <- prep_dots(allocs)
+
+    expect_is(allocation_id_param(allocs), "listbuilder")
+
+    allocs <- fund_text_contains("neuro*")
+    allocs <- prep_dots(allocs, FW773893)
+    expect_is(allocation_id_param(allocs), "listbuilder")
+
 })

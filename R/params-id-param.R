@@ -36,7 +36,9 @@ allocation_id_param <- function(allocs) {
         )
     )
     allocs <- lapply(allocs, lazyeval::as.lazy)
-    allocs <- partial_sub(allocs)
+    is_lb <- vapply(allocs, function(x) inherits(x$expr, "listbuilder"), FUN.VALUE = logical(1))
+
+    allocs <- c(lapply(allocs[is_lb], function(x) x$expr), partial_sub(allocs[!is_lb]))
 
     literal <- vapply(
         allocs,
