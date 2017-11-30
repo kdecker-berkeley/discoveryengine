@@ -9,17 +9,14 @@ test_that("has_affiliation meets specifications on standard input", {
     test %>% id_field_is("entity_id")
 
     test %>%
-        has_filters(affil_code = c("MB1", "XR2"),
-                    affil_status_code = c("C", "F"))
+        has_filters(affil_code = c("MB1", "XR2"))
 
-    test %>% has_clause_count(2)
+    test %>% has_clause_count(1)
 
 })
 
 test_that("has_affiliation meets specifications on no input", {
-    has_affiliation() %>%
-        has_filters(affil_status_code = c("C", "F"))
-    has_affiliation() %>% has_clause_count(1)
+    has_affiliation() %>% has_clause_count(0)
     has_affiliation(include_former = FALSE) %>%
-        has_filters(affil_status_code = "C")
+        has_filters(affil_status_code = c("A", "C", "T", "P"))
 })

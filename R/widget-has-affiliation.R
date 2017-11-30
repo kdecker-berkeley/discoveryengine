@@ -24,8 +24,8 @@ has_affiliation <- function(..., include_former = TRUE, comment = NULL) {
 }
 
 has_affiliation_ <- function(affiliations, include_former = TRUE, comment = NULL) {
-    if (include_former) status <- c("C", "F")
-    else status <- "C"
+    if (include_former) status <- NULL
+    else status <- c("A", "C", "T", "P")
     entity_widget("d_bio_affiliation_mv",
                   parameter = string_param("affil_code", affiliations),
                   switches = list(

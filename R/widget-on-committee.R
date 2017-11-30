@@ -28,8 +28,8 @@ on_committee <- function(..., include_former = TRUE, comment = NULL) {
 on_committee_ <- function(committees, include_former = TRUE, comment = NULL) {
     if (!is.logical(include_former))
         stop("include_former must be TRUE or FALSE")
-    if (include_former) status_code <- c("C", "F")
-    else status_code <- "C"
+    if (include_former) status_code <- NULL
+    else status_code <- c("C", "T")
 
     entity_widget("d_bio_committee_mv",
                   parameter = string_param("committee_code", committees),
