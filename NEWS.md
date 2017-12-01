@@ -1,3 +1,11 @@
+### new widgets
+* `contact_credit` (thanks to LC, see #48)
+* `has_degree` (thanks to IZ, see #51)
+
+### bugfixes or implmenetation changes
+* fixed a bug in the way that various forms of allocation code definitions were being processed, which occasionally led to errors when using widgets such as `gave_to_fund`. Now you can specify the arguments to `gave_to_fund` using the output of other widgets (such as `fund_text_contains`), literal allocation codes (e.g. `gave_to_fund(FW373737)`), character vectors of allocation codes (copied and pasted from `discovcr` or imported from a file), or any combination of these
+* fixed a bug whereby affiliations (and committees) with a status code other than Current (C) or Former (F) were being lost, thanks to LC for reporting. See #49
+
 # discoveryengine 0.1.16
 
 * added FEC widgets: `fec_gave_to_candidate`, `fec_gave_to_committee`, and `fec_gave_to_category`
