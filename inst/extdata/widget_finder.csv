@@ -69,3 +69,4 @@ has_philanthropic_interest,Lists entities with philanthropic interest(s),entity_
 fec_gave_to_committee,Find entities who gave to a particular political committee in a federal election,entity_id,first-order,"fec, politics, political, federal election, campaign"
 fec_gave_to_candidate,"Find entities who gave to a particular candidate (for House, Senate, or President) in a federal election",entity_id,first-order,"fec, politics, political, federal election, campaign"
 fec_gave_to_category,"Find entities who gave to a committee category, as categorized by the Center for Responsive Politics",entity_id,first-order,"fec, politics, political, federal election, campaign"
+contact_credit,Find contact reports filed within a given date range,contact_report_id,second-order,"contact report, contact, visit, call, date, contact date, author, contact author, contact credit, development officer, fundraiser"
