@@ -1,3 +1,5 @@
+# discoveryengine 0.1.17
+
 ### new widgets
 * `contact_credit` (thanks to LC, see #48)
 * `has_degree` (thanks to IZ, see #51)
