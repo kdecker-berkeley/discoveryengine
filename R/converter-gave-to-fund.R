@@ -46,17 +46,20 @@ gave_to_fund <- function(..., at_least = .01, from = NULL, to = NULL) {
         at_least = at_least, from = from, to = to))
 }
 
-gave_to_fund_ <- function(savedlist, at_least = .01, from = NULL, to = NULL) {
-    converter_builder(allocation_id_param(savedlist),
-                      table = "f_transaction_detail_mv",
-                      from = "allocation_cd",
-                      from_type = "allocation_code",
-                      to = "donor_entity_id_nbr",
-                      to_type = "entity_id",
-                      switches = list(
-                          daterange("giving_record_dt", from, to),
-                          string_switch("pledged_basis_flg", "Y")
-                      ),
-                      aggregate_switches = sum_switch("benefit_dept_credited_amt",
-                                                      at_least))
+gave_to_fund_ <- function(fund_ids, at_least = .01, from = NULL, to = NULL) {
+    hh_tx_query <- household_giving_transactions()
+
+    converter_builder_custom(
+        allocation_id_param(fund_ids),
+        custom = hh_tx_query,
+        from = "allocation_cd",
+        from_type = "allocation_code",
+        to = "entity_id",
+        to_type = "entity_id",
+        switches = list(
+            daterange("giving_record_dt", from, to),
+            string_switch("pledged_basis_flg", "Y")
+        ),
+        aggregate_switches = sum_switch("benefit_dept_credited_amt",
+                                        at_least))
 }

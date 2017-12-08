@@ -34,19 +34,6 @@ gave_to_area <- function(..., at_least = 0.01, from = NULL,
 }
 
 gave_to_area_ <- function(aogs, at_least = 0.01, from = NULL, to = NULL) {
-    if (!is.numeric(at_least)) stop("at_least must be a number")
-    if (length(at_least) != 1L) stop("need a single amount for at_least")
-
-    widget_builder(
-        table = "f_transaction_detail_mv",
-        id_field = "donor_entity_id_nbr",
-        id_type = "entity_id",
-        parameter = string_param("alloc_school_code", aogs),
-        switches = list(
-            daterange("giving_record_dt", from, to),
-            string_switch("pledged_basis_flg", "Y")
-        ),
-        aggregate_switches = sum_switch("benefit_aog_credited_amt",
-                                        at_least)
-    )
+    funds <- fund_area_(aogs)
+    gave_to_fund(funds, at_least = at_least, from = from, to = to)
 }
