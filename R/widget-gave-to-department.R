@@ -8,6 +8,6 @@ gave_to_department <- function(..., at_least = 0.01, from = NULL,
 }
 
 gave_to_department_ <- function(depts, at_least = 0.01, from = NULL, to = NULL) {
-    funds <- fund_area_(depts)
+    funds <- fund_department_(depts)
     gave_to_fund(funds, at_least = at_least, from = from, to = to)
 }
