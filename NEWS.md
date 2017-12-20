@@ -1,3 +1,8 @@
+# discoveryengine 0.1.18
+
+### implementation changes
+* all giving-related widgets now use householded, not individual, giving. 
+
 # discoveryengine 0.1.17
 
 ### new widgets
