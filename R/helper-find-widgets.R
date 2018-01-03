@@ -1,7 +1,7 @@
 widget_df <- function() {
-    filename <- system.file("extdata", "widget_finder.csv",
-                            package = "discoveryengine")
-    read.csv(filename, stringsAsFactors = FALSE)
+    filename <- systemfile("extdata", "widget_finder.csv",
+                           package = "discoveryengine")
+    readcsv(filename, stringsAsFactors = FALSE)
 }
 
 #' Look for widgets using keywords

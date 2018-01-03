@@ -142,9 +142,9 @@ tms2cdw <- function(tms_views) {
 
 
 cdw_tms_dictionary <- function() {
-    filename <- system.file("extdata", "cdw_tms_dictionary.csv",
-                            package = "discoveryengine")
-    read.csv(filename, stringsAsFactors = FALSE)
+    filename <- systemfile("extdata", "cdw_tms_dictionary.csv",
+                           package = "discoveryengine")
+    readcsv(filename, stringsAsFactors = FALSE)
 }
 
 #' @export
