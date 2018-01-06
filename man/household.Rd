@@ -11,7 +11,8 @@ household(...)
 }
 \description{
 The \code{\link{display}} function has a built-in option to household, so
-you will usually not need to use this function.
+you will usually not need to use this function. Other use-cases are best
+solved with \code{\link{married_to}}.
 }
 \details{
 Will return just the primary ID for a household, instead of both spouses. Note
@@ -28,4 +29,7 @@ is_wealthy_hh \%or\% lives_in_msa(san_francisco)
 ## better to get everything together, then household:
 household(is_wealthy \%or\% lives_in_msa(san_francisco))
 
+}
+\seealso{
+\code{\link{married_to}}
 }

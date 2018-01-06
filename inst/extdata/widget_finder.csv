@@ -71,3 +71,4 @@ fec_gave_to_candidate,"Find entities who gave to a particular candidate (for Hou
 fec_gave_to_category,"Find entities who gave to a committee category, as categorized by the Center for Responsive Politics",entity_id,first-order,"fec, politics, political, federal election, campaign"
 contact_credit,Find contact reports filed within a given date range,contact_report_id,second-order,"contact report, contact, visit, call, date, contact date, author, contact author, contact credit, development officer, fundraiser"
 has_degree,"Lists entities with particular degree(s) (e.g. MBA, MPH, etc)",entity_id,first-order,"degree, college, school, degree code, degree type, bachelors, masters, MBA, MPH"
+married_to,Finds spouses of entities,entity_id,second-order,"married, spouse, household, family, relationship, relative"

@@ -1,7 +1,8 @@
 #' Household a list of entities
 #'
 #' The \code{\link{display}} function has a built-in option to household, so
-#' you will usually not need to use this function.
+#' you will usually not need to use this function. Other use-cases are best
+#' solved with \code{\link{married_to}}.
 #'
 #' Will return just the primary ID for a household, instead of both spouses. Note
 #' that it will not household additional parts of the definition that are added
@@ -20,6 +21,7 @@
 #' ## better to get everything together, then household:
 #' household(is_wealthy %or% lives_in_msa(san_francisco))
 #'
+#' @seealso \code{\link{married_to}}
 #' @export
 household <- function(...) {
     reroute(household_(entity_id_param(...)))
