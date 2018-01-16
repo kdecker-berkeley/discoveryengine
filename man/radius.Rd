@@ -6,9 +6,14 @@
 \alias{works_near}
 \title{Geographic radius search}
 \usage{
-lives_near(location, miles, latitude = NULL, longitude = NULL, type = "H")
+lives_near(location, miles, latitude = NULL, longitude = NULL,
+  include_alternate = TRUE, include_past = FALSE,
+  include_seasonal = FALSE, include_student_local = FALSE,
+  include_student_permanent = FALSE, type = "home")
 
-works_near(location, miles, latitude = NULL, longitude = NULL, type = "B")
+works_near(location, miles, latitude = NULL, longitude = NULL,
+  include_alternate = TRUE, include_past = FALSE,
+  include_self_employed = TRUE, type = "business")
 }
 \arguments{
 \item{location}{A (quoted) string describing a place (see examples)}
@@ -21,8 +26,17 @@ then you can enter them directly rather than entering an address in \code{locati
 
 \item{longitude}{(see above)}
 
-\item{type}{The address type to search for. By default, \code{lives_near}
-looks for addresses of type "H" and \code{works_near} uses addresses of type "B"}
+\item{include_past}{include past/former addresses? Defaults to FALSE}
+
+\item{include_seasonal}{for lives_near: include seasonal addresses? Defaults to FALSE}
+
+\item{include_student_local}{for lives_near: include student local address? Defaults to FALSE}
+
+\item{include_student_permanent}{for lives_near: include student permanent address? Defaults to FALSE}
+
+\item{type}{Will be either "home" or "business". Advanced users can specify individual address type codes}
+
+\item{include_self_employed}{for works_near: include self-employed business addresses? Defaults to TRUE}
 }
 \value{
 A disco definition of type \code{entity_id}
@@ -42,4 +56,7 @@ lives_near("1995 University Ave., Berkeley, CA 94720", miles = 15.5)
 ## if you already know the lat/long, you can enter them directly:
 works_near(lat = 37.87238, lon = -122.2542, miles = 10)
 
+}
+\seealso{
+\code{\link{address}}
 }

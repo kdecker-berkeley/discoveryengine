@@ -16,26 +16,51 @@
 \alias{works_in_zip}
 \title{Address based widgets}
 \usage{
-lives_in_county(..., type = "H")
+lives_in_county(..., include_alternate = TRUE, include_past = FALSE,
+  include_seasonal = FALSE, include_student_local = FALSE,
+  include_student_permanent = FALSE, type = "home")
 
-lives_in_foreign_country(..., type = "H")
+lives_in_foreign_country(..., include_alternate = TRUE,
+  include_past = FALSE, include_seasonal = FALSE,
+  include_student_local = FALSE, include_student_permanent = FALSE,
+  type = "home")
 
-lives_in_msa(..., type = "H")
+lives_in_msa(..., include_alternate = TRUE, include_past = FALSE,
+  include_seasonal = FALSE, include_student_local = FALSE,
+  include_student_permanent = FALSE, type = "home")
 
-lives_in_zip(..., type = "H")
+lives_in_zip(..., include_alternate = TRUE, include_past = FALSE,
+  include_seasonal = FALSE, include_student_local = FALSE,
+  include_student_permanent = FALSE, type = "home")
 
-works_in_county(..., type = "B")
+works_in_county(..., include_alternate = TRUE, include_past = FALSE,
+  include_self_employed = TRUE, type = "business")
 
-works_in_foreign_country(..., type = "B")
+works_in_foreign_country(..., include_alternate = TRUE,
+  include_past = FALSE, include_self_employed = TRUE, type = "business")
 
-works_in_msa(..., type = "B")
+works_in_msa(..., include_alternate = TRUE, include_past = FALSE,
+  include_self_employed = TRUE, type = "business")
 
-works_in_zip(..., type = "B")
+works_in_zip(..., include_alternate = TRUE, include_past = FALSE,
+  include_self_employed = TRUE, type = "business")
 }
 \arguments{
 \item{...}{the counties/msas/zips}
 
-\item{type}{The address type code included (eg "H" for "Home")}
+\item{include_alternate}{include addresses coded as "alternate?" Defaults to TRUE}
+
+\item{include_past}{include past/former addresses? Defaults to FALSE}
+
+\item{include_seasonal}{for lives_in_*: include seasonal addresses? Defaults to FALSE}
+
+\item{include_student_local}{for lives_in_*: include student local address? Defaults to FALSE}
+
+\item{include_student_permanent}{for lives_in_*: include student permanent address? Defaults to FALSE}
+
+\item{type}{Will be either "home" or "business". Advanced users can specify individual address type codes (see examples)}
+
+\item{include_self_employed}{for works_in_*: include self-employed business addresses? Defaults to TRUE}
 }
 \value{
 A definition of type \code{entity_id}
@@ -54,5 +79,13 @@ lives_in_county(?alameda)
 
 ## find people who live in any of these counties
 lives_in_county(alameda_ca, san_mateo_ca)
+
+## people who live abroad or used to live abroad:
+lives_in_foreign_country(include_past = TRUE)
+
+## you shouldn't need to, but if necessary
+## you can directly specify address type codes:
+## make sure you know what you're doing!
+lives_in_msa(san_francisco, type = "S")
 
 }

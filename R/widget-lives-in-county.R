@@ -7,7 +7,13 @@
 #' @return A definition of type \code{entity_id}
 #'
 #' @param ... the counties/msas/zips
-#' @param type The address type code included (eg "H" for "Home")
+#' @param include_alternate include addresses coded as "alternate?" Defaults to TRUE
+#' @param include_past include past/former addresses? Defaults to FALSE
+#' @param include_self_employed for works_in_*: include self-employed business addresses? Defaults to TRUE
+#' @param include_seasonal for lives_in_*: include seasonal addresses? Defaults to FALSE
+#' @param include_student_local for lives_in_*: include student local address? Defaults to FALSE
+#' @param include_student_permanent for lives_in_*: include student permanent address? Defaults to FALSE
+#' @param type Will be either "home" or "business". Advanced users can specify individual address type codes (see examples)
 #'
 #' @examples
 #' ## find anyone who lives or works in the san francisco MSA
@@ -19,17 +25,49 @@
 #' ## find people who live in any of these counties
 #' lives_in_county(alameda_ca, san_mateo_ca)
 #'
+#' ## people who live abroad or used to live abroad:
+#' lives_in_foreign_country(include_past = TRUE)
+#'
+#' ## you shouldn't need to, but if necessary
+#' ## you can directly specify address type codes:
+#' ## make sure you know what you're doing!
+#' lives_in_msa(san_francisco, type = "S")
+#'
 #' @name address
 NULL
 
 #' @rdname address
 #' @export
-lives_in_county <- function(..., type = "H") {
+lives_in_county <- function(...,
+                            include_alternate = TRUE,
+                            include_past = FALSE,
+                            include_seasonal = FALSE,
+                            include_student_local = FALSE,
+                            include_student_permanent = FALSE,
+                            type = "home") {
     counties <- prep_dots(...)
-    reroute(lives_in_county_(counties, type = type))
+    reroute(lives_in_county_(counties,
+                             include_alternate = include_alternate,
+                             include_past = include_past,
+                             include_seasonal = include_seasonal,
+                             include_student_local = include_student_local,
+                             include_student_permanent = include_student_permanent,
+                             type = type))
 }
 
 
-lives_in_county_ <- function(counties, type = "H") {
-    address_widget("county_code", counties, type = type)
+lives_in_county_ <- function(counties,
+                             include_alternate = TRUE,
+                             include_past = FALSE,
+                             include_seasonal = FALSE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE,
+                             type = "home") {
+    address_widget("county_code", counties,
+                   type = type,
+                   include_alternate = include_alternate,
+                   include_past = include_past,
+                   include_seasonal = include_seasonal,
+                   include_student_local = include_student_local,
+                   include_student_permanent = include_student_permanent)
 }

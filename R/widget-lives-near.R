@@ -10,10 +10,16 @@
 #' @param latitude If you already know the lat/long of your search location,
 #' then you can enter them directly rather than entering an address in \code{location}
 #' @param longitude (see above)
-#' @param type The address type to search for. By default, \code{lives_near}
-#' looks for addresses of type "H" and \code{works_near} uses addresses of type "B"
+#' @param include_past include past/former addresses? Defaults to FALSE
+#' @param include_self_employed for works_near: include self-employed business addresses? Defaults to TRUE
+#' @param include_seasonal for lives_near: include seasonal addresses? Defaults to FALSE
+#' @param include_student_local for lives_near: include student local address? Defaults to FALSE
+#' @param include_student_permanent for lives_near: include student permanent address? Defaults to FALSE
+#' @param type Will be either "home" or "business". Advanced users can specify individual address type codes
 #'
 #' @return A disco definition of type \code{entity_id}
+#'
+#' @seealso \code{\link{address}}
 #'
 #' @examples
 #' ## find everyone within 10 miles of campus
@@ -28,12 +34,23 @@
 #' @name radius
 #' @export
 lives_near <- function(location, miles,
-                       latitude = NULL, longitude = NULL, type = "H") {
+                       latitude = NULL, longitude = NULL,
+                       include_alternate = TRUE,
+                       include_past = FALSE,
+                       include_seasonal = FALSE,
+                       include_student_local = FALSE,
+                       include_student_permanent = FALSE,
+                       type = "home") {
     near_geo_helper(
         location = location,
         miles = miles,
         latitude = latitude,
         longitude = longitude,
-        type = type
+        type = type,
+        include_alternate = include_alternate,
+        include_past = include_past,
+        include_seasonal = include_seasonal,
+        include_student_local = include_student_local,
+        include_student_permanent = include_student_permanent
     )
 }

@@ -1,0 +1,127 @@
+context("address widgets")
+
+test_that("address widgets work", {
+    expect_is(lives_in_county(), 'listbuilder')
+    expect_is(lives_in_foreign_country(), 'listbuilder')
+    expect_is(lives_in_msa(), 'listbuilder')
+    expect_is(lives_in_zip(), 'listbuilder')
+
+    expect_is(works_in_county(), 'listbuilder')
+    expect_is(works_in_foreign_country(), 'listbuilder')
+    expect_is(works_in_msa(), 'listbuilder')
+    expect_is(works_in_zip(), 'listbuilder')
+})
+
+test_that("address types are correctly mapped from widget options", {
+    # business widgets (should) only have past/alternate options
+    expect_setequal(
+        address_type_builder("business",
+                             include_past = FALSE,
+                             include_alternate = FALSE,
+                             include_self_employed = TRUE,
+                             include_seasonal = FALSE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("B", "I")
+    )
+
+    expect_setequal(
+        address_type_builder("business",
+                             include_past = TRUE,
+                             include_alternate = FALSE,
+                             include_self_employed = TRUE,
+                             include_seasonal = FALSE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("B", "I", "Q", "J")
+    )
+
+    expect_setequal(
+        address_type_builder("business",
+                             include_past = FALSE,
+                             include_alternate = TRUE,
+                             include_self_employed = TRUE,
+                             include_seasonal = FALSE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("B", "I", "N")
+    )
+
+    expect_setequal(
+        address_type_builder("business",
+                             include_past = TRUE,
+                             include_alternate = FALSE,
+                             include_self_employed = TRUE,
+                             include_seasonal = FALSE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("B", "Q", "I", "J")
+    )
+
+    expect_setequal(
+        address_type_builder("business",
+                             include_past = TRUE,
+                             include_alternate = TRUE,
+                             include_self_employed = TRUE,
+                             include_seasonal = FALSE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("B", "Q", "I", "N", "NP", "J")
+    )
+
+    expect_setequal(
+        address_type_builder("home",
+                             include_past = FALSE,
+                             include_alternate = TRUE,
+                             include_self_employed = FALSE,
+                             include_seasonal = FALSE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("H", "6")
+    )
+
+    expect_setequal(
+        address_type_builder("home",
+                             include_past = FALSE,
+                             include_alternate = TRUE,
+                             include_self_employed = FALSE,
+                             include_seasonal = TRUE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("H", "6", "S")
+    )
+
+    expect_setequal(
+        address_type_builder("home",
+                             include_past = TRUE,
+                             include_alternate = TRUE,
+                             include_self_employed = FALSE,
+                             include_seasonal = TRUE,
+                             include_student_local = FALSE,
+                             include_student_permanent = FALSE),
+        c("H", "P", "6", "6P", "S", "SP")
+    )
+
+    expect_setequal(
+        address_type_builder("home",
+                             include_past = TRUE,
+                             include_alternate = FALSE,
+                             include_self_employed = FALSE,
+                             include_seasonal = FALSE,
+                             include_student_local = TRUE,
+                             include_student_permanent = TRUE),
+        c("H", "P", "E", "L", "C", "O")
+    )
+
+    expect_setequal(
+        address_type_builder("home",
+                             include_past = FALSE,
+                             include_alternate = FALSE,
+                             include_self_employed = FALSE,
+                             include_seasonal = FALSE,
+                             include_student_local = TRUE,
+                             include_student_permanent = TRUE),
+        c("H", "E", "C")
+    )
+
+})

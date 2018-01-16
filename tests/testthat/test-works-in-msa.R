@@ -10,12 +10,13 @@ test_that("works_in_msa meets specifications on standard input", {
 
     test %>%
         has_filters(geo_metro_area_code = "41860",
-                    addr_type_code = "B",
-                    contact_type_desc = 'ADDRESS')
+                    addr_type_code = c("B", "I", "N"),
+                    contact_type_desc = 'ADDRESS',
+                    addr_status_code = c("A", "K"))
 })
 
 test_that("works_in_msa meets specifications on no input", {
     works_in_msa() %>%
-        has_clause_count(3)
+        has_clause_count(4)
 })
 
