@@ -1,3 +1,10 @@
+# discoveryengine 0.1.19
+### new widgets
+* `married_to` (relieves some cnfusion around householding, see discusson on #57)
+
+## implementation changes
+* Address-based widgets no longer require you to enter address type codes. Instead they have options such as `include_alternate`, `include_past`, `include_seasonal`, etc. which can be `TRUE` or `FALSE`. See the documentation for more explanation and examples.
+
 # discoveryengine 0.1.18
 
 ### implementation changes
