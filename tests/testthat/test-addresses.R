@@ -10,6 +10,22 @@ test_that("address widgets work", {
     expect_is(works_in_foreign_country(), 'listbuilder')
     expect_is(works_in_msa(), 'listbuilder')
     expect_is(works_in_zip(), 'listbuilder')
+
+    expect_is(lives_near(latitude = 37.87209, longitude = -122.2714,
+                         miles = 6),
+              "listbuilder")
+
+    expect_is(works_near(latitude = 37.87209, longitude = -122.2714,
+                         miles = 6),
+              "listbuilder")
+
+    expect_is(lives_near("1995 University Avenue, Berkeley CA",
+                         miles = 6),
+              "listbuilder")
+
+    expect_is(works_near("1995 University Avenue, Berkeley CA",
+                         miles = 6),
+              "listbuilder")
 })
 
 test_that("address types are correctly mapped from widget options", {
