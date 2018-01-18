@@ -4,10 +4,10 @@
 \alias{matrix_bot}
 \title{Broaden a search using co-occurrence analysis}
 \usage{
-matrix_bot(savedlist)
+matrix_bot(...)
 }
 \arguments{
-\item{savedlist}{A disco engine definition}
+\item{...}{One or more disco engine definitions and/or individual entity IDs}
 }
 \description{
 The \code{matrix_bot} takes a disco engine definition and compares it to

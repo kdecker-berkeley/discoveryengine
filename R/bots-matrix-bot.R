@@ -245,7 +245,7 @@ matrix_bot_query <- function(sl)
 #' analyzes individuals who match your definition, looking for other codes they
 #' have in common.
 #'
-#' @param savedlist A disco engine definition
+#' @param ... One or more disco engine definitions and/or individual entity IDs
 #'
 #' @examples
 #' ## we start out with a basic definition of interst in Chicano Studies
@@ -256,11 +256,12 @@ matrix_bot_query <- function(sl)
 #' matrix_bot(chicano_interest)
 #'
 #' @export
-matrix_bot <- function(savedlist) {
+matrix_bot <- function(...) {
     MIN_EFFECT <- 5
     PROB_CUTOFF <- 1E-10
 
-    stopifnot(listbuilder::get_id_type(savedlist) == "entity_id")
+    #stopifnot(listbuilder::get_id_type(savedlist) == "entity_id")
+    savedlist <- entity_id_param(...)
 
     overlap_df <- getcdw::get_cdw(matrix_bot_query(savedlist))
     overlap_df <- dplyr::mutate(
