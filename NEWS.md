@@ -1,3 +1,7 @@
+# discoveryengine 0.1.20
+### bugfixes
+* `lives_near` and `works_near` were not working, now they are. See issue #62, thanks to VF for reporting the problem.
+
 # discoveryengine 0.1.19
 ### new widgets
 * `married_to` (relieves some cnfusion around householding, see discusson on #57)
