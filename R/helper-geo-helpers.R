@@ -55,26 +55,14 @@ near_geo_helper <- function(location, miles, latitude, longitude, type,
     )
 
 
-    if (!is.null(latitude) && !is.null(longitude)) {
-        assertthat::assert_that(
-            assertthat::is.number(latitude),
-            assertthat::is.number(longitude)
-        )
-        return(near_geo(
-            lat = latitude,
-            long = longitude,
-            miles = miles,
-            type = type
-        ))
+    if (is.null(latitude) || is.null(longitude)) {
+        assertthat::assert_that(assertthat::is.string(location))
+        geo <- geocode_location(location)
+        latitude <- geo$latitude
+        longitude <- geo$longitude
     }
 
-    assertthat::assert_that(
-        assertthat::is.string(location)
-    )
-    geo <- geocode_location(location)
-    lat <- geo$latitude
-    long <- geo$longitude
-    near_geo(lat = lat, long = long,
+    near_geo(lat = latitude, long = longitude,
              miles = miles, type = type, status = status)
 }
 
@@ -103,7 +91,7 @@ near_geo <- function(lat, long, miles, type, status) {
         switches = list(
             string_switch("contact_type_desc", "ADDRESS"),
             string_switch("addr_type_code", type),
-            string_switch("addr_status_code", status_switch),
+            string_switch("addr_status_code", status),
             quote(trim(latitude) != ' '),
             quote(trim(longitude) != ' '),
             substitute(latitude >=  lat - (miles / 69)),
