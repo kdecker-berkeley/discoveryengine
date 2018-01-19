@@ -8,7 +8,7 @@
 #'
 #' @return A definition of type \code{entity_id}
 #'
-#' @param ... Area(s)/Department(s) of giving
+#' @param ... Area(s)/Department(s)/etc. of giving
 #' @param at_least minimum total giving
 #' @param from begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
 #' @param to begin and end dates (gave between those dates). Enter as an integer of the form YYYYMMDD
