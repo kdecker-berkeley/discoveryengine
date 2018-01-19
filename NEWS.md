@@ -1,3 +1,6 @@
+### new widgets
+* `fund_purpose` and `gave_to_purpose`, see #56
+
 # discoveryengine 0.1.20
 ### bugfixes
 * `lives_near` and `works_near` were not working, now they are. See issue #62, thanks to VF for reporting the problem.
