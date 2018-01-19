@@ -72,3 +72,5 @@ fec_gave_to_category,"Find entities who gave to a committee category, as categor
 contact_credit,Find contact reports filed within a given date range,contact_report_id,second-order,"contact report, contact, visit, call, date, contact date, author, contact author, contact credit, development officer, fundraiser"
 has_degree,"Lists entities with particular degree(s) (e.g. MBA, MPH, etc)",entity_id,first-order,"degree, college, school, degree code, degree type, bachelors, masters, MBA, MPH"
 married_to,Finds spouses of entities,entity_id,second-order,"married, spouse, household, family, relationship, relative"
+fund_purpose,Find funds with a particular fund purpose,allocation_code,first-order,"fund, allocation, giving, fund purpose, scholarship, scholarships, student support, facilities, restricted, unrestricted, chair"
+gave_to_purpose,Find donors to funds with a particular purpose,entity_id,first-order,"fund, allocation, giving, fund purpose, scholarship, scholarships, student support, facilities, restricted, unrestricted, chair"
