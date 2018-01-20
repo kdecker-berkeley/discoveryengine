@@ -3,7 +3,7 @@ source("helpers.R")
 library(magrittr)
 
 test_that("lives_in_msa meets specifications on standard input", {
-    test <- lives_in_msa(san_francisco)
+    test <- lives_in_msa('41860')
     test %>% uses_table("d_bio_address_mv")
     test %>% id_of_type("entity_id")
     test %>% id_field_is("entity_id")

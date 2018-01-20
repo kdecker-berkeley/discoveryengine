@@ -23,13 +23,15 @@ test_that("find_synonyms filters synonym lists using search term", {
                      stringsAsFactors = FALSE)
 
     index <- grep("chicago", df$synonym)
-    find_synonyms_result <- find_synonyms(lives_in_msa, "chicago")
-    result_msa <- find_synonyms_result$code
-    expect_true("16980" %in% result_msa)
+    find_synonyms_result <- find_synonyms(played_sport, "basketball")
+    result_code <- find_synonyms_result$code
+    expect_true("WABB" %in% result_code)
 })
 
 test_that("find_synonyms returns empty data frame on degenerate inputs", {
-    find_synonyms_result <- find_synonyms(lives_in_msa, "xyzxyz")
+    expect_warning(
+        find_synonyms_result <- find_synonyms(has_affiliation, "xyzxyz"),
+        "No synonyms")
 
     find_synonyms_expected <- data.frame(
         synonym = character(), code = character(),

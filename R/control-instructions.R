@@ -1,3 +1,7 @@
+make_field_request <- function(widget) {
+    do.call(widget, list(quote(!field)))
+}
+
 synonym_request_instruction <- function(field_name, search_terms) {
     condition(c("synonym_request", "special_instruction"),
               message = "",

@@ -1,6 +1,6 @@
 widget2cdw <- function() {
     widget_field <- function(widget) {
-        res <- tryCatch(do.call(widget, list(quote(!field))),
+        res <- tryCatch(make_field_request(widget),
                         error = function(e) "")
         if (is.character(res) && length(res) == 1L)
             return(res)

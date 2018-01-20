@@ -1,7 +1,7 @@
 context("married_to")
 
 test_that("married_to correctly gets spouses", {
-    expect_equivalent(display(married_to(727565)), data.frame(entity_id = 727558))
+    expect_equivalent(get_cdw(married_to(727565)), data.frame(entity_id = 727558))
 })
 
 # cnr_degreeholder = has_degree_from(NR)

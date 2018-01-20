@@ -3,8 +3,7 @@ context("id params")
 test_that("entity_id_param can accept inputs in multiple formats", {
     showme <- function(x)
         dplyr::arrange(
-            display(x, include_organizations = TRUE,
-                    include_deceased = TRUE, household = FALSE), entity_id)
+            get_cdw(x), entity_id)
 
     expect_equal(
         showme(entity_id_param(1234)),
@@ -22,30 +21,47 @@ test_that("entity_id_param can accept inputs in multiple formats", {
     )
 
     expect_equal(
-        showme(entity_id_param(has_capacity(1))),
-        showme(has_capacity(1))
+        entity_id_param(has_capacity(1)),
+        has_capacity(1)
     )
 
-    expect_equal(
-        showme(entity_id_param(has_capacity(1), 640993)),
-        showme(has_capacity(1) %or% entities(640993))
+    ## these should be equivalent up to ordering of the disjuncts
+    ## since it's 'or', the order is unimportant
+
+    expect_equalish <- function(object, disjunct) {
+        act <- quasi_label( rlang::enquo(object) )
+        exp <- quasi_label( rlang::enquo(disjunct))
+        alternative <- disjunct
+        alternative$rhs <- disjunct$lhs
+        alternative$lhs <- disjunct$rhs
+        condition <- isTRUE(all.equal(object, disjunct)) ||
+            isTRUE(all.equal(object, alternative))
+        expect(condition,
+               failure_message = sprintf("%s \ndoes not equal (up to disjunct order) \n%s.",
+               act$lab, exp$lab))
+        invisible(act$val)
+    }
+
+    expect_equalish(
+        entity_id_param(has_capacity(1), 640993),
+        has_capacity(1) %or% entities(640993)
     )
 
-    expect_equal(
-        showme(entity_id_param(has_capacity(1), entities(640993))),
-        showme(has_capacity(1) %or% entities(640993))
+    expect_equalish(
+        entity_id_param(has_capacity(1), entities(640993)),
+        has_capacity(1) %or% entities(640993)
     )
 
     temp <- c(548769, 3004587)
     expect_equal(
-        showme(entity_id_param(temp)),
-        data.frame(entity_id = c(548769, 3004587))
+        entity_id_param(temp),
+        entities(548769, 3004587)
     )
 
     big_def = entity_id_param(
         1234,
         entities(57575, 37374),
-        has_capacity(1),
+        has_affiliation(X14),
         "4576",
         temp,
         347*5)
@@ -53,7 +69,7 @@ test_that("entity_id_param can accept inputs in multiple formats", {
     expect_equal(
         showme(big_def),
         showme(
-            has_capacity(1) %or%
+            has_affiliation(X14) %or%
                 entities(1234, 57575, 37374, 4576, 548769, 3004587, 1735)
         )
     )
@@ -64,7 +80,7 @@ test_that("entity_id_param can accept inputs in multiple formats", {
 
 test_that("allocation_id_param can accept inputs in multiple formats", {
     showme <- function(x) dplyr::arrange(
-        display(x), allocation_code
+        get_cdw(x), allocation_code
     )
 
     df <- function(...) data.frame(..., stringsAsFactors = FALSE)
