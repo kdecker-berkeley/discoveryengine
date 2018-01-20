@@ -1,6 +1,9 @@
 ### new widgets
 * `fund_purpose` and `gave_to_purpose`, see #56
 
+### implementation changes
+* `lives_near` and `works_near` now use [Nominatim](https://wiki.openstreetmap.org/wiki/Nominatim) for geocoding, RIP to Mapzen which was a wonderful service. See #58
+
 # discoveryengine 0.1.20
 ### bugfixes
 * `lives_near` and `works_near` were not working, now they are. See issue #62, thanks to VF for reporting the problem.
