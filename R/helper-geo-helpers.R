@@ -1,34 +1,60 @@
-geocode_location <- function(location) {
+check_geocode_cache_dir <- function() {
+    dirpath <- geocode_cache_dir()
+    if (!dir.exists(dirpath)) dir.create(dirpath)
+}
 
-    if (!requireNamespace("rmapzen", quietly = TRUE)) {
-        stop('This feature requires the package rmapzen\n',
-             'To install: devtools::install_github("tarakc02/rmapzen")',
-             call. = FALSE)
+geocode_cache_dir <- function() {
+    path <- normalizePath("~/")
+    file.path(path, ".disco-geocode-cache")
+}
+
+nominatim_curl <- ratelimitr::limit_rate(curl::curl, ratelimitr::rate(1, 1.1))
+nominatim_dl <- function(url) {
+    con <- nominatim_curl(url)
+    on.exit(close(con))
+
+    json <- readLines(con, warn = FALSE)
+    lst <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+    if (length(lst) < 1)
+        stop("There was a problem geocoding '", location, "'")
+
+    lst[[1]]
+}
+memo_nominatim_dl <- memoise::memoise(nominatim_dl, cache = memoise::cache_filesystem(geocode_cache_dir()))
+
+geocode_location_base <- function(location) {
+    check_geocode_cache_dir()
+    url <- "https://nominatim.openstreetmap.org/search/?q="
+
+    if (!inherits(location, "AsIs")) {
+        qry <- curl::curl_escape(location)
+    } else {
+        qry <- location
     }
 
-    geo <- rmapzen::mz_geocode(location)
-    latlon <- rmapzen::as.mz_location(geo)
+    url <- paste0(url, qry, "&format=json")
+    geo <- memo_nominatim_dl(url)
 
-    lat <- latlon[["lat"]]
-    lon <- latlon[["lon"]]
-    loc_used <- geo$geocode_address
-    if (is.null(loc_used)) loc_used <- NA
-    confidence <- geo$geocode_confidence
-    if (is.null(confidence)) confidence <- NA
+    lat <- as.numeric(geo$lat)
+    lon <- as.numeric(geo$lon)
 
-    if (nrow(geo) > 1 || is.na(lat) || is.na(lon))
+    if (length(lat) != 1L || length(lon) != 1L)
         stop("There was a problem :(")
+
+    loc_used <- geo$display_name
+    if (is.null(loc_used)) loc_used <- NA
+
 
     msg <- paste0(
         "Basing results on: ",
-        loc_used, " (", round(lat, 2), ", ", round(lon, 2),
-        ")\n(confidence that this is the right location: ", confidence, ")")
+        loc_used, " (", round(lat, 4), ", ", round(lon, 4), ")")
 
-    message(msg)
     return(list(
-        latitude = lat, longitude = lon
+        latitude = lat, longitude = lon, msg = msg
     ))
 }
+
+geocode_location <- memoise::memoise(geocode_location_base, cache = memoise::cache_filesystem("~/"))
 
 near_geo_helper <- function(location, miles, latitude, longitude, type,
                             include_alternate = TRUE,
@@ -58,6 +84,7 @@ near_geo_helper <- function(location, miles, latitude, longitude, type,
     if (is.null(latitude) || is.null(longitude)) {
         assertthat::assert_that(assertthat::is.string(location))
         geo <- geocode_location(location)
+        message(geo$msg)
         latitude <- geo$latitude
         longitude <- geo$longitude
     }

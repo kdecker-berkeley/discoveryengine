@@ -19,4 +19,7 @@ Imports: listbuilder (>= 0.1.14),
     getcdw (>= 0.1.0.9001),
     dbplyr,
     assertthat,
-    memoise
+    memoise,
+    curl,
+    jsonlite,
+    ratelimitr
