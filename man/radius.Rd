@@ -44,7 +44,10 @@ A disco definition of type \code{entity_id}
 \description{
 Use this widget to find people who live or work "near" a given location, for
 instance to aid with event planning or when a development officer is about to
-take a trip.
+take a trip. Note: this widget uses a web-based geocoder to geocode the
+"location" that you type in. If you encounter issues, or just want to be sure,
+you can always use the \code{latitude} and \code{longitude} arguments to specify
+exactly where the center of your search should be.
 }
 \examples{
 ## find everyone within 10 miles of campus
