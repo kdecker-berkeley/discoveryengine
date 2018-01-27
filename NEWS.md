@@ -1,8 +1,10 @@
+# discoveryengine 0.1.21
 ### new widgets
 * `fund_purpose` and `gave_to_purpose`, see #56
 
 ### implementation changes
 * `lives_near` and `works_near` now use [Nominatim](https://wiki.openstreetmap.org/wiki/Nominatim) for geocoding, RIP to Mapzen which was a wonderful service. See #58
+* Improved error messages, including in the `matrix_bot`. See #59 and thanks to AM for identifying the problem.
 
 # discoveryengine 0.1.20
 ### bugfixes
