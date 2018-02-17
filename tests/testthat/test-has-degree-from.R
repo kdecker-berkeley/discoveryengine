@@ -34,8 +34,4 @@ test_that("has_degree_from meets specifications on no input", {
     has_degree_from(attendees = TRUE) %>%
         has_filters(local_ind = "Y",
                     degree_level_code = c("U", "A", "G", "L"))
-
-    has_degree_from(undergraduates = FALSE, graduates = FALSE,
-                    attendees = FALSE) %>%
-        has_filters(local_ind = "Y")
 })
