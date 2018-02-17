@@ -1,3 +1,7 @@
+# discoveryengine 0.1.22
+### implementation changes
+* all academic/degree widgets (e.g. `has_degree_from`, `majored_in`, `minored_in`, `has_degree`) now have options to specify `degreeholders`, `current_students`, or `attendees`
+
 # discoveryengine 0.1.21
 ### new widgets
 * `fund_purpose` and `gave_to_purpose`, see #56
