@@ -42,8 +42,11 @@ academic_widget <- function(
         alum <- NULL
     }
     if (current_students) {
+        if (is.list(param)) st_param <- param[[1]] else st_param <- param
+        if (!is.null(st_param) && st_param[[2]] == quote(degree_code))
+            st_param[[2]] <- quote(case_code)
         st <- entity_widget("d_bio_degrees_mv",
-                            parameter = param,
+                            parameter = st_param,
                             switches = list(
                                 string_switch("degree_level_code", student_levels),
                                 string_switch("non_grad_code", c("C", "N", "R")),
