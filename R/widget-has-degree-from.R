@@ -11,7 +11,9 @@
 #' @param ... Schools/majors
 #' @param undergraduates TRUE/FALSE: should include undergraduates? Default is TRUE
 #' @param graduates TRUE/FALSE: should include graduates? Default is TRUE
-#' @param attendees TRUE/FALSE: should include attendees (TRUE) or just degreeholders (FALSE). Default is FALSE
+#' @param attendees TRUE/FALSE: should include attendees? Default is FALSE
+#' @param current_students TRUE/FALSE: should include current students? Default is FALSE
+#' @param degreeholders TRUE/FALSE: should include degreeholders? Default is TRUE
 #' @param from (optional) date range: look only for those who graduated between
 #' these dates. Enter as an integer of the form YYYYMMDD (see details)
 #' @param to (optional) date range: look only for those who graduated between
@@ -29,13 +31,7 @@
 #' (who have no GRAD DATE). Both dates are visible in the Degrees screen in
 #' Advance. An alum's "class year" is based on the GRAD DATE. For degreeholders,
 #' the two dates are often the same, though they can differ. See examples below.
-#'
-#' Attendees can be either graduate or undergraduate attendees. Whether one or
-#' both of those types of attendees are selected when \code{attendees = TRUE} is
-#' based on the values of \code{graduates} and \code{undergraduates} -- see
-#' examples.
-#'
-#'
+#' Date options are ignored when looking for current students
 #'
 #' @examples
 #' ## majored in philosophy and/or math between 2001 and 2004
@@ -57,17 +53,11 @@
 #' ## evening/wknd program (haas) people are coded as attendees. note that since
 #' ## we're only looking at attendees here, we'll be using the STOP DATE
 #' ## this will pull BOTH undergrad and grad attendees, but no degreeholders
-#' has_degree_from(haas, attendees = TRUE,
-#'                 graduates = FALSE, undergraduates = FALSE,
+#' has_degree_from(haas, attendees = TRUE, degreeholders = FALSE
 #'                 from = 20010101, to = 20041231)
 #'
-#' ## if pulling both attendees and degreeholders together, then the date used
-#' ## will be GRAD DATE for degreeholders and STOP DATE for attendees. this query
-#' ## pulls haas degreeholders who graduated on or before Dec. 21, 1999, along
-#' ## with non-degreeholders (attendees) who ended their attendance before
-#' ## 12/31/1999
-#' has_degree_from(haas, graduates = TRUE, undergraduates = TRUE,
-#'                 attendees = TRUE, to = 19991231)
+#' ## current MBA students
+#' has_degree(MBA, current_students = TRUE, degreeholders = FALSE)
 #'
 #' @name academic
 #' @seealso \code{\link{has_reunion_year}}
