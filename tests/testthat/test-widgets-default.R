@@ -6,6 +6,7 @@ test_that("widgets have defined default behavior", {
     expect_is(fund_department(), "listbuilder")
     expect_is(gave_to_area(), "listbuilder")
     expect_is(gave_to_department(), "listbuilder")
+    expect_is(gave_to_purpose(), "listbuilder")
     expect_is(has_affiliation(), "listbuilder")
     expect_is(has_capacity(), "listbuilder")
     expect_is(has_degree_from(), "listbuilder")
