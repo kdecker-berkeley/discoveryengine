@@ -1,3 +1,7 @@
+# discoveryengine 0.1.23
+### bugfixes
+* `gave_to_purpose` wasn't working, it's been fixed
+
 # discoveryengine 0.1.22
 ### implementation changes
 * all academic/degree widgets (e.g. `has_degree_from`, `majored_in`, `minored_in`, `has_degree`) now have options to specify `degreeholders`, `current_students`, or `attendees`
