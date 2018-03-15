@@ -566,7 +566,7 @@ CDW.SECURITIES_RESTRICTION_D_V,CDW.SECURITIES_RESTRICTION_D_V.SCTY_RESTRICTION_S
 F_ALLOCATION_STEWARDEE_MV,STEWARDEE_STATUS_CODE,tms_stewardee_status
 D_APPEAL_MV,APPEAL_SOLICIT_TYPE_DESC,tms_appeal_type
 D_APPEAL_MV,PROGRAM_CODE,tms_program
-FX_GIFT_TENDER_TYPE_MV,CREDIT_CARD_TYPE,"tms_credit_card 
+FX_GIFT_TENDER_TYPE_MV,CREDIT_CARD_TYPE,"tms_credit_card
 "
 D_BIO_DEGREES_MV,INSTITUTION_CODE,"The institution from which this degree was granted. This field is required for both local, UCB, or non-UCB Institutions. Validated against Institution (institution) tms table."
 D_BIO_FORMER_SPOUSE_MV,MARITAL_STATUS_CODE,tms_marital_status
@@ -591,3 +591,4 @@ FEC,cmte_id,fec_cmte_id
 FEC_CCL,cand_id,fec_cand_id
 FEC_CMTE_CATEGORY,cmte_code,fec_cmte_code
 F_ALLOCATION_MV,PRIMARY_PURPOSE_CODE,tms_category1
+ca_campaign_candidate,candidate_id,ca_candidate_id

@@ -66,6 +66,14 @@ code_xref <- list(
         table_field = "tms_table_name",
         view_field = "tms_view_name",
         code_table = "cdw.d_tms_type_mv"
+    ),
+
+    ca_candidate_id = list(
+        code_field = "candidate_id",
+        desc_field = "candidate",
+        table_field = "'CA Candidates'",
+        view_field = "'ca_candidate_id'",
+        code_table = "rdata.ca_campaign_candidate"
     )
 )
 
