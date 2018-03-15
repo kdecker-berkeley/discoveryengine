@@ -1,13 +1,3 @@
-check_geocode_cache_dir <- function() {
-    dirpath <- geocode_cache_dir()
-    if (!dir.exists(dirpath)) dir.create(dirpath)
-}
-
-geocode_cache_dir <- function() {
-    path <- normalizePath("~/")
-    file.path(path, ".disco-geocode-cache")
-}
-
 nominatim_curl <- ratelimitr::limit_rate(curl::curl, ratelimitr::rate(1, 1.1))
 nominatim_dl <- function(url) {
     con <- nominatim_curl(url)
@@ -20,10 +10,8 @@ nominatim_dl <- function(url) {
 
     lst[[1]]
 }
-memo_nominatim_dl <- memoise::memoise(nominatim_dl, cache = memoise::cache_filesystem(geocode_cache_dir()))
 
 geocode_location_base <- function(location) {
-    check_geocode_cache_dir()
     url <- "https://nominatim.openstreetmap.org/search/?q="
 
     if (!inherits(location, "AsIs")) {
@@ -33,7 +21,7 @@ geocode_location_base <- function(location) {
     }
 
     url <- paste0(url, qry, "&format=json")
-    geo <- memo_nominatim_dl(url)
+    geo <- nominatim_dl(url)
 
     lat <- as.numeric(geo$lat)
     lon <- as.numeric(geo$lon)
@@ -54,7 +42,7 @@ geocode_location_base <- function(location) {
     ))
 }
 
-geocode_location <- memoise::memoise(geocode_location_base, cache = memoise::cache_filesystem("~/"))
+geocode_location <- geocode_location_base
 
 near_geo_helper <- function(location, miles, latitude, longitude, type,
                             include_alternate = TRUE,
