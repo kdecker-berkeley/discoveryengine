@@ -25,41 +25,10 @@ widget2cdw <- function() {
 }
 
 every_code <- function() {
-    cdw_tms <- getcdw::find_codes()
-
-    fec_cmte <- getcdw::get_cdw(
-        "select
-            cmte_id as code,
-            cmte_nm as description,
-            'FEC Committees' as table_name,
-            'fec_cmte_id' as view_name
-        from rdata.fec_committees
-        "
-    )
-
-    fec_cand <- getcdw::get_cdw(
-        "select
-            cand_id as code,
-            cand_name as description,
-            'FEC Candidates' as table_name,
-            'fec_cand_id' as view_name
-        from rdata.fec_candidates
-        "
-    )
-
-    fec_cmte_category <- getcdw::get_cdw(
-        "select
-            cmte_code as code,
-            catname as description,
-            'FEC Committee Categories' as table_name,
-            'fec_cmte_code' as view_name
-        from rdata.fec_cmte_category
-        "
-    )
-
-    res <- dplyr::union(cdw_tms, fec_cmte)
-    res <- dplyr::union(res, fec_cand)
-    dplyr::union(res, fec_cmte_category)
+    all_tms <- names(code_xref)
+    all_tables <- lapply(all_tms, function(tms) getcdw::get_cdw(code_query(tms)))
+    res <- Reduce(dplyr::union, all_tables)
+    res[, c("code", "description", "table_name", "view_name"), drop = FALSE]
 }
 
 

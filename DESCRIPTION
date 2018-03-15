@@ -22,4 +22,5 @@ Imports: listbuilder (>= 0.1.14),
     memoise,
     curl,
     jsonlite,
-    ratelimitr
+    ratelimitr,
+    whisker
