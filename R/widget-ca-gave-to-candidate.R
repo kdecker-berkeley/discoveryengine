@@ -1,3 +1,36 @@
+#' California campaign finance disclosure widgets
+#'
+#' Find entities who have disclosed political contributions in California
+#' statewide election campaigns
+#'
+#' @param ... Candidate ID(s) or ballot proposition IDs (see examples)
+#' @param at_least Minimum of aggregate contributions
+#' @param from begin and end dates (contributed between those dates). Enter as integer of the form YYYYMMDD
+#' @param to begin and end dates (contributed between those dates). Enter as integer of the form YYYYMMDD
+#' @param support TRUE/FALSE, whether to look for supporters (TRUE) or those opposed (FALSE) the ballot initiative. Defaults to both (support and oppose)
+#'
+#' @details Since this is based on a probabilistic match score, there will be some
+#' false positive matches. If perfect accuracy is necessary, be sure to manually
+#' review the results. Use the built-in lookup features to identify the correct
+#' IDs. For instance, \code{ca_gave_to_proposition(?bag)} will help find the
+#' correct ID for Prop 65, the charge on carry-out bags.
+#'
+#' ## example: find donors to Kamala Harris's Attorney General campaign
+#' ## first find her candidate ID
+#' ca_gave_to_candidate(?kamala)
+#'
+#' ## now use the ID:
+#' ca_gave_to_candidate(CA770144)
+#'
+#' ## look for donors who opposed marijuana decriminialization
+#' ca_gave_to_proposition(?marijuana)
+#'
+#' ## and use the resulting ID:
+#' ## looking only for supporters:
+#' ca_gave_to_proposition(BL20150064, support = TRUE)
+#'
+#' @name ca_campaign
+#'
 #' @export
 ca_gave_to_candidate <- function(..., at_least = .01, from = NULL, to = NULL) {
     cands <- prep_dots(...)
