@@ -74,6 +74,15 @@ code_xref <- list(
         table_field = "'CA Candidates'",
         view_field = "'ca_candidate_id'",
         code_table = "rdata.ca_campaign_candidate"
+    ),
+
+    ca_proposition_id = list(
+        code_field = "proposition_id",
+        desc_field = "proposition_desc",
+        table_field = "'CA Propositions'",
+        view_field = "'ca_proposition_id'",
+        code_table = "rdata.ca_campaign_proposition"
     )
+
 )
 
