@@ -41,7 +41,8 @@ false positive matches. If perfect accuracy is necessary, be sure to manually
 review the results. Use the built-in lookup features to identify the correct
 IDs. For instance, \code{ca_gave_to_proposition(?bag)} will help find the
 correct ID for Prop 65, the charge on carry-out bags.
-
+}
+\examples{
 ## example: find donors to Kamala Harris's Attorney General campaign
 ## first find her candidate ID
 ca_gave_to_candidate(?kamala)
@@ -55,4 +56,5 @@ ca_gave_to_proposition(?marijuana)
 ## and use the resulting ID:
 ## looking only for supporters:
 ca_gave_to_proposition(BL20150064, support = TRUE)
+
 }

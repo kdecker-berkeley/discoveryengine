@@ -20,6 +20,7 @@
 #' IDs. For instance, \code{ca_gave_to_proposition(?bag)} will help find the
 #' correct ID for Prop 65, the charge on carry-out bags.
 #'
+#' @examples
 #' ## example: find donors to Kamala Harris's Attorney General campaign
 #' ## first find her candidate ID
 #' ca_gave_to_candidate(?kamala)
