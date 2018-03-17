@@ -76,3 +76,4 @@ fund_purpose,Find funds with a particular fund purpose,allocation_code,first-ord
 gave_to_purpose,Find donors to funds with a particular purpose,entity_id,first-order,"fund, allocation, giving, fund purpose, scholarship, scholarships, student support, facilities, restricted, unrestricted, chair"
 ca_gave_to_candidate,Find donors to CA state level candidates,entity_id,first-order,"election, politics, campaign"
 ca_gave_to_proposition,Find donors to CA state level ballot propositions,entity_id,first-order,"election, politics, campaign, proposition, ballot initiative"
+ca_gave,Find donors to CA elections,entity_id,first-order,"election, politics, campaign"

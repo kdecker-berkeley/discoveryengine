@@ -1,13 +1,18 @@
 #' California campaign finance disclosure widgets
 #'
 #' Find entities who have disclosed political contributions in California
-#' statewide election campaigns
+#' statewide election campaigns. \code{ca_gave_to_candidate} only allows you to
+#' search for donors to candidates in statewide races (excluding candidates in local
+#' races), while \code{ca_gave_to_proposition} allows you to search for donors to
+#' ballot initatives. In order to search for all types of giving in California
+#' elections (including local races such as superior court judge or city council),
+#' use \code{ca_gave}
 #'
 #' @param ... Candidate ID(s) or ballot proposition IDs (see examples)
 #' @param at_least Minimum of aggregate contributions
 #' @param from begin and end dates (contributed between those dates). Enter as integer of the form YYYYMMDD
 #' @param to begin and end dates (contributed between those dates). Enter as integer of the form YYYYMMDD
-#' @param support TRUE/FALSE, whether to look for supporters (TRUE) or those opposed (FALSE) the ballot initiative. Defaults to both (support and oppose)
+#' @param support TRUE/FALSE, whether to look for supporters (TRUE) or those opposed (FALSE) to the ballot initiative. Defaults to both (support and oppose)
 #'
 #' @details Since this is based on a probabilistic match score, there will be some
 #' false positive matches. If perfect accuracy is necessary, be sure to manually
