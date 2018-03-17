@@ -1,3 +1,10 @@
+# discoveryengine 0.1.24
+### new widgets
+* `ca_gave`, `ca_gave_to_candidate`, `ca_gave_to_proposition` for searching through donors in California election campaigns
+
+### bugfixes
+* `lives_near` and `works_near` were having errors around caching of geocodes. Caching was determined to be unnecessary, the widgets are back to working as normal. Thanks to Anthony M. for the report. 
+
 # discoveryengine 0.1.23
 ### bugfixes
 * `gave_to_purpose` wasn't working, it's been fixed
