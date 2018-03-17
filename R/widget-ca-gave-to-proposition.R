@@ -1,6 +1,7 @@
+#' @rdname ca_campaign
 #' @export
 ca_gave_to_proposition <- function(..., at_least = .01, from = NULL, to = NULL,
-                                   support = TRUE) {
+                                   support = NULL) {
     props <- prep_dots(...)
     reroute(ca_gave_to_proposition_(props, at_least = at_least,
                                     from = from , to = to, support = support))
@@ -8,15 +9,24 @@ ca_gave_to_proposition <- function(..., at_least = .01, from = NULL, to = NULL,
 
 ca_gave_to_proposition_ <- function(props, at_least = .01,
                                     from = NULL, to = NULL,
-                                    support = TRUE) {
+                                    support = NULL) {
     if (!is.numeric(at_least)) stop("at_least must be a number")
     if (length(at_least) != 1L) stop("need a single amount for at_least")
+
+    if (is.null(support)) {
+        supopp <- NULL
+    } else if (support) {
+        supopp <- "SUPPORT"
+    } else {
+        supopp <- "OPPOSE"
+    }
 
     filings <- widget_builder(
         table = "ca_campaign_proposition",
         id_field = "filing_id",
         id_type = "ca_filing_id",
         parameter = string_param("proposition_id", props),
+        switches = list(string_switch("position", supopp)),
         schema = "rdata"
     )
 
