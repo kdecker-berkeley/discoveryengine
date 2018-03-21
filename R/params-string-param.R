@@ -1,15 +1,10 @@
 string_param <- function(field_name, arguments, default = NULL, width = NULL,
                          side = "left", pad = "0") {
+    if (!is.null(width)) assertthat::assert_that(assertthat::is.count(width))
     validated_arguments <- prep_string_param(arguments, field_name = field_name)
 
-    codelist <- resolve_codes(validated_arguments, type = field_name)
-
-    if (!is.null(width)) {
-        assertthat::assert_that(assertthat::is.count(width))
-        codelist <- stringr::str_pad(codelist, width = width,
-                                     side = side, pad = pad)
-    }
-
+    codelist <- resolve_codes(validated_arguments, type = field_name,
+                              width = width, side = side, pad = pad)
 
     if (length(codelist) <= 0) {
         if (is.language(default)) return(default)
@@ -62,5 +57,17 @@ synonym_list <- function(field_name, search_terms = NULL) {
 
 #' @export
 print.synonym_list <- function(s, ...) {
-    print.data.frame(s, row.names = FALSE)
+    defunct_codes <- grepl("^\\.", s[["synonym"]])
+    regular <- s[!defunct_codes, , drop = FALSE]
+    defunct <- s[defunct_codes, , drop = FALSE]
+    if (nrow(regular) > 0) {
+        cat("Regular codes and synonyms:\n")
+        print.data.frame(regular, row.names = FALSE)
+        if (nrow(defunct) > 0) cat("\n")
+    }
+    if (nrow(defunct) > 0) {
+        cat("Defunct codes and synonyms:\n")
+        print.data.frame(defunct, row.names = FALSE)
+    }
+    invisible(s)
 }

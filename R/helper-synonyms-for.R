@@ -8,8 +8,8 @@ synonyms_for <- function(type) {
 
         qry <- code_query(tms)
         syn_df <- getcdw::get_cdw(qry)
-        keep <- which(syn_df[["view_name"]] == tms & !grepl("^\\*", syn_df[["description"]]))
-        syn_df <- syn_df[keep, c("code", "syn"), drop = FALSE]
+        #keep <- which(syn_df[["view_name"]] == tms & !grepl("^\\*", syn_df[["description"]]))
+        syn_df <- syn_df[syn_df[["view_name"]] == tms, c("code", "syn"), drop = FALSE]
 
         # these are synonyms automatically generated from tms table
         res <- structure(syn_df$code, names = syn_df$syn)

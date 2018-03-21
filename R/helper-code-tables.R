@@ -18,7 +18,7 @@ select distinct
     {{{desc_field}}} as description,
     {{{table_field}}} as table_name,
     {{{view_field}}} as view_name,
-    lower(regexp_replace(regexp_replace(trim({{{desc_field}}}), '([^A-Za-z0-9 //_-])', ''), '((( )+)|-|(\\/))+', '_')) as syn
+    lower(regexp_replace(regexp_replace(regexp_replace(regexp_replace(trim({{{desc_field}}}), '([^\\*A-Za-z0-9 //_-])', ''), '((( )+)|-|(\\/))+', '_'), '^\\*', '.'), '\\*', '_')) as syn
 from {{{code_table}}}
 {{#haswhere}}
 {{{where}}}

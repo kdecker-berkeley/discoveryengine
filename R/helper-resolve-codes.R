@@ -1,13 +1,32 @@
-resolve_codes <- function(codes, type) {
+resolve_codes <- function(codes, type, width, side, pad) {
     stopifnot(length(type) == 1L)
 
     ready_to_go <- is_upper_case(codes)
     needs_translation <- setdiff(codes, ready_to_go)
+    if (!is.null(width)) {
+        ready_to_go <- stringr::str_pad(ready_to_go, width = width,
+                                        side = side, pad = pad)
+    }
+    check_codes(ready_to_go, type)
     if (length(needs_translation) > 0)
         translated <- recover_codes(needs_translation, type)
     else translated <- NULL
 
     unique(c(ready_to_go, translated))
+}
+
+check_codes <- function(codes, type) {
+    synonym_list <- tryCatch(
+        synonyms_for(type),
+        error = function(e) stop(e$message, "\nunable to parse: ", paste(codes, collapse = ", "),
+                                 call. = FALSE)
+    )
+
+    unrecognized <- !codes %in% synonym_list
+
+    if (any(unrecognized))
+        stop("unrecognized ", type, "(s): ",
+             paste(codes[unrecognized], collapse = ", "), call. = FALSE)
 }
 
 resolve_date <- function(dt) {
