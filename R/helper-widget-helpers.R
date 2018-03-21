@@ -41,7 +41,8 @@ address_widget <- function(filter_field, filter_val, type, param_fn = string_par
                            include_self_employed = FALSE,
                            include_seasonal = FALSE,
                            include_student_local = FALSE,
-                           include_student_permanent = FALSE) {
+                           include_student_permanent = FALSE,
+                           foreign_city = NULL) {
     default <- as.call(
         list(
             quote(`%is not%`),
@@ -72,7 +73,8 @@ address_widget <- function(filter_field, filter_val, type, param_fn = string_par
         switches = list(
             string_switch("addr_type_code", type),
             string_switch("contact_type_desc", "ADDRESS"),
-            string_switch("addr_status_code", status_switch)
+            string_switch("addr_status_code", status_switch),
+            regex_switch("foreign_cityzip", foreign_city)
         )
     )
 }
