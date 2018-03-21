@@ -3,13 +3,13 @@ source("helpers.R")
 library(magrittr)
 
 test_that("played_sport meets specifications on standard input", {
-    test <- played_sport(MIA, WIA)
+    test <- played_sport(MASO, WASO)
     test %>% uses_table("d_bio_sport_mv")
     test %>% id_of_type("entity_id")
     test %>% id_field_is("entity_id")
 
     test %>%
-        has_filters(sport_code = c("MIA", "WIA"))
+        has_filters(sport_code = c("MASO", "WASO"))
 
     test %>% has_clause_count(1)
 })

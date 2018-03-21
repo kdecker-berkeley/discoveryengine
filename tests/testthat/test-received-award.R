@@ -3,13 +3,13 @@ source("helpers.R")
 library(magrittr)
 
 test_that("received_award meets specifications on standard input", {
-    test <- received_award(NOBEL, PRIZE)
+    test <- received_award(NOB, PUL)
     test %>% uses_table("d_bio_awards_and_honors_mv")
     test %>% id_of_type("entity_id")
     test %>% id_field_is("entity_id")
 
     test %>%
-        has_filters(awd_honor_code = c("NOBEL", "PRIZE"))
+        has_filters(awd_honor_code = c("NOB", "PUL"))
 
     test %>% has_clause_count(1)
 })

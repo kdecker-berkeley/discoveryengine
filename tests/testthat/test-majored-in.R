@@ -15,6 +15,11 @@ test_that("majored_in meets specifications on standard input", {
 
     test %>% has_clause_count(3)
 
+    majored_in(astronomy, 084, physics) %>%
+        has_filters(local_ind = "Y",
+                    major_code1 = c("099", "084", "666"),
+                    degree_level_code = c("U", "G"))
+
 })
 
 test_that("majored_in meets specifications on no input", {
