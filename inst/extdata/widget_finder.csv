@@ -77,3 +77,5 @@ gave_to_purpose,Find donors to funds with a particular purpose,entity_id,first-o
 ca_gave_to_candidate,Find donors to CA state level candidates,entity_id,first-order,"election, politics, campaign"
 ca_gave_to_proposition,Find donors to CA state level ballot propositions,entity_id,first-order,"election, politics, campaign, proposition, ballot initiative"
 ca_gave,Find donors to CA elections,entity_id,first-order,"election, politics, campaign"
+citizen_of,Find entities who are citizens of given country/countries,entity_id,first-order,"country, international, abroad, geo, citizen, citizenship, visa"
+has_visa,Find entities with given visa/immigration status,entity_id,first-order,"country, international, abroad, geo, citizen, citizenship, visa, immigrant status, immigration, H1-B, student visa"
