@@ -1,3 +1,5 @@
+#' @rdname citizenship
+#' @export
 has_visa <- function(...) {
     reroute(has_visa_(prep_dots(...)))
 }
