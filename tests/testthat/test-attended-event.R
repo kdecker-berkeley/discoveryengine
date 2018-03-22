@@ -1,7 +1,7 @@
 context("attended_event specifications")
 source("helpers.R")
 library(magrittr)
-particip <- c('P', 'ST', 'SP', 'V', 'H', 'S', 'C', 'KN', 'MD', 'E')
+particip <- c('P', 'ST', 'SP', 'V', 'H', 'S', 'C', 'KN', 'MD', 'E', 'OL')
 
 test_that("attended_event meets specifications on standard input", {
     test <- attended_event(47, 4827)

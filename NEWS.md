@@ -6,6 +6,7 @@
 * `lives_in_foreign_country` and `works_in_foreign_country` now support an optional `city` argument to search for specific cities. For instance, `lives_in_foreign_country(KORER, city = "Seoul")`. See #63. Thanks to LR and VF for the suggestions. 
 * code validation: All codes entered in widgets are now checked against code tables. If you enter a non-existent code (e.g.: `contact_purpose(VISIT)`), you'll now receive an error message. See #64. Thanks to LR for bringing up the issue.
 * Defunct codes now appear in synonym search. Previously, they were excluded. Now they appear in a separate section of the search results, labeled "Defunct codes and synonyms," and the associated synonyms all begin with a period to make clear that they are defunct.
+* `attended_event` now includes participation type `OL` (for "Online Participant"), based on announcement from AIM.
 
 # discoveryengine 0.1.24
 ### new widgets
