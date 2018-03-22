@@ -1,3 +1,12 @@
+# discoveryengine 0.1.25
+### new widgets
+* `citizen_of` and `has_visa`. See #60. Thanks to VF for the request
+
+### implementation changes
+* `lives_in_foreign_country` and `works_in_foreign_country` now support an optional `city` argument to search for specific cities. For instance, `lives_in_foreign_country(KORER, city = "Seoul")`. See #63. Thanks to LR and VF for the suggestions. 
+* code validation: All codes entered in widgets are now checked against code tables. If you enter a non-existent code (e.g.: `contact_purpose(VISIT)`), you'll now receive an error message. See #64. Thanks to LR for bringing up the issue.
+* Defunct codes now appear in synonym search. Previously, they were excluded. Now they appear in a separate section of the search results, labeled "Defunct codes and synonyms," and the associated synonyms all begin with a period to make clear that they are defunct.
+
 # discoveryengine 0.1.24
 ### new widgets
 * `ca_gave`, `ca_gave_to_candidate`, `ca_gave_to_proposition` for searching through donors in California election campaigns
