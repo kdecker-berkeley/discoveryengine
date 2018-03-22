@@ -13,7 +13,15 @@
 #' @param include_seasonal for lives_in_*: include seasonal addresses? Defaults to FALSE
 #' @param include_student_local for lives_in_*: include student local address? Defaults to FALSE
 #' @param include_student_permanent for lives_in_*: include student permanent address? Defaults to FALSE
+#' @param city For foreign addresses, a search string to find individual cities (see details and examples)
 #' @param type Will be either "home" or "business". Advanced users can specify individual address type codes (see examples)
+#'
+#' @details Foreign addresses do not have associated county or MSA codes, and
+#' currently (as of March 2018) are not geocoded in CADS, so will not be found to
+#' the \code{\link{lives_near}} and \code{\link{works_near}} widgets. There are
+#' no strict code tables associated with cities, but the \code{city} argument in
+#' the foreign country widgets allow you to search for a particular city by name
+#' (see examples)
 #'
 #' @examples
 #' ## find anyone who lives or works in the san francisco MSA
@@ -24,6 +32,9 @@
 #'
 #' ## find people who live in any of these counties
 #' lives_in_county(alameda_ca, san_mateo_ca)
+#'
+#' ## the best way to find people working in Seoul
+#' works_in_foreign_country(KORER, city = "Seoul")
 #'
 #' ## people who live abroad or used to live abroad:
 #' lives_in_foreign_country(include_past = TRUE)

@@ -23,7 +23,7 @@ lives_in_county(..., include_alternate = TRUE, include_past = FALSE,
 lives_in_foreign_country(..., include_alternate = TRUE,
   include_past = FALSE, include_seasonal = FALSE,
   include_student_local = FALSE, include_student_permanent = FALSE,
-  type = "home")
+  city = NULL, type = "home")
 
 lives_in_msa(..., include_alternate = TRUE, include_past = FALSE,
   include_seasonal = FALSE, include_student_local = FALSE,
@@ -37,7 +37,8 @@ works_in_county(..., include_alternate = TRUE, include_past = FALSE,
   include_self_employed = TRUE, type = "business")
 
 works_in_foreign_country(..., include_alternate = TRUE,
-  include_past = FALSE, include_self_employed = TRUE, type = "business")
+  include_past = FALSE, include_self_employed = TRUE, city = NULL,
+  type = "business")
 
 works_in_msa(..., include_alternate = TRUE, include_past = FALSE,
   include_self_employed = TRUE, type = "business")
@@ -60,6 +61,8 @@ works_in_zip(..., include_alternate = TRUE, include_past = FALSE,
 
 \item{type}{Will be either "home" or "business". Advanced users can specify individual address type codes (see examples)}
 
+\item{city}{For foreign addresses, a search string to find individual cities (see details and examples)}
+
 \item{include_self_employed}{for works_in_*: include self-employed business addresses? Defaults to TRUE}
 }
 \value{
@@ -70,6 +73,14 @@ By default the "lives in" widgets use an address type code of "H" (Home)
 and the "works in" widgets use "B" (Business). Use the \code{type} argument
 to change included address types.
 }
+\details{
+Foreign addresses do not have associated county or MSA codes, and
+currently (as of March 2018) are not geocoded in CADS, so will not be found to
+the \code{\link{lives_near}} and \code{\link{works_near}} widgets. There are
+no strict code tables associated with cities, but the \code{city} argument in
+the foreign country widgets allow you to search for a particular city by name
+(see examples)
+}
 \examples{
 ## find anyone who lives or works in the san francisco MSA
 lives_in_msa(san_francisco) \%or\% works_in_msa(san_francisco)
@@ -79,6 +90,9 @@ lives_in_county(?alameda)
 
 ## find people who live in any of these counties
 lives_in_county(alameda_ca, san_mateo_ca)
+
+## the best way to find people working in Seoul
+works_in_foreign_country(KORER, city = "Seoul")
 
 ## people who live abroad or used to live abroad:
 lives_in_foreign_country(include_past = TRUE)
