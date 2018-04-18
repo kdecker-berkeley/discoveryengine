@@ -138,7 +138,7 @@ count (distinct tags.entity_id) over (partition by activity_code) as tag_cnt,
 count(distinct tags.entity_id) over () as total
 from cdw.d_bio_activity_mv tags
 left join savedlist on tags.entity_id = savedlist.entity_id
-where activity_participation_code IN ('P', 'ST', 'SP', 'V', 'H', 'S', 'C', 'KN', 'MD', 'E')
+where activity_participation_code IN ('P', 'ST', 'SP', 'V', 'H', 'S', 'C', 'KN', 'MD', 'E', 'OL')
 ),
 
 award as (
