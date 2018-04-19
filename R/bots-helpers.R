@@ -12,7 +12,10 @@ print.bot_results <- function(bigmap, ...) {
     invisible(bigmap)
 }
 
+#' @export
 as_code <- function(bot_results) UseMethod("as_code")
+
+#' @export
 as_code.bot_results <- function(bot_results) {
     bigmap <- attr(bot_results, "bot_results")
 
@@ -29,6 +32,7 @@ as_code.bot_results <- function(bot_results) {
     structure(res, class = c("bot_result_code", class(res)))
 }
 
+#' @export
 print.bot_result_code <- function(x, ...) {
     cat(x)
     invisible(x)
