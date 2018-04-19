@@ -1,3 +1,18 @@
+# discoveryengine 0.1.26
+### features
+* results from `brainstorm_bot` and `matrix_bot` can now be output as valid disco engine code, using `as_code`. For instance:
+
+```
+neuro_bb = brainstorm_bot("neuroscience")
+as_code(neuro_bb)
+```
+(or just: `as_code(brainstorm_bot("neuroscience"))`)
+
+you can then copy/paste the code and modify it if necessary before running it. 
+
+### implementation changes
+* `matrix_bot` results now include giving to candidate campaigns in California statewide elections. They do not currently include giving to ballot initative campaigns, because the default for `ca_gave_to_proposition` includes both supporters and opponents of a given proposition (see `?ca_gave_to_proposition` for info on using `support = TRUE` or `support = FALSE`). A future update may split out those two groups into separate widgets.
+
 # discoveryengine 0.1.25
 ### new widgets
 * `citizen_of` and `has_visa`. See #60. Thanks to VF for the request
