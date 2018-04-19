@@ -2,8 +2,7 @@
 
 S3method(display,listbuilder)
 S3method(display,report)
-S3method(print,brainstorm)
-S3method(print,matrix_bot)
+S3method(print,bot_results)
 S3method(print,synonym_list)
 S3method(print,widget_for)
 S3method(publish,disco_single)

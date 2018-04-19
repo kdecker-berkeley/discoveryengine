@@ -307,20 +307,6 @@ matrix_bot <- function(...) {
 
     lb <- Reduce(`%or%`, lblist)
     structure(lb,
-              matrix_bot_results = bigmap,
-              class = c("matrix_bot", "listbuilder", class(bigmap)))
-}
-
-#' @export
-print.matrix_bot <- function(bigmap, ...) {
-    printres <- function(df) {
-        cat(df[["widget"]][[1]], "\n")
-        codes <- df$code
-        descr <- df$description
-        for (index in seq_along(codes))
-            cat("    ", codes[[index]], ": ", descr[[index]], "\n", sep = "")
-    }
-
-    lapply(attr(bigmap, "matrix_bot_results"), printres)
-    invisible(bigmap)
+              bot_results = bigmap,
+              class = c("matrix_bot", "bot_results", "listbuilder", class(bigmap)))
 }

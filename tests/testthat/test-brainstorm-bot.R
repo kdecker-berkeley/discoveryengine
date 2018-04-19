@@ -16,7 +16,7 @@ test_that("brainstorm_bot gives error when no matches", {
 
 test_that("brainstorm_bot knows about MSAs", {
     x <- brainstorm_bot("sacramento")
-    res <- attr(x, "brainstorm_results")
+    res <- attr(x, "bot_results")
     expect_true("works_in_msa" %in% names(res))
     expect_true("lives_in_msa" %in% names(res))
 })

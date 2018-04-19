@@ -97,8 +97,8 @@ brainstorm_bot <- function(...) {
 
     lb <- Reduce(`%or%`, lblist)
     structure(lb,
-              brainstorm_results = bigmap,
-              class = c("brainstorm", class(lb)))
+              bot_results = bigmap,
+              class = c("brainstorm", "bot_results", class(lb)))
 }
 
 tms2cdw <- function(tms_views) {
@@ -114,18 +114,4 @@ cdw_tms_dictionary <- function() {
     filename <- systemfile("extdata", "cdw_tms_dictionary.csv",
                            package = "discoveryengine")
     readcsv(filename, stringsAsFactors = FALSE)
-}
-
-#' @export
-print.brainstorm <- function(bigmap, ...) {
-    printres <- function(df) {
-        cat(df[["widget"]][[1]], "\n")
-        codes <- df$code
-        descr <- df$description
-        for (index in seq_along(codes))
-            cat("    ", codes[[index]], ": ", descr[[index]], "\n", sep = "")
-    }
-
-    lapply(attr(bigmap, "brainstorm_results"), printres)
-    invisible(bigmap)
 }
