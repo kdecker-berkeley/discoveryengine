@@ -200,7 +200,21 @@ from rdata.fec tags
         on fec_ccl.fec_cycle = fec_candidates.fec_cycle
         and fec_ccl.cand_id = fec_candidates.cand_id
     left join savedlist on tags.entity_id = savedlist.entity_id
+),
 
+ca_candidate as (
+select distinct
+'ca_gave_to_candidate' as widget,
+ca_candidates.candidate_id as code,
+first_value(ca_candidates.candidate) over (partition by ca_candidates.candidate_id) as description,
+count (distinct savedlist.entity_id) over (partition by ca_candidates.candidate_id) as overlap,
+count (distinct savedlist.entity_id) over () as sl_total,
+count (distinct tags.entity_id) over (partition by ca_candidates.candidate_id) as tag_cnt,
+count(distinct tags.entity_id) over () as total
+from rdata.ca_campaign tags
+inner join rdata.ca_campaign_candidate ca_candidates
+on tags.filing_id = ca_candidates.filing_id
+left join savedlist on tags.entity_id = savedlist.entity_id
 )
 
 select * from sa where overlap >= ##MIN_CUTOFF##
@@ -230,6 +244,8 @@ union
 select * from fec_category where overlap >= ##MIN_CUTOFF##
 union
 select * from fec_candidate where overlap >= ##MIN_CUTOFF##
+union
+select * from ca_candidate where overlap >= ##MIN_CUTOFF##
 ")
 
 matrix_bot_query <- function(sl)
