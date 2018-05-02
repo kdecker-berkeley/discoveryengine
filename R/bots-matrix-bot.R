@@ -310,3 +310,7 @@ matrix_bot <- function(...) {
               bot_results = bigmap,
               class = c("matrix_bot", "bot_results", "listbuilder", class(bigmap)))
 }
+
+#' @rdname matrix_bot
+#' @export
+bot_matrix <- matrix_bot

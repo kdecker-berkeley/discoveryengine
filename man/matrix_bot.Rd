@@ -2,9 +2,12 @@
 % Please edit documentation in R/bots-matrix-bot.R
 \name{matrix_bot}
 \alias{matrix_bot}
+\alias{bot_matrix}
 \title{Broaden a search using co-occurrence analysis}
 \usage{
 matrix_bot(...)
+
+bot_matrix(...)
 }
 \arguments{
 \item{...}{One or more disco engine definitions and/or individual entity IDs}

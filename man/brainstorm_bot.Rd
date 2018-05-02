@@ -2,9 +2,12 @@
 % Please edit documentation in R/bots-brainstorm-bot.R
 \name{brainstorm_bot}
 \alias{brainstorm_bot}
+\alias{bot_brainstorm}
 \title{Suggest widgets and codes based on search terms}
 \usage{
 brainstorm_bot(...)
+
+bot_brainstorm(...)
 }
 \arguments{
 \item{...}{terms to search for}

@@ -115,3 +115,7 @@ cdw_tms_dictionary <- function() {
                            package = "discoveryengine")
     readcsv(filename, stringsAsFactors = FALSE)
 }
+
+#' @rdname brainstorm_bot
+#' @export
+bot_brainstorm <- brainstorm_bot
