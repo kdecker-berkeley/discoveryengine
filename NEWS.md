@@ -1,3 +1,11 @@
+# discoveryengine 0.1.27
+### new names for old functions
+* `bot_brainstorm`, `bot_matrix`, and `bot_as_code` are new aliases for the corresponding bot functions. The old names will continue to work, the new aliases are easier to discover via autocomplete.
+
+### implementation changes
+* `display` now returns a data.frame, even when the `file` argument is not null (in which case a CSV is written to disk and then a data.frame is returned).
+* `attended_event(..., include_nonattendees = TRUE)` will now include records with attendance code `RU` ("Registered - Attendance Unknown"). 
+
 # discoveryengine 0.1.26
 ### features
 * results from `brainstorm_bot` and `matrix_bot` can now be output as valid disco engine code, using `as_code`. For instance:
