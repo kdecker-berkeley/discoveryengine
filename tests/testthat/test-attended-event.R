@@ -15,7 +15,7 @@ test_that("attended_event meets specifications on standard input", {
 
     attended_event(123, 457, include_non_attendees = TRUE) %>%
         has_filters(activity_code = c("123", "457"),
-                    activity_participation_code = c(particip, "ID", "RG", "NS"))
+                    activity_participation_code = c(particip, "ID", "RG", "NS", "RU"))
 
 })
 

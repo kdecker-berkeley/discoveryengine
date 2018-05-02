@@ -34,7 +34,7 @@ attended_event_ <- function(events, from = NULL, to = NULL,
                             include_non_attendees = FALSE, comment = NULL) {
     participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E", "OL")
     if (include_non_attendees)
-        participation <- c(participation, "ID", "RG", "NS")
+        participation <- c(participation, "ID", "RG", "NS", "RU")
 
     entity_widget("d_bio_activity_mv",
                   parameter = string_param("activity_code", events),
