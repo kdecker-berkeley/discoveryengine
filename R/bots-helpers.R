@@ -12,8 +12,25 @@ print.bot_results <- function(bigmap, ...) {
     invisible(bigmap)
 }
 
+#' Turn Bot results into valid disco-engine code
+#'
+#' This is a useful helper function for when you want to use several of the
+#' results from the \code{\link{braistorm_bot}} or \code{\link{matrix_bot}} as
+#' part of a Disco Engine definition.
+#'
+#' @param bot_results Results from a disco engine bot, such as
+#' \code{\link{brainstorm_bot}} or \code{\link{matrix_bot}}.
+#'
+#' @examples
+#' bb = brainstorm_bot("robot*")
+#' bot_as_code(bb)
+#'
 #' @export
 as_code <- function(bot_results) UseMethod("as_code")
+
+#' @rdname as_code
+#' @export
+bot_as_code <- as_code
 
 #' @export
 as_code.bot_results <- function(bot_results) {
