@@ -36,6 +36,7 @@ display.listbuilder <- function(savedlist, ...,
     else filename <- file
 
     write.csv(res, filename, row.names = FALSE)
+    invisible(res)
 }
 
 #' @export
@@ -62,6 +63,7 @@ display.report <- function(report, ...,
         filename <- paste0(file, ".csv")
     else filename <- file
     write.csv(res, filename, row.names = FALSE)
+    invisible(res)
 }
 
 modify <- function(savedlist, include_organizations,
