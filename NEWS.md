@@ -1,3 +1,7 @@
+# discoveryengine 0.1.28
+### new widgets
+* `attended_hs` for finding students/alums based on the high school they attended (useful for parent prospecting). See issue #70, thanks to LR for the suggestion.
+
 # discoveryengine 0.1.27
 ### new names for old functions
 * `bot_brainstorm`, `bot_matrix`, and `bot_as_code` are new aliases for the corresponding bot functions. The old names will continue to work, the new aliases are easier to discover via autocomplete.
