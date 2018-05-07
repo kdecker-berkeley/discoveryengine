@@ -568,7 +568,7 @@ D_APPEAL_MV,APPEAL_SOLICIT_TYPE_DESC,tms_appeal_type
 D_APPEAL_MV,PROGRAM_CODE,tms_program
 FX_GIFT_TENDER_TYPE_MV,CREDIT_CARD_TYPE,"tms_credit_card
 "
-D_BIO_DEGREES_MV,INSTITUTION_CODE,"The institution from which this degree was granted. This field is required for both local, UCB, or non-UCB Institutions. Validated against Institution (institution) tms table."
+D_BIO_DEGREES_MV,INSTITUTION_CODE,institution
 D_BIO_FORMER_SPOUSE_MV,MARITAL_STATUS_CODE,tms_marital_status
 D_BIO_SPORT_MV,SPORT_DESC,tms_sport
 F_PLEDGE_DETAIL_MV,PLEDGE_ALLOC_DEPT_CODE,tms_alloc_department
