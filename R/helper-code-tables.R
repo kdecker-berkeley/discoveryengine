@@ -82,6 +82,14 @@ code_xref <- list(
         table_field = "'CA Propositions'",
         view_field = "'ca_proposition_id'",
         code_table = "rdata.ca_campaign_proposition"
+    ),
+
+    sec_issuer_cik = list(
+        code_field = "issuer_cik",
+        desc_field = "issuer_name",
+        table_field = "'SEC Issuer CIKs'",
+        view_field = "'sec_issuer_cik'",
+        code_table = "rdata.sec_hdr"
     )
 
 )

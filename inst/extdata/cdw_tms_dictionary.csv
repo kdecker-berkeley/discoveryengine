@@ -593,3 +593,4 @@ FEC_CMTE_CATEGORY,cmte_code,fec_cmte_code
 F_ALLOCATION_MV,PRIMARY_PURPOSE_CODE,tms_category1
 ca_campaign_candidate,candidate_id,ca_candidate_id
 ca_campaign_proposition,proposition_id,ca_proposition_id
+sec_hdr,issuer_cik,sec_issuer_cik
