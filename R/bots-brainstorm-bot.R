@@ -27,6 +27,7 @@ widget2cdw <- function() {
 every_code <- function() {
     all_tms <- names(code_xref)
     all_tables <- lapply(all_tms, function(tms) getcdw::get_cdw(code_query(tms)))
+    all_tables <- lapply(all_tables, function(tb) dplyr::mutate_all(tb, as.character))
     res <- Reduce(dplyr::union, all_tables)
     res[, c("code", "description", "table_name", "view_name"), drop = FALSE]
 }
