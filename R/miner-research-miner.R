@@ -23,7 +23,7 @@
 #'
 #' @export
 research_miner <- function(...) {
-    search_terms <- as.character(unlist(list(...)))
+    search_terms <- prep_regex_param(...)
     finder_builder(
         table = "f_notes_mv",
         id_field = "entity_id",

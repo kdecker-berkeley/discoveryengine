@@ -58,7 +58,7 @@ every_code <- function() {
 #'
 #' @export
 brainstorm_bot <- function(...) {
-    search_terms <- as.character(unlist(list(...)))
+    search_terms <- prep_regex_param(...)
 
     processed_search_string <- make_regex(search_terms)
     all_codes <- every_code()

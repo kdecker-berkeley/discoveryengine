@@ -31,7 +31,7 @@
 #'
 #' @export
 job_title_like <- function(..., include_former = FALSE) {
-    search_terms <- as.character(unlist(list(...)))
+    search_terms <- prep_regex_param(...)
     if (include_former) my_switch <- NULL
     else my_switch <- string_switch("job_status_code", "C")
 

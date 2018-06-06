@@ -31,7 +31,7 @@
 #' @seealso \code{\link{gave_to_fund}}
 #' @export
 fund_text_contains <- function(...) {
-    search_terms <- as.character(unlist(list(...)))
+    search_terms <- prep_regex_param(...)
     has_in_name <- finder_builder(
         table = "f_allocation_mv",
         id_field = "allocation_code",

@@ -28,7 +28,7 @@
 #'
 #' @export
 contact_text_contains <- function(...) {
-    search_terms <- as.character(unlist(list(...)))
+    search_terms <- prep_regex_param(...)
     finder_builder(
         table = "f_contact_reports_mv",
         id_field = "report_id",
