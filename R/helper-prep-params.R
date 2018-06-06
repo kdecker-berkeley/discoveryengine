@@ -51,3 +51,14 @@ prep_zip_param <- function(param, field_name) {
     param <- lapply(param, lazyeval::as.lazy)
     partial_sub(param)
 }
+
+prep_regex_param <- function(...) {
+    terms <- list(...)
+
+    argnames <- unique(names(terms))
+    argnames <- Filter(function(x) x != "", argnames)
+    if (length(argnames) > 0)
+        stop("Unrecognized argument(s): ", paste(argnames, collapse = ", "),
+             call. = FALSE)
+    as.character(unlist(terms))
+}

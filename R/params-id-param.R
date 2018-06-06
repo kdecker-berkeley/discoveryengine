@@ -5,6 +5,12 @@ entity_id_param <- function(...) {
     ents <- list(...)
     if (length(ents) <= 0L) return(is_a(include_deceased = TRUE))
 
+    argnames <- unique(names(ents))
+    argnames <- Filter(function(x) x != "", argnames)
+    if (length(argnames) > 0)
+        stop("Unrecognized argument(s): ", paste(argnames, collapse = ", "),
+             call. = FALSE)
+
     literal <- vapply(
         ents,
         is.atomic,
