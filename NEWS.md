@@ -1,3 +1,10 @@
+# discoveryengine 0.1.29
+### new widgets
+* `sec_filed` for pulling entities based on SEC form 3/4/5 filings. See `?sec_filed` for details.
+
+### bugfixes
+* certain widgets were not erroring when users entered an invalid argument (e.g. `contact_credit(1234, from = 20150101)`). Now they do, thanks to LC for noticing and reporting the issue
+
 # discoveryengine 0.1.28
 ### new widgets
 * `attended_hs` for finding students/alums based on the high school they attended (useful for parent prospecting). See issue #70, thanks to LR for the suggestion.
