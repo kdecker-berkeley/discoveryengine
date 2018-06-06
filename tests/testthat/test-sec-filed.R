@@ -33,6 +33,10 @@ test_that("sec_filed meets specifications on standard input", {
     test <- sec_filed(1326801, title_text = "chairman")
     checker(test, c("issuer_cik in ('1326801')",
                     "regexp_like(officer_title || ' ' || other_text, '((^|\\\\s|\\\\W)chairman($|\\\\s|\\\\W))', 'i')"))
+
+    test <- sec_filed(1326801, from = 20170101, to = 20171231)
+    checker(test, c("issuer_cik in ('1326801')",
+                    "filing_date between to_date(20170101, 'yyyymmdd') and to_date(20171231, 'yyyymmdd')"))
 })
 
 test_that("sec_filed meets specifications on no input", {
