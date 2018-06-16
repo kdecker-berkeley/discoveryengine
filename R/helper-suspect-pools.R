@@ -31,7 +31,7 @@ suspect_pools <- function () {
       max(last_updated) as last_updated,
       sum(entities) as entities from (
     select
-      ora_hash(unit_code || xcomment, 100000, 19800401) as pool_id,
+      ora_hash(unit_code || xcomment, 2000000000, 19800401) as pool_id,
       unit_code,
       unit_desc,
       operator_name,

@@ -16,7 +16,7 @@ in_suspect_pool <- function(...) {
         parameter <- list()
     } else {
         parameter <- list(substitute(
-            ora_hash(unit_code %||% xcomment,100000L, 19800401L) %in% ids
+            ora_hash(unit_code %||% xcomment, 2000000000L, 19800401L) %in% ids
         ))
     }
 
