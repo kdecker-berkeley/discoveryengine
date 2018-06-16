@@ -39,6 +39,7 @@ suspect_pools <- function () {
       max(date_added) as last_updated,
       count(distinct entity_id) as entities
     from CDW.d_prospect_interest_mv
+    where prospect_interest_code not in ('PP')
     group by
       unit_code,
       unit_desc,

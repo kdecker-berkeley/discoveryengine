@@ -24,6 +24,7 @@ in_suspect_pool <- function(...) {
         table = "d_prospect_interest_mv",
         id_field = "entity_id",
         id_type = "entity_id",
-        parameter = parameter
+        parameter = parameter,
+        switches = list(not_string_switch("prospect_interest_code", "PP"))
     )
 }
