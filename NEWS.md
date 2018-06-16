@@ -1,3 +1,7 @@
+# discoveryengine 0.1.30
+### bugfixes
+* Updated the calculation of the `pool_id` that is used to identify suspect pools -- the original ID field was too short, which could result in distinct pools having the same ID. See issue #73. Also note that the next update will include new widgets to work with Pipeline Prospects, which are not handled well by the suspect pool widgets.
+
 # discoveryengine 0.1.29
 ### new widgets
 * `sec_filed` for pulling entities based on SEC form 3/4/5 filings. See `?sec_filed` for details.
