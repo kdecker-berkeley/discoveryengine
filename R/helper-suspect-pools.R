@@ -7,7 +7,7 @@
 #' @export
 show_suspect_pools <- function() {
     if (!requireNamespace("DT", quietly = TRUE)) {
-        stop('DT package needed for show_widgets to work.\n',
+        stop('DT package needed for show_suspect_pools to work.\n',
              'To install: install.packages("DT")',
              call. = FALSE)
     }
