@@ -16,7 +16,9 @@ in_suspect_pool <- function(...) {
         parameter <- list()
     } else {
         parameter <- list(substitute(
-            ora_hash(unit_code %||% xcomment, 2000000000L, 19800401L) %in% ids
+            case_when(
+                prospect_interest_code == 'PP' ~ ora_hash(unit_code %||% interest_amt, 2000000000L, 19800401L),
+                1L == 1L ~ ora_hash(unit_code %||% xcomment, 2000000000L, 19800401L)) %in% ids
         ))
     }
 
@@ -24,7 +26,6 @@ in_suspect_pool <- function(...) {
         table = "d_prospect_interest_mv",
         id_field = "entity_id",
         id_type = "entity_id",
-        parameter = parameter,
-        switches = list(not_string_switch("prospect_interest_code", "PP"))
+        parameter = parameter
     )
 }
