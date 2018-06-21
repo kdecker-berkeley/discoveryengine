@@ -1,3 +1,10 @@
+# discoveryengine 0.2.0
+### new widgets
+* `in_savedlist` allows you to pull entities based on membership in a savedlist created in CADS. Use `show_savedlists()` to see all available savedlists, and use the `savedlist_id` in the widget
+
+### implementation changes
+* Pipeline prospects are now included in the suspect pool tools. Use `show_suspect_pools()` to see a list of all suspect pools. Pipeline prospects are distinguished by the combination of Unit + Year, whereas other types of suspect pools are identified via Unit + comment. `in_suspect_pool` works as before, but now there are identifiers for the individual pipeline prospects groups. 
+
 # discoveryengine 0.1.30
 ### bugfixes
 * Updated the calculation of the `pool_id` that is used to identify suspect pools -- the original ID field was too short, which could result in distinct pools having the same ID. See issue #73. Also note that the next update will include new widgets to work with Pipeline Prospects, which are not handled well by the suspect pool widgets.
