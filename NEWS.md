@@ -1,3 +1,8 @@
+# discoveryengine 0.2.1
+### implementation changes
+* `research_miner` now includes an option to specify the entity ID of the author of the research note, to make it possible to find bios and research notes written by specific researchers
+* `sec_filed` now includes a `verified` option. By default, all matches are included. If `verified = TRUE`, then only those matches verified by Prospect Discovery are included. If `verified = FALSE` then only those matches that have not been verified by Prospect Discovery are included.
+
 # discoveryengine 0.2.0
 ### new widgets
 * `in_savedlist` allows you to pull entities based on membership in a savedlist created in CADS. Use `show_savedlists()` to see all available savedlists, and use the `savedlist_id` in the widget
