@@ -13,8 +13,14 @@
 #' @param ten_percenter Look for people listed as ten percent owners? See details
 #' @param other Look for people with some other relationship to the company? See details
 #' @param title_text Search term to look for in filer's free-text entry for officer or other
+#' @param verified See details
 #'
-#' @details Since this is based on a probabilistic match score, there will be some
+#' @details By default, all matched filings are included in the search. If
+#' \code{verified} is TRUE, then only those that have been verified by the
+#' Prospect Discovery Team are included. If \code{verified} is FALSE, then only
+#' filings that have NOT been verified by Prospect Discovery are included.
+#' #'
+#' Since this is based on a probabilistic match score, there will be some
 #' false positive matches. If perfect accuracy is necessary, be sure to manually
 #' review the results. You might want to use the `screening` chunk from the
 #' `discoappend` package, which outputs links to filings on the SEC's website.
@@ -45,17 +51,17 @@
 #' @export
 sec_filed <- function(..., from = NULL, to = NULL, director = NULL,
           officer = NULL, ten_percenter = NULL, other = NULL,
-          title_text = NULL) {
+          title_text = NULL, verified = NULL) {
     reroute(sec_filed_(prep_dots(...), from = from, to = to,
                        director = director, officer = officer,
                        ten_percenter = ten_percenter, other = other,
-                       title_text = title_text))
+                       title_text = title_text, verified = verified))
 }
 
 
 sec_filed_ <- function(issuers, from = NULL, to = NULL, director = NULL,
            officer = NULL, ten_percenter = NULL, other = NULL,
-           title_text = NULL) {
+           title_text = NULL, verified = NULL) {
 
     flag10 <- function(lgl) {
         if (is.null(lgl)) return(NULL)
@@ -87,7 +93,7 @@ sec_filed_ <- function(issuers, from = NULL, to = NULL, director = NULL,
         schema = "rdata"
     )
 
-    converter_builder(
+    res <- converter_builder(
         issuers,
         table = "sec_cik_dict",
         from = "cik",
@@ -96,4 +102,39 @@ sec_filed_ <- function(issuers, from = NULL, to = NULL, director = NULL,
         to_type = "entity_id",
         schema = "rdata"
     )
+
+    if (is.null(verified)) return(res)
+
+    verified_sql <- "
+select entity_id, to_number(other_id) as cik
+from cdw.d_ids_base
+where ids_type_code = 'SEC'
+  and not regexp_like(other_id, '[^0-9]')
+    "
+
+    if (verified)
+        return(
+            converter_builder_custom(
+                issuers,
+                custom = verified_sql,
+                from = "cik",
+                from_type = "sec_cik",
+                to = "entity_id",
+                to_type = "entity_id"
+            )
+        )
+
+    if (!verified)
+        return(
+            converter_builder_custom(
+                issuers,
+                custom = paste("select * from rdata.sec_cik_dict\nminus\n", verified_sql),
+                from = "cik",
+                from_type = "sec_cik",
+                to = "entity_id",
+                to_type = "entity_id"
+            )
+        )
+
+    stop("Unexpected error")
 }

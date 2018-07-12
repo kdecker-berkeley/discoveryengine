@@ -6,7 +6,8 @@
 \title{Find entities who made SEC filings}
 \usage{
 sec_filed(..., from = NULL, to = NULL, director = NULL, officer = NULL,
-  ten_percenter = NULL, other = NULL, title_text = NULL)
+  ten_percenter = NULL, other = NULL, title_text = NULL,
+  verified = NULL)
 }
 \arguments{
 \item{...}{Central Index Key for one or more companies -- if blank, will look at all SEC filings}
@@ -24,6 +25,8 @@ sec_filed(..., from = NULL, to = NULL, director = NULL, officer = NULL,
 \item{other}{Look for people with some other relationship to the company? See details}
 
 \item{title_text}{Search term to look for in filer's free-text entry for officer or other}
+
+\item{verified}{See details}
 }
 \value{
 A definition of type \code{entity_id}
@@ -33,6 +36,11 @@ Find entities who have filed an SEC Form 3/4/5. Data is based on a match of
 CADS entities to SEC disclosures
 }
 \details{
+By default, all matched filings are included in the search. If
+\code{verified} is TRUE, then only those that have been verified by the
+Prospect Discovery Team are included. If \code{verified} is FALSE, then only
+filings that have NOT been verified by Prospect Discovery are included.
+#'
 Since this is based on a probabilistic match score, there will be some
 false positive matches. If perfect accuracy is necessary, be sure to manually
 review the results. You might want to use the `screening` chunk from the
