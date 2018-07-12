@@ -10,6 +10,8 @@
 #' function to use an arbitrary Oracle-style regex as the search term.
 #'
 #' @param ... Search string(s)
+#' @param author Optionally, include an entity ID of a prospect researcher to only
+#' look at notes written by that researcher.
 #'
 #' @return A discoveryengine list definition of type \code{entity_id}
 #'
@@ -22,14 +24,18 @@
 #'     has_philanthropic_affinity(higher_education, secondary_education)
 #'
 #' @export
-research_miner <- function(...) {
+research_miner <- function(..., author = NULL) {
     search_terms <- prep_regex_param(...)
+
     finder_builder(
         table = "f_notes_mv",
         id_field = "entity_id",
         id_type = "entity_id",
         search_fields = c("description", "brief_note", "note_text"),
         search_terms = search_terms,
-        switches = string_switch("note_type", c("RR", "RB", "RN"))
+        switches = list(
+            string_switch("note_type", c("RR", "RB", "RN")),
+            integer_switch("author_entity_id", author)
+        )
     )
 }

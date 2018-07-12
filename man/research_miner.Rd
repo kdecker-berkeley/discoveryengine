@@ -4,10 +4,13 @@
 \alias{research_miner}
 \title{Find entities based on keyword searches of their research profiles}
 \usage{
-research_miner(...)
+research_miner(..., author = NULL)
 }
 \arguments{
 \item{...}{Search string(s)}
+
+\item{author}{Optionally, include an entity ID of a prospect researcher to only
+look at notes written by that researcher.}
 }
 \value{
 A discoveryengine list definition of type \code{entity_id}
