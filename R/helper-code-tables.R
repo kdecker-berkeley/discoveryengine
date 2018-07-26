@@ -60,6 +60,14 @@ code_xref <- list(
         code_table = "rdata.fec_cmte_category"
     ),
 
+    fec_party_code = list(
+        code_field = "party_code",
+        desc_field = "party_desc",
+        table_field = "'FEC Parties'",
+        view_field = "'fec_party_code'",
+        code_table = "rdata.fec_cmte_party"
+    ),
+
     DEFAULT = list(
         code_field = "tms_type_code",
         desc_field = "tms_type_desc",
