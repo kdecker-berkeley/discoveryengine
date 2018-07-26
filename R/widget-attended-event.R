@@ -32,7 +32,7 @@ attended_event <- function(..., from = NULL, to = NULL,
 
 attended_event_ <- function(events, from = NULL, to = NULL,
                             include_non_attendees = FALSE, comment = NULL) {
-    participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E", "OL")
+    participation = c("P", "ST", "SP", "V", "H", "S", "C", "KN", "MD", "E", "OL", "IS")
     if (include_non_attendees)
         participation <- c(participation, "ID", "RG", "NS", "RU")
 
