@@ -12,26 +12,26 @@ test_that("has_degree_from meets specifications on standard input", {
     test %>%
         has_filters(school_code = c("NR", "BU"),
                     degree_level_code = c("U", "G"),
-                    local_ind = "Y")
+                    institution_code = c("004833", "0A4833"))
 
     has_degree_from(chemistry, undergraduates = TRUE,
                     graduates = FALSE, attendees = TRUE) %>%
         has_filters(school_code = "CH",
-                    local_ind = "Y",
+                    institution_code = c("004833", "0A4833"),
                     degree_level_code = c("U", "A"))
 
 })
 
 test_that("has_degree_from meets specifications on no input", {
     has_degree_from() %>%
-        has_filters(local_ind = "Y",
+        has_filters(institution_code = c("004833", "0A4833"),
                     degree_level_code = c("U", "G"))
 
     has_degree_from(graduates = FALSE) %>%
-        has_filters(local_ind = "Y",
+        has_filters(institution_code = c("004833", "0A4833"),
                     degree_level_code = "U")
 
     has_degree_from(attendees = TRUE) %>%
-        has_filters(local_ind = "Y",
+        has_filters(institution_code = c("004833", "0A4833"),
                     degree_level_code = c("U", "A", "G", "L"))
 })

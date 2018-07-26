@@ -55,7 +55,7 @@ count (distinct tags.entity_id) over (partition by major_code1) as tag_cnt,
 count(distinct tags.entity_id) over () as total
 from cdw.d_bio_degrees_mv tags
 left join savedlist on tags.entity_id = savedlist.entity_id
-where local_ind = 'Y'
+where institution_code  in ('004833', '0A4833')
 and degree_year <> ' '
 and major_code1 <> 'UNK'
 ),

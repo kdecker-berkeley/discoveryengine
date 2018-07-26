@@ -1,7 +1,7 @@
 academic_widget <- function(
     param,
     undergraduates, graduates, attendees, current_students, degreeholders,
-    from, to) {
+    from, to, advisor) {
 
     levels = NULL
     student_levels <- NULL
@@ -36,7 +36,8 @@ academic_widget <- function(
                               switches = list(
                                   string_switch("degree_level_code", levels),
                                   date_switch,
-                                  quote(local_ind == "Y")
+                                  integer_switch("advisor_entity_id", advisor),
+                                  string_switch("institution_code", c("004833", "0A4833"))
                               ))
     } else {
         alum <- NULL
@@ -50,7 +51,8 @@ academic_widget <- function(
                             switches = list(
                                 string_switch("degree_level_code", student_levels),
                                 string_switch("non_grad_code", c("C", "N", "R")),
-                                quote(local_ind == "Y")
+                                integer_switch("advisor_entity_id", advisor),
+                                string_switch("institution_code", c("004833", "0A4833"))
                             ))
     } else {
         st <- NULL
