@@ -4,19 +4,22 @@ minored_in <- function(..., undergraduates = TRUE,
                        graduates = TRUE, attendees= FALSE,
                        current_students = FALSE,
                        degreeholders = TRUE,
-                       from = NULL, to = NULL)
+                       from = NULL, to = NULL,
+                       advisor = NULL)
     reroute(minored_in_(
         prep_dots(...), undergraduates = undergraduates,
         graduates = graduates, attendees = attendees,
         current_students = current_students,
         degreeholders = degreeholders,
-        from = from, to = to))
+        from = from, to = to,
+        advisor = advisor))
 
 minored_in_ <- function(minors, undergraduates = TRUE,
                         graduates = TRUE, attendees= FALSE,
                         current_students = FALSE,
                         degreeholders = TRUE,
-                        from = NULL, to = NULL) {
+                        from = NULL, to = NULL,
+                        advisor = NULL) {
 
     academic_widget(param = string_param("minor_code1", minors, width = 3,
                                          default = quote(trim(minor_code1) %is not% null)),
@@ -25,5 +28,6 @@ minored_in_ <- function(minors, undergraduates = TRUE,
                     attendees = attendees,
                     current_students = current_students,
                     degreeholders = degreeholders,
-                    from = from, to = to)
+                    from = from, to = to,
+                    advisor = advisor)
 }
