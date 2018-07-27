@@ -33,5 +33,5 @@ test_that("has_degree_from meets specifications on no input", {
 
     has_degree_from(attendees = TRUE) %>%
         has_filters(institution_code = c("004833", "0A4833"),
-                    degree_level_code = c("U", "A", "G", "L"))
+                    degree_level_code = c("U", "A", "G", "L", "V", "P"))
 })
