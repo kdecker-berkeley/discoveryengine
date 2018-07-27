@@ -1,3 +1,14 @@
+# discoveryengine 0.2.1.9000
+### new widgets
+* `fec_gave_to_party` for pulling FEC-reported political contributions by political party. 
+
+## implementation changes
+* `attended_event` now includes participants with attendance code `IS` ("Industry Specialist"), see #79. 
+* all academic widgets (such as `has_degree_from`, `majored_in`, `minored_in`, and `has_degree`) now include degree information from "UC Berkeley Academic Non Degree Programs" such as Haas's Exec Development Program. This makes it easier to pull people who did postdoctoral work at Berkeley, among other things.
+* academic widgets now include an option called `advisor`, to pull based on the entity ID of the faculty advisor. See #78, thanks to LC for making the request.
+* `has_degree` no longer has options for `graduates` or `undergraduates`, because those levels depend on the degree type (e.g. MBAs are always graduates, etc.)
+* `related_to` now includes a `comment` option, enabling search based on the comment field of the relationship record
+
 # discoveryengine 0.2.1
 ### implementation changes
 * `research_miner` now includes an option to specify the entity ID of the author of the research note, to make it possible to find bios and research notes written by specific researchers
