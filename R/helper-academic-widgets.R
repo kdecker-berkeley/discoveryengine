@@ -26,7 +26,7 @@ academic_widget <- function(
 
     if (graduates) {
         if (degreeholders) levels <- c(levels, "G")
-        if (attendees) levels <- c(levels, "L")
+        if (attendees) levels <- c(levels, c("L", "V", "P"))
         if (current_students) student_levels <- c(student_levels, "L")
     }
 

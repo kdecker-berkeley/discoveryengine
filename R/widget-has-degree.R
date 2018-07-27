@@ -22,7 +22,10 @@ has_degree_ <- function(codes,
                         from = NULL, to = NULL,
                         advisor = NULL) {
 
-    academic_widget(param = string_param("degree_code", codes),
+    param <- string_param("degree_code", codes)
+    attendees <- check_vis_postdocs(param[[1]][[3]], attendees)
+
+    academic_widget(param = param,
                     undergraduates = TRUE,
                     graduates = TRUE,
                     attendees = attendees,
@@ -30,4 +33,14 @@ has_degree_ <- function(codes,
                     degreeholders = degreeholders,
                     from = from, to = to,
                     advisor = advisor)
+}
+
+check_vis_postdocs <- function(codes, attendees) {
+    if (any(c("VSCH", "PDOC") %in% codes)) {
+        if (!attendees)
+            warning("Visiting Scholars and Postdocs are considered attendees for the purposes of this widget.\n",
+                    "Therefore, 'attendees' is being set to TRUE", call. = FALSE)
+        return(TRUE)
+    }
+    attendees
 }
