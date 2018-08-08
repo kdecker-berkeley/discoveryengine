@@ -4,7 +4,7 @@
 \alias{related_to}
 \title{A relation of a person}
 \usage{
-related_to(savedlist, ...)
+related_to(savedlist, ..., comment = NULL)
 }
 \arguments{
 \item{savedlist}{A discoveryengine definition}
