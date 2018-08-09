@@ -595,3 +595,4 @@ ca_campaign_candidate,candidate_id,ca_candidate_id
 ca_campaign_proposition,proposition_id,ca_proposition_id
 sec_hdr,issuer_cik,sec_issuer_cik
 FEC_COMMITTEES,cmte_pty_affiliation,fec_party_code
+CUSTOM_PROPOSAL,proposal_type,tms_proposal_type
