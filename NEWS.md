@@ -8,6 +8,7 @@
 * academic widgets now include an option called `advisor`, to pull based on the entity ID of the faculty advisor. See #78, thanks to LC for making the request.
 * `has_degree` no longer has options for `graduates` or `undergraduates`, because those levels depend on the degree type (e.g. MBAs are always graduates, etc.)
 * `related_to` now includes a `comment` option, enabling search based on the comment field of the relationship record
+* more informative error messages from `lives_near` and `works_near` when there are geocoding problems.  
 
 # discoveryengine 0.2.1
 ### implementation changes
