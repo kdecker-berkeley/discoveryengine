@@ -23,7 +23,8 @@ geocode_location_base <- function(location) {
     url <- paste0(url, qry, "&format=json")
     geo <- tryCatch(
         nominatim_dl(url),
-        error = function(e) stop("There was a problem geocoding '", location, "'",
+        error = function(e) stop("There was a problem geocoding '", location, "'\n",
+                                 "You might try your luck geocoding the address yourself, see https://support.google.com/maps/answer/18539",
                                  call. = FALSE)
     )
 
