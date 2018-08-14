@@ -26,6 +26,25 @@ test_that("address widgets work", {
     expect_is(works_near("1995 University Avenue, Berkeley CA",
                          miles = 6),
               "listbuilder")
+
+    expect_is(lives_in_state(), 'listbuilder')
+    expect_is(lives_in_state(CA), 'listbuilder')
+
+    test <- works_in_state(TX)
+    test %>% has_filters(
+        state_code = "TX",
+        addr_type_code = c("B", "I", "N"),
+        contact_type_desc = 'ADDRESS',
+        addr_status_code = c("A", "K")
+    )
+
+    test2 <- lives_in_state(CA, AK, include_seasonal = TRUE, include_past = TRUE)
+    test2 %>% has_filters(
+        state_code = c("CA", "AK"),
+        addr_type_code = c("H", "S", "6", "P", "SP", "6P"),
+        contact_type_desc = "ADDRESS"
+    )
+
 })
 
 test_that("address types are correctly mapped from widget options", {
