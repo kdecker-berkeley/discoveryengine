@@ -83,3 +83,5 @@ attended_hs,Find entities who attended specific high school(s),entity_id,first-o
 sec_filed,Find entities who have made SEC filings,entity_id,first-order,"SEC, wealth, finance, financial, securities, stocks, assets"
 in_savedlist,Lists entities in a given savedlist(s),entity_id,first-order,"savedlist, saved list"
 fec_gave_to_party,Find entities who gave to a particular political party in a federal election,entity_id,first-order,"fec, politics, political, federal election, campaign, political party, democrat, democratic, republican"
+lives_in_state,Lists entities who live in specific US state(s),entity_id,first-order,"address, state, home, lives, geo"
+works_in_state,Lists entities who work in specific US state(s),entity_id,first-order,"address, state, work, business, geo"
