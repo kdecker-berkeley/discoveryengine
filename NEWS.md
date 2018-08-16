@@ -1,4 +1,4 @@
-# discoveryengine 0.2.1.9000
+# discoveryengine 0.3.0
 ### new widgets
 * `fec_gave_to_party` for pulling FEC-reported political contributions by political party. 
 * `lives_in_state` and `works_in_state`, see #81, thanks to VF for making the request.
