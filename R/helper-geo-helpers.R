@@ -6,7 +6,7 @@ nominatim_dl <- function(url) {
     json <- readLines(con, warn = FALSE)
     lst <- jsonlite::fromJSON(json, simplifyVector = FALSE)
     if (length(lst) < 1)
-        stop("There was a problem geocoding '", location, "'")
+        stop("There was a problem geocoding")
 
     lst[[1]]
 }
@@ -21,7 +21,12 @@ geocode_location_base <- function(location) {
     }
 
     url <- paste0(url, qry, "&format=json")
-    geo <- nominatim_dl(url)
+    geo <- tryCatch(
+        nominatim_dl(url),
+        error = function(e) stop("There was a problem geocoding '", location, "'\n",
+                                 "You might try your luck geocoding the address yourself, see https://support.google.com/maps/answer/18539",
+                                 call. = FALSE)
+    )
 
     lat <- as.numeric(geo$lat)
     lon <- as.numeric(geo$lon)

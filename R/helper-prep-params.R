@@ -28,6 +28,9 @@ prep_string_param <- function(param, field_name) {
     leading_zero_indices <- grepl("^0", param)
     param <- lapply(param, lazyeval::as.lazy)
 
+    param <- decorate_with_modifier(param)
+    modifiers <- get_modifiers(param)
+
     # can hijack the interpreter to have custom commands within
     # widgets with string params. eg widget_name(?search) to look
     # for synonyms
@@ -41,7 +44,42 @@ prep_string_param <- function(param, field_name) {
     interpreted_param <- as.character(unlist(interpreted_param))
     interpreted_param <- interpreted_param[!is.na(interpreted_param)]
     interpreted_param <- unique(interpreted_param)
+    attributes(interpreted_param) <- modifiers
     interpreted_param
+}
+
+decorate_with_modifier <- function(param) {
+    res <- structure(param, negation = FALSE)
+
+    if(any(is_negation(param))) {
+        if (any(!is_negation(param)))
+            stop("can't use not() with regular codes within the same widget",
+                 call. = FALSE)
+        res <- unwrap_modified_param(param)
+        res <- structure(res, negation = TRUE)
+    }
+    res
+}
+
+unwrap_modified_param <- function(param) {
+    parses <- lapply(param, function(x) as.list(x$expr))
+    envirs <- lapply(param, function(x) x$env)
+    res <- lapply(parses, function(x) x[-1])
+    res <- Map(function(elems, envirs) {
+        lapply(elems, function(x) lazyeval::as.lazy(x))
+    }, elems = res, envirs = envirs)
+    purrr::flatten(res)
+}
+
+get_modifiers <- function(param) {
+    mods <- attributes(param)
+    mods[!names(mods) == "names"]
+}
+
+is_negation <- function(param) {
+    parses <- lapply(param, function(x) as.list(x$expr))
+    vapply(parses, function(x) identical(x[[1]], quote(`not`)),
+           FUN.VALUE = logical(1))
 }
 
 prep_zip_param <- function(param, field_name) {

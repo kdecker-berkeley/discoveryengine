@@ -1,6 +1,7 @@
 # discoveryengine 0.2.1.9000
 ### new widgets
 * `fec_gave_to_party` for pulling FEC-reported political contributions by political party. 
+* `lives_in_state` and `works_in_state`, see #81, thanks to VF for making the request.
 
 ## implementation changes
 * `attended_event` now includes participants with attendance code `IS` ("Industry Specialist"), see #79. 
@@ -8,6 +9,7 @@
 * academic widgets now include an option called `advisor`, to pull based on the entity ID of the faculty advisor. See #78, thanks to LC for making the request.
 * `has_degree` no longer has options for `graduates` or `undergraduates`, because those levels depend on the degree type (e.g. MBAs are always graduates, etc.)
 * `related_to` now includes a `comment` option, enabling search based on the comment field of the relationship record
+* more informative error messages from `lives_near` and `works_near` when there are geocoding problems, see #84. Thanks to VF for opening the issue.
 
 # discoveryengine 0.2.1
 ### implementation changes
