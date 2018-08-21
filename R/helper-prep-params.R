@@ -65,9 +65,9 @@ unwrap_modified_param <- function(param) {
     parses <- lapply(param, function(x) as.list(x$expr))
     envirs <- lapply(param, function(x) x$env)
     res <- lapply(parses, function(x) x[-1])
-    res <- Map(function(elems, envirs) {
-        lapply(elems, function(x) lazyeval::as.lazy(x))
-    }, elems = res, envirs = envirs)
+    res <- Map(function(elems, envir) {
+        lapply(elems, function(x) lazyeval::as.lazy(x, env = envir))
+    }, elems = res, envir = envirs)
     purrr::flatten(res)
 }
 
