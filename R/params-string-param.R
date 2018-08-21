@@ -11,11 +11,11 @@ string_param <- function(field_name, arguments, default = NULL, width = NULL,
         else codelist <- default
     }
 
-
+    operator <- string_param_operator(validated_arguments)
     # string params will be of the form x %in% y
     if (length(codelist) > 0) {
         .call <- list(
-            quote(`%in%`),
+            operator,
             as.name(field_name),
             codelist
         )
@@ -24,6 +24,12 @@ string_param <- function(field_name, arguments, default = NULL, width = NULL,
 
     # null when no parameters
     NULL
+}
+
+string_param_operator <- function(x) {
+    negation <- attr(x, "negation")
+    if (is.null(negation)) return(NULL)
+    if (negation) quote(`%not in%`) else quote(`%in%`)
 }
 
 synonym_list <- function(field_name, search_terms = NULL) {
