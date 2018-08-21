@@ -1,5 +1,6 @@
 zipcode_param <- function(field_name, zips, default = NULL) {
     zips <- prep_zip_param(zips)
+    operator <- param_operator(zips)
     if (requireNamespace("preprocessr", quietly = TRUE)) {
         zips <- preprocessr::tidy_zip(zips, length = 5)
     } else {
@@ -17,7 +18,7 @@ zipcode_param <- function(field_name, zips, default = NULL) {
 
     if (length(zips) > 0) {
         .call <- list(
-            quote(`%in%`),
+            operator,
             as.name(field_name),
             zips
         )

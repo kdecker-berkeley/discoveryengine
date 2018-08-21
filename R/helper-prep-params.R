@@ -87,7 +87,13 @@ prep_zip_param <- function(param, field_name) {
     if (length(param) <= 0) return(character(0))
 
     param <- lapply(param, lazyeval::as.lazy)
-    partial_sub(param)
+
+    param <- decorate_with_modifier(param)
+    modifiers <- get_modifiers(param)
+
+    res <- partial_sub(param)
+    attributes(res) <- modifiers
+    res
 }
 
 prep_regex_param <- function(...) {
