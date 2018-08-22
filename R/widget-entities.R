@@ -18,8 +18,20 @@
 #'
 #' @name manual
 #' @export
-
 entities <- function(...) {
-    ids <- prep_integer_param(...)
-    listbuilder::idlist(ids, id_type = "entity_id", quoted = FALSE)
+    reroute(entities_(prep_dots(...)))
+
+}
+
+entities_ <- function(ids) {
+    ids <- prep_integer_param(ids)
+    if (length(ids) <= 0) return(is_a(include_deceased = TRUE))
+    negation <- attr(ids, "negation")
+
+    res <- listbuilder::idlist(ids, id_type = "entity_id", quoted = FALSE)
+
+    if (!is.null(negation) && negation)
+        return(is_a(include_deceased = TRUE) %but_not% res)
+    else return(res)
+
 }

@@ -34,7 +34,7 @@
 #'
 #' @export
 rated_by <- function(..., from = NULL, to = NULL, include_inactive = FALSE, comment = NULL) {
-    researchers <- prep_integer_param(...)
+    researchers <- entity_id_param(...)
     reroute(rated_by_(researchers,
                       from = from, to = to,
                       include_inactive = include_inactive,
@@ -47,11 +47,11 @@ rated_by_ <- function(researchers, from = NULL, to = NULL,
         active_flag <- c("Y", "N")
     else active_flag <- "Y"
 
-    widget_builder(
+    converter_builder(
+        researchers,
         table = "d_prospect_evaluation_mv",
-        id_field = "entity_id",
-        id_type = "entity_id",
-        parameter = integer_param("evaluator_entity_id", researchers),
+        from = "evaluator_entity_id", from_type = "entity_id",
+        to = "entity_id", to_type = "entity_id",
         switches = list(
             daterange("evaluation_date", from, to),
             string_switch("evaluation_type", c("CI", "CC", "CM")),
