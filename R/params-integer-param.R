@@ -1,14 +1,15 @@
-integer_param <- function(field_name, ..., default = NULL) {
-    codelist <- prep_integer_param(...)
+integer_param <- function(field_name, ints, default = NULL) {
+    codelist <- prep_integer_param(ints)
     if (length(codelist) <= 0) {
         if (is.language(default)) return(default)
         else codelist <- default
     }
+    operator <- param_operator(codelist)
 
     # params will be of the form x %in% y
     if (length(codelist) > 0) {
         .call <- list(
-            quote(`%in%`),
+            operator,
             as.name(field_name),
             codelist
         )

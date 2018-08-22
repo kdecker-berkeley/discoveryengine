@@ -11,15 +11,25 @@
 #' @seealso \code{\link{show_suspect_pools}}
 #' @export
 in_suspect_pool <- function(...) {
-    ids <- prep_integer_param(...)
+    reroute(in_suspect_pool_(prep_dots(...)))
+}
+
+in_suspect_pool_ <- function(sp) {
+    ids <- prep_integer_param(sp)
     if (length(ids) <= 0L) {
         parameter <- list()
     } else {
-        parameter <- list(substitute(
-            case_when(
-                prospect_interest_code == 'PP' ~ ora_hash(unit_code %||% interest_amt, 2000000000L, 19800401L),
-                1L == 1L ~ ora_hash(unit_code %||% xcomment, 2000000000L, 19800401L)) %in% ids
-        ))
+        operator <- param_operator(ids)
+        parameter <- list(
+            as.call(list(
+                operator,
+                substitute(
+                    case_when(prospect_interest_code == 'PP' ~ ora_hash(unit_code %||% interest_amt, 2000000000L, 19800401L),
+                              1L == 1L ~ ora_hash(unit_code %||% xcomment, 2000000000L, 19800401L))
+                ),
+                ids
+            ))
+        )
     }
 
     widget_builder(

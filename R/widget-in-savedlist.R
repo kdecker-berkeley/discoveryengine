@@ -9,7 +9,10 @@
 #' @seealso \code{\link{show_savedlists}}
 #' @export
 in_savedlist <- function(...) {
+    reroute(in_savedlist_(prep_dots(...)))
+}
 
+in_savedlist_ <- function(sl) {
     custom_sql <-"
     select list_id, to_number(trim(subject_id)) as entity_id
     from cdw.sa_subject_key_mv
@@ -20,6 +23,6 @@ in_savedlist <- function(...) {
         custom = custom_sql,
         id_field = "entity_id",
         id_type = "entity_id",
-        parameter = integer_param("list_id", ...)
+        parameter = integer_param("list_id", sl)
     )
 }

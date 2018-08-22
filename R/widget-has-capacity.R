@@ -21,9 +21,12 @@
 #'
 #' @export
 has_capacity <- function(...) {
+    reroute(has_capacity_(prep_dots(...)))
+}
+
+has_capacity_ <- function(caps) {
     entity_widget(
         table = "d_entity_mv",
-        parameter = integer_param("capacity_rating_code", ...,
-                                  default = 1:14)
+        parameter = integer_param("capacity_rating_code", caps, default = 1:14)
     )
 }
