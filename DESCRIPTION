@@ -23,4 +23,5 @@ Imports: listbuilder (>= 0.1.14),
     curl,
     jsonlite,
     ratelimitr,
-    whisker
+    whisker,
+    purrr

@@ -18,9 +18,13 @@
 #'
 #' @export
 has_reunion_year <- function(...) {
+    reroute(has_reunion_year_(prep_dots(...)))
+}
+
+has_reunion_year_ <- function(yrs) {
     entity_widget(
         table = "d_entity_mv",
-        parameter = integer_param("class_campaign_year", ...,
+        parameter = integer_param("class_campaign_year", yrs,
                                   default = quote(class_campaign_year %is not% null))
     )
 }

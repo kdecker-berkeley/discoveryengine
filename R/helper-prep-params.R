@@ -1,16 +1,14 @@
-prep_integer_param <- function(...) {
-    param <- list(...)
-    param_names <- names(param)
-    named_params <- param_names != ""
+prep_integer_param <- function(ints) {
+    param <- decorate_with_modifier(ints)
+    modifiers <- get_modifiers(param)
 
-    if (any(named_params))
-        stop("Unrecognized argument(s): ",
-             paste(param_names[named_params], collapse = " "),
-             call. = FALSE)
-
+    # after removing any modifiers such as not(),
+    # an integer param should just evaluate to an integer-ish vector
+    param <- lazyeval::lazy_eval(param)
     param <- as.integer(unlist(param))
     param <- param[!is.na(param)]
     param <- unique(param)
+    attributes(param) <- modifiers
     param
 }
 
@@ -56,6 +54,7 @@ decorate_with_modifier <- function(param) {
             stop("can't use not() with regular codes within the same widget",
                  call. = FALSE)
         res <- unwrap_modified_param(param)
+        if (any(is_negation(res))) stop("not(not()): no double negatives")
         res <- structure(res, negation = TRUE)
     }
     res
@@ -65,15 +64,19 @@ unwrap_modified_param <- function(param) {
     parses <- lapply(param, function(x) as.list(x$expr))
     envirs <- lapply(param, function(x) x$env)
     res <- lapply(parses, function(x) x[-1])
-    res <- Map(function(elems, envirs) {
-        lapply(elems, function(x) lazyeval::as.lazy(x))
-    }, elems = res, envirs = envirs)
-    purrr::flatten(res)
+    res <- Map(function(elems, envir) {
+        lazyeval::as.lazy_dots(elems, env = envir)
+    }, elems = res, envir = envirs)
+    lazyeval::as.lazy_dots(purrr::flatten(res))
 }
 
 get_modifiers <- function(param) {
     mods <- attributes(param)
-    mods[!names(mods) == "names"]
+    mods[names(mods) %in% known_modifiers()]
+}
+
+known_modifiers <- function() {
+    "negation"
 }
 
 is_negation <- function(param) {
@@ -87,7 +90,13 @@ prep_zip_param <- function(param, field_name) {
     if (length(param) <= 0) return(character(0))
 
     param <- lapply(param, lazyeval::as.lazy)
-    partial_sub(param)
+
+    param <- decorate_with_modifier(param)
+    modifiers <- get_modifiers(param)
+
+    res <- partial_sub(param)
+    attributes(res) <- modifiers
+    res
 }
 
 prep_regex_param <- function(...) {
@@ -99,4 +108,17 @@ prep_regex_param <- function(...) {
         stop("Unrecognized argument(s): ", paste(argnames, collapse = ", "),
              call. = FALSE)
     as.character(unlist(terms))
+}
+
+prep_id_param <- function(ids) {
+    param <- Filter(function(x) !is.null(x), ids)
+    if (length(param) <= 0) return(NULL)
+    param <- lapply(param, lazyeval::as.lazy)
+
+    param <- decorate_with_modifier(ids)
+    modifiers <- get_modifiers(param)
+
+    res <- lazyeval::lazy_eval(param)
+    attributes(res) <- modifiers
+    res
 }

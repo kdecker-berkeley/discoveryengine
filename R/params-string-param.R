@@ -11,8 +11,8 @@ string_param <- function(field_name, arguments, default = NULL, width = NULL,
         else codelist <- default
     }
 
-    operator <- string_param_operator(validated_arguments)
-    # string params will be of the form x %in% y
+    operator <- param_operator(validated_arguments)
+    # string params will be of the form x %in% y or x %not in% y
     if (length(codelist) > 0) {
         .call <- list(
             operator,
@@ -26,7 +26,7 @@ string_param <- function(field_name, arguments, default = NULL, width = NULL,
     NULL
 }
 
-string_param_operator <- function(x) {
+param_operator <- function(x) {
     negation <- attr(x, "negation")
     if (is.null(negation)) return(NULL)
     if (negation) quote(`%not in%`) else quote(`%in%`)

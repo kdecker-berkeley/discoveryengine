@@ -2,22 +2,24 @@ entity_id_param <- function(...) {
     # testcase:
     # temp <- c(548769, 3004587)
     # ents <- list(1234, entities(57575, 37374), has_capacity(1), "4576", temp, 347*5)
-    ents <- list(...)
+    # ents <- prep_dots(1234, entities(57575, 37374), has_capacity(1), "4576", temp, 347*5)
+    ents <- prep_dots(...)
+    ents <- prep_id_param(ents)
     if (length(ents) <= 0L) return(is_a(include_deceased = TRUE))
+    negation <- attr(ents, "negation")
 
-    argnames <- unique(names(ents))
-    argnames <- Filter(function(x) x != "", argnames)
-    if (length(argnames) > 0)
-        stop("Unrecognized argument(s): ", paste(argnames, collapse = ", "),
-             call. = FALSE)
+    # argnames <- unique(names(ents))
+    # argnames <- Filter(function(x) x != "", argnames)
+    # if (length(argnames) > 0)
+    #     stop("Unrecognized argument(s): ", paste(argnames, collapse = ", "),
+    #          call. = FALSE)
 
     literal <- vapply(
         ents,
         is.atomic,
         logical(1)
     )
-    plain <- prep_integer_param(ents[literal])
-    if (all(literal)) return(entities(plain))
+    plain <- as.integer(unlist(ents[literal]))
 
     entity_def <- vapply(
         ents[!literal],
@@ -27,9 +29,15 @@ entity_id_param <- function(...) {
     if (any(!entity_def))
         stop("Expected entity IDs or definitions of type entity_id, but got something else")
 
+    if (all(literal)) res <- entities(plain)
     rest <- Reduce(`%or%`, ents[!literal])
-    if (length(plain) > 0L) return(entities(plain) %or% rest)
-    else return(rest)
+
+    if (any(literal) && length(rest) > 0) res <- entities(plain) %or% rest
+    if (!any(literal)) res <- rest
+
+    if (!is.null(negation) && negation)
+        return(is_a(include_deceased = TRUE) %but_not% res)
+    else return(res)
 }
 
 allocation_id_param <- function(allocs) {
