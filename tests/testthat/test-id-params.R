@@ -74,6 +74,18 @@ test_that("entity_id_param can accept inputs in multiple formats", {
         )
     )
 
+    expect_equal(
+        showme(entity_id_param(not(1234, entities(57575, 37374),
+                                   has_affiliation(X14),
+                                   has_record_type(IS, PA, ST, PA, PX,
+                                                   IN, AU, PX, AG, GA, UA)))),
+        showme(
+            is_a(include_deceased = TRUE) %but_not%
+                (has_affiliation(X14) %or% has_record_type(IS, PA, ST, PA, PX,
+                                                           IN, AU, PX, AG, GA, UA))
+        )
+    )
+
     expect_error(entity_id_param(funds(FW1737)),
                  "Expected entity IDs")
 })
@@ -123,4 +135,8 @@ test_that("allocation_id_param can accept inputs in multiple formats", {
     allocs <- prep_dots(allocs, FW773893)
     expect_is(allocation_id_param(allocs), "listbuilder")
 
+    expect_equal(
+        allocation_id_param(prep_dots(not(FW77339))),
+        funds() %but_not% funds(FW77339)
+    )
 })
