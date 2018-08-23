@@ -118,7 +118,7 @@ prep_id_param <- function(ids) {
     param <- decorate_with_modifier(ids)
     modifiers <- get_modifiers(param)
 
-    res <- lazyeval::lazy_eval(param)
-    attributes(res) <- modifiers
+    res <- param
+    attributes(res) <- c(attributes(res), modifiers)
     res
 }
