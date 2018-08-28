@@ -14,7 +14,7 @@ test_that("positive (non-not()) params work", {
     )
 })
 
-test_that("positive (non-not()) params work", {
+test_that("negative (not()) params work", {
     expect_identical(
         string_param("degree_code", prep_dots(not(mba))),
         string_param("degree_code", prep_dots(not(MBA)))
@@ -47,5 +47,12 @@ test_that("positive (non-not()) params work", {
     expect_identical(
         reroute(string_param("degree_code", prep_dots(not(?mba), not(?phd)))),
         reroute(string_param("degree_code", prep_dots(not(?mba, ?phd))))
+    )
+
+    # evaluates in tms-code-space first, then outside
+    business <- "chemistry"
+    expect_identical(
+        reroute(string_param("school_code", prep_dots(business))),
+        list(quote(school_code %in% 'BU'))
     )
 })
