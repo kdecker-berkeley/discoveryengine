@@ -34,6 +34,7 @@ prep_string_param <- function(param, field_name) {
     # for synonyms
     check_for_instructions(field_name, param)
 
+    param <- decorate_string_environment(param, field_name = field_name)
     interpreted_param <- partial_sub(param)
 
     # just replace with the original "0xx"
@@ -44,6 +45,21 @@ prep_string_param <- function(param, field_name) {
     interpreted_param <- unique(interpreted_param)
     attributes(interpreted_param) <- modifiers
     interpreted_param
+}
+
+decorate_string_environment <- function(param, field_name) {
+    syns <- synonyms_for(field_name)
+    codes <- structure(syns, names = syns)
+    dict <- c(syns, codes)
+    syn_env <- list2env(as.list(dict))
+
+    lapply(param,
+           function(x) {
+               newenv <- syn_env
+               parent.env(newenv) <- x$env
+               x$env <- newenv
+               x
+           })
 }
 
 decorate_with_modifier <- function(param) {

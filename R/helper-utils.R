@@ -1,5 +1,5 @@
 prep_dots <- function(...) {
-    res <- lazyeval::lazy_dots(..., .follow_symbols = TRUE)
+    res <- lazyeval::lazy_dots(..., .follow_symbols = FALSE)
 
     # dots should not be named, usually happens b/c user was trying to use
     # a switch but had a typo or said switch doesn't exist.
@@ -14,9 +14,10 @@ prep_dots <- function(...) {
 
 partial_sub <- function(.dots) {
     reenv <- function(env) {
-        newenv <- as.environment(as.list(env))
-        parent.env(newenv) <- emptyenv()
-        newenv
+        # newenv <- as.environment(as.list(env))
+        # parent.env(newenv) <- emptyenv()
+        # newenv
+        env
     }
     lapply(.dots,
            function(x) dbplyr::partial_eval(x$expr, env = reenv(x$env)))
