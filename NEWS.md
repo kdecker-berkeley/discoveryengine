@@ -1,4 +1,24 @@
-# discoveryengine 0.2.1.9000
+# discoveryengine 0.4.0
+### new widgets
+* a full suite of proposal-based widgets:
+    - proposal_actual_ask
+    - proposal_development_officer
+    - proposal_office
+    - proposal_purpose
+    - proposal_type
+    - proposal_stage_transition
+    - proposal_qualified
+    - proposal_disqualified
+    - proposal_contact (for finding related contact reports)
+    - proposal_entity (for getting back to entity IDs)
+
+### new features
+* there is now a `not()` operator within widgets. For instance, `has_degree(mba) %and% has_degree(not(mba))` finds any MBA who additionally has another Cal degree besides the MBA. 
+
+### implementation changes
+* codes are now evaluated against the TMS code tables before being searched for in the user environment. Hopefully this won't change anything for you. 
+
+# discoveryengine 0.3.0
 ### new widgets
 * `fec_gave_to_party` for pulling FEC-reported political contributions by political party. 
 * `lives_in_state` and `works_in_state`, see #81, thanks to VF for making the request.
