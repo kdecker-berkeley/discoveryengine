@@ -1,6 +1,19 @@
+#' Find contact reports related to selected proposals
+#'
+#' @param proposal A discoveryengine definition of type \code{proposal_id}
+#' @param buffer Number of days before the start of the proposal to look (see details)
+#'
+#' Looks for contact reports made with an assigned prospect, by the assigned
+#' officer, during the time that the proposal was active. Some gift officers
+#' reach out to qualification prospects before initating a proposal/assignment.
+#' If you need to capture such contact reports, use \code{buffer} to
+#' look back before the start of the proposal.
+#'
 #' @export
-proposal_contact <- function(proposal) {
-    sql <- "select
+proposal_contact <- function(proposal, buffer = 0) {
+    if (!(assertthat::is.count(buffer) || buffer == 0))
+        stop("`buffer` must be an integer")
+    tmpl <- getcdw::parameterize_template("select
   prop.proposal_id,
     asst.assignment_id,
     contact.report_id
@@ -9,8 +22,10 @@ proposal_contact <- function(proposal) {
     on prop.proposal_id = asst.proposal_id
     inner join cdw.f_contact_reports_mv contact
     on (prop.entity_id = contact.contact_entity_id or prop.entity_id = contact.contact_alt_entity_id)
-    and contact.contact_date between asst.start_date and nvl(asst.stop_date, sysdate)
-    and asst.assignment_entity_id = contact.contact_credit_entity_id"
+    and contact.contact_date between asst.start_date - ##buffer## and nvl(asst.stop_date, sysdate)
+    and asst.assignment_entity_id = contact.contact_credit_entity_id")
+
+    sql <- tmpl(buffer = buffer)
 
     converter_builder_custom(
         proposal, custom = sql,

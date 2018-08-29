@@ -24,14 +24,17 @@ in_unit_portfolio <- function(..., include_inactive = FALSE) {
 }
 
 in_unit_portfolio_ <- function(offices, include_inactive = FALSE) {
-
-    proposals <- proposal_widget(offices = offices,
-                                 include_inactive = include_inactive)
-
-    # inactive flag can be on proposal or assignment
     if (include_inactive)
         active_ind <- c("Y", "N")
     else active_ind <- "Y"
+
+    proposals <- widget_builder(
+        table = "f_assignment_mv",
+        id_field = "proposal_id",
+        id_type = "proposal_id",
+        parameter = string_param("office_code", offices),
+        switches = string_switch("active_ind", active_ind)
+    )
 
     converter_builder(proposals,
                       table = "f_proposal_mv",

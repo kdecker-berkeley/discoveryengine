@@ -1,3 +1,4 @@
+#' @rdname proposal_stage_transition
 #' @export
 proposal_disqualified <- function(from = NULL, to = NULL) {
     proposal_stage_transition(

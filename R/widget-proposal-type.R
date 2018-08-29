@@ -1,3 +1,7 @@
+#' Find proposals based on type
+#'
+#' @param ... proposal type code(s)
+#'
 #' @export
 proposal_type <- function(...) {
     reroute(proposal_type_(prep_dots(...)))

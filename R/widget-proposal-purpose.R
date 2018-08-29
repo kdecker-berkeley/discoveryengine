@@ -1,3 +1,10 @@
+#' Find proposals with given purpose programs
+#'
+#' @param ... program code(s)
+#' @param target purpose target ask amount (at least this much)
+#' @param actual purpose actual ask amount (at least this much)
+#' @param commit purpose commit amount (at least this much)
+#'
 #' @export
 proposal_purpose <- function(..., target = 0, actual = 0, commit = 0) {
     reroute(proposal_purpose_(prep_dots(...),

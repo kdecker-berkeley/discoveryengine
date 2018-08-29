@@ -1,3 +1,7 @@
+#' Find proposals based on current stage
+#'
+#' @param ... stage code(s)
+#'
 #' @export
 proposal_stage <- function(...) {
     reroute(proposal_stage_(prep_dots(...)))
