@@ -9,14 +9,22 @@ proposal_contact(proposal, buffer = 0)
 \arguments{
 \item{proposal}{A discoveryengine definition of type \code{proposal_id}}
 
-\item{buffer}{Number of days before the start of the proposal to look (see details)
-
+\item{buffer}{Number of days before the start of the proposal to look (see details)}
+}
+\value{
+A definition of type \code{contact_report_id}
+}
+\description{
 Looks for contact reports made with an assigned prospect, by the assigned
 officer, during the time that the proposal was active. Some gift officers
 reach out to qualification prospects before initating a proposal/assignment.
 If you need to capture such contact reports, use \code{buffer} to
-look back before the start of the proposal.}
+look back before the start of the proposal.
 }
-\description{
-Find contact reports related to selected proposals
+\examples{
+## find engineering qualification contacts during FY18
+qualified = proposal_qualified(from = 20170701, to = 20180630) \%and\%
+   proposal_office(engineering)
+qual_contact = proposal_contact(qualified, buffer = 15)
+
 }

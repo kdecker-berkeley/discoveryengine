@@ -1,13 +1,21 @@
 #' Find contact reports related to selected proposals
 #'
-#' @param proposal A discoveryengine definition of type \code{proposal_id}
-#' @param buffer Number of days before the start of the proposal to look (see details)
-#'
 #' Looks for contact reports made with an assigned prospect, by the assigned
 #' officer, during the time that the proposal was active. Some gift officers
 #' reach out to qualification prospects before initating a proposal/assignment.
 #' If you need to capture such contact reports, use \code{buffer} to
 #' look back before the start of the proposal.
+#'
+#' @param proposal A discoveryengine definition of type \code{proposal_id}
+#' @param buffer Number of days before the start of the proposal to look (see details)
+#'
+#' @return A definition of type \code{contact_report_id}
+#'
+#' @examples
+#' ## find engineering qualification contacts during FY18
+#' qualified = proposal_qualified(from = 20170701, to = 20180630) %and%
+#'    proposal_office(engineering)
+#' qual_contact = proposal_contact(qualified, buffer = 15)
 #'
 #' @export
 proposal_contact <- function(proposal, buffer = 0) {

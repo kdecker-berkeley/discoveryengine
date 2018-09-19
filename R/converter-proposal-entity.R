@@ -1,5 +1,17 @@
+#' Retrieve the relevant entities from a list of proposals
+#'
+#' This widget allows you to take an existing definition of type
+#' \code{assignment_id} (from the proposal widgets) and convert it to a
+#' definition of type \code{entity_id},
+#' by finding the entities connected to the proposals (via the prospect records).
+#'
+#' @param proposals A definition of type \code{assignment_id}, which are built
+#' using proposal widgets
+#' @param include_inactive Should inactive proposals/assignments be considered?
+#' Defaults to \code{TRUE}
+#'
 #' @export
-proposal_entity <- function(proposals, include_inactive = FALSE) {
+proposal_entity <- function(proposals, include_inactive = TRUE) {
     if (include_inactive)
         active_ind <- c("Y", "N")
     else active_ind <- "Y"
