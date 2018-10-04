@@ -1,5 +1,3 @@
-test
-
 library(listbuilder)
 uses_table <- function(lb, table) {
     expect_equal(tolower(get_table(lb)), tolower(table))
