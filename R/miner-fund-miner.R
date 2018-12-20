@@ -18,7 +18,7 @@ fund_miner <- function(..., at_least = .01, from = NULL, to = NULL) {
 
 fund_miner_ <- function(search_terms, at_least = .01,
                         from = NULL, to = NULL) {
-    gave_to_fund(fund_text_contains_(search_terms),
+    gave_to_fund(fund_text_contains(search_terms),
                  at_least = at_least, from = from, to = to)
 
 }
