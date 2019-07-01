@@ -7,7 +7,7 @@
 #' @return A definition of type \code{entity_id}
 #'
 #' @param ... the counties/msas/zips
-#' @param include_alternate include addresses coded as "alternate?" Defaults to TRUE
+#' @param include_alternate include addresses coded as "alternate?" Defaults to FALSE
 #' @param include_past include past/former addresses? Defaults to FALSE
 #' @param include_self_employed for works_in_*: include self-employed business addresses? Defaults to TRUE
 #' @param include_seasonal for lives_in_*: include seasonal addresses? Defaults to FALSE
@@ -50,7 +50,7 @@ NULL
 #' @rdname address
 #' @export
 lives_in_county <- function(...,
-                            include_alternate = TRUE,
+                            include_alternate = FALSE,
                             include_past = FALSE,
                             include_seasonal = FALSE,
                             include_student_local = FALSE,
@@ -68,7 +68,7 @@ lives_in_county <- function(...,
 
 
 lives_in_county_ <- function(counties,
-                             include_alternate = TRUE,
+                             include_alternate = FALSE,
                              include_past = FALSE,
                              include_seasonal = FALSE,
                              include_student_local = FALSE,

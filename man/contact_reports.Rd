@@ -6,13 +6,9 @@
 \alias{contact_reports}
 \alias{contact_credit}
 \alias{contact_date}
-\alias{contact_reports}
 \alias{contact_outcome}
-\alias{contact_reports}
 \alias{contact_purpose}
-\alias{contact_reports}
 \alias{contact_type}
-\alias{contact_reports}
 \alias{contact_unit}
 \title{Find contact reports}
 \usage{

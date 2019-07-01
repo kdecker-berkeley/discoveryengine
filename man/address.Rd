@@ -18,24 +18,24 @@
 \alias{works_in_zip}
 \title{Address based widgets}
 \usage{
-lives_in_county(..., include_alternate = TRUE, include_past = FALSE,
+lives_in_county(..., include_alternate = FALSE, include_past = FALSE,
   include_seasonal = FALSE, include_student_local = FALSE,
   include_student_permanent = FALSE, type = "home")
 
-lives_in_foreign_country(..., include_alternate = TRUE,
+lives_in_foreign_country(..., include_alternate = FALSE,
   include_past = FALSE, include_seasonal = FALSE,
   include_student_local = FALSE, include_student_permanent = FALSE,
   city = NULL, type = "home")
 
-lives_in_msa(..., include_alternate = TRUE, include_past = FALSE,
+lives_in_msa(..., include_alternate = FALSE, include_past = FALSE,
   include_seasonal = FALSE, include_student_local = FALSE,
   include_student_permanent = FALSE, type = "home")
 
-lives_in_state(..., include_alternate = TRUE, include_past = FALSE,
+lives_in_state(..., include_alternate = FALSE, include_past = FALSE,
   include_seasonal = FALSE, include_student_local = FALSE,
   include_student_permanent = FALSE, type = "home")
 
-lives_in_zip(..., include_alternate = TRUE, include_past = FALSE,
+lives_in_zip(..., include_alternate = FALSE, include_past = FALSE,
   include_seasonal = FALSE, include_student_local = FALSE,
   include_student_permanent = FALSE, type = "home")
 
@@ -58,7 +58,7 @@ works_in_zip(..., include_alternate = TRUE, include_past = FALSE,
 \arguments{
 \item{...}{the counties/msas/zips}
 
-\item{include_alternate}{include addresses coded as "alternate?" Defaults to TRUE}
+\item{include_alternate}{include addresses coded as "alternate?" Defaults to FALSE}
 
 \item{include_past}{include past/former addresses? Defaults to FALSE}
 

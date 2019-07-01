@@ -5,9 +5,9 @@
 \alias{sec_filed}
 \title{Find entities who made SEC filings}
 \usage{
-sec_filed(..., from = NULL, to = NULL, director = NULL, officer = NULL,
-  ten_percenter = NULL, other = NULL, title_text = NULL,
-  verified = NULL)
+sec_filed(..., from = NULL, to = NULL, director = NULL,
+  officer = NULL, ten_percenter = NULL, other = NULL,
+  title_text = NULL, verified = NULL)
 }
 \arguments{
 \item{...}{Central Index Key for one or more companies -- if blank, will look at all SEC filings}

@@ -1,7 +1,7 @@
 #' @rdname address
 #' @export
 lives_in_foreign_country <- function(...,
-                                     include_alternate = TRUE,
+                                     include_alternate = FALSE,
                                      include_past = FALSE,
                                      include_seasonal = FALSE,
                                      include_student_local = FALSE,
@@ -21,7 +21,7 @@ lives_in_foreign_country <- function(...,
 
 
 lives_in_foreign_country_ <- function(countries,
-                                      include_alternate = TRUE,
+                                      include_alternate = FALSE,
                                       include_past = FALSE,
                                       include_seasonal = FALSE,
                                       include_student_local = FALSE,

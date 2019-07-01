@@ -38,7 +38,7 @@
 #' @export
 lives_near <- function(location, miles,
                        latitude = NULL, longitude = NULL,
-                       include_alternate = TRUE,
+                       include_alternate = FALSE,
                        include_past = FALSE,
                        include_seasonal = FALSE,
                        include_student_local = FALSE,

@@ -8,8 +8,9 @@
 \usage{
 display(savedlist, ...)
 
-\method{display}{listbuilder}(savedlist, ..., include_organizations = FALSE,
-  include_deceased = FALSE, household = FALSE, file = NULL)
+\method{display}{listbuilder}(savedlist, ...,
+  include_organizations = FALSE, include_deceased = FALSE,
+  household = FALSE, file = NULL)
 
 \method{display}{report}(report, ..., include_organizations = FALSE,
   include_deceased = FALSE, household = FALSE, file = NULL)

@@ -4,8 +4,8 @@
 \alias{attended_event}
 \title{Event attendance widget}
 \usage{
-attended_event(..., from = NULL, to = NULL, include_non_attendees = FALSE,
-  comment = NULL)
+attended_event(..., from = NULL, to = NULL,
+  include_non_attendees = FALSE, comment = NULL)
 }
 \arguments{
 \item{...}{event codes}

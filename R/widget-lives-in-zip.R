@@ -1,7 +1,7 @@
 #' @rdname address
 #' @export
 lives_in_zip <- function(...,
-                         include_alternate = TRUE,
+                         include_alternate = FALSE,
                          include_past = FALSE,
                          include_seasonal = FALSE,
                          include_student_local = FALSE,
@@ -18,7 +18,7 @@ lives_in_zip <- function(...,
 }
 
 lives_in_zip_ <- function(zips,
-                          include_alternate = TRUE,
+                          include_alternate = FALSE,
                           include_past = FALSE,
                           include_seasonal = FALSE,
                           include_student_local = FALSE,
