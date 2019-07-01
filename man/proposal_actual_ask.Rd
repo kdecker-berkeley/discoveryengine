@@ -11,7 +11,10 @@ proposal_actual_ask(at_least = 0, from = NULL, to = NULL)
 
 \item{from}{daterange in YYYYMMDD format}
 
-\item{to}{daterange in YYYYMMDD format}
+\item{to}{daterange in YYYYMMDD format
+
+## find all million+ asks from FY18
+proposal_actual_ask(at_least = 1000000, from = 20170701, to = 20180630)}
 }
 \description{
 Find proposals with given ask dates/amounts
