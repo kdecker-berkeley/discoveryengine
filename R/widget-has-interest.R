@@ -8,8 +8,8 @@
 #' @return A definition of type \code{entity_id}
 #'
 #' @param ... Interest code(s)
-#' @param include_former If TRUE (default), will include all interest codes,
-#' even if they have a stop date. If FALSE, will exclude codes with a stop date.
+#' @param include_former If TRUE, will include all interest codes,
+#' even if they have a stop date. If FALSE (default), will exclude codes with a stop date.
 #' @param comment (Optional) Supply one or more search terms to search through
 #' the comment fields of the interest area
 #'
@@ -21,13 +21,13 @@
 #' has_interest(cancer) %or% has_interest(health, comment = "cancer")
 #'
 #' @export
-has_interest <- function(..., include_former = TRUE, comment = NULL) {
+has_interest <- function(..., include_former = FALSE, comment = NULL) {
     interests <- prep_dots(...)
     reroute(has_interest_(interests, include_former = include_former,
                           comment = comment))
 }
 
-has_interest_ <- function(interests, include_former = TRUE, comment = NULL) {
+has_interest_ <- function(interests, include_former = FALSE, comment = NULL) {
     if (include_former) former_switch <- NULL
     else former_switch <- quote(stop_dt %is% null)
 

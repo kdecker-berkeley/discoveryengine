@@ -4,13 +4,13 @@
 \alias{has_interest}
 \title{Interest code widget}
 \usage{
-has_interest(..., include_former = TRUE, comment = NULL)
+has_interest(..., include_former = FALSE, comment = NULL)
 }
 \arguments{
 \item{...}{Interest code(s)}
 
-\item{include_former}{If TRUE (default), will include all interest codes,
-even if they have a stop date. If FALSE, will exclude codes with a stop date.}
+\item{include_former}{If TRUE, will include all interest codes,
+even if they have a stop date. If FALSE (default), will exclude codes with a stop date.}
 
 \item{comment}{(Optional) Supply one or more search terms to search through
 the comment fields of the interest area}
