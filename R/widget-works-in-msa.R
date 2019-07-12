@@ -1,7 +1,7 @@
 #' @rdname address
 #' @export
 works_in_msa <- function(...,
-                         include_alternate = TRUE,
+                         include_alternate = FALSE,
                          include_past = FALSE,
                          include_self_employed = TRUE,
                          type = "business") {
@@ -14,7 +14,7 @@ works_in_msa <- function(...,
 }
 
 works_in_msa_ <- function(msas,
-                          include_alternate = TRUE,
+                          include_alternate = FALSE,
                           include_past = FALSE,
                           include_self_employed = TRUE,
                           type = "business") {

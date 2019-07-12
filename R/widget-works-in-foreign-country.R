@@ -1,7 +1,7 @@
 #' @rdname address
 #' @export
 works_in_foreign_country <- function(...,
-                                     include_alternate = TRUE,
+                                     include_alternate = FALSE,
                                      include_past = FALSE,
                                      include_self_employed = TRUE,
                                      city = NULL,
@@ -17,7 +17,7 @@ works_in_foreign_country <- function(...,
 
 
 works_in_foreign_country_ <- function(countries,
-                                      include_alternate = TRUE,
+                                      include_alternate = FALSE,
                                       include_past = FALSE,
                                       include_self_employed = TRUE,
                                       city = city,
