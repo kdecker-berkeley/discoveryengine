@@ -20,5 +20,5 @@ NULL
 #' @rdname parent_child
 #' @export
 parent_of <- function(...) {
-    related_to_(entity_id_param(...), c("SF", "SM", "DF", "DM"))
+    related_to_(entity_id_param(...), c("PC", "SC"))
 }
