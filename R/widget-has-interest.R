@@ -30,7 +30,7 @@ has_interest <- function(..., include_children = FALSE, include_former = FALSE, 
                           comment = comment))
 }
 
-has_interest_ <- function(interests, include_children = TRUE, include_former = FALSE, comment = NULL) {
+has_interest_ <- function(interests, include_children = FALSE, include_former = FALSE, comment = NULL) {
     interest_codes <- readr::read_csv("inst/extdata/interest_codes.csv")
 
     if (include_former) former_switch <- NULL
@@ -57,14 +57,3 @@ has_interest_ <- function(interests, include_children = TRUE, include_former = F
 }
 
 
-has_interest_ <- function(interests, include_former = FALSE, comment = NULL) {
-    if (include_former) former_switch <- NULL
-    else former_switch <- quote(stop_dt %is% null)
-
-    comment_switch <- regex_switch("comment1 || comment2", comment)
-
-    entity_widget("d_bio_interest_mv",
-                  parameter = string_param("interest_code", interests),
-                  switches = list(former_switch,
-                                  comment_switch))
-}
