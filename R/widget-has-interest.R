@@ -11,7 +11,7 @@
 #' @param include_former If TRUE, will include all interest codes,
 #' even if they have a stop date. If FALSE (default), will exclude codes with a stop date.
 #' @param include_children If TRUE, will include interest codes in the interest group listed
-#' (for example, when searching "health", if include_children = TRUE, will include interest codes
+#' (for example, when searching "health", if TRUE, will include interest codes
 #' such as Aging, Nutritional Science, Parkinson's Disease, etc.).
 #' @param comment (Optional) Supply one or more search terms to search through
 #' the comment fields of the interest area
