@@ -1,3 +1,6 @@
+# discoveryengine 0.4.2
+* `has_interest` widget now includes an "include_children" argument to collapse all similar interests by group
+
 # discoveryengine 0.4.0
 ### new widgets
 * a full suite of proposal-based widgets:
