@@ -8,6 +8,7 @@ Description: A fluent interface for custom prospecting in CADS.
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 6.1.1
+Encoding: UTF-8
 Suggests: testthat,
     preprocessr,
     DT,
