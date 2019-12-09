@@ -44,7 +44,7 @@ has_interest_ <- function(interests, include_children = FALSE, include_former = 
     colnames(interest_list)<-c("INTEREST_GROUP_CODE")
     add_codes <- dplyr::select(dplyr::inner_join(interest_codes, interest_list, by = "INTEREST_GROUP_CODE"), INTEREST_CODE)
     colnames(interest_list)<-c("INTEREST_CODE")
-    interest_list <- distinct(dplyr::bind_rows(interest_list, add_codes))
+    interest_list <- dplyr::distinct(dplyr::bind_rows(interest_list, add_codes))
     interests_with_children <- as.list(interest_list$INTEREST_CODE)
 
     if (include_children) param = string_param("interest_code", interests_with_children)
