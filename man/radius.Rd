@@ -12,7 +12,7 @@ lives_near(location, miles, latitude = NULL, longitude = NULL,
   include_student_permanent = FALSE, type = "home")
 
 works_near(location, miles, latitude = NULL, longitude = NULL,
-  include_alternate = TRUE, include_past = FALSE,
+  include_alternate = FALSE, include_past = FALSE,
   include_self_employed = TRUE, type = "business")
 }
 \arguments{

@@ -39,20 +39,20 @@ lives_in_zip(..., include_alternate = FALSE, include_past = FALSE,
   include_seasonal = FALSE, include_student_local = FALSE,
   include_student_permanent = FALSE, type = "home")
 
-works_in_county(..., include_alternate = TRUE, include_past = FALSE,
+works_in_county(..., include_alternate = FALSE, include_past = FALSE,
   include_self_employed = TRUE, type = "business")
 
-works_in_foreign_country(..., include_alternate = TRUE,
+works_in_foreign_country(..., include_alternate = FALSE,
   include_past = FALSE, include_self_employed = TRUE, city = NULL,
   type = "business")
 
-works_in_msa(..., include_alternate = TRUE, include_past = FALSE,
+works_in_msa(..., include_alternate = FALSE, include_past = FALSE,
   include_self_employed = TRUE, type = "business")
 
-works_in_state(..., include_alternate = TRUE, include_past = FALSE,
+works_in_state(..., include_alternate = FALSE, include_past = FALSE,
   include_self_employed = TRUE, type = "business")
 
-works_in_zip(..., include_alternate = TRUE, include_past = FALSE,
+works_in_zip(..., include_alternate = FALSE, include_past = FALSE,
   include_self_employed = TRUE, type = "business")
 }
 \arguments{

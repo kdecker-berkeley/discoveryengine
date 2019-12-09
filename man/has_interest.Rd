@@ -4,10 +4,15 @@
 \alias{has_interest}
 \title{Interest code widget}
 \usage{
-has_interest(..., include_former = FALSE, comment = NULL)
+has_interest(..., include_children = FALSE, include_former = FALSE,
+  comment = NULL)
 }
 \arguments{
 \item{...}{Interest code(s)}
+
+\item{include_children}{If TRUE, will include interest codes in the interest group listed
+(for example, when searching "health", if include_children = TRUE, will include interest codes
+such as Aging, Nutritional Science, Parkinson's Disease, etc.).}
 
 \item{include_former}{If TRUE, will include all interest codes,
 even if they have a stop date. If FALSE (default), will exclude codes with a stop date.}

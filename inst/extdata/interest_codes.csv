@@ -1,0 +1,361 @@
+INTEREST_CODE,SHORT_DESC,INTEREST_GROUP_CODE
+ACA,Academic Administration,EDU
+ACC,Accounting,BUS
+ACO,Art Collections,ART
+ACS,Academic Support,ESC
+ADL,Administrative Law,LAW
+ADR,Alternative Dispute Resolution Law,LAW
+ADV,Advertising,BUS
+AER,Aeronautics,SCE
+AFC,African Interests,DIV
+AFI,African-American Interests,DIV
+AGE,Aging,HEA
+AGL,Agricultural Law,LAW
+AGR,Agriculture,ENV
+AID,Financial Aid,ESC
+AIN,Artificial Intelligence,TEC
+ALT,Alternative Energy,ENV
+ALU,Alumni Affairs,EDU
+ALZ,Alzheimer's Disease,HEA
+AML,Admiralty & Maritime Law,LAW
+ANI,Animal Causes,ANI
+ANM,Animation,ART
+ANT,Antiques,HOB
+APP,Appellate Practice Law,LAW
+AQU,Aquatic Sports,ATH
+ARC,Archaeology/Anthropology,SCE
+ARH,Architecture,ARH
+ARM,Armenian Interests,DIV
+ART,Arts,ART
+ASA,Asian Art,ART
+ASB,Asian Business,BUS
+ASC,Asian Interests,DIV
+ASN,Asian American Interests,DIV
+AST,Astronomy,SCE
+ATH,Athletics,ATH
+ATM,Autism,HEA
+ATR,Antitrust & Trade Regulation Law,LAW
+AUT,Automobiles,HOB
+AVA,Aviation & Aerospace Law,LAW
+BAC,Backpacking,ATH
+BAD,Badminton,ATH
+BAK,Baking,FOD
+BAL,Ballet,ART
+BAN,Band/Music,HOB
+BAS,Baseball,ATH
+BAT,Basketball,ATH
+BCL,Business & Corporate Law,LAW
+BFL,Banking & Finance Law,LAW
+BIC,Cycling,ATH
+BIO,Biology,SCE
+BIR,Bird Watching,HOB
+BKG,Banking,BUS
+BLK,Blockchain,TEC
+BND,Basic Needs,CIV
+BNK,Bankruptcy Law,LAW
+BOA,Boating,ATH
+BOT,Botany,SCE
+BOX,Boxing,ATH
+BRG,Bridge,HOB
+BTC,Biotechnology,TEC
+BUD,Buddhism,REL
+BUS,Business,BUS
+CAC,Class Action Law,LAW
+CAL,California History,HIS
+CAM,Camping,ATH
+CAN,Cannabis,CAN
+CAO,Catholic Church/Roman Catholic,REL
+CAT,Cattle Ranching,ENV
+CHC,Chinese Interests,DIV
+CHE,Chemistry/Chemical Engineering,SCE
+CHR,Christianity,REL
+CIV,Civic Affairs,CIV
+CJR,Criminal Justice Reform,CIV
+CKG,Cooking,FOD
+CLA,Classical Music,ART
+CLE,Climate Economics,ECO
+CLI,Climate,ENV
+CLL,Climate Law,LAW
+CLM,Climbing/Mountaineering,ATH
+CLT,Clean Technology,ENV
+CML,Commercial Law,LAW
+CMM,Common Law,LAW
+CMN,Communications Law,LAW
+CMP,Compliance Law,LAW
+CNC,Cancer,HEA
+CNT,Contemporary Music,ART
+COM,Computers,TEC
+CON,Consulting,BUS
+COR,Corporate Social Responsibility,BUS
+CRE,Crew/Rowing,ATH
+CRL,Civil Rights Law,LAW
+CRM,Criminal Law,LAW
+CRP,Cryptocurrency,BUS
+CSL,Construction Law,LAW
+CSR,Consumer Law,LAW
+CST,Constitutional Law,LAW
+CTR,Contract Law,LAW
+CVL,Civil Liberties,CIV
+CVR,Civil Rights,CIV
+CYB,Cybersecurity,TEC
+DAN,Dance,ART
+DAT,Data Science,TEC
+DBT,Debtor & Creditor Law,LAW
+DEI,Diversity/Equity/Inclusion,DEI
+DEM,Democratic Politics,CIV
+DHR,Disaster & Humanitarian Relief,CIV
+DIS,Disabilities,DIV
+DIV,Diverse Constituencies,DIV
+DRA,Dramatic Arts,ART
+DSL,Distance Learning/Online Education,EDU
+EAP,Economic Analysis & Policy,ECO
+EAR,Early Music,ART
+ECM,E-Commerce,BUS
+ECO,Economics,ECO
+ECP,Election Campaign & Political Law,LAW
+EDL,Education Law,LAW
+EDU,Education,EDU
+EGL,Energy Law,LAW
+EGR,Engineering,SCE
+EHL,Internet-Related e-Health,HEA
+EIP,East Indian/Pakistani Interest,DIV
+EJL,Environmental Justice Law,LAW
+ELD,Elder Law,LAW
+EMD,Eminent Domain Law,LAW
+EMP,Employee Benefits Law,LAW
+ENE,Energy,ENV
+ENG,English History,HIS
+ENR,Entrepreneurship,BUS
+ENT,Entertainment,ENT
+ENV,Environment,ENV
+EPI,Episcopalian Church,REL
+ESC,Endowments/Scholarships,ESC
+ESF,Endowments/Fellowships,ESF
+ETH,Ethics,PHI
+ETL,Entertainment Law,LAW
+EVL,Environmental Law,LAW
+FAM,Family,FAM
+FAS,Fashion/Textiles,FAS
+FBK,Food Banks,CIV
+FGC,First Generation College,DEI
+FIL,Film,ART
+FIN,Finance,BUS
+FIS,Fishing,ATH
+FLT,Financial Literacy,EDU
+FLW,Flower Arranging,HOB
+FLY,Flying/Airplane Ownership,ATH
+FML,Family Law,LAW
+FOD,Food,FOD
+FOL,Folk Dance,ART
+FOO,Football,ATH
+FOR,Forestry,ENV
+FRC,French Interests,DIV
+FRE,Free Speech,CIV
+FTK,FinTech,BUS
+GAM,Gaming,GAM
+GAR,Gardening,HOB
+GCU,Greek Interests,DIV
+GEC,German Interests,DIV
+GEN,Genealogy,SCE
+GEO,Geology,SCE
+GER,Gerontology,HEA
+GLB,Global Health,HEA
+GLO,Global Management,BUS
+GOL,Golf,ATH
+GOV,Government Law,LAW
+GPR,General Practice Law,LAW
+GRA,Graphics,ART
+GRC,Grandchildren,FAM
+GUN,Gun Violence Prevention,CIV
+GVC,Government Contracts Law,LAW
+HAC,Hawaiian Interests,DIV
+HAN,Hang Gliding,ATH
+HCR,Health Care Law,LAW
+HEA,Health,HEA
+HIK,Hiking,ATH
+HIN,Hinduism,REL
+HIP,Hip Hop,ART
+HIS,History,HIS
+HIV,HIV/AIDS,HEA
+HOB,Hobbies,HOB
+HOC,Hockey,ATH
+HOR,Horses,HOB
+HRL,Human Rights Law,LAW
+HUN,Hunting,ATH
+HUR,Human Rights,CIV
+IMG,Immigration Law,LAW
+IMM,Immigration,CIV
+INA,Indian Interests,DIV
+INB,International Business,BUS
+INC,Incentive Awards,ESC
+IND,Interior Design,ARH
+INF,Infrastructure Law,LAW
+INL,International Law,LAW
+INP,Indian & Native Populations Law,LAW
+INS,Company Insider,BUS
+INT,International Affairs,INT
+INV,Investment Law,LAW
+IPR,Intellectual Property Law,LAW
+IRN,Iranian Interests,DIV
+ISC,Insurance Law,LAW
+ISL,Islam,REL
+ISR,Israeli Interests,DIV
+ITA,Italian Interests,DIV
+ITL,International Trade Law,LAW
+ITR,Internet Law,LAW
+IVM,Investment Management,BUS
+JAZ,Jazz,ART
+JOU,Journalism,JOU
+JPC,Japanese Interests,DIV
+JUC,Jewish Interests,DIV
+JUD,Judaism,REL
+KOR,Korean Interests,DIV
+LAT,Latin American Interests,DIV
+LAW,Law,LAW
+LEM,Labor & Employment Law,LAW
+LGB,LGBT Interests,DIV
+LIB,Library,LIB
+LIT,Literature,LIT
+LMP,Legal Malpractice,LAW
+LRC,Literacy,EDU
+LSA,Landscape Architecture,ARH
+LTG,Litigation,LAW
+LUT,Lutheran Church,REL
+MAC,Machinery,TEC
+MAG,Magic,HOB
+MAL,Mergers & Acquisitions Law,LAW
+MAR,Marine Life,ENV
+MAT,Mathematics,MAT
+MDA,Media Law,LAW
+MED,Media,ART
+MEI,Medicine,HEA
+MET,Methodist Church,REL
+MEX,Mexican-American/Chicano Interest,DIV
+MID,Middle Eastern Interests,DIV
+MIL,Military,CIV
+MIT,Manufacturing & IT,TEC
+MKT,Marketing,BUS
+MLT,Military Law,LAW
+MOB,Mobile Gaming,GAM
+MOD,Modern Dance,ART
+MOR,Mormon Church,REL
+MOT,Motorcycling,ATH
+MTA,Martial Arts,ATH
+MTC,Management of Technology,TEC
+MTL,Mental Health,HEA
+MUE,Museums,MUE
+MUS,Music,ART
+NAC,Native American Interests,DIV
+NAT,Natural Resources,ENV
+NEU,Neuroscience,HEA
+NON,Non-Profit Business,BUS
+NPO,Non-Profit Organizations Law,LAW
+NTR,Natural Resources Law,LAW
+NUT,Nutritional Science,HEA
+OCN,Ocean Law,LAW
+OGA,Online Gaming,GAM
+OIR,Organizational Behavior/Industrial Reltn,BUS
+OPE,Opera,ART
+OPT,Optometry,HEA
+ORG,Organized Sports,ATH
+OSH,Occupational Safety & Health Law,LAW
+OUT,Outdoor/Recreational Sports,ATH
+PAL,Palestinian Interests,DIV
+PAR,Parkinson's Disease,HEA
+PBI,Public Interest Law,LAW
+PBN,Pro Bono Practice,LAW
+PCY,Public Policy,CIV
+PDL,Product Liability Law,LAW
+PEQ,Private Equity,BUS
+PER,Performing Arts,ART
+PFL,Professional Liability Law,LAW
+PHI,Philosophy,PHI
+PHO,Photography,ART
+PHY,Physics,SCE
+PIJ,Personal Injury Law,LAW
+PNG,Ping-Pong,ATH
+POL,Politics,CIV
+POV,Poverty/International Development,INT
+PRE,Presbyterian Church,REL
+PRV,Privacy,CIV
+PSY,Psychology,PSY
+QUI,Quilting,ART
+RAD,Radio,ART
+RAF,Rafting,ATH
+REA,Reading,HOB
+REC,Recital Music,ART
+REG,Regulation Industry Law,LAW
+REL,Religion,REL
+REP,Republican Politics,CIV
+RLA,Real Estate,BUS
+ROB,Robotics,TEC
+RPD,Reproductive Health,HEA
+RST,Real Estate Law,LAW
+RUN,Running/Jogging,ATH
+RUS,Russian Interests,DIV
+SAI,Sailing,ATH
+SCA,Scandinavian Interests,DIV
+SCE,Science,SCE
+SEC,Securities Law,LAW
+SIK,Sikhism,REL
+SKH,Sikh Interests,DIV
+SKI,Snow Skiing,ATH
+SME,Social Media,TEC
+SNO,Snowboarding,ATH
+SOC,Soccer,ATH
+SOV,Soviet Interests,DIV
+SPC,Spanish & Portuguese Interests,DIV
+SPO,Sports Law,LAW
+STE,STEM,STE
+STP,Student Parents,DEI
+STU,Student Affairs,EDU
+SUR,Surfing,ATH
+SUS,Sustainability,ENV
+SWE,Social Welfare,CIV
+SWI,Swimming,ATH
+TAP,Tap Dance,ART
+TAX,Taxation Law,LAW
+TCS,Technology & Science Law,LAW
+TEC,Technology,TEC
+TEK,Technology,BUS
+TEL,Telecommunications,TEL
+TEN,Tennis,ATH
+THC,Theoretical Computer Science,TEC
+TOX,Toxic Torts Law,LAW
+TRA,Transportation,TRA
+TRE,Trusts & Estates Law,LAW
+TRF,Television,ART
+TRI,Triathlons,ATH
+TRN,Transportation Law,LAW
+TRT,Tort Law,LAW
+TRV,Travel,HOB
+UFR,Ultimate Frisbee,ATH
+UND,Undocumented,DEI
+UNI,Unitarian Church,REL
+UNR,Underrepresented,DEI
+URB,Urban Agriculture,ENV
+URP,Urban Planning,ARH
+USL,U.S. Latino Interests,DIV
+VEN,Venture Capital,BUS
+VET,Veterans Affairs,CIV
+VID,Video Gaming,GAM
+VIN,Vintners,WIN
+VPV,Violence Prevention,CIV
+VSO,Social Venture,BUS
+VSR,Volunteer Service,VSR
+WAT,Water Conservation,ENV
+WCC,White Collar Crime Law,LAW
+WIN,Wine,WIN
+WKR,Workers Compensation Law,LAW
+WLD,World Music,ART
+WNL,Wine Law,LAW
+WOM,Women,DIV
+WOR,World Peace,INT
+WPR,Wills & Probate Law,LAW
+WRI,Writing,WRI
+WSF,Windsurfing,ATH
+WSK,Water Skiing,ATH
+WTR,Water Law,LAW
+YOG,Yoga,HOB
+YOU,Youth,DIV
+ZPL,"Zoning, Planning & Land Use Law",LAW
