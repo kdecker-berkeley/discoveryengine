@@ -7,7 +7,7 @@
 #' @rdname high_net_worth_parent
 
 #' @export
-is_high_net_worth_parent <- function(...) {
+is_high_net_worth_parent <- function() {
     reroute(is_high_net_worth_parent_())
 }
 
