@@ -8,7 +8,7 @@
 
 #' @export
 is_high_net_worth_parent <- function(...) {
-    reroute(is_high_net_worth_parent_(prep_dots(...)))
+    reroute(is_high_net_worth_parent_())
 }
 
 is_high_net_worth_parent_ <- function() {
