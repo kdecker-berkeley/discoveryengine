@@ -69,23 +69,20 @@ has_degree_from <- function(..., undergraduates = TRUE,
                             graduates = TRUE, attendees= FALSE,
                             current_students = FALSE,
                             degreeholders = TRUE,
-                            from = NULL, to = NULL,
-                            advisor = NULL) {
+                            from = NULL, to = NULLL) {
     schools <- prep_dots(...)
     reroute(has_degree_from_(schools, undergraduates = undergraduates,
                              graduates = graduates, attendees = attendees,
                              current_students = current_students,
                              degreeholders = degreeholders,
-                             from = from, to = to,
-                             advisor = advisor))
+                             from = from, to = to))
 }
 
 has_degree_from_ <- function(schools, undergraduates = TRUE,
                              graduates = TRUE, attendees = FALSE,
                              current_students = FALSE,
                              degreeholders = TRUE,
-                             from = NULL, to = NULL,
-                             advisor = NULL) {
+                             from = NULL, to = NULL) {
 
     academic_widget(param = string_param("school_code", schools),
                     undergraduates = undergraduates,
@@ -93,6 +90,5 @@ has_degree_from_ <- function(schools, undergraduates = TRUE,
                     attendees = attendees,
                     current_students = current_students,
                     degreeholders = degreeholders,
-                    from = from, to = to,
-                    advisor = advisor)
+                    from = from, to = to)
 }
