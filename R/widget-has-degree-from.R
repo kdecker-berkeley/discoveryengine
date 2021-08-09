@@ -65,19 +65,20 @@ NULL
 
 #' @rdname academic
 #' @export
+
 has_degree_from <- function(..., undergraduates = TRUE,
                                        graduates = TRUE, attendees= FALSE,
                                        current_students = FALSE,
                                        degreeholders = TRUE,
                                        from = NULL, to = NULL,
-                                       advisor = NULL) {
+                                       advisor = NULL)
   reroute(has_degree_from_(
     prep_dots(...), undergraduates = undergraduates,
     graduates = graduates, attendees = attendees,
     current_students = current_students,
     degreeholders = degreeholders,
     from = from, to = to,
-    advisor = advisor)) }
+    advisor = advisor))
 
 has_degree_from_ <- function(schools, undergraduates = TRUE,
                                         graduates = TRUE, attendees= FALSE,
@@ -95,3 +96,5 @@ has_degree_from_ <- function(schools, undergraduates = TRUE,
                   from = from, to = to,
                   advisor = advisor)
 }
+
+
