@@ -70,7 +70,7 @@ has_degree_from <- function(..., undergraduates = TRUE,
                             current_students = FALSE,
                             degreeholders = TRUE,
                             from = NULL, to = NULL,
-                            advisor = NULL) {
+                            advisor = NULL) 
     schools <- prep_dots(...)
     reroute(has_degree_from_(schools, undergraduates = undergraduates,
                              graduates = graduates, attendees = attendees,
@@ -78,7 +78,7 @@ has_degree_from <- function(..., undergraduates = TRUE,
                              degreeholders = degreeholders,
                              from = from, to = to,
                              advisor = advisor))
-}
+
 
 has_degree_from_ <- function(schools, undergraduates = TRUE,
                              graduates = TRUE, attendees = FALSE,
