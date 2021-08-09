@@ -21,7 +21,7 @@ has_degree_from_department_ <- function(departments, undergraduates = TRUE,
                         from = NULL, to = NULL,
                         advisor = NULL) {
 
-    academic_widget(param = string_param("dept_code", departments, width = 3),
+    academic_widget(param = string_param("dept_code", departments),
                     undergraduates = undergraduates,
                     graduates = graduates,
                     attendees = attendees,
