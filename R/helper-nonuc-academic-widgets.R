@@ -1,7 +1,7 @@
 nonuc_academic_widget <- function(
     param,
     undergraduates, graduates, attendees, current_students, degreeholders,
-    from, to, advisor) {
+    from, to) {
 
     levels = NULL
     student_levels <- NULL
