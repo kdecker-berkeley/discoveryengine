@@ -48,6 +48,8 @@ these dates. Enter as an integer of the form YYYYMMDD (see details)}
 
 \item{to}{(optional) date range: look only for those who graduated between
 these dates. Enter as an integer of the form YYYYMMDD (see details)}
+
+\item{advisor}{(optional) entity id of advisor}
 }
 \value{
 A definition of type \code{entity_id}

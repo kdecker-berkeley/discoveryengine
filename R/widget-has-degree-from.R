@@ -18,6 +18,7 @@
 #' these dates. Enter as an integer of the form YYYYMMDD (see details)
 #' @param to (optional) date range: look only for those who graduated between
 #' these dates. Enter as an integer of the form YYYYMMDD (see details)
+#' @param advisor (optional) entity id of advisor
 #'
 #' @details
 #' Note that some major and minor codes start with numbers and include letters

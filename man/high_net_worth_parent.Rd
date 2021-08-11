@@ -4,7 +4,7 @@
 \alias{is_high_net_worth_parent}
 \title{Select entities that have been coded as "High Net Worth" Parents}
 \usage{
-is_high_net_worth_parent(...)
+is_high_net_worth_parent()
 }
 \description{
 Select entities that have been coded as "High Net Worth" Parents
