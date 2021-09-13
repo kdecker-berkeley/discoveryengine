@@ -45,14 +45,14 @@ has_external_degree_from <- function(..., undergraduates = TRUE,
                             degreeholders = TRUE,
                             from = NULL, to = NULL) {
     institutions <- prep_dots(...)
-    reroute(has_degree_from_(institutions, undergraduates = undergraduates,
+    reroute(has_external_degree_from_(institutions, undergraduates = undergraduates,
                              graduates = graduates, attendees = attendees,
                              current_students = current_students,
                              degreeholders = degreeholders,
                              from = from, to = to))
 }
 
-has_degree_from_ <- function(institutions, undergraduates = TRUE,
+has_external_degree_from_ <- function(institutions, undergraduates = TRUE,
                              graduates = TRUE, attendees = FALSE,
                              current_students = FALSE,
                              degreeholders = TRUE,
