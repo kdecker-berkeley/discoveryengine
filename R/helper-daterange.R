@@ -22,11 +22,11 @@ daterange <- function(field_name, from, to) {
     )
 
     if (!is.null(from)) {
-        from <- substitute(to_date(from, 'yyyymmdd'))
+        from <- as.name(paste0("to_date(", from, ", 'yyyymmdd')", sep = ""))
         .call <- c(.call, from)
     }
     if(!is.null(to)) {
-        to <- substitute(to_date(to, 'yyyymmdd'))
+        to <- as.name(paste0("to_date(", to, ", 'yyyymmdd')", sep = ""))
         .call <- c(.call, to)
     }
 
