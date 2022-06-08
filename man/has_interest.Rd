@@ -4,8 +4,12 @@
 \alias{has_interest}
 \title{Interest code widget}
 \usage{
-has_interest(..., include_children = FALSE, include_former = FALSE,
-  comment = NULL)
+has_interest(
+  ...,
+  include_children = FALSE,
+  include_former = FALSE,
+  comment = NULL
+)
 }
 \arguments{
 \item{...}{Interest code(s)}

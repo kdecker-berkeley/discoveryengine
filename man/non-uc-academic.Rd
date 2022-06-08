@@ -5,9 +5,16 @@
 \alias{has_external_degree_from}
 \title{Non-UC academic widgets}
 \usage{
-has_external_degree_from(..., undergraduates = TRUE, graduates = TRUE,
-  attendees = FALSE, current_students = FALSE, degreeholders = TRUE,
-  from = NULL, to = NULL)
+has_external_degree_from(
+  ...,
+  undergraduates = TRUE,
+  graduates = TRUE,
+  attendees = FALSE,
+  current_students = FALSE,
+  degreeholders = TRUE,
+  from = NULL,
+  to = NULL
+)
 }
 \arguments{
 \item{...}{Institutions}

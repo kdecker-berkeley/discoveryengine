@@ -18,42 +18,97 @@
 \alias{works_in_zip}
 \title{Address based widgets}
 \usage{
-lives_in_county(..., include_alternate = FALSE, include_past = FALSE,
-  include_seasonal = FALSE, include_student_local = FALSE,
-  include_student_permanent = FALSE, type = "home")
+lives_in_county(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_seasonal = FALSE,
+  include_student_local = FALSE,
+  include_student_permanent = FALSE,
+  type = "home"
+)
 
-lives_in_foreign_country(..., include_alternate = FALSE,
-  include_past = FALSE, include_seasonal = FALSE,
-  include_student_local = FALSE, include_student_permanent = FALSE,
-  city = NULL, type = "home")
+lives_in_foreign_country(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_seasonal = FALSE,
+  include_student_local = FALSE,
+  include_student_permanent = FALSE,
+  city = NULL,
+  type = "home"
+)
 
-lives_in_msa(..., include_alternate = FALSE, include_past = FALSE,
-  include_seasonal = FALSE, include_student_local = FALSE,
-  include_student_permanent = FALSE, type = "home")
+lives_in_msa(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_seasonal = FALSE,
+  include_student_local = FALSE,
+  include_student_permanent = FALSE,
+  type = "home"
+)
 
-lives_in_state(..., include_alternate = FALSE, include_past = FALSE,
-  include_seasonal = FALSE, include_student_local = FALSE,
-  include_student_permanent = FALSE, type = "home")
+lives_in_state(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_seasonal = FALSE,
+  include_student_local = FALSE,
+  include_student_permanent = FALSE,
+  type = "home"
+)
 
-lives_in_zip(..., include_alternate = FALSE, include_past = FALSE,
-  include_seasonal = FALSE, include_student_local = FALSE,
-  include_student_permanent = FALSE, type = "home")
+lives_in_zip(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_seasonal = FALSE,
+  include_student_local = FALSE,
+  include_student_permanent = FALSE,
+  type = "home"
+)
 
-works_in_county(..., include_alternate = FALSE, include_past = FALSE,
-  include_self_employed = TRUE, type = "business")
+works_in_county(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_self_employed = TRUE,
+  type = "business"
+)
 
-works_in_foreign_country(..., include_alternate = FALSE,
-  include_past = FALSE, include_self_employed = TRUE, city = NULL,
-  type = "business")
+works_in_foreign_country(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_self_employed = TRUE,
+  city = NULL,
+  type = "business"
+)
 
-works_in_msa(..., include_alternate = FALSE, include_past = FALSE,
-  include_self_employed = TRUE, type = "business")
+works_in_msa(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_self_employed = TRUE,
+  type = "business"
+)
 
-works_in_state(..., include_alternate = FALSE, include_past = FALSE,
-  include_self_employed = TRUE, type = "business")
+works_in_state(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_self_employed = TRUE,
+  type = "business"
+)
 
-works_in_zip(..., include_alternate = FALSE, include_past = FALSE,
-  include_self_employed = TRUE, type = "business")
+works_in_zip(
+  ...,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_self_employed = TRUE,
+  type = "business"
+)
 }
 \arguments{
 \item{...}{the counties/msas/zips}

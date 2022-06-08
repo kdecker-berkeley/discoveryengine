@@ -6,14 +6,29 @@
 \alias{works_near}
 \title{Geographic radius search}
 \usage{
-lives_near(location, miles, latitude = NULL, longitude = NULL,
-  include_alternate = FALSE, include_past = FALSE,
-  include_seasonal = FALSE, include_student_local = FALSE,
-  include_student_permanent = FALSE, type = "home")
+lives_near(
+  location,
+  miles,
+  latitude = NULL,
+  longitude = NULL,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_seasonal = FALSE,
+  include_student_local = FALSE,
+  include_student_permanent = FALSE,
+  type = "home"
+)
 
-works_near(location, miles, latitude = NULL, longitude = NULL,
-  include_alternate = FALSE, include_past = FALSE,
-  include_self_employed = TRUE, type = "business")
+works_near(
+  location,
+  miles,
+  latitude = NULL,
+  longitude = NULL,
+  include_alternate = FALSE,
+  include_past = FALSE,
+  include_self_employed = TRUE,
+  type = "business"
+)
 }
 \arguments{
 \item{location}{A (quoted) string describing a place (see examples)}

@@ -4,8 +4,7 @@
 \alias{rated_by}
 \title{Search by capacity rating researcher(s) and/or date(s)}
 \usage{
-rated_by(..., from = NULL, to = NULL, include_inactive = FALSE,
-  comment = NULL)
+rated_by(..., from = NULL, to = NULL, include_inactive = FALSE, comment = NULL)
 }
 \arguments{
 \item{...}{(optional) One or more entity IDs of researcher(s). If no

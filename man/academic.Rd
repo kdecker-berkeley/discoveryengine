@@ -11,24 +11,63 @@
 \alias{minored_in}
 \title{Academic widgets}
 \usage{
-has_degree_from_department(..., undergraduates = TRUE,
-  graduates = TRUE, attendees = FALSE, current_students = FALSE,
-  degreeholders = TRUE, from = NULL, to = NULL, advisor = NULL)
+has_degree_from_department(
+  ...,
+  undergraduates = TRUE,
+  graduates = TRUE,
+  attendees = FALSE,
+  current_students = FALSE,
+  degreeholders = TRUE,
+  from = NULL,
+  to = NULL,
+  advisor = NULL
+)
 
-has_degree_from(..., undergraduates = TRUE, graduates = TRUE,
-  attendees = FALSE, current_students = FALSE, degreeholders = TRUE,
-  from = NULL, to = NULL, advisor = NULL)
+has_degree_from(
+  ...,
+  undergraduates = TRUE,
+  graduates = TRUE,
+  attendees = FALSE,
+  current_students = FALSE,
+  degreeholders = TRUE,
+  from = NULL,
+  to = NULL,
+  advisor = NULL
+)
 
-has_degree(..., attendees = FALSE, current_students = FALSE,
-  degreeholders = TRUE, from = NULL, to = NULL, advisor = NULL)
+has_degree(
+  ...,
+  attendees = FALSE,
+  current_students = FALSE,
+  degreeholders = TRUE,
+  from = NULL,
+  to = NULL,
+  advisor = NULL
+)
 
-majored_in(..., undergraduates = TRUE, graduates = TRUE,
-  attendees = FALSE, current_students = FALSE, degreeholders = TRUE,
-  from = NULL, to = NULL, advisor = NULL)
+majored_in(
+  ...,
+  undergraduates = TRUE,
+  graduates = TRUE,
+  attendees = FALSE,
+  current_students = FALSE,
+  degreeholders = TRUE,
+  from = NULL,
+  to = NULL,
+  advisor = NULL
+)
 
-minored_in(..., undergraduates = TRUE, graduates = TRUE,
-  attendees = FALSE, current_students = FALSE, degreeholders = TRUE,
-  from = NULL, to = NULL, advisor = NULL)
+minored_in(
+  ...,
+  undergraduates = TRUE,
+  graduates = TRUE,
+  attendees = FALSE,
+  current_students = FALSE,
+  degreeholders = TRUE,
+  from = NULL,
+  to = NULL,
+  advisor = NULL
+)
 }
 \arguments{
 \item{...}{Schools/majors}

@@ -11,8 +11,12 @@ proposal_disqualified(from = NULL, to = NULL)
 
 proposal_qualified(from = NULL, to = NULL)
 
-proposal_stage_transition(from_stages = NULL, to_stages = NULL,
-  from_date = NULL, to_date = NULL)
+proposal_stage_transition(
+  from_stages = NULL,
+  to_stages = NULL,
+  from_date = NULL,
+  to_date = NULL
+)
 }
 \arguments{
 \item{from}{daterange in YYYYMMDD format}

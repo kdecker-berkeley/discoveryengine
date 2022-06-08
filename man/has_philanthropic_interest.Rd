@@ -4,8 +4,7 @@
 \alias{has_philanthropic_interest}
 \title{Philanthropic interest widget}
 \usage{
-has_philanthropic_interest(..., unit = NULL, active = TRUE,
-  comment = NULL)
+has_philanthropic_interest(..., unit = NULL, active = TRUE, comment = NULL)
 }
 \arguments{
 \item{...}{UCB Interest Codes or synonyms}

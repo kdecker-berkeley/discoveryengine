@@ -10,8 +10,13 @@
 \usage{
 ca_gave_to_candidate(..., at_least = 0.01, from = NULL, to = NULL)
 
-ca_gave_to_proposition(..., at_least = 0.01, from = NULL, to = NULL,
-  support = NULL)
+ca_gave_to_proposition(
+  ...,
+  at_least = 0.01,
+  from = NULL,
+  to = NULL,
+  support = NULL
+)
 
 ca_gave(at_least = 0.01, from = NULL, to = NULL)
 }
