@@ -13,7 +13,11 @@ show_savedlists <- function() {
     }
 
     lists <- savedlists()
-    DT::datatable(lists, rownames = FALSE, fillContainer = FALSE)
+    DT::datatable(lists, rownames = FALSE,
+                  options = list(
+                                         order = list(list(1, "asc")),
+                                         pageLength = 10,
+                                         scrollY = TRUE))
 }
 
 savedlists <- function () {

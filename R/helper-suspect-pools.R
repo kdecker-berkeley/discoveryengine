@@ -13,10 +13,13 @@ show_suspect_pools <- function() {
     }
 
     pools <- suspect_pools()
-    DT::datatable(pools, rownames = FALSE, fillContainer = FALSE,
+    DT::datatable(pools, rownames = FALSE,
                   options = list(
-                      order = list(list(2, "asc"),
-                                   list(4, "asc"))
+                                        order = list(list(2, "asc"),
+                                                       list(4, "asc")),
+                                         pageLength = 10,
+                                         scrollY = TRUE
+
                   ))
 }
 
