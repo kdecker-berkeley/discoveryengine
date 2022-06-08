@@ -154,7 +154,7 @@ show_singles <- function() {
     }
 
     singles_list <- list_singles()
-    DT::datatable(singles_list, rownames = FALSE,
+    DT::datatable(singles_list, rownames = FALSE, fillContainer = FALSE,
                   options = list(
                       order = list(list(1, "asc"))
                   ))

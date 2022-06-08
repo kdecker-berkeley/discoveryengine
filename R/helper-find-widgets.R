@@ -57,7 +57,7 @@ show_widgets <- function() {
     }
 
     widget_list <- widget_df()
-    DT::datatable(widget_list, rownames = FALSE,
+    DT::datatable(widget_list, rownames = FALSE, fillContainer = FALSE,
                   options = list(
                       order = list(list(1, "asc"))
                   ))

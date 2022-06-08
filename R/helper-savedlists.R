@@ -13,7 +13,7 @@ show_savedlists <- function() {
     }
 
     lists <- savedlists()
-    DT::datatable(lists, rownames = FALSE)
+    DT::datatable(lists, rownames = FALSE, fillContainer = FALSE)
 }
 
 savedlists <- function () {
