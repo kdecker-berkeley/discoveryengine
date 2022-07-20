@@ -12,13 +12,12 @@ prep_dots <- function(...) {
     res
 }
 
-partial_sub <- function(.dots) {
-    reenv <- function(env) {
-        # newenv <- as.environment(as.list(env))
-        # parent.env(newenv) <- emptyenv()
-        # newenv
-        env
-    }
-    lapply(.dots,
-           function(x) dbplyr::partial_eval(x$expr, env = reenv(x$env)))
+partial_sub <- function(param) {
+    #reenv <- function(env) {
+    # newenv <- as.environment(as.list(env))
+    # parent.env(newenv) <- emptyenv()
+    # newenv
+    # env
+    #}
+    rlang::as_string(param[[1]]$expr)
 }
