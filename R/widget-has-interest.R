@@ -31,7 +31,7 @@ has_interest <- function(..., include_children = FALSE, include_former = FALSE, 
 }
 
 has_interest_ <- function(interests, include_children = FALSE, include_former = FALSE, comment = NULL) {
-    interest_codes <- readr::read_csv("//ur2.urel.berkeley.edu/ur_unitshares/Prospect Development/Prospect Analysis/discoveryengine/inst/extdata/interest_codes.csv")
+    interest_codes <- readr::read_csv("//ur2.urel.berkeley.edu/ur_unitshares/Prospect Development/Prospect Analysis/discoveryengine/inst/extdata/interest_codes.csv", show_col_types = FALSE)
 
     if (include_former) former_switch <- NULL
     else former_switch <- quote(stop_dt %is% null)
